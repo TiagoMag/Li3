@@ -35,11 +35,15 @@ int main(){
     if(check!=1) erro();
     
     else{
-        c=inputQuery2();
+        if ((c=inputQuery2())=='0') voltar();
+       
+        else{
+        //c=inputQuery2();
         Lista rsl=inicializa_lista();
         rsl=getProductsStartedByLetter(sgv,c);
         printQuery2(rsl);
         }
+      }
       
   }
   else if(option==3){
@@ -48,12 +52,18 @@ int main(){
      erro();
     else{
        char c;
+
        int mes;
        char* codigo=malloc(sizeof(char*));
+             
           Lista rsl=inicializa_lista();
         c=inputQuery3(codigo,&mes);
+        if (c=='0') voltar();
+        if (c=='-') 
+        else{
          rsl=getProductSalesAndProfit(sgv,codigo,mes);
-       printQuery3(rsl,c); 
+         printQuery3(rsl,c); }
+       
        }
   }
   else if(option==4){
@@ -133,7 +143,7 @@ int main(){
        Lista l=inicializa_lista();
        char* codigo=malloc(sizeof(char*));
        int x=inputQuery10(codigo);
-       l=getClientFavoriteProducts(sgv,codigo,x);
+       l=getClientFavoriteProducts(sgv,codigo,x-1);
        printLst(l);
      
 

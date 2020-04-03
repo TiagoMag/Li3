@@ -183,7 +183,7 @@ void erro(){
 //--------------------------------------------------QUERY-1
 
 
-//adiciona-se ao .h?
+
 int scanning(char buffer[100],char*filenames[3]){
 
  
@@ -258,7 +258,7 @@ else{
 char inputQuery2(){
   
     char c;
-     system("clear");
+    system("clear");
     printf("\033[1;36m");
     printf("═════════════════════════════════════════════════");
     printf("\033[1;34m");
@@ -270,7 +270,7 @@ char inputQuery2(){
     printf("══════════════════════════════════════════════════════════════════════════════════════════\n");
    
  scanf(" %c",&c);
-    if (c=='0') voltar();
+    if (c=='0') return '0';
     else {
     if (!(c>='A' && c<='Z'))
      {puts("Letra inválida");exit(0);}
@@ -298,24 +298,36 @@ char inputQuery3(char* code,int* mes){
    
   system("clear");
   printf("\033[1;36m");
-    printf("═════════════════════════════════════════════════");
-    printf("\033[1;34m");
-    printf("QUERY 3");
-    printf("\033[1;36m");
-    printf("═════════════════════════════════════════════════");
+  printf("═════════════════════════════════════════════════");
+  printf("\033[1;34m");
+  printf("QUERY 3");
+  printf("\033[1;36m");
+  printf("═════════════════════════════════════════════════");
   printf("0 -> Voltar \n");
     
   printf("Indique um mês ?\n");
   scanf(" %s",mes_str);
- 
+  
+  if ((atoi(mes_str))==0) return c='0';
+  if ((atoi(mes_str))>12) return c='-';
+
+else{
+
   *mes=atoi(mes_str)-1;
+  
     
   printf("Indique um código de um produto?\n");  
   scanf(" %s",code);
+
+
     
   printf("Total ou por Filial(T/F)?\n"); 
-  scanf(" %c",&c);    
-    
+  scanf(" %c",&c); 
+
+  
+  
+  }
+
   return c;
 }  
 
