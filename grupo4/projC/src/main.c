@@ -59,7 +59,7 @@ int main(){
           Lista rsl=inicializa_lista();
         c=inputQuery3(codigo,&mes);
         if (c=='0') voltar();
-        if (c=='-') 
+        // if (c=='-') 
         else{
          rsl=getProductSalesAndProfit(sgv,codigo,mes);
          printQuery3(rsl,c); }

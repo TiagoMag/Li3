@@ -1,4 +1,4 @@
-#include "headers/Filial.h"
+#include "../include/Filial.h"
 
 struct filial{
   GHashTable* produtos;
@@ -313,7 +313,7 @@ int numberClients(Filial f,char* codeProduct){
 
 
   g_hash_table_foreach(f->clientes,(GHFunc)travessiaQ11,&aux);
-num_clients=(aux)->num_clients;gi
+num_clients=(aux)->num_clients;
 free(aux);
 return num_clients;
 }
