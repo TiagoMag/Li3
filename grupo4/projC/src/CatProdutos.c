@@ -1,4 +1,4 @@
-#include "headers/CatProdutos.h"
+#include "../include/CatProdutos.h"
 
 struct cat_produtos{
  GTree* produtos[Produtos];

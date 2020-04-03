@@ -269,3 +269,51 @@ g_hash_table_foreach(ic->produtos[mes],(GHFunc)travessiaQ10,h);
 puts("3");
 return h;
 }
+
+//------------------
+
+
+typedef struct auxNumClients{
+ int num_clients;
+ char* productID;
+ Filial f;
+}*Aux11;
+
+Aux11 setAux11(char* productID,int num_clients,Filial f){
+  Aux11 aux=(Aux11)malloc(sizeof(struct auxNumClients));
+  aux->num_clients=num_clients;
+  aux->productID=strdup(productID);
+  aux->f=f;
+  return aux;
+}
+
+
+gboolean clientHasProduct(Filial fil,char* clientID,char* productID){
+
+ InfoCli ic=g_hash_table_lookup(fil->clientes,clientID);
+
+ for(int i=0;i<12;i++){
+  if(g_hash_table_contains(ic->produtos[i],productID)) {return TRUE;break;}
+ }
+
+return FALSE;
+
+}
+
+void travessiaQ11(gpointer key, gpointer value, gpointer data) {
+ Aux11 *aux=data;
+ if(clientHasProduct((*aux)->f,key,(*aux)->productID)) (*aux)->num_clients++;
+ 
+}
+
+
+int numberClients(Filial f,char* codeProduct){
+ int num_clients=0;
+ Aux11 aux=setAux11(codeProduct,num_clients,f);
+
+
+  g_hash_table_foreach(f->clientes,(GHFunc)travessiaQ11,&aux);
+num_clients=(aux)->num_clients;gi
+free(aux);
+return num_clients;
+}

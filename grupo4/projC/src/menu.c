@@ -1,4 +1,4 @@
-#include "headers/menu.h"
+#include "../include/menu.h"
 
 
 static void navega(Lista lst);

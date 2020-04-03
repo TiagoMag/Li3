@@ -1,4 +1,4 @@
-#include "headers/SGV.h"
+#include "../include/SGV.h"
 
 static char file1[]="ficheiros/Clientes.txt";
 static char file2[]="ficheiros/Produtos.txt";

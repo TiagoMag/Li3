@@ -1,4 +1,4 @@
-#include "headers/Faturacao.h"
+#include "../include/Faturacao.h"
 
 struct faturacao {
  GHashTable* produtos;

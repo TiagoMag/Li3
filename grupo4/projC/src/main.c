@@ -3,9 +3,9 @@
 #include <ctype.h>
 
 
-#include "headers/SGV.h"
-#include "headers/menu.h"
-#include "headers/Navegador.h"
+#include "../include/SGV.h"
+#include "../include/menu.h"
+#include "../include/Navegador.h"
 
 int main(){
     

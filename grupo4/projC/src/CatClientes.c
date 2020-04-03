@@ -1,4 +1,4 @@
-#include "headers/CatClientes.h"
+#include "../include/CatClientes.h"
 
 struct cat_clientes{
  GTree* clientes[Clientes];

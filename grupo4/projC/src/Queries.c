@@ -1,4 +1,4 @@
-#include "headers/Queries.h"
+#include "../include/Queries.h"
 
 
 //---------------QUERIE 2---------------------------------------

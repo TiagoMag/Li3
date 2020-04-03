@@ -1,4 +1,4 @@
-#include "headers/Navegador.h"
+#include "../include/Navegador.h"
 
 struct lst{
  GArray* lista;

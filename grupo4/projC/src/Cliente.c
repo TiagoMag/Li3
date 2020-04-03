@@ -1,4 +1,4 @@
-#include "headers/Cliente.h"
+#include "../include/Cliente.h"
 
 struct cliente{
  char* codigo;
