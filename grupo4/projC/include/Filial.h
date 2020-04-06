@@ -25,6 +25,8 @@ Lista buyers (Filial f,Lista lst,char* productID,char tipo);
 GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes);
 int getQntQP(QntProds qp);
 char* getCodeQP(QntProds qp);
+int numberClients(Filial f,char* codeProduct);
+int getUnidadesFilial (Filial f,char* prodID);
 
 
 #endif

@@ -12,6 +12,7 @@ typedef struct par *Par;
 typedef struct tabela *Tabela;
 typedef struct profit *Profit;
 typedef struct lstbuyers *LstBuyers;
+typedef struct selledprod *SelledProd;
 
 
 Lista produtosComecadoPelaLetra(Cat_Produtos cp,char letter);
@@ -46,5 +47,13 @@ void removeLstBuyers(LstBuyers l);
 LstBuyers productBuyers(LstBuyers l,Filial f,char* productID);
 
 Lista clientFavoriteProducts(Filial f[3],char* clientID,int month);
+
+SelledProd initSelledProd();
+int getUnidadesVendidasProd(SelledProd s);
+int* getNumClientes(SelledProd s);
+char* getProdCode(SelledProd s);
+int* getUnidadesVendidasFilial(SelledProd s);
+SelledProd* topSelledProducts(Faturacao fat,Filial f[3],int limit);
+
 
 #endif

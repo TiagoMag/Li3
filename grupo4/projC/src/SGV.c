@@ -116,3 +116,10 @@ Lista getClientFavoriteProducts(SGV sgv,char* clientID,int month){
  lst=clientFavoriteProducts(sgv->fil,clientID,month);
   return lst;
 }
+
+SelledProd* getTopSelledProducts(SGV sgv,int limit){
+  SelledProd *s=NULL;
+  
+  s=topSelledProducts(sgv->f,sgv->fil,limit);
+  return s;
+}

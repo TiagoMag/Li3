@@ -52,10 +52,19 @@ Filial insereFilial(Filial f,Venda v){
 
    float preco=getPrecoVenda(v)*(float)getQntVenda(v);
    
+   int* unidades_vendidas=(int*)malloc(sizeof(int*));
+
+   *unidades_vendidas=quant;
+
    //Vê se produto já existe
    if (!g_hash_table_contains(f->produtos,codigoProd)) 
-    g_hash_table_insert(f->produtos,codigoProd,codigoProd);
-   
+    g_hash_table_insert(f->produtos,codigoProd,unidades_vendidas);
+   else{
+    unidades_vendidas=g_hash_table_lookup(f->produtos,codigoProd);
+    *unidades_vendidas+=quant;
+    g_hash_table_insert(f->produtos,codigoProd,unidades_vendidas);
+    
+   }
   InfoCli ic=g_hash_table_lookup(f->clientes,codigoCli); 
   
   if(!ic)
@@ -236,37 +245,36 @@ return qp;
 }
 
 void travessiaQ10(gpointer key, gpointer value, gpointer data) {
-puts("4");
+
 QntProds qp=initQntProds();
-puts("5");
+
 GHashTable* ht=(GHashTable*) data;
-printf("SIZE3:%d\n",g_hash_table_size(ht));
+
 InfoProd ip=(InfoProd) value;
-puts("6");
-printf("KEY:%s\n",(char*)key);
+
 if(g_hash_table_contains(ht,(char*)key)){
-  puts("7");
+ 
   qp=updateInfo(ht,value,key);
-  puts("8");
+ 
   g_hash_table_replace(ht,key,qp); //produto já existe atualiza quantidade
-  puts("9");
+  
 }else{ 
-  puts("10");
+
   qp=setQntProds(qp,key,ip->qnt);
-  puts("11");
+ 
   g_hash_table_insert(ht,key,qp); //produtos ñ existe inseres
-  puts("12");
+  
 }
 }
 
 GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes){
-puts("1");
+
 GHashTable* h=(GHashTable*)ht;
-printf("SIZE2:%d\n",g_hash_table_size(h));
+
 InfoCli ic=g_hash_table_lookup(f->clientes,codigoCli); 
-puts("2");
+
 g_hash_table_foreach(ic->produtos[mes],(GHFunc)travessiaQ10,h);
-puts("3");
+
 return h;
 }
 
@@ -290,10 +298,13 @@ Aux11 setAux11(char* productID,int num_clients,Filial f){
 
 gboolean clientHasProduct(Filial fil,char* clientID,char* productID){
 
+ 
  InfoCli ic=g_hash_table_lookup(fil->clientes,clientID);
-
+ if(!ic) return FALSE;
+ 
  for(int i=0;i<12;i++){
   if(g_hash_table_contains(ic->produtos[i],productID)) {return TRUE;break;}
+ 
  }
 
 return FALSE;
@@ -301,19 +312,38 @@ return FALSE;
 }
 
 void travessiaQ11(gpointer key, gpointer value, gpointer data) {
+ 
  Aux11 *aux=data;
+ 
  if(clientHasProduct((*aux)->f,key,(*aux)->productID)) (*aux)->num_clients++;
  
 }
 
 
 int numberClients(Filial f,char* codeProduct){
- int num_clients=0;
- Aux11 aux=setAux11(codeProduct,num_clients,f);
+int num_clients=0;
+
+Aux11 aux=setAux11(codeProduct,num_clients,f);
 
 
-  g_hash_table_foreach(f->clientes,(GHFunc)travessiaQ11,&aux);
+g_hash_table_foreach(f->clientes,(GHFunc)travessiaQ11,&aux);
+
 num_clients=(aux)->num_clients;
+
 free(aux);
+
 return num_clients;
+}
+
+int getUnidadesFilial (Filial f,char* prodID){
+
+  int x=0;
+  int* unidades_vendidas=g_hash_table_lookup(f->produtos,prodID);
+  if(unidades_vendidas==NULL) return 0;
+  
+  x=*unidades_vendidas;
+ printf("unidades_vendidas:%d\n",x);
+  return x;
+ 
+
 }

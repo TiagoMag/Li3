@@ -1,14 +1,17 @@
 #include "../include/Faturacao.h"
 
+int top=0;
+
 struct faturacao {
  GHashTable* produtos;
  Data TotaisMes[MES];
 };     
 
 struct fat{
+ char* code;
  Data infoN[MES][FILIAL];
  Data infoP[MES][FILIAL];
- float totalFaturado;
+ int vendas;
 };
 
 struct data{
@@ -52,7 +55,8 @@ Faturacao inicializaFat(){
 
 Fat initFat(){
  Fat ft = (Fat)malloc(sizeof(struct fat));
- ft->totalFaturado=0;
+ ft->vendas=0;
+ ft->code=NULL;
  for(int i=0;i<MES;i++){
   for(int j=0;j<FILIAL;j++){
    ft->infoN[i][j]=initData();
@@ -60,6 +64,16 @@ Fat initFat(){
   }
  }
  return ft;
+}
+
+char* getCodeFat(Fat f){
+
+  return(f->code);
+}
+
+Fat setFatCode(Fat f,char* code){
+  f->code=strdup(code);
+  return f;
 }
 
 gboolean existeFat(Faturacao f,Venda v){
@@ -75,20 +89,20 @@ Faturacao setTotais(Faturacao f,int mes,float preco){
  return f;
 }
 
-Fat setFatP(Fat f,int mes,int filial,float preco){
+Fat setFatP(Fat f,int mes,int filial,float preco,int quant){
 
   f->infoP[mes][filial]->quant++;
   f->infoP[mes][filial]->precofat+=preco;
-  f->totalFaturado+=preco;
+  f->vendas+=quant;
   
   return f;
 }
 
-Fat setFatN(Fat f,int mes,int filial,float preco){
+Fat setFatN(Fat f,int mes,int filial,float preco,int quant){
 
   f->infoN[mes][filial]->quant++;
   f->infoN[mes][filial]->precofat+=preco;
-  f->totalFaturado+=preco;
+  f->vendas+=quant;
   
   return f;
 }
@@ -99,12 +113,13 @@ Faturacao insereFat(Faturacao f,Venda v){
    int mes=getMes(v)-1;
    int filial=getFilial(v)-1;
    float preco=getPrecoVenda(v)*(float)getQntVenda(v);
+   int quant=getQntVenda(v);
 
    Fat fat=initFat();
-     
+   fat=setFatCode(fat,codigo);
    if(getTipo(v)=='P'){
     
-    fat=setFatP(fat,mes,filial,preco);
+    fat=setFatP(fat,mes,filial,preco,quant);
     
     g_hash_table_insert(f->produtos,codigo,fat);
   
@@ -113,7 +128,7 @@ Faturacao insereFat(Faturacao f,Venda v){
    }
    else if(getTipo(v)=='N'){
     
-    fat=setFatN(fat,mes,filial,preco);
+    fat=setFatN(fat,mes,filial,preco,quant);
 
     g_hash_table_insert(f->produtos,codigo,fat);
     
@@ -133,19 +148,20 @@ Faturacao updateFat(Faturacao f,Venda v){
    int mes=getMes(v)-1;
    int filial=getFilial(v)-1;
    float preco=getPrecoVenda(v)*(float)getQntVenda(v);
-   
+   int quant=getQntVenda(v);
+
    Fat fat=(Fat)g_hash_table_lookup(f->produtos,codigo);
 
    if (getTipo(v)=='P'){
    
-    fat=setFatP(fat,mes,filial,preco);
+    fat=setFatP(fat,mes,filial,preco,quant);
     f=setTotais(f,mes,preco);
    
    }
    
    else if (getTipo(v)=='N'){
     
-    fat=setFatN(fat,mes,filial,preco);
+    fat=setFatN(fat,mes,filial,preco,quant);
     f=setTotais(f,mes,preco);
    
    }
@@ -215,4 +231,50 @@ int getSales(Faturacao f,int minMonth,int maxMonth){
  return vendas;
   
 }
+
+int compare(gpointer a,gpointer b){
+Fat f1=(Fat) a;
+Fat f2=(Fat) b;
+
+float x=f1->vendas;
+float y=f2->vendas;
+
+return y-x;
+
+}
+
+
+void percorre11(gpointer data,gpointer user_data){
+if(top>0){
+Fat fat=(Fat)data;
+
+insereLista(user_data,getCodeFat(fat));
+top--;
+}
+
+}
+
+Lista topSelledProductsN(Lista lst,Faturacao f,int limit){
+
+ GList* l=g_hash_table_get_values(f->produtos);
+ GList* s=g_list_sort(l,(GCompareFunc)compare);
+ 
+ top=limit;
+ 
+ g_list_foreach(s,(GFunc)percorre11,&lst);
+ 
+ return lst;
+
+
+ }
+
+ int getUnidadesVendidas(Faturacao f,char* prodID){
+
+ Fat fat=initFat();
+ fat=g_hash_table_lookup(f->produtos,prodID);
+ 
+ return(fat->vendas);
+ }
+
+
 

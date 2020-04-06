@@ -455,3 +455,95 @@ for(int i=0;i<3;i++)
 return(htableToList(ht));
 }
 
+//-------------------------------------Querie11
+
+struct selledprod{
+ char* prodID;
+ int num_clientes[3];
+ int unidades_vendidas; 
+ int unidades_vendidas_filial[3];
+};
+
+SelledProd initSelledProd(){
+  SelledProd s=(SelledProd)malloc(sizeof(struct selledprod));
+  s->prodID=NULL;
+  for(int i=0;i<3;s->num_clientes[i++]=0);
+  s->unidades_vendidas=0;
+  for(int i=0;i<3;s->unidades_vendidas_filial[i++]=0);
+
+return s;
+}
+
+SelledProd setSelledProd(SelledProd s,char* code,int* num_clientes,int unidades_vendidas,int* unidades_vendidas_filial){
+  s->prodID=strdup(code);
+  for(int i=0;i<3;i++)
+   s->num_clientes[i]=num_clientes[i];
+  s->unidades_vendidas=unidades_vendidas;
+  for(int i=0;i<3;i++)
+   s->unidades_vendidas_filial[i]=unidades_vendidas_filial[i];
+return s;
+}
+
+int getUnidadesVendidasProd(SelledProd s){
+ return(s->unidades_vendidas);
+}
+
+int* getNumClientes(SelledProd s){
+  return(s->num_clientes);
+}
+
+int* getUnidadesVendidasFilial(SelledProd s){
+  return(s->unidades_vendidas_filial);
+}
+
+
+char* getProdCode(SelledProd s){
+ return(s->prodID);
+}
+
+
+
+
+
+SelledProd* topSelledProducts(Faturacao fat,Filial f[3],int limit){
+
+
+
+char* code=NULL;
+int num_clientes[3];
+int unidades_vendidas_filial[3];
+int unidades_vendidas=0;
+SelledProd *top=(SelledProd*)malloc(sizeof(struct selledprod*)*limit);
+
+for(int i=0;i<3;num_clientes[i++]=0);
+
+
+Lista l=inicializa_lista();
+
+
+
+l=topSelledProductsN(l,fat,limit);
+
+for(int i=0;i<limit;top[i++]=initSelledProd());
+
+for(int i=0;i<limit;i++){
+ 
+ code=strdup(getStringLst(l,i));
+ 
+ 
+ for(int j=0;j<3;j++){
+   
+  num_clientes[j]=numberClients(f[j],code);
+  unidades_vendidas_filial[j]=getUnidadesFilial(f[j],code);
+
+ }  
+ unidades_vendidas=getUnidadesVendidas(fat,code);
+ 
+ top[i]=setSelledProd(top[i],code,num_clientes,unidades_vendidas,unidades_vendidas_filial);
+
+ 
+ }
+ 
+return top;
+}
+
