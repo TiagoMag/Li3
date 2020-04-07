@@ -3,7 +3,7 @@
 static char file1[]="ficheiros/Clientes.txt";
 static char file2[]="ficheiros/Produtos.txt";
 static char file3[]="ficheiros/Vendas_1M.txt";
-char* arr_token[CAMPOS];
+
 
 struct sgv{
  Cat_Clientes cc;
@@ -27,10 +27,11 @@ SGV initSGV(){
 
 void destroySGV(SGV sgv){
  removeCatCliente(sgv->cc);
- removeCatProd(sgv->cp);
- removeFaturacao(sgv->f);
-  for(int i=0;i<3;i++)
+  removeCatProd(sgv->cp);
+  removeFaturacao(sgv->f);
+  for(int i=0;i<FILIAL;i++)
    removeFilial(sgv->fil[i]); 
+ free(sgv);
  
 }
 
@@ -47,14 +48,14 @@ SGV loadFromFiles(char* filesPath[3],SGV sgv){
 
  loadFilesCliente(file1,sgv->cc);
  loadFilesProduto(file2,sgv->cp);
- leVendas(sgv->fil,sgv->f,file3,arr_token,sgv->cp,sgv->cc);
+ leVendas(sgv->fil,sgv->f,file3,sgv->cp,sgv->cc);
 
  return sgv;
 }
 
 Lista getProductsStartedByLetter(SGV sgv,char letter){
  Lista lst=inicializa_lista();
- lst=produtosComecadoPelaLetra(sgv->cp,letter);
+ lst=produtosComecadoPelaLetra(sgv->cp,lst,letter);
 
  return lst;
 }
@@ -122,4 +123,11 @@ SelledProd* getTopSelledProducts(SGV sgv,int limit){
   
   s=topSelledProducts(sgv->f,sgv->fil,limit);
   return s;
+}
+
+GList* getClientTopProfitProducts(SGV sgv,char* clientID,int limit){
+
+ GList* l=topProducts(sgv->fil,clientID,limit);
+ return l;
+
 }

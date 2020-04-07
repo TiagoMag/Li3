@@ -7,38 +7,70 @@ struct filial{
 
 struct infoCli{
   GHashTable* produtos[MES];
+  GHashTable* prods;
 };
 
 struct infoProd{
- gboolean modoCompra[2];//0->N 1->P
- float gasto;
- int qnt;
+  gboolean modoCompra[2];//0->N 1->P
+  //float gasto;
+  int qnt;
 };
+
+void freeKeyProductFil(gpointer data){
+  char* prodID=(char*)data;
+  free(prodID);
+}
+
+void freeKeyClientFil(gpointer data){
+  char* clientID=(char*)data;
+  free(clientID);
+}
+
 
 InfoProd inicializa_InfoProd(){
   InfoProd ip=(InfoProd)malloc(sizeof(struct infoProd));
   for(int i=0;i<2;i++)
     ip->modoCompra[i]=FALSE;
-  ip->gasto=0.0;
+ // ip->gasto=0.0f;
   ip->qnt=0;
 
   return ip;
 }
 
+void removeInfoProd(gpointer data){
+  InfoProd ip=(InfoProd) data;
+  free(ip);
+}
+
+void removeInfoCli(gpointer data){
+ InfoCli ic=(InfoCli) data;
+ for(int i=0;i<MES;i++)
+  g_hash_table_destroy(ic->produtos[i]);
+ free(ic);
+}
+
 InfoCli inicializa_InfoCli(){
   InfoCli ic=(InfoCli)malloc(sizeof(struct infoCli));
   for(int i=0;i<MES;i++)
-  	ic->produtos[i]=g_hash_table_new(g_str_hash, g_str_equal);
-  
+  	ic->produtos[i]=g_hash_table_new_full(g_str_hash, g_str_equal,freeKeyProductFil,NULL);
+   ic->prods=g_hash_table_new_full(g_str_hash, g_str_equal,NULL,NULL);
   return ic;
 }
 
 Filial inicializa_Filial(){
    Filial f=(Filial)malloc(sizeof(struct filial));
-   f->produtos=g_hash_table_new(g_str_hash, g_str_equal);
-   f->clientes=g_hash_table_new(g_str_hash, g_str_equal);
+   f->produtos=g_hash_table_new_full(g_str_hash, g_str_equal,NULL,NULL);
+   f->clientes=g_hash_table_new_full(g_str_hash, g_str_equal,freeKeyClientFil,removeInfoCli);
+   //f->produtos=g_hash_table_new(g_str_hash, g_str_equal);
+    // f->clientes=g_hash_table_new(g_str_hash, g_str_equal);
 
    return f;
+}
+
+void removeFilial(Filial f){
+  g_hash_table_destroy(f->clientes);
+  g_hash_table_destroy(f->produtos); 
+  free(f);
 }
 
 
@@ -52,32 +84,54 @@ Filial insereFilial(Filial f,Venda v){
 
    float preco=getPrecoVenda(v)*(float)getQntVenda(v);
    
-   int* unidades_vendidas=(int*)malloc(sizeof(int*));
-
-   *unidades_vendidas=quant;
+   
+    
+   float* gasto=NULL;
 
    //Vê se produto já existe
-   if (!g_hash_table_contains(f->produtos,codigoProd)) 
-    g_hash_table_insert(f->produtos,codigoProd,unidades_vendidas);
+   if (!g_hash_table_contains(f->produtos,codigoProd)){ 
+  
+  
+    g_hash_table_insert(f->produtos,codigoProd,GINT_TO_POINTER(quant));
+   }
    else{
-    unidades_vendidas=g_hash_table_lookup(f->produtos,codigoProd);
-    *unidades_vendidas+=quant;
-    g_hash_table_insert(f->produtos,codigoProd,unidades_vendidas);
+     gpointer unidades_vendidas=g_hash_table_lookup(f->produtos,codigoProd);
+     gint unidades=GPOINTER_TO_INT(unidades_vendidas)+quant;
+    
+    g_hash_table_insert(f->produtos,codigoProd,GINT_TO_POINTER(unidades));
     
    }
   InfoCli ic=g_hash_table_lookup(f->clientes,codigoCli); 
   
-  if(!ic)
+  if(!ic){
+  
     ic=inicializa_InfoCli();
+    g_hash_table_insert(f->clientes,codigoCli,ic);
+  
+  }else{free(codigoCli);}
    
-  g_hash_table_insert(f->clientes,codigoCli,ic);
+   if (!g_hash_table_contains(ic->prods,codigoProd)){ 
+     gasto=(float*)malloc(sizeof(float*));
+   *gasto=preco;
    
+   
+  
+    g_hash_table_insert(ic->prods,codigoProd,gasto);
+   }
+   else{
+     gasto=g_hash_table_lookup(ic->prods,codigoProd);
+     *gasto+=preco;
+    
+    g_hash_table_insert(ic->prods,codigoProd,gasto);
+    
+   }
+
   InfoProd ip=g_hash_table_lookup(ic->produtos[mes],codigoProd);
    
   if(!ip)
    ip=inicializa_InfoProd();
    
-  ip->gasto+=preco;
+ // ip->gasto+=preco;
   ip->qnt+=quant;
   if(getTipo(v)=='N') ip->modoCompra[0]=TRUE;
   if(getTipo(v)=='P') ip->modoCompra[1]=TRUE;
@@ -88,71 +142,62 @@ Filial insereFilial(Filial f,Venda v){
 }
 
 gboolean existeProdFil(Filial f,char* codigo){
- return g_hash_table_contains(f->produtos,codigo);
+  return g_hash_table_contains(f->produtos,codigo);
 }
 
 gboolean existeCliFil(Filial f,char* codigo){
- return g_hash_table_contains(f->clientes,codigo);
+  return g_hash_table_contains(f->clientes,codigo);
 }
 
-
-void removeFilial(Filial f){
- g_hash_table_destroy(f->produtos);
- g_hash_table_destroy(f->clientes); 
-}
 
 void iterator(gpointer key, gpointer value, gpointer data) {
 
-InfoProd ip=(InfoProd)value;
+  InfoProd ip=(InfoProd)value;
 
-int x=ip->qnt;
+  int x=ip->qnt;
 
-int* l=data;
+  int* l=data;
 
-*l+=x;
+  *l+=x;
 
 }
 
 int produtosCompradosCliente(Filial fil,int mes,char* code){
 
-int total=0;
+  int total=0;
 
-//procura cliente
-InfoCli ic=g_hash_table_lookup(fil->clientes,code);
-//percorre hashtable produtos e somas as suas vendar
-g_hash_table_foreach(ic->produtos[mes], (GHFunc)iterator,&total);
+  //procura cliente
+  InfoCli ic=g_hash_table_lookup(fil->clientes,code);
+  //percorre hashtable produtos e somas as suas vendas
+  g_hash_table_foreach(ic->produtos[mes], (GHFunc)iterator,&total);
 
-
-
-
-
-return total;
-
+  return total;
 }
 
+
+
+//--Query 9
 
 int mapToIndex(char tipo){
 
- if (tipo=='N') return 0;
- if (tipo=='P') return 1;
- return -1;
+  if (tipo=='N') return 0;
+  if (tipo=='P') return 1;
+  return -1;
 }
 
 gboolean temProduto(InfoCli ic,char* productID,char tipo){
-InfoProd ip;
+  
+  InfoProd ip;
 
-for(int i=0;i<12;i++){
-  if (g_hash_table_contains(ic->produtos[i],productID)){
-   ip=g_hash_table_lookup(ic->produtos[i],productID);
-   if(ip->modoCompra[mapToIndex(tipo)]) return TRUE;
+  for(int i=0;i<12;i++){
+    if (g_hash_table_contains(ic->produtos[i],productID)){
+      ip=g_hash_table_lookup(ic->produtos[i],productID);
+      if(ip->modoCompra[mapToIndex(tipo)]) return TRUE;
+    }
   }
+
+  return FALSE;
 }
-
-
-return FALSE;
-
-}
-
 
 typedef struct aux9{
  char* productID;
@@ -172,35 +217,28 @@ Aux9 setAux9(char* productID,char tipo,Lista lst){
 
 void travessia(gpointer key, gpointer value, gpointer data) {
 
-InfoCli ic=(InfoCli) value;
+  InfoCli ic=(InfoCli) value;
 
-Aux9 *aux=data;
+  Aux9 *aux=data;
 
-if(temProduto(ic,(*aux)->productID,(*aux)->tipo))
-  insereLista(&(*aux)->lst,key);
+  if(temProduto(ic,(*aux)->productID,(*aux)->tipo))
+    insereLista(&(*aux)->lst,key);
 
 }
 
 
 Lista buyers (Filial f,Lista lst,char* productID,char tipo){ 
 
- Aux9 aux=setAux9(productID,tipo,lst);
-
- printf("MODO:%c\n",tipo );
- g_hash_table_foreach(f->clientes, (GHFunc)travessia,&aux);
- 
-
- return lst; 
-
+  Aux9 aux=setAux9(productID,tipo,lst);
+   if(g_hash_table_lookup(f->produtos,productID)!=NULL){
+  
+  g_hash_table_foreach(f->clientes, (GHFunc)travessia,&aux);
+   
+   }
+  
+   return lst; 
 }
-
-
-
-
-
-
-
-
+//-- Query 10
 struct qntProds{
  char* prod;
  int qnt;
@@ -208,83 +246,79 @@ struct qntProds{
 
 
 int getQntQP(QntProds qp){
-
-return(qp->qnt);
+  return(qp->qnt);
 }
 
 char* getCodeQP(QntProds qp){
-
-return(qp->prod);
+  return(qp->prod);
 }
 
 QntProds initQntProds(){
-QntProds qp=(QntProds)malloc(sizeof(struct qntProds));
-qp->prod=NULL;
-qp->qnt=0;
-return qp;
+  QntProds qp=(QntProds)malloc(sizeof(struct qntProds));
+  qp->prod=NULL;
+  qp->qnt=0;
+  return qp;
 }
 
 QntProds setQntProds(QntProds qp,char* prod,int qnt){
-qp->prod=strdup(prod);
-qp->qnt=qnt;
-return qp;
+  qp->prod=strdup(prod);
+  qp->qnt=qnt;
+  return qp;
 }
 
 
 QntProds updateInfo(GHashTable* ht,gpointer value,gpointer key){
 
-InfoProd ip=(InfoProd) value;
-QntProds qp=g_hash_table_lookup(ht,key);
+  InfoProd ip=(InfoProd) value;
+  QntProds qp=g_hash_table_lookup(ht,key);
 
 
-qp=setQntProds(qp,key,qp->qnt+ip->qnt);
+  qp=setQntProds(qp,key,qp->qnt+ip->qnt);
 
-return qp;
-
-
+  return qp;
 }
 
 void travessiaQ10(gpointer key, gpointer value, gpointer data) {
 
-QntProds qp=initQntProds();
+  QntProds qp=initQntProds();
 
-GHashTable* ht=(GHashTable*) data;
+  GHashTable* ht=(GHashTable*) data;
 
-InfoProd ip=(InfoProd) value;
+  InfoProd ip=(InfoProd) value;
 
-if(g_hash_table_contains(ht,(char*)key)){
+  if(g_hash_table_contains(ht,(char*)key)){
  
-  qp=updateInfo(ht,value,key);
+    qp=updateInfo(ht,value,key);
  
-  g_hash_table_replace(ht,key,qp); //produto já existe atualiza quantidade
+    g_hash_table_replace(ht,key,qp); //produto já existe atualiza quantidade
   
-}else{ 
+  }else{ 
 
-  qp=setQntProds(qp,key,ip->qnt);
+    qp=setQntProds(qp,key,ip->qnt);
  
-  g_hash_table_insert(ht,key,qp); //produtos ñ existe inseres
+    g_hash_table_insert(ht,key,qp); //produtos ñ existe insere
   
-}
+  }
 }
 
 GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes){
 
-GHashTable* h=(GHashTable*)ht;
+  GHashTable* h=(GHashTable*)ht;
 
-InfoCli ic=g_hash_table_lookup(f->clientes,codigoCli); 
+  InfoCli ic=g_hash_table_lookup(f->clientes,codigoCli); 
 
-g_hash_table_foreach(ic->produtos[mes],(GHFunc)travessiaQ10,h);
+  g_hash_table_foreach(ic->produtos[mes],(GHFunc)travessiaQ10,h);
 
-return h;
+  return h;
 }
 
-//------------------
+//------------------Query11
 
 
 typedef struct auxNumClients{
- int num_clients;
- char* productID;
- Filial f;
+  int num_clients;
+  char* productID;
+  Filial f;
 }*Aux11;
 
 Aux11 setAux11(char* productID,int num_clients,Filial f){
@@ -298,7 +332,6 @@ Aux11 setAux11(char* productID,int num_clients,Filial f){
 
 gboolean clientHasProduct(Filial fil,char* clientID,char* productID){
 
- 
  InfoCli ic=g_hash_table_lookup(fil->clientes,clientID);
  if(!ic) return FALSE;
  
@@ -321,29 +354,103 @@ void travessiaQ11(gpointer key, gpointer value, gpointer data) {
 
 
 int numberClients(Filial f,char* codeProduct){
-int num_clients=0;
+  int num_clients=0;
 
-Aux11 aux=setAux11(codeProduct,num_clients,f);
+  Aux11 aux=setAux11(codeProduct,num_clients,f);
 
+  g_hash_table_foreach(f->clientes,(GHFunc)travessiaQ11,&aux);
 
-g_hash_table_foreach(f->clientes,(GHFunc)travessiaQ11,&aux);
+  num_clients=(aux)->num_clients;
 
-num_clients=(aux)->num_clients;
+  free(aux);
 
-free(aux);
-
-return num_clients;
+  return num_clients;
 }
 
 int getUnidadesFilial (Filial f,char* prodID){
 
   int x=0;
-  int* unidades_vendidas=g_hash_table_lookup(f->produtos,prodID);
+  // int* unidades_vendidas=g_hash_table_lookup(f->produtos,prodID);
+  gpointer unidades_vendidas=g_hash_table_lookup(f->produtos,prodID);
+
   if(unidades_vendidas==NULL) return 0;
   
-  x=*unidades_vendidas;
- printf("unidades_vendidas:%d\n",x);
-  return x;
+  x=GPOINTER_TO_INT(unidades_vendidas);
  
+  return x;
+ }
+
+ //------------------------------------query 12
+struct topProds{
+ char* prod;
+ float gasto;
+};
+
+
+float getGastoTop(TopProds tp){
+  return(tp->gasto);
+}
+
+char* getCodeTop(TopProds tp){
+  return(tp->prod);
+}
+
+TopProds initTopProds(){
+  TopProds tp=(TopProds)malloc(sizeof(struct topProds));
+  tp->prod=NULL;
+  tp->gasto=0.0f;
+  return tp;
+}
+
+void removeTP(TopProds tp){
+ free(tp->prod);
+ free(tp);
 
 }
+
+TopProds setTopProds(TopProds tp,char* prod,float gasto){
+  tp->prod=strdup(prod);
+  tp->gasto=gasto;
+  return tp;
+}
+
+void travessiaQ12(gpointer key, gpointer value, gpointer data) {
+
+  TopProds tp=initTopProds();
+
+  GHashTable* ht=(GHashTable*) data;
+
+  float* gasto= value;  
+  //printf("GASTO=%f\n",*gasto);
+  //printf("CODE=%s\n",(char*)key );
+  if(g_hash_table_contains(ht,(char*)key)){
+
+
+ // printf("GASTOupdate=%f\n",tp->gasto+*gasto);
+  tp=setTopProds(tp,key,tp->gasto+*gasto);
+    
+ 
+    g_hash_table_insert(ht,key,tp); //produto já existe atualiza quantidade
+  
+  }else{ 
+
+    tp=setTopProds(tp,key,*gasto);
+ 
+    g_hash_table_insert(ht,key,tp); //produtos ñ existe insere
+  
+  }
+}
+
+
+
+GHashTable* topProfitProducts(Filial f,gpointer ht,char* clientID){
+
+ GHashTable* h=(GHashTable*)ht;
+
+  InfoCli ic=g_hash_table_lookup(f->clientes,clientID); 
+
+  g_hash_table_foreach(ic->prods,(GHFunc)travessiaQ12,h);
+
+  return h;
+ }
+

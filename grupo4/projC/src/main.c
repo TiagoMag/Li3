@@ -42,6 +42,7 @@ int main(){
         Lista rsl=inicializa_lista();
         rsl=getProductsStartedByLetter(sgv,c);
         printQuery2(rsl);
+        // removeLst(rsl);
         }
       }
       
@@ -147,9 +148,28 @@ int main(){
        printLst(l);
      
 
+  } else if(option==11){
+       SelledProd* s;
+       int x=inputQuery11();
+       s=getTopSelledProducts(sgv,x);
+       printQuery11(s,x);
+     
+
+  } else if(option==12){
+       GList* s;
+       char* codigo=malloc(sizeof(char*));
+       int x=inputQuery12(codigo);
+       s=getClientTopProfitProducts(sgv,codigo,x);
+       printQuery12(s);
+     
+
+  }else if(option==14){
+
+    destroySGV(sgv);
   }
 
     else if(option==0){
+      destroySGV(sgv);
       exit(0);
 
     }

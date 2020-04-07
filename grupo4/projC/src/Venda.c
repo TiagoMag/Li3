@@ -14,7 +14,7 @@ Venda inicializaV(){
  Venda v=(Venda)malloc(sizeof(struct venda));
  v->produto=inicializa_Prod();
  v->cliente=inicializa_Cliente();
- v->preco=0.0;
+ v->preco=0.0f;
  v->quant=0;
  v->mes=0;
  v->filial=0;

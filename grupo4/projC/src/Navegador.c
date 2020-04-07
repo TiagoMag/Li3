@@ -74,3 +74,9 @@ int sizeLstPage(Pagina p){
 return p->size;
 
 }
+
+void removePagina(Pagina p){
+
+	g_array_free(p->lista,TRUE);
+	free(p);
+}

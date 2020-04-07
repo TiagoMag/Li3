@@ -3,8 +3,8 @@
 
 //---------------QUERIE 2---------------------------------------
 
-Lista produtosComecadoPelaLetra(Cat_Produtos cp,char letter){
- Lista lst=inicializa_lista();
+Lista produtosComecadoPelaLetra(Cat_Produtos cp,Lista lst,char letter){
+ 
  lst=produtosLetra(cp,lst,letter);
 
  return lst;
@@ -547,3 +547,61 @@ for(int i=0;i<limit;i++){
 return top;
 }
 
+//----Query 12
+
+
+int compareTop(gpointer a,gpointer b){
+TopProds tp1=(TopProds) a;
+TopProds tp2=(TopProds) b;
+
+int x=getGastoTop(tp1);
+int y=getGastoTop(tp2);
+
+return y-x;
+
+}
+
+
+gpointer cloneTopProds(gconstpointer src,gpointer data){
+TopProds tp=(TopProds) src;
+TopProds clone=initTopProds();
+float gasto=getGastoTop(tp);
+char *code=getCodeTop(tp);
+clone=setTopProds(clone,code,gasto);
+return clone;
+
+
+}
+
+
+
+
+GList* topProducts(Filial f[3],char* clientID,int limit){
+
+GHashTable* ht=g_hash_table_new(g_str_hash,g_str_equal);
+
+for(int i=0;i<3;i++){
+
+  topProfitProducts(f[i],ht,clientID);
+
+}
+
+GList* l=g_hash_table_get_values(ht);
+
+l=g_list_sort(l,(GCompareFunc)compareTop);
+
+GList* clone=g_list_copy_deep(l,cloneTopProds,NULL);
+
+GList* fst=g_list_first(clone);
+
+for(int i=g_list_length(clone)-1;i>=limit;i--){
+clone=g_list_nth(clone,i);
+TopProds tp=(TopProds)clone->data;
+removeTP(tp);
+clone=g_list_delete_link(fst,clone);
+
+}
+
+return clone;
+
+}

@@ -83,6 +83,10 @@ printf("\033[0;31m");
 printf("12.");
 printf("\033[1;33m");
 printf("Top personalizado de gasto em compras individualizado por cliente.\n\n");
+printf("\033[0;31m");
+printf("14.");
+printf("\033[1;33m");
+printf("Free Structs.\n\n");
 printf("\033[1;36m");
 printf("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n\n");
 
@@ -138,12 +142,13 @@ static void navega(Lista lst){
     printf("n -- avançar        x--sair             a -- recuar\n");
     while ((c = getchar()) != '\n' && c != EOF) { }
     c=getchar();
+    removePagina(p);
     if(c=='n')
     pagina++;
     if(c=='a')
     pagina--;
-    if(c=='x')
-    return ;
+    if(c=='x'){
+     ;return ; }
     system("clear");
     }
 
@@ -284,6 +289,7 @@ void printQuery2(Lista lst){
   system("clear");
   navega(lst);
   removeLst(lst);
+  
  
 }
 //--------------------------------------------------QUERY-3
@@ -581,3 +587,98 @@ int inputQuery10(char* clientID){
 
 }
 
+int inputQuery11(){
+  
+  int x;
+  system("clear");
+  printf("\033[1;36m");
+  printf("═════════════════════════════════════════════════");
+  printf("\033[1;34m");
+  printf("QUERY 11");
+  printf("\033[1;36m");
+  printf("═════════════════════════════════════════════════");
+
+
+  printf("Indique o limite do top:\n");
+ 
+  scanf("%d",&x);
+ 
+
+  return x;
+
+}
+
+void printQuery11(SelledProd* s,int x){
+
+
+  system("clear");
+  printf("═════════════════════════════════════════════════\n");
+  for(int i=0;i<x;i++){
+    
+    printf("Código Produto:%s\n",getProdCode(s[i]));
+    printf("\n");
+    int* num_clientes=getNumClientes(s[i]);
+    int* unidades_vendidas_filial=getUnidadesVendidasFilial(s[i]);
+   
+    printf("Num de unidades vendidas:%d\n",getUnidadesVendidasProd(s[i]));
+    printf("\n");
+    for(int i=0;i<3;i++)
+    printf("Num compradores na filial %d=%d\n",i+1,num_clientes[i] );
+    
+    printf("\n");
+    
+    for(int i=0;i<3;i++)
+    
+    printf("Num unidades vendidas na filial %d=%d\n",i+1,unidades_vendidas_filial[i] );
+    
+    printf("═════════════════════════════════════════════════\n");
+  }
+
+  clearAndEnter();
+}
+
+//---Query 12
+
+int inputQuery12(char* clientID){
+  
+  int x;
+  system("clear");
+  printf("\033[1;36m");
+  printf("═════════════════════════════════════════════════\n");
+  printf("\033[1;34m");
+  printf("QUERY 12");
+  printf("\033[1;36m");
+  printf("═════════════════════════════════════════════════\n");
+
+  printf("Indique um cliente:\n");
+  scanf("%s",clientID);
+
+  printf("Indique o limite do top:\n");
+ 
+  scanf("%d",&x);
+ 
+
+  return x;
+
+}
+
+void printQuery12(GList* l){
+
+
+  system("clear");
+  printf("═════════════════════════════════════════════════\n");
+  g_list_first(l);
+    
+    while(l){
+     
+    TopProds tp=(TopProds)l->data;  
+     
+    printf("Código:%s,total gasto=%f\n",getCodeTop(tp),getGastoTop(tp));  
+    l=g_list_next(l); 
+   
+    }
+    printf("═════════════════════════════════════════════════\n");
+  
+
+  clearAndEnter();
+}
