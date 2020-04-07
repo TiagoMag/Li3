@@ -229,6 +229,7 @@ void travessia(gpointer key, gpointer value, gpointer data) {
 
 Lista buyers (Filial f,Lista lst,char* productID,char tipo){ 
 
+
   Aux9 aux=setAux9(productID,tipo,lst);
    if(g_hash_table_lookup(f->produtos,productID)!=NULL){
   
@@ -237,6 +238,7 @@ Lista buyers (Filial f,Lista lst,char* productID,char tipo){
    }
   
    return lst; 
+
 }
 //-- Query 10
 struct qntProds{

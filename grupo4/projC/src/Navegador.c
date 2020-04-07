@@ -63,7 +63,7 @@ char* getStringLst(Lista lst,int index){
 }
 
 int sizeLst(Lista lst){
-
+if (lst==NULL) return 0; 
 return lst->lista->len;
 
 }
