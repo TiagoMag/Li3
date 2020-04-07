@@ -19,6 +19,8 @@ char* getString(Pagina pg,int index);
 int sizeLst(Lista lst);
 int sizeLstPage(Pagina p);
 char* getStringLst(Lista lst,int index);
+void removePagina(Pagina p);
+
 
 
 #endif

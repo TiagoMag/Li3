@@ -15,7 +15,7 @@ typedef struct lstbuyers *LstBuyers;
 typedef struct selledprod *SelledProd;
 
 
-Lista produtosComecadoPelaLetra(Cat_Produtos cp,char letter);
+Lista produtosComecadoPelaLetra(Cat_Produtos cp,Lista lst,char letter);
 
 Lista productSalesAndProfit(Faturacao f,char* productID,int month);
 
@@ -55,5 +55,6 @@ char* getProdCode(SelledProd s);
 int* getUnidadesVendidasFilial(SelledProd s);
 SelledProd* topSelledProducts(Faturacao fat,Filial f[3],int limit);
 
+GList* topProducts(Filial f[3],char* clientID,int limit);
 
 #endif

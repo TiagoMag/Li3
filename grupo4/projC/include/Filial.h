@@ -13,6 +13,7 @@ typedef struct filial *Filial;
 typedef struct infoCli *InfoCli;
 typedef struct infoProd *InfoProd;
 typedef struct qntProds *QntProds;
+typedef struct topProds *TopProds;
 
 Filial inicializa_Filial();
 Filial insereFilial(Filial f,Venda v);
@@ -27,6 +28,12 @@ int getQntQP(QntProds qp);
 char* getCodeQP(QntProds qp);
 int numberClients(Filial f,char* codeProduct);
 int getUnidadesFilial (Filial f,char* prodID);
+float getGastoTop(TopProds tp);
+char* getCodeTop(TopProds tp);
+TopProds initTopProds();
+void removeTP(TopProds tp);
+TopProds setTopProds(TopProds tp,char* prod,float gasto);
+GHashTable* topProfitProducts(Filial f,gpointer ht,char* clientID);
 
 
 #endif

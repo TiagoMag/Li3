@@ -36,5 +36,9 @@ void printQuery8(Profit p,int mes1,int mes2);
 int inputQuery9(char* productID);
 void printQuery9(LstBuyers l);
 int inputQuery10(char* clientID);
+int inputQuery11();
+void printQuery11(SelledProd* s,int x);
+int inputQuery12(char* clientID);
+void printQuery12(GList* l);
 
 #endif
