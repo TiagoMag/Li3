@@ -244,26 +244,48 @@ int main(){
           
           else{
             SelledProd* s;
-            int x=inputQuery11();
+            int x;
+            if((x=inputQuery11())==-1) voltar();
+            else{
             s=getTopSelledProducts(sgv,x);
             printQuery11(s,x);
+          }
           }
 
         }
 
         else if(option==12){
           if(check!=1) erro();
-          GList* s;
-          char* codigo=malloc(sizeof(char*));
-          int x=inputQuery12(codigo);
-          s=getClientTopProfitProducts(sgv,codigo,x);
-          printQuery12(s);
-     
+
+          else{
+            
+            GList* s;
+            char* codigo=malloc(sizeof(char*));
+            int x=inputQuery12(codigo);
+              if(x==-2) voltar();
+                 
+              else{
+                if (x==-1) clearAndEnter();
+                  
+                 else{
+                  s=getClientTopProfitProducts(sgv,codigo,x);
+                  printQuery12(s);
+                  }
+              }
+          }
 
         }
-        else if(option==14){
+        else if(option==13){
+        exit(0);
 
-        destroySGV(sgv);
+        }
+
+        else if(option==14){
+          if (check!=1) erro();
+          
+          else{
+            destroySGV(sgv);
+          }
         }
 
         else if(option==0){

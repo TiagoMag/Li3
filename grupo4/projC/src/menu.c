@@ -38,7 +38,7 @@ int main_menu(){
   printf("12.");
   printf("\033[1;33mTop personalizado de gasto em compras individualizado por cliente.\033[0;31m\n\n");
   printf("13.");
-  printf("\033[1;33m<<<Não definido>>>.\033[0;31m\n\n");
+  printf("\033[1;33mLinhas lidas e validadas de cada ficheiro.\033[0;31m\n\n");
   printf("14.");
   printf("\033[1;33mFree Structs.\033[1;36m\n\n");
   
@@ -57,6 +57,7 @@ int main_menu(){
 
 }
 
+//**************FUCOES AUXILIARES***************
 static void navega(Lista lst){
 
 
@@ -151,6 +152,22 @@ void erro(){
 
 //--------------------------------------------------QUERY-1
 
+/*
+printf(“\033[0;31m”); --> vermelho
+[1;31m vermelho escuro
+[0;32m verde
+[1;32m verde escuro
+[0;33m amarelo
+[1;33m amarelo escuro
+[0;34m azul
+[1;34m azul escuro
+[0;35m magenta
+[1;35m magenta escuro
+[0;36m cyan
+[1;36m cyan escuro
+[0m reset
+printf("\033[1;36m ");
+*/
 
 
 int scanning(char buffer[100],char*filenames[3]){
@@ -163,15 +180,15 @@ int scanning(char buffer[100],char*filenames[3]){
   }
  
   else if (buffer[0]=='N'){
-    printf("Paths ficheiro cliente: ");
+    printf("\033[1;34mPaths ficheiro cliente: ");
     scanf("%s",buffer);
     filenames[0]=strdup(buffer);
   
-    printf("Path ficheiro produtos: ");
+    printf("\033[1;34mPath ficheiro produtos: ");
     scanf("%s",buffer);
     filenames[1]=strdup(buffer);
   
-    printf("Path ficheiro vendas: ");
+    printf("\033[1;34mPath ficheiro vendas: ");
     scanf("%s",buffer);
     filenames[2]=strdup(buffer);
   
@@ -457,22 +474,7 @@ return res;
 
 
 }
-/*
-printf(“\033[0;31m”); --> vermelho
-[1;31m vermelho escuro
-[0;32m verde
-[1;32m verde escuro
-[0;33m amarelo
-[1;33m amarelo escuro
-[0;34m azul
-[1;34m azul escuro
-[0;35m magenta
-[1;35m magenta escuro
-[0;36m cyan
-[1;36m cyan escuro
-[0m reset
-printf("\033[1;36m ");
-*/
+
 
 //---Output Query 4 e 5
 void printLst(Lista lst){
@@ -622,7 +624,7 @@ int inputQuery9(char* productID){
   printf("═════════════════════════════════════════════════\n"); 
   
   int x;
-  printf("Indique o produto:\n");
+  printf("\033[1;33mIndique o produto:\n");
   scanf("%s",productID);
     
     if (*productID=='0')
@@ -757,6 +759,8 @@ int inputQuery11(){
   printf("\033[1;33mIndique o limite do top:\n");
  
   scanf("%d",&x);
+
+  if (x==0) return -1;
  
 
   return x;
@@ -793,10 +797,13 @@ void printQuery11(SelledProd* s,int x){
     
     printf("\033[1;35m═════════════════════════════════════════════════\n");
 
+  
   }
-
   clearAndEnter();
+
+  
 }
+
 
 //---Query 12
 
@@ -805,40 +812,59 @@ int inputQuery12(char* clientID){
   int x;
   system("clear");
   printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n");
+  printf("═════════════════════════════════════════════════");
   printf("\033[1;34m");
   printf("QUERY 12");
   printf("\033[1;36m");
   printf("═════════════════════════════════════════════════\n");
 
-  printf("Indique um cliente:\n");
+  printf("\033[1;33mIndique um cliente:\n");
   scanf("%s",clientID);
+  if (clientID[0]=='0') return -2;
+  if (strlen(clientID)!=5){
+    printf("\033[1;31mCódigo de cliente inválido\n");
+    return -1;
+  }
+  if (!isalpha(clientID[0])) {
+    printf ("\033[1;31mPrimeiro caracter é uma letra\n");
+    return -1;
+  }
+  if (!(clientID[0] >='A' && clientID[0]<='Z')){
+    printf("\033[1;31mLetra tem que ser maiúscula\n");
+    return -1;
+  }
+  if (!(atoi(clientID+1)>=1000) && atoi(clientID+1)<=5000){
+    printf("\033[1;31mRestantes caracteres têm que ser numéricos\n");
+    return -1;
+  }
 
-  printf("Indique o limite do top:\n");
+  printf("\033[1;33mIndique o limite do top:\n");
  
   scanf("%d",&x);
+  if (x==0) return -2;
  
 
   return x;
 
 }
 
+
 void printQuery12(GList* l){
 
 
   system("clear");
-  printf("═════════════════════════════════════════════════\n");
+  printf("\033[1;36m═════════════════════════\033[1;33mTOP\033[1;36m═════════════════════════\n");
   g_list_first(l);
     
     while(l){
      
     TopProds tp=(TopProds)l->data;  
      
-    printf("Código:%s,total gasto=%f\n",getCodeTop(tp),getGastoTop(tp));  
+    printf("\033[1;34mCódigo:\033[1;33m%s\t\033[1;34mTotal gasto=\033[1;33m%f\n",getCodeTop(tp),getGastoTop(tp));  
     l=g_list_next(l); 
    
     }
-    printf("═════════════════════════════════════════════════\n");
+    printf("\0331[1;36m═════════════════════════════════════════════════\n");
   
 
   clearAndEnter();

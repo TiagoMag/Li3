@@ -2,8 +2,8 @@ CC = gcc
 CFLAGS = -Wall -ggdb -ansi -std=c99 -O2 -D_GNU_SOURCE
 GLIBFLAG = `pkg-config --cflags --libs glib-2.0`
 
-main: CatProd Produto Cliente CatCli Queries Files SGV Navegador Menu Venda Faturacao Filial
-	$(CC) $(GLIBFLAG) $(CFLAGS) -o main main.c CatProdutos.o Produto.o Cliente.o CatClientes.o Queries.o Files.o SGV.o Navegador.o menu.o Venda.o Faturacao.o Filial.o
+program: CatProd Produto Cliente CatCli Queries Files SGV Navegador Menu Venda Faturacao Filial
+	$(CC) $(GLIBFLAG) $(CFLAGS) -o program main.c CatProdutos.o Produto.o Cliente.o CatClientes.o Queries.o Files.o SGV.o Navegador.o menu.o Venda.o Faturacao.o Filial.o
 
 CatProd:
 	$(CC) $(GLIBFLAG) $(CFLAGS) -c CatProdutos.c
@@ -43,4 +43,4 @@ Filial:
 
 
 clean:
-	rm main CatProdutos.o Produto.o CatClientes.o Cliente.o Queries.o Files.o SGV.o Navegador.o menu.o Venda.o Faturacao.o Filial.o
+	rm program CatProdutos.o Produto.o CatClientes.o Cliente.o Queries.o Files.o SGV.o Navegador.o menu.o Venda.o Faturacao.o Filial.o
