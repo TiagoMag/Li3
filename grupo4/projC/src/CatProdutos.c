@@ -1,9 +1,10 @@
 #include "../include/CatProdutos.h"
-
+//Estrutura de dados Catalogo de produtos
 struct cat_produtos{
 	GTree* produtos[Produtos];
 };
 
+////Elimina a chave de um produto
 void freeKeyProduct(gpointer data){
 	char* prodID=(char*)data;
 	free(prodID);
