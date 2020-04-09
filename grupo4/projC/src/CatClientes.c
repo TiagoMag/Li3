@@ -46,7 +46,7 @@ void removeCatCliente(Cat_Clientes cc){
   		g_tree_destroy(cc->clientes[i]);  
  	free(cc);
 }
-//Retorna a árvore correspondente a um determinado cliente a partir da sua chave
+//Retorna a árvore de clientes correspondente a uma determinada letra
 GTree* getTreeC(Cat_Clientes cc,int index){
 	return cc->clientes[index];
 }
