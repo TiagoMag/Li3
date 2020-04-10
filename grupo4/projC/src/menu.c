@@ -38,7 +38,7 @@ int main_menu(){
   printf("12.");
   printf("\033[1;33mTop personalizado de gasto em compras individualizado por cliente.\033[0;31m\n\n");
   printf("13.");
-  printf("\033[1;33mLinhas lidas e validadas de cada ficheiro.\033[0;31m\n\n");
+  printf("\033[1;33mInformação dos ficheiros lidos.\033[0;31m\n\n");
   printf("14.");
   printf("\033[1;33mFree Structs.\033[1;36m\n\n");
   
@@ -71,12 +71,13 @@ if (sizeLst(lst)==0){
     int totalpages=paginasTotal(lst);
     int pagina=1;
     char c;
-    Pagina p=initPagina();
+    
     
     
     while(pagina>0 && pagina<=totalpages){
       int arraybegin=(MAX_LIN*(pagina-1));
-      p=getPageSeguinte(lst,arraybegin);
+      
+      Pagina p=getPageSeguinte(lst,arraybegin);
       int x=0;
     
     
@@ -97,10 +98,10 @@ if (sizeLst(lst)==0){
 
       printf("═════════════════════════════════════════════════\n");
       printf("\033[01;33m n -- avançar        x--sair             a -- recuar\n");
-      
+      removePagina(p);
         while ((c = getchar()) != '\n' && c != EOF) { }
           c=getchar();
-          removePagina(p);
+          
             
             if(c=='n')
             pagina++;
@@ -407,7 +408,8 @@ void printQuery3(Lista lst,char c){
     printf("Total faturado     (P):%s\n",getStringLst(lst,13));
     printf("Nmr de vendas      (N):%s\n",getStringLst(lst,14));
     printf("Total faturado     (N):%s\n",getStringLst(lst,15));
-    
+  
+      
     clearAndEnter();
   }
 
@@ -486,7 +488,7 @@ void printLst(Lista lst){
 
 //--------------------------------------------------QUERY-6
 
-void printPar(Par p){
+void printPar(Par p,float time){
  
   system("clear");
   printf("\033[1;36m");
@@ -498,7 +500,9 @@ void printPar(Par p){
   printf("\033[1;35m0 -> Voltar \n\n");
   printf("\033[1;34mNÚMERO DE CLIENTES QUE NÃO REALIZARAM COMPRAS:\033[1;35m  %d\n\033[1;34m",getClientsNeverBoughtCount(p));
   printf("NÚMERO DE PRODUTOS NÃO COMPRADOS:\033[1;35m  %d\n\n\033[1;34m ",getProductsNeverBoughtCount(p) );
+  printf("Tempo da Query:%f\n",time);
   clearAndEnter();
+  removePar(p);
 }
 
 //--------------------------------------------------QUERY-7
@@ -533,7 +537,7 @@ return 0;
 }
 
 
-void printQuery7(Tabela tbl){
+void printQuery7(Tabela tbl,float time){
  
   system("clear");
   printf("\n");
@@ -555,6 +559,7 @@ void printQuery7(Tabela tbl){
 
   printf("\n");
   printf("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+  printf("Tempo da Query:%f\n",time);
   clearAndEnter();
 }
 
@@ -601,13 +606,14 @@ int inputQuery8(int* mes1,int* mes2){
 
 
 
-void printQuery8(Profit p,int mes1,int mes2){
+void printQuery8(Profit p,int mes1,int mes2,float time){
  
   printf("\033[1;33mO total de vendas entre o intervalo de meses %d e %d foi:\n\n",mes1+1,mes2+1);
  
   printf("\033[1;34mTotal de vendas:\033[1;33m %d\n",getVendas(p));
   printf("\033[1;34mTotal faturado:\033[1;33m %f\n",getFaturado(p));
   printf("\n");
+  printf("Tempo da Query:%f\n",time);
   clearAndEnter();
 }
 
@@ -668,8 +674,9 @@ int inputQuery9(char* productID){
 }
 
 
-void printQuery9(LstBuyers l){
+void printQuery9(LstBuyers l,float time){
   system("clear");
+
     if (sizeLst(getListaN(l))==0){
       printf("Não há registos nesta filial.\n\n");
       clearAndEnter();
@@ -692,7 +699,8 @@ void printQuery9(LstBuyers l){
   navega(getListaP(l));
  }
  } 
-
+printf("Tempo da Query:%f\n",time);
+clearAndEnter();
 }
 
 
@@ -743,6 +751,15 @@ int inputQuery10(char* clientID){
 
 }
 
+void printLst10(Lista lst,float tempo){
+ 
+  system("clear");
+  navega(lst);
+  printf("Tempo da Query:%f\n",tempo);
+  clearAndEnter();
+  removeLst(lst);
+}
+
 
 int inputQuery11(){
   
@@ -767,7 +784,7 @@ int inputQuery11(){
 
 }
 
-void printQuery11(SelledProd* s,int x){
+void printQuery11(SelledProd* s,int x,float time){
 
 
   system("clear");
@@ -797,8 +814,15 @@ void printQuery11(SelledProd* s,int x){
     
     printf("\033[1;35m═════════════════════════════════════════════════\n");
 
+
   
   }
+
+  
+  for(int i=0;i<x;i++)
+  removeSelledProds(s[i]);
+  free(s);
+  printf("Tempo da Query:%f\n",time);
   clearAndEnter();
 
   
@@ -849,7 +873,7 @@ int inputQuery12(char* clientID){
 }
 
 
-void printQuery12(GList* l){
+void printQuery12(GList* l,float time){
 
 
   system("clear");
@@ -859,14 +883,89 @@ void printQuery12(GList* l){
     while(l){
      
     TopProds tp=(TopProds)l->data;  
+
      
-    printf("\033[1;34mCódigo:\033[1;33m%s\t\033[1;34mTotal gasto=\033[1;33m%f\n",getCodeTop(tp),getGastoTop(tp));  
-    l=g_list_next(l); 
-   
-    }
-    printf("\0331[1;36m═════════════════════════════════════════════════\n");
   
+  //  l=g_list_next(l); 
+   
+ 
+    char* codigo=getCodeTop(tp);
+      printf("\033[1;34mCódigo:\033[1;33m%s\t\033[1;34mTotal gasto=\033[1;33m%f\n",getCodeTop(tp),getGastoTop(tp));  
+    free (codigo);
+    GList *_link=l;
+    removeTP(tp);
+    l=g_list_delete_link(l,_link);
+    
+    
+    }
+    printf("═════════════════════════════════════════════════\n");
+  printf("Tempo da Query:%f\n",time);
+ g_list_free(l);
 
   clearAndEnter();
 }
 
+void printQuery13(FileInfo f){
+ system("clear");
+  printf("═════════════════════════════════════════════════");
+  printf("\033[1;34m");
+  printf("PRODUTOS");
+  printf("\033[1;36m");
+  printf("═════════════════════════════════════════════════\n\n");
+  printf("Nome do ficheiro lido:");
+  printf("\033[1;33m");
+  printf(" %s \n",getFileNameFI(f,0));
+  printf("\033[1;36m");
+  printf("Número de linhas lidas:");
+  printf("\033[1;33m");
+  printf(" %d \n",getNumLinhasLidasFI(f,0));
+  printf("\033[1;36m");
+  printf("Número de linhas validadas:");
+  printf("\033[1;33m");
+  printf(" %d \n\n",getNumLinhasValidadasFI(f,0));
+  printf("\033[1;32m");
+  printf("Tempo: \033[1;34m  %f \n\n",getTempoLeituraFI(f,0));
+  printf("\033[1;36m");
+
+ printf("═════════════════════════════════════════════════");
+ printf("\033[1;34m");
+ printf("CLIENTES");
+ printf("\033[1;36m");
+ printf("═════════════════════════════════════════════════\n\n");
+ printf("Nome do ficheiro lido:");
+ printf("\033[1;33m");
+ printf(" %s \n",getFileNameFI(f,1));
+ printf("\033[1;36m");
+ printf("Número de linhas lidas:");
+ printf("\033[1;33m");
+ printf(" %d \n",getNumLinhasLidasFI(f,1));
+ printf("\033[1;36m");
+ printf("Número de linhas validadas:");
+ printf("\033[1;33m");
+ printf(" %d \n\n",getNumLinhasValidadasFI(f,1));
+ printf("\033[1;32m");
+ printf("Tempo: \033[1;34m  %f \n\n",getTempoLeituraFI(f,1));
+ printf("\033[1;36m");
+ printf("══════════════════════════════════════════════════");
+ printf("\033[1;34m");
+ printf("VENDAS");
+ printf("\033[1;36m");
+ printf("══════════════════════════════════════════════════\n\n");
+ printf("Nome do ficheiro lido:");
+ printf("\033[1;33m");
+ printf(" %s \n",getFileNameFI(f,2));
+ printf("\033[1;36m");
+ printf("Número de linhas lidas:");
+ printf("\033[1;33m");
+ printf(" %d \n",getNumLinhasLidasFI(f,2));
+ printf("\033[1;36m");
+ printf("Número de linhas validadas:");
+ printf("\033[1;33m");
+ printf(" %d \n\n",getNumLinhasValidadasFI(f,2));
+ printf("\033[1;32m");
+ printf("Tempo: \033[1;34m  %f \n\n",getTempoLeituraFI(f,2));
+ printf("\033[1;36m");
+ clearAndEnter();
+ removeFileInfo(f);
+
+}

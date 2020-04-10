@@ -14,6 +14,8 @@ int main(){
   char c;
   int check=0;
   int a;
+  clock_t begin, end;
+  double cpu_time_used;
 
     while(option>=0){
       option=main_menu();
@@ -47,9 +49,10 @@ int main(){
               
               else{
               
-                Lista rsl=inicializa_lista();
-                rsl=getProductsStartedByLetter(sgv,c);
+               
+                Lista rsl=getProductsStartedByLetter(sgv,c);
                 printQuery2(rsl);
+
               
               }
             }
@@ -67,7 +70,7 @@ int main(){
               int mes;
               char* codigo=malloc(sizeof(char*));
              
-              Lista rsl=inicializa_lista();
+             
               c=inputQuery3(codigo,&mes);
           
               if (c=='0') voltar();
@@ -80,8 +83,9 @@ int main(){
         
                 else{
         
-                  rsl=getProductSalesAndProfit(sgv,codigo,mes);
+                 Lista rsl=getProductSalesAndProfit(sgv,codigo,mes);
                   printQuery3(rsl,c);
+                  free(codigo);
 
                 }
               }
@@ -103,8 +107,8 @@ int main(){
                 if (x==-2) clearAndEnter();
 
                 else{
-                  Lista lst=inicializa_lista();
-                  lst=getProductsNeverBought(sgv,x);
+                 
+                 Lista lst=getProductsNeverBought(sgv,x);
                   printLst(lst);
                 }        
               }
@@ -115,8 +119,8 @@ int main(){
           if(check!=1) erro();
   
           else{
-            Lista lst=inicializa_lista();
-            lst=getClientesOfAllBranches(sgv);
+            
+            Lista lst=getClientesOfAllBranches(sgv);
             printLst(lst);
           }
 
@@ -128,9 +132,11 @@ int main(){
             erro();
 
           else{
-            Par p=initPar();
-            p=getClientsAndProductsNeverBoughtCount(sgv);
-            printPar(p);
+            begin=clock();
+            Par p=getClientsAndProductsNeverBoughtCount(sgv);
+            end = clock();
+            cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
+            printPar(p,cpu_time_used);
    
           }
         }
@@ -154,9 +160,11 @@ int main(){
 
               else{
         
-              Tabela tbl=initTabela();
-              tbl=getProductBoughtByClient(sgv,codigo);
-              printQuery7(tbl);
+              begin=clock();
+              Tabela tbl=getProductBoughtByClient(sgv,codigo);
+              end=clock();
+              cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
+              printQuery7(tbl,cpu_time_used);
               free(codigo);
               removeTabela(tbl);
               }
@@ -171,7 +179,7 @@ int main(){
           else{
             int mes1;
             int mes2;
-            Profit p=initProfit();
+            
             int a=inputQuery8(&mes1,&mes2);
             
             if (a==-2) voltar();
@@ -181,8 +189,11 @@ int main(){
               if(a == -1) clearAndEnter();
 
               else{
-              p=getSalesAndProfit(sgv,mes1,mes2);
-              printQuery8(p,mes1,mes2);
+              begin=clock();
+              Profit p=getSalesAndProfit(sgv,mes1,mes2);
+              end=clock();
+              cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
+              printQuery8(p,mes1,mes2,cpu_time_used);
               removeProfit(p);
               }
             }
@@ -195,7 +206,7 @@ int main(){
     
           else{
 
-            LstBuyers l=initLstBuyers();
+            
             char* codigo=malloc(sizeof(char*));
             int x=inputQuery9(codigo);
       
@@ -206,8 +217,15 @@ int main(){
               if(x==-1) clearAndEnter();
        
               else{
-                printQuery9(l=getProductBuyers(sgv,codigo,x));
+
+                LstBuyers l;
+                begin=clock();
+                l=getProductBuyers(sgv,codigo,x);
+                end=clock();
+                cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
+                printQuery9(l,cpu_time_used);
                 removeLstBuyers(l);
+                free(codigo);
               }
             }
           }
@@ -219,7 +237,7 @@ int main(){
         
           else{
           
-            Lista l=inicializa_lista();
+            
             char* codigo=malloc(sizeof(char*));
             int x=inputQuery10(codigo);
             
@@ -230,9 +248,12 @@ int main(){
                   if(x==-1) clearAndEnter();
           
                   else{
-                  
-                    l=getClientFavoriteProducts(sgv,codigo,x-1);
-                    printLst(l);
+                   begin=clock();
+                   Lista l=getClientFavoriteProducts(sgv,codigo,x-1);
+                   end=clock(); 
+                   cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
+                    printLst10(l,cpu_time_used);
+                    free(codigo);
                   }
                 } 
               }
@@ -247,8 +268,12 @@ int main(){
             int x;
             if((x=inputQuery11())==-1) voltar();
             else{
+
+            begin=clock();
             s=getTopSelledProducts(sgv,x);
-            printQuery11(s,x);
+            end=clock();
+            cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
+            printQuery11(s,x,cpu_time_used);
           }
           }
 
@@ -256,6 +281,7 @@ int main(){
 
         else if(option==12){
           if(check!=1) erro();
+
 
           else{
             
@@ -268,16 +294,19 @@ int main(){
                 if (x==-1) clearAndEnter();
                   
                  else{
+                  begin=clock();
                   s=getClientTopProfitProducts(sgv,codigo,x);
-                  printQuery12(s);
+                  end=clock();
+                  cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
+                  printQuery12(s,cpu_time_used);
+                  free(codigo);
                   }
               }
           }
 
-        }
-        else if(option==13){
-        exit(0);
-
+        } else if(option==13){
+        FileInfo fi=getCurrentFilesInfo(sgv);
+        printQuery13(fi);
         }
 
         else if(option==14){
@@ -287,6 +316,7 @@ int main(){
             destroySGV(sgv);
           }
         }
+
 
         else if(option==0){
           destroySGV(sgv);

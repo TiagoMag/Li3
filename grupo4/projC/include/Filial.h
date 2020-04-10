@@ -26,12 +26,13 @@ Lista buyers (Filial f,Lista lst,char* productID,char tipo);
 GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes);
 int getQntQP(QntProds qp);
 char* getCodeQP(QntProds qp);
+void removeQntProds(gpointer data);
 int numberClients(Filial f,char* codeProduct);
 int getUnidadesFilial (Filial f,char* prodID);
 float getGastoTop(TopProds tp);
 char* getCodeTop(TopProds tp);
 TopProds initTopProds();
-void removeTP(TopProds tp);
+void removeTP(gpointer data);
 TopProds setTopProds(TopProds tp,char* prod,float gasto);
 GHashTable* topProfitProducts(Filial f,gpointer ht,char* clientID);
 

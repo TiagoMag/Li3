@@ -1,86 +1,99 @@
 #include "../include/Queries.h"
 
 
-//---------------QUERIE 2---------------------------------------
+// --------------------------------Query2------------------------------------------------------------------------------------------
 
 Lista produtosComecadoPelaLetra(Cat_Produtos cp,Lista lst,char letter){
  
- lst=produtosLetra(cp,lst,letter);
+  lst=produtosLetra(cp,lst,letter);
 
- return lst;
+  return lst;
 }
 
-//--------------------------------------------------------------
-
-//----------------QUERIE 3--------------------------------------
+// --------------------------------Query3------------------------------------------------------------------------------------------
 
 //Passar int para string
 
 char* intToString(int x){
-    int length = snprintf( NULL, 0, "%d", x );
-    char* str = malloc( length + 1 );
-    snprintf( str, length + 1, "%d", x );
-    return str;
+  int length = snprintf( NULL, 0, "%d", x );
+  char* str = malloc( length + 1 );
+  snprintf( str, length + 1, "%d", x );
+  return str;
 }
 
 //Passar Float para string
 
 char* floatToString(float y){
-    int length = snprintf( NULL, 0, "%f", y );
-    char* str = malloc( length + 1 );
-    snprintf( str, length + 1, "%f", y );
-    return str;
+  int length = snprintf( NULL, 0, "%f", y );
+  char* str = malloc( length + 1 );
+  snprintf( str, length + 1, "%f", y );
+  return str;
 }
 
-Lista productSalesAndProfit(Faturacao f,char* productID,int month){
+Lista productSalesAndProfit(Faturacao f,Lista lst,char* productID,int month){
 
-	Data d=initData();
-	Lista lst=inicializa_lista();
+	Data d;
 
 	d=getData(f,productID,'N',month);
 	
     
-    int x=getQntFat(d);
-    float y=getPrecoFat(d);
-  
-    insereLista(&lst,intToString(x));
-    insereLista(&lst,floatToString(y));
+  int x=getQntFat(d);
+  float y=getPrecoFat(d);
+    
+  char* xx=intToString(x);
+  char* yy=floatToString(y);
+    
+  insereLista(&lst,xx);
+  insereLista(&lst,yy);
+    
+  free(yy);
+  free(xx);
+	free(d);
 	
-	d=getData(f,productID,'P',month);
+  d=getData(f,productID,'P',month);
     
-    x=getQntFat(d);
-    y=getPrecoFat(d);
+  x=getQntFat(d);
+  y=getPrecoFat(d);
     
+  xx=intToString(x);
+  yy=floatToString(y);
 
-    insereLista(&lst,intToString(x));
-    insereLista(&lst,floatToString(y));
+  insereLista(&lst,xx);
+  insereLista(&lst,yy);
     
-    for(int j=0;j<FILIAL;j++){
-     for(int i=0;i<2;i++){
+  free(yy);
+  free(xx);
+  free(d);
+
+  for(int j=0;j<FILIAL;j++){
+    for(int i=0;i<2;i++){
     
       if(i==0) d=getDataFilial(f,productID,'P',month,j);
       else if(i==1) d=getDataFilial(f,productID,'N',month,j);
    
       x=getQntFat(d);
       y=getPrecoFat(d);
+ 
+      char* xx=intToString(x);
+      char* yy=floatToString(y);
 
-      insereLista(&lst,intToString(x));
-      insereLista(&lst,floatToString(y));
-  
-     }
+      insereLista(&lst,xx);
+      insereLista(&lst,yy);
+      
+      free(yy);
+      free(xx);
+      free(d);
     }
+  }
  return lst;
 }
 
-//--------------------------------------------------------------
-
-//----------------QUERIE 4--------------------------------------
-
-//Estrutura auxiliar Querie4
+// --------------------------------Query4------------------------------------------------------------------------------------------
+//Estrutura auxiliar Query4
 typedef struct aux{
- Faturacao f;
- Filial fil;
- Lista lst;
+  Faturacao f;
+  Filial fil;
+  Lista lst;
 }*Aux;
 
 
@@ -93,59 +106,65 @@ Aux setAux(Faturacao f,Lista lst,Filial fil){
 }
 
 gboolean funcTravessiaQuerie4Fat(gpointer key, gpointer value,gpointer data) {
- Aux* aux=data;
- if (!existeProdFat((*aux)->f,(char*)key))
-  insereLista(&(*aux)->lst,value);
+  Aux* aux=data;
+  if (!existeProdFat((*aux)->f,(char*)key))
+    insereLista(&(*aux)->lst,value);
  
- return FALSE;
+  return FALSE;
 }
 
 gboolean funcTravessiaQuerie4Fil(gpointer key, gpointer value,gpointer data) {
- Aux* aux=data;
- if (!existeProdFil((*aux)->fil,(char*)key))
-  insereLista(&(*aux)->lst,value);
+  Aux* aux=data;
+  if (!existeProdFil((*aux)->fil,(char*)key))
+    insereLista(&(*aux)->lst,value);
  
- return FALSE;
+  return FALSE;
 }
 
 void removeAux(Aux aux){
- aux->f=NULL;
- aux->fil=NULL;
- aux->lst=NULL;
+  aux->f=NULL;
+  aux->fil=NULL;
+  aux->lst=NULL;
+  free(aux);
 }
 
-Lista productsNeverBought(Filial fil,Faturacao f,Cat_Produtos cp,int branchID){
+Lista productsNeverBought(Filial fil,Lista lst,Faturacao f,Cat_Produtos cp,int branchID){
 
-Lista lst=inicializa_lista();
-Aux aux=setAux(f,lst,NULL);
-if(branchID==0){ //Valores totais
-
- for(int i=0;i<26;i++)
-  g_tree_foreach(getTree(cp,i),(GTraverseFunc)funcTravessiaQuerie4Fat,&aux);
-}
-
-if(branchID>=1){
- printf("%d",branchID);
-  aux=setAux(NULL,lst,fil);
+  Aux aux=NULL;
   
-  for(int i=0;i<26;i++)
-  g_tree_foreach(getTree(cp,i),(GTraverseFunc)funcTravessiaQuerie4Fil,&aux);
+  if(branchID==0){ //Valores totais
+
+  aux=setAux(f,lst,NULL);
+  for(int i=0;i<26;i++){ 
+    GTree* avl=getTree(cp,i);
+    g_tree_foreach(avl,(GTraverseFunc)funcTravessiaQuerie4Fat,&aux);
+    g_tree_destroy(avl);
+  } 
   
+  }
+
+  if(branchID>=1){
+  
+    aux=setAux(NULL,lst,fil);
+   
+    for(int i=0;i<26;i++){
+      GTree* avl=getTree(cp,i);
+      g_tree_foreach(getTree(cp,i),(GTraverseFunc)funcTravessiaQuerie4Fil,&aux);
+      g_tree_destroy(avl); 
+    }
+   
+  }
+
+  removeAux(aux);
+
+  return lst;
 }
-removeAux(aux);
 
-return lst;
-
-}
-
-//--------------------------------------------------------------
-
-//----------------QUERIE 5--------------------------------------
-
+// --------------------------------Query5------------------------------------------------------------------------------------------
 //Estrutura auxiliar Querie 5
 typedef struct aux2{
- Filial fil[3];
- Lista lst;
+  Filial fil[3];
+  Lista lst;
 }*Aux2;
 
 
@@ -158,44 +177,48 @@ Aux2 setAux2(Lista lst,Filial fil[3]){
   return aux;
 }
 
+void removeAux2(Aux2 aux){
+  aux->lst=NULL;
+  for(int i=0;i<3;i++)
+    aux->fil[i]=NULL;
+
+  free(aux);
+}
 
 gboolean funcTravessiaQuerie5Fil(gpointer key, gpointer value,gpointer data) {
- Aux2 *aux=data;
- int flag=0;
- for(int i=0;i<3;i++){
- if (!existeCliFil((*aux)->fil[i] ,(char*)key )) {flag++;break;}
- }
-if (flag==0)
-insereLista(&(*aux)->lst,value);
-
+  Aux2 *aux=data;
+  int flag=0;
+  for(int i=0;i<3;i++){
+    if (!existeCliFil((*aux)->fil[i] ,(char*)key )) {flag++;break;}
+  }
+  if (flag==0)
+    insereLista(&(*aux)->lst,value);
 
 return FALSE;
 }
 
+Lista clientesOfAllBranches(Cat_Clientes cc,Lista lst,Filial fil[3]){
 
-Lista clientesOfAllBranches(Cat_Clientes cc,Filial fil[3]){
+  Aux2 aux = setAux2(lst,fil);
+  
+  for(int i=0;i<26;i++){
+    GTree* avl=getTreeC(cc,i);
+    g_tree_foreach(avl,(GTraverseFunc)funcTravessiaQuerie5Fil,&aux);
+    g_tree_destroy(avl);
+  }
 
-Lista lst = inicializa_lista();
-Aux2 aux = setAux2(lst,fil);
-
-for(int i=0;i<26;i++){
-  g_tree_foreach(getTreeC(cc,i),(GTraverseFunc)funcTravessiaQuerie5Fil,&aux);
+  removeAux2(aux);
+  return lst;
 }
-
-return lst;
-}
-
-
-//--------------------------------------------------------------
-//----------------QUERIE 6--------------------------------------
+// --------------------------------Query6------------------------------------------------------------------------------------------
 struct par{
- int countClients;
- int countProducts;
+  int countClients;
+  int countProducts;
 };
 
 typedef struct aux6{
- Filial fil[3];
- int countClients;
+  Filial fil[3];
+  int countClients;
 }*Aux6;
 
 Aux6 setAux6(Filial fil[3]){
@@ -207,15 +230,25 @@ Aux6 setAux6(Filial fil[3]){
   return aux;
 }
 
+void removeAux6(Aux6 aux){
+  for(int i=0;i<3;i++){
+    aux->fil[i]=NULL;
+}
+  free(aux);
+}
+
 Par initPar(){
- Par p=(Par)malloc(sizeof(struct par));
+  Par p=(Par)malloc(sizeof(struct par));
   p->countClients=0;
   p->countProducts=0;
   return p;
 }
 
+void removePar(Par p){
+  free(p);
+}
+
 Par setPar(Par p,int x,int y){
-  
   p->countClients=x;
   p->countProducts=y;
   return p;
@@ -231,25 +264,29 @@ int getProductsNeverBoughtCount(Par p){
 
  
 gboolean funcTravessiaQuerie6(gpointer key, gpointer value,gpointer data) {
- Aux6 *aux=data;
- int flag=0;
- for(int i=0;i<3;i++){
- if (existeCliFil((*aux)->fil[i] ,(char*)key )) {flag++;break;}
- }
-if (flag==0)
-(*aux)->countClients++;
+  Aux6 *aux=data;
+  int flag=0;
+  for(int i=0;i<3;i++){
+   if (existeCliFil((*aux)->fil[i] ,(char*)key )) {flag++;break;}
+  }
+   if (flag==0)
+     (*aux)->countClients++;
 
-
-return FALSE;
+  return FALSE;
 }
 
 int clientesQueNaoCompraram(Filial fil[3],Cat_Clientes cc){
- Aux6 aux;
- aux=setAux6(fil);
- for(int i=0;i<26;i++){
-  g_tree_foreach(getTreeC(cc,i),(GTraverseFunc)funcTravessiaQuerie6,&aux);
- }
- return aux->countClients;
+  Aux6 aux;
+  aux=setAux6(fil);
+ 
+  for(int i=0;i<26;i++){
+  GTree* avl=getTreeC(cc,i);
+   g_tree_foreach(avl,(GTraverseFunc)funcTravessiaQuerie6,&aux);
+   g_tree_destroy(avl);
+  }
+  removeAux6(aux);
+  
+  return aux->countClients;
 } 
 
 
@@ -258,84 +295,76 @@ Par clientsAndProductsNeverBoughtCount(Par p,Cat_Produtos cp,Cat_Clientes cc,Fat
   int countClients; 
   
   Lista lst=inicializa_lista();
-  lst=productsNeverBought(fil[1],f,cp,0);//Lista com os produtnos ñ comprados
+  lst=productsNeverBought(fil[1],lst,f,cp,0);//Lista com os produtnos ñ comprados
   
   countProducts=sizeLst(lst);
   countClients=clientesQueNaoCompraram(fil,cc);
   
   p=setPar(p,countClients,countProducts);
-
+  removeLst(lst);
   return p;
+}
 
-
- }
-
-
-//--------------------------------------------------------------
-//----------------QUERIE 7--------------------------------------
+// --------------------------------Query7------------------------------------------------------------------------------------------
 
  //MES   :   1 2 3 4 5
  //FILIAL 1 
  //FILIAL 2
  //FILIAL 3
 struct tabela{
- int tabela[12][3];	
+  int tabela[12][3];	
 };
 
 Tabela initTabela(){
- Tabela tbl=(Tabela)malloc(sizeof(struct tabela));
- for(int i=0;i<12;i++)
- 	for(int j=0;j<3;j++)
+  Tabela tbl=(Tabela)malloc(sizeof(struct tabela));
+  for(int i=0;i<12;i++)
+ 	  for(int j=0;j<3;j++)
       tbl->tabela[i][j]=0;
- return tbl;
+  return tbl;
 }
 
 Tabela setTabela(Tabela tbl,int linha,int coluna,int res){
- tbl->tabela[linha][coluna]=res;
- return tbl;
+  tbl->tabela[linha][coluna]=res;
+  return tbl;
 }
 
 void removeTabela(Tabela tbl){
- free(tbl);
+  free(tbl);
 }
 
 int getComprado(Tabela tbl,int linha,int coluna){
-
-	return(tbl->tabela[linha][coluna]);
+  return(tbl->tabela[linha][coluna]);
 }
 
 Tabela productBoughtByClient(Tabela tbl,Filial fil[3],char* clientID){
-   int nmr_produtos_comprados=0;
-   for(int j=0;j<12;j++){
+  int nmr_produtos_comprados=0;
+  for(int j=0;j<12;j++){
     for(int i=0;i<3;i++){
      nmr_produtos_comprados=produtosCompradosCliente(fil[i],j,clientID);
      tbl=setTabela(tbl,j,i,nmr_produtos_comprados); 
     }
-   }
+  }
  
-return tbl;
+  return tbl;
+}
 
- }
-
- //--------------------------------------------------------------
-//----------------QUERIE 8--------------------------------------
-
+// --------------------------------Query8------------------------------------------------------------------------------------------
 struct profit{
- int total_vendas;
- float total_faturado;
+  int total_vendas;
+  float total_faturado;
 };
 
 Profit initProfit(){
- Profit p=(Profit)malloc(sizeof(struct profit));
- p->total_vendas=0;
- p->total_faturado=0.0;
- return p;
+  Profit p=(Profit)malloc(sizeof(struct profit));
+  p->total_vendas=0;
+  p->total_faturado=0.0;
+  return p;
 }
 
 Profit setProfit(Profit p,int vendas,float faturado){
- p->total_vendas=vendas;
- p->total_faturado=faturado;
- return p; 
+  p->total_vendas=vendas;
+  p->total_faturado=faturado;
+  return p; 
 }
 
 float getFaturado(Profit p){
@@ -343,41 +372,38 @@ float getFaturado(Profit p){
 }
 
 int getVendas(Profit p){
- return p->total_vendas;
+  return p->total_vendas;
 }
 
 
 void removeProfit(Profit p){
- free(p);	
+  free(p);	
 }
 
 Profit salesAndProfit(Faturacao f,Profit p,int minMonth,int maxMonth){
- int vendas=getSales(f,minMonth,maxMonth);
- float faturado=getProfit(f,minMonth,maxMonth);
- p=setProfit(p,vendas,faturado);
- return p;
+  int vendas=getSales(f,minMonth,maxMonth);
+  float faturado=getProfit(f,minMonth,maxMonth);
+  p=setProfit(p,vendas,faturado);
+  return p;
 }
 
-//--------------------------------------------------------------
-//----------------QUERIE 9--------------------------------------
-
+// --------------------------------Query9------------------------------------------------------------------------------------------
 struct lstbuyers{
- Lista listaN;
- Lista listaP;
+  Lista listaN;
+  Lista listaP;
 };
 
 LstBuyers initLstBuyers(){
   LstBuyers l=(LstBuyers)malloc(sizeof(struct lstbuyers));
-  l->listaN=inicializa_lista();
-  l->listaP=inicializa_lista();
-return l;
+  l->listaN=NULL;
+  l->listaP=NULL;
+  return l;
 }
 
 LstBuyers setLstBuyers(LstBuyers l,Lista l1,Lista l2){
-  
   l->listaN=l1;
   l->listaP=l2;
-return l;
+  return l;
 }
 
 Lista getListaN(LstBuyers l){
@@ -407,61 +433,65 @@ return l;
 
 }
 
-
-//--------------------------------------------------------------
-//----------------QUERIE 10--------------------------------------
-
-
+// --------------------------------Query10------------------------------------------------------------------------------------------
 
 int compare_struct(gpointer a,gpointer b){
-QntProds qp1=(QntProds) a;
-QntProds qp2=(QntProds) b;
+  QntProds qp1=(QntProds) a;
+  QntProds qp2=(QntProds) b;
 
-int x=getQntQP(qp1);
-int y=getQntQP(qp2);
+  int x=getQntQP(qp1);
+  int y=getQntQP(qp2);
 
-return y-x;
-
+  return y-x;
 }
 
 
 void percorre(gpointer data,gpointer user_data){
-QntProds qp=(QntProds)data;
+  
+  QntProds qp=(QntProds)data;
+  char* code=getCodeQP(qp);
+  insereLista(user_data,code);
+  free(code);
+}
 
-insereLista(user_data,getCodeQP(qp));
+Lista htableToList(Lista lst,GHashTable* ht){
 
+  GList* l=g_hash_table_get_values(ht);
+  l=g_list_sort(l,(GCompareFunc)compare_struct);
+
+  g_list_foreach(l,(GFunc)percorre,&lst);
+
+  g_list_free(l);
+  return lst;
 
 }
 
-Lista htableToList(GHashTable* ht){
-
-GList* l=g_hash_table_get_values(ht);
-GList* s=g_list_sort(l,(GCompareFunc)compare_struct);
-Lista lst=inicializa_lista();
-g_list_foreach(s,(GFunc)percorre,&lst);
-return lst;
-
+void freeKeyProdQ(gpointer data){
+  char* clientID=(char*)data;
+  free(clientID);
 }
 
+Lista clientFavoriteProducts(Filial f[3],Lista lst,char* clientID,int month){
 
+  GHashTable* ht=g_hash_table_new_full(g_str_hash,g_str_equal,freeKeyProdQ,removeQntProds);
 
-Lista clientFavoriteProducts(Filial f[3],char* clientID,int month){
+  for(int i=0;i<3;i++)
+    produtosQueMaisComprou(ht,f[i],clientID,month);
 
-GHashTable* ht=g_hash_table_new(g_str_hash,g_str_equal);
-printf("SIZE:%d\n",g_hash_table_size(ht));
-for(int i=0;i<3;i++)
-  produtosQueMaisComprou(ht,f[i],clientID,month);
+  lst=htableToList(lst,ht),
 
-return(htableToList(ht));
+  g_hash_table_destroy(ht);
+
+  return lst;
 }
 
-//-------------------------------------Querie11
+// --------------------------------Query11------------------------------------------------------------------------------------------
 
 struct selledprod{
- char* prodID;
- int num_clientes[3];
- int unidades_vendidas; 
- int unidades_vendidas_filial[3];
+  char* prodID;
+  int num_clientes[3];
+  int unidades_vendidas; 
+  int unidades_vendidas_filial[3];
 };
 
 SelledProd initSelledProd(){
@@ -485,7 +515,7 @@ return s;
 }
 
 int getUnidadesVendidasProd(SelledProd s){
- return(s->unidades_vendidas);
+  return(s->unidades_vendidas);
 }
 
 int* getNumClientes(SelledProd s){
@@ -498,110 +528,156 @@ int* getUnidadesVendidasFilial(SelledProd s){
 
 
 char* getProdCode(SelledProd s){
- return(s->prodID);
+  return(s->prodID);
 }
 
 
-
-
-
-SelledProd* topSelledProducts(Faturacao fat,Filial f[3],int limit){
-
-
-
-char* code=NULL;
-int num_clientes[3];
-int unidades_vendidas_filial[3];
-int unidades_vendidas=0;
-SelledProd *top=(SelledProd*)malloc(sizeof(struct selledprod*)*limit);
-
-for(int i=0;i<3;num_clientes[i++]=0);
-
-
-Lista l=inicializa_lista();
-
-
-
-l=topSelledProductsN(l,fat,limit);
-
-for(int i=0;i<limit;top[i++]=initSelledProd());
-
-for(int i=0;i<limit;i++){
- 
- code=strdup(getStringLst(l,i));
- 
- 
- for(int j=0;j<3;j++){
-   
-  num_clientes[j]=numberClients(f[j],code);
-  unidades_vendidas_filial[j]=getUnidadesFilial(f[j],code);
-
- }  
- unidades_vendidas=getUnidadesVendidas(fat,code);
- 
- top[i]=setSelledProd(top[i],code,num_clientes,unidades_vendidas,unidades_vendidas_filial);
-
- 
- }
- 
-return top;
+void removeSelledProds(SelledProd s){
+  free(s->prodID);
+  free(s);
 }
 
-//----Query 12
 
+SelledProd* topSelledProducts(SelledProd* top,Faturacao fat,Filial f[3],int limit){
+
+  char* code=NULL;
+  int num_clientes[3];
+  int unidades_vendidas_filial[3];
+  int unidades_vendidas=0;
+
+  for(int i=0;i<3;num_clientes[i++]=0);
+
+  Lista l=inicializa_lista();
+
+  l=topSelledProductsN(l,fat,limit);
+
+  for(int i=0;i<limit;top[i++]=initSelledProd());
+
+  for(int i=0;i<limit;i++){
+    code=strdup(getStringLst(l,i));
+    for(int j=0;j<3;j++){
+      num_clientes[j]=numberClients(f[j],code);
+      unidades_vendidas_filial[j]=getUnidadesFilial(f[j],code);
+    }  
+ 
+    unidades_vendidas=getUnidadesVendidas(fat,code);
+    top[i]=setSelledProd(top[i],code,num_clientes,unidades_vendidas,unidades_vendidas_filial);
+
+    free(code); 
+  }
+
+  removeLst(l);
+  return top;
+}
+
+// --------------------------------Query12------------------------------------------------------------------------------------------
 
 int compareTop(gpointer a,gpointer b){
-TopProds tp1=(TopProds) a;
-TopProds tp2=(TopProds) b;
+  TopProds tp1=(TopProds) a;
+  TopProds tp2=(TopProds) b;
 
-int x=getGastoTop(tp1);
-int y=getGastoTop(tp2);
+  int x=getGastoTop(tp1);
+  int y=getGastoTop(tp2);
 
-return y-x;
-
+  return y-x;
 }
-
 
 gpointer cloneTopProds(gconstpointer src,gpointer data){
-TopProds tp=(TopProds) src;
-TopProds clone=initTopProds();
-float gasto=getGastoTop(tp);
-char *code=getCodeTop(tp);
-clone=setTopProds(clone,code,gasto);
-return clone;
-
-
+  TopProds tp=(TopProds) src;
+  TopProds clone=initTopProds();
+  float gasto=getGastoTop(tp);
+  char *code=getCodeTop(tp);
+  clone=setTopProds(clone,code,gasto);
+  free(code);
+  return clone;
 }
-
-
-
 
 GList* topProducts(Filial f[3],char* clientID,int limit){
 
-GHashTable* ht=g_hash_table_new(g_str_hash,g_str_equal);
+  GHashTable* ht=g_hash_table_new_full(g_str_hash,g_str_equal,freeKeyProdQ ,removeTP);
 
-for(int i=0;i<3;i++){
+  for(int i=0;i<3;i++){
+    ht=topProfitProducts(f[i],ht,clientID);
+  }
 
-  topProfitProducts(f[i],ht,clientID);
+  GList* l=g_hash_table_get_values(ht);
 
-}
+  l=g_list_sort(l,(GCompareFunc)compareTop);
 
-GList* l=g_hash_table_get_values(ht);
+  GList* clone=g_list_copy_deep(l,cloneTopProds,NULL);
 
-l=g_list_sort(l,(GCompareFunc)compareTop);
+  GList* fst=g_list_first(clone);
 
-GList* clone=g_list_copy_deep(l,cloneTopProds,NULL);
-
-GList* fst=g_list_first(clone);
-
-for(int i=g_list_length(clone)-1;i>=limit;i--){
-clone=g_list_nth(clone,i);
-TopProds tp=(TopProds)clone->data;
-removeTP(tp);
-clone=g_list_delete_link(fst,clone);
-
-}
+  for(int i=g_list_length(clone)-1;i>=limit;i--){
+    clone=g_list_nth(clone,i);
+    TopProds tp=(TopProds)clone->data;
+    removeTP(tp);
+    clone=g_list_delete_link(fst,clone);
+  }
+  
+  g_list_free(l);
+  g_hash_table_destroy(ht);
 
 return clone;
+}
 
+// --------------------------------Query13------------------------------------------------------------------------------------------
+
+struct fileinfo{
+ char* filenames[3];
+ int num_linhas_lidas[3];
+ int num_linhas_validadas[3];
+ float tempo_leitura[3];
+};
+
+FileInfo initFileInfo(){
+  FileInfo fi=(FileInfo)malloc(sizeof(struct fileinfo));
+  for(int i=0;i<3;fi->filenames[i++]=NULL);
+  for(int i=0;i<3;fi->num_linhas_lidas[i++]=0);
+  for(int i=0;i<3;fi->num_linhas_validadas[i++]=0);  
+  for(int i=0;i<3;fi->tempo_leitura[i++]=0.0f);
+  return fi;
+}
+
+void removeFileInfo(FileInfo fi){
+ for(int i=0;i<3;free(fi->filenames[i++]));
+ free(fi);
+}
+
+FileInfo currentFilesInfo(FileInfo fi,Cat_Produtos cp,Cat_Clientes cc,Faturacao f){
+
+  fi->filenames[0]=getFileNameProds(cp);
+  fi->filenames[1]=getFileNameClientes(cc);
+  fi->filenames[2]=getFileNameVendas(f);
+
+  fi->num_linhas_lidas[0]=getNumLinhasLidasProds(cp);
+  fi->num_linhas_lidas[1]=getNumLinhasLidasClientes(cc);
+  fi->num_linhas_lidas[2]=getNumLinhasLidasVendas(f);
+
+  fi->num_linhas_validadas[0]=totalProd(cp);
+  fi->num_linhas_validadas[1]=totalClientes(cc);
+  fi->num_linhas_validadas[2]=getNumLinhasValidadasVendas(f);
+
+  fi->tempo_leitura[0]=getTempoLeituraProds(cp);
+  fi->tempo_leitura[1]=getTempoLeituraClientes(cc);
+  fi->tempo_leitura[2]=getTempoLeituraVendas(f);
+
+  return fi;
+
+}
+
+int getNumLinhasLidasFI(FileInfo fi,int index){
+  return (fi->num_linhas_lidas[index]);
+}
+
+int getNumLinhasValidadasFI(FileInfo fi,int index){
+  return (fi->num_linhas_validadas[index]);
+}
+
+float getTempoLeituraFI(FileInfo fi,int index){
+  return (fi->tempo_leitura[index]);
+}
+
+char* getFileNameFI(FileInfo fi,int index){
+  return (fi->filenames[index]);
 }

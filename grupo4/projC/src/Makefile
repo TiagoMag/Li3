@@ -1,5 +1,8 @@
 CC = gcc
+
 CFLAGS = -Wall -ggdb -ansi -std=c99 -O2 -Wno-unused-result -D_GNU_SOURCE
+
+
 GLIBFLAG = `pkg-config --cflags --libs glib-2.0`
 GLIBFLAGC= `pkg-config --cflags glib-2.0`
 GLIBFLAGL= `pkg-config --libs glib-2.0`

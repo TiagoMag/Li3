@@ -15,5 +15,8 @@ gboolean existeCliente(Cat_Clientes cp,Cliente c);
 int totalClientes(Cat_Clientes cc);
 void removeCatCliente(Cat_Clientes cc);
 GTree* getTreeC(Cat_Clientes cc,int index);
-
+Cat_Clientes setInfoFileClientes(Cat_Clientes cc,char* filename,int num_linhas_lidas,float tempo);
+int getNumLinhasLidasClientes(Cat_Clientes cc);
+float getTempoLeituraClientes(Cat_Clientes cc);
+char* getFileNameClientes(Cat_Clientes cc);
 #endif

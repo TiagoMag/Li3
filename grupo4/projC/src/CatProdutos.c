@@ -2,6 +2,9 @@
 //Estrutura de dados Catalogo de produtos
 struct cat_produtos{
 	GTree* produtos[Produtos];
+	int num_linhas_lidas;
+	char* filename;
+	float tempo_leitura;
 };
 
 //Elimina a chave de um produto
@@ -13,6 +16,9 @@ void freeKeyProduct(gpointer data){
 //Inicializa a estrutura de dados
 Cat_Produtos inicializa_CatProds(){
 	Cat_Produtos cp=(Cat_Produtos)malloc(sizeof(struct cat_produtos));
+ 	cp->num_linhas_lidas=0;
+	cp->filename=NULL;
+	cp->tempo_leitura=0.0f;
  	for (int i=0;i<Produtos;i++)
   		cp->produtos[i]=g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp,NULL,(GDestroyNotify)freeKeyProduct,NULL);
  	return cp;
@@ -26,9 +32,20 @@ Cat_Produtos insereProd(Cat_Produtos cp,Produto p){
  	return cp;
 }
 
+
 //Retorna a arvore de produtos correspondente a uma determinada letra
+
+
+gboolean cloneTreeProdutos(gpointer key, gpointer value,gpointer data) {
+ 	GTree* clone=(GTree*) data;
+ 	g_tree_insert(clone,strdup(key),strdup(value));
+	return FALSE;
+}
+
 GTree* getTree(Cat_Produtos cp,int index){
- 	return cp->produtos[index];
+ 	GTree* clone=g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp,NULL,(GDestroyNotify)freeKeyProduct,(GDestroyNotify)freeKeyProduct);
+    g_tree_foreach(cp->produtos[index],(GTraverseFunc)cloneTreeProdutos,clone);
+ 	return clone;
 }
 
 //Verifica a existencia de um produto no Catalogo
@@ -61,9 +78,27 @@ Lista produtosLetra(Cat_Produtos cp,Lista lst ,char letter){
 }
 //Desalocação da estrutura de dados
 void removeCatProd (Cat_Produtos cp){
+	free(cp->filename);
 	for(int i=0;i<Produtos;i++)
  		g_tree_destroy(cp->produtos[i]);  
 	free(cp);
 }
 
+Cat_Produtos setInfoFileProdutos(Cat_Produtos cp,char* filename,int num_linhas_lidas,float tempo){
+    cp->num_linhas_lidas=num_linhas_lidas;
+    cp->tempo_leitura=tempo;
+    cp->filename=strdup(filename);
+    return cp;
+}
 
+int getNumLinhasLidasProds(Cat_Produtos cp){
+	return(cp->num_linhas_lidas);
+}
+
+float getTempoLeituraProds(Cat_Produtos cp){
+	return(cp->tempo_leitura);
+}
+
+char* getFileNameProds(Cat_Produtos cp){
+	return strdup(cp->filename);
+}

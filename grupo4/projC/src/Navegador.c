@@ -10,7 +10,12 @@ struct pagina{
 };
 
 void removeLst(Lista lst){
- g_array_free(lst->lista,FALSE);
+ char* elem=NULL;
+for(int i=0;i<lst->lista->len;i++){
+  elem=g_array_index(lst->lista,char*,i);
+  free(elem);
+  }
+ g_array_free(lst->lista,TRUE);
  free(lst);
 }
 
@@ -22,7 +27,10 @@ Lista inicializa_lista(){
 
 void insereLista(gpointer data,gpointer value){
  Lista *lst=data;
- g_array_append_val((*lst)->lista,value);
+ char* elem=strdup((char*)value);
+
+ g_array_append_val((*lst)->lista,elem);
+ 
 }
 
 

@@ -28,5 +28,6 @@ LstBuyers getProductBuyers(SGV sgv,char* productID,int branchID);
 Lista getClientFavoriteProducts(SGV sgv,char* clientID,int month);
 SelledProd* getTopSelledProducts(SGV sgv,int limit);
 GList* getClientTopProfitProducts(SGV sgv,char* clientID,int limit);
+FileInfo getCurrentFilesInfo(SGV sgv);
 
 #endif

@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <glib.h>
 #include <stdlib.h>
+#include <string.h>
 #include "SGV.h"
 
 
@@ -28,18 +29,20 @@ void printQuery3(Lista lst,char c);
 char inputQuery3(char* codigo,int* mes);
 int inputQuery4();
 void printLst(Lista lst);
-void printPar(Par p);
+void printPar(Par p,float time);
 int inputQuery7(char* code);
-void printQuery7(Tabela tbl);
+void printQuery7(Tabela tbl,float time);
 int inputQuery8(int* mes1,int* mes2);
-void printQuery8(Profit p,int mes1,int mes2);
+void printQuery8(Profit p,int mes1,int mes2,float time);
 int inputQuery9(char* productID);
-void printQuery9(LstBuyers l);
+void printQuery9(LstBuyers l,float time);
 int inputQuery10(char* clientID);
+void printLst10(Lista lst,float tempo);
 int inputQuery11();
-void printQuery11(SelledProd* s,int x);
+void printQuery11(SelledProd* s,int x,float time);
 int inputQuery12(char* clientID);
-void printQuery12(GList* l);
+void printQuery12(GList* l,float time);
+void printQuery13(FileInfo f);
 
 
 #endif
