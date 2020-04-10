@@ -1,45 +1,47 @@
 CC = gcc
-CFLAGS = -Wall -ggdb -ansi -std=c99 -O2 -D_GNU_SOURCE
+CFLAGS = -Wall -ggdb -ansi -std=c99 -O2 -Wno-unused-result -D_GNU_SOURCE
 GLIBFLAG = `pkg-config --cflags --libs glib-2.0`
+GLIBFLAGC= `pkg-config --cflags glib-2.0`
+GLIBFLAGL= `pkg-config --libs glib-2.0`
 
 program: CatProd Produto Cliente CatCli Queries Files SGV Navegador Menu Venda Faturacao Filial
-	$(CC) $(GLIBFLAG) $(CFLAGS) -o program main.c CatProdutos.o Produto.o Cliente.o CatClientes.o Queries.o Files.o SGV.o Navegador.o menu.o Venda.o Faturacao.o Filial.o
+	$(CC) $(CFLAGS)  -o program main.c $(GLIBFLAGC)   CatProdutos.o Produto.o Cliente.o CatClientes.o Queries.o Files.o SGV.o Navegador.o menu.o Venda.o Faturacao.o Filial.o $(GLIBFLAGL)
 
 CatProd:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c CatProdutos.c
+	$(CC) $(CFLAGS) -c CatProdutos.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Produto:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Produto.c
+	$(CC) $(CFLAGS) -c Produto.c $(GLIBFLAGC) $(GLIBFLAGL)
 
 Cliente:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Cliente.c
+	$(CC) $(CFLAGS) -c Cliente.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 CatCli:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c CatClientes.c
+	$(CC) $(CFLAGS) -c CatClientes.c $(GLIBFLAGC) $(GLIBFLAGL) 
 
 Queries:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Queries.c
+	$(CC) $(CFLAGS) -c Queries.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Files:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Files.c
+	$(CC) $(CFLAGS) -c Files.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 SGV:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c SGV.c
+	$(CC) $(CFLAGS) -c SGV.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Navegador:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Navegador.c
+	$(CC) $(CFLAGS) -c Navegador.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Menu:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c menu.c
+	$(CC) $(CFLAGS) -c menu.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Venda:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Venda.c
+	$(CC) $(CFLAGS) -c Venda.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Faturacao:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Faturacao.c
+	$(CC) $(CFLAGS) -c Faturacao.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Filial:
-	$(CC) $(GLIBFLAG) $(CFLAGS) -c Filial.c
+	$(CC) $(CFLAGS) -c Filial.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 
 clean:
