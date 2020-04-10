@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+int lixo;
 
 #include "../include/SGV.h"
 #include "../include/menu.h"

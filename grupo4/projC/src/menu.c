@@ -1,6 +1,5 @@
 #include "../include/menu.h"
 
-
 static void navega(Lista lst);
 
 
@@ -57,7 +56,7 @@ int main_menu(){
 
 }
 
-//**************FUCOES AUXILIARES***************
+//**************FUNÇÕES AUXILIARES***************
 static void navega(Lista lst){
 
 

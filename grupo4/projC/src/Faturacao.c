@@ -2,6 +2,7 @@
 
 static int top=0;
 
+//Estrutura de dados
 struct faturacao {
   GHashTable* produtos;
   Data TotaisMes[MES];
@@ -11,6 +12,7 @@ struct faturacao {
   float tempo_leitura;
 };     
 
+//Estrutura de dados de uma fatura
 struct fat{
   char* code;
   Data infoN[MES][FILIAL];
@@ -18,12 +20,13 @@ struct fat{
   int vendas;
 };
 
+//Dados da fatura
 struct data{
   int quant;
   float precofat;	
 };
 
-
+//Alocação de memória
 Data initData(){
   Data d=(Data)malloc(sizeof(struct data));
   d->quant=0;
@@ -31,23 +34,28 @@ Data initData(){
   return d;
 }
 
+//Inserção de valores nos dados da fatura
 Data setData(Data d,int quant,float precofat){
   d->quant=quant;
   d->precofat=precofat;
   return d;
 }
 
+//Retorna preço da fatura
 float getPrecoFat(Data d){
   return(d->precofat);
 }
 
+//Retorna quantidade comprada
 int getQntFat(Data d){
   return(d->quant);
 }
 
+
 GHashTable* getprodutosFat(Faturacao f){
   return(f->produtos);
 }
+
 
 void freeKeyProductFat(gpointer data){
   char* prodID=(char*)data;
