@@ -1,4 +1,4 @@
-#include "../include/Venda.h"
+#include "../../include/Venda.h"
 
 struct venda{
  Produto produto;

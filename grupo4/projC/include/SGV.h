@@ -1,5 +1,5 @@
-#ifndef SGV_H
-#define SGV_H
+#ifndef INTERFACE_H
+#define INTERFACE_H
 
 #include <stdlib.h>
 #include <glib.h>

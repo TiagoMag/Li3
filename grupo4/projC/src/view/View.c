@@ -1,9 +1,10 @@
-#include "../include/menu.h"
+#include "../../include/View.h"
+
 
 static void navega(Lista lst);
 
 
-int main_menu(){
+void main_menu(){
 
   system("clear");
   
@@ -43,20 +44,14 @@ int main_menu(){
   
   printf("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n\n");
 
-  char buffer[10];
-  int option;
+  
   
   printf("\033[1;34m");
   printf("Selecione a opção: \n");
-  
-  scanf("%s",buffer);
-  option=atoi(buffer);
-
-  return option;
 
 }
 
-//**************FUNÇÕES AUXILIARES***************
+//**************FUCOES AUXILIARES***************
 static void navega(Lista lst){
 
 
@@ -112,8 +107,6 @@ if (sizeLst(lst)==0){
             return ; }
             
             system("clear");
-    
-
 
     }
   }
@@ -127,28 +120,6 @@ void clearAndEnter(){
   getchar();
 
 }
-
-void voltar(){
-  int c=0;
-  
-    while(c!=4) c++;
-}
-
-
-void erro(){
-
-  int c;
-  system("clear");
-  printf("\033[1;31m");
-  while ((c= getchar()) != '\n' && c != EOF);
-  
-  puts("AVISO! \033[1;31m É NECESSÁRIA A LEITURA DOS FICHEIROS.\n\n\033[0;33mENTER para voltar atrás\n");
-  getchar();
-}
-
-
-
-
 
 //--------------------------------------------------QUERY-1
 
@@ -169,111 +140,7 @@ printf(“\033[0;31m”); --> vermelho
 printf("\033[1;36m ");
 */
 
-
-int scanning(char buffer[100],char*filenames[3]){
- 
-  if (buffer[0]=='S'){
-    filenames[0]=strdup("D");
-    memset(buffer,0,100);
- 
-    return 0;
-  }
- 
-  else if (buffer[0]=='N'){
-    printf("\033[1;34mPaths ficheiro cliente: ");
-    scanf("%s",buffer);
-    filenames[0]=strdup(buffer);
-  
-    printf("\033[1;34mPath ficheiro produtos: ");
-    scanf("%s",buffer);
-    filenames[1]=strdup(buffer);
-  
-    printf("\033[1;34mPath ficheiro vendas: ");
-    scanf("%s",buffer);
-    filenames[2]=strdup(buffer);
-  
-    memset(buffer,0,100);
-    
-    return 0;
-  }
- 
- return 1;
-}
-
-int inputQuery1(SGV sgv,char* filenames[3]){
-  
-int b; 
-char buffer[100];
-
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 1");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n\n");
-  printf("\033[1;34m");
-  printf("\033[1;35m0 -> Voltar\033[1;36m \n");
-  printf("Usar ficheiros default(S/N)?\n");
-  printf("\033[1;36m");
-  printf("══════════════════════════════════════════════════════════════════════════════════════════\n");
-  scanf("%s",buffer);
-
-  if((b=scanning(buffer,filenames))==0)
-    return 0;
-
-  else if (buffer[0]=='0'){
-    memset(buffer,0,100);
-    return -1;
-  }
-
-  else{
-
-  int a=1;
- 
-    while(a!=0){
-      printf("Responder com (S/N)\nUsar ficheiros default(S/N)?\n");
-      scanf("%s",buffer);
-      a=scanning(buffer,filenames);
-    }
-
-  }
-
-  return 0;
-}
-
-
 //--------------------------------------------------QUERY-2
-char inputQuery2(){
-  
-  char c;
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 2");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n");
-  printf("\033[1;35m0 -> Voltar\033[1;36m\n");
-  printf("Qual a letra do produto que pretende procurar [A-Z] ?\n");
-  printf("══════════════════════════════════════════════════════════════════════════════════════════\n");
-   
-  scanf(" %c",&c);
-  
-    if (c=='0') 
-      return '0';
-  
-      else {
-        
-        if (!(c>='A' && c<='Z')){
-          puts("\033[1;31mLetra inválida");
-          return '-';
-        }
-      }
-    
-
-  return c;
-}
 
 void printQuery2(Lista lst){
   system("clear");
@@ -282,75 +149,6 @@ void printQuery2(Lista lst){
 }
 
 //--------------------------------------------------QUERY-3
-char inputQuery3(char* code,int* mes){
-  
-char mes_str[100];
-char c;
-  
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 3");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n");
-  printf("\033[1;35m0 -> Voltar \n\n"); 
-  printf("\033[1;33mIndique um mês (1-12)?\033[0;32m\n");
- 
-  scanf(" %s",mes_str);
-  
-    if ((atoi(mes_str))==0)
-      return c='0'; 
-    
-    if ((atoi(mes_str))>12){
-      puts("\033[1;31mMês inválido");
-      return c='-';
-    }
-  
-  else{
-
-    *mes=atoi(mes_str)-1;
-
-    
-    printf("\033[1;33mIndique um código de um produto?\033[0;32m\n");  
-    scanf(" %s",code);
-      
-      if (*code == '0')
-        return c='0';
-      
-      if (strlen(code)!=6){
-        printf("\033[1;31mCódigo de produto inválido\n");
-        return -1;
-      }
-
-      if (!isalpha(code[0]) && isalpha(code[0])){
-        printf("\033[1;31m Primeiros 2 caracteres não são letras\n");
-        return c='-';
-      }
-
-      if (!(code[0]>='A' && code[0]<='Z' && code[1]>='A' && code[1]<='Z')){
-        printf("\033[1;31m Primeiros 2 caracteres não são letras MAÍUSCULAS\n"); return c='-';
-      }
-
-      if (!(atoi(code+2)>=1000) && atoi(code+2)<=9999){
-        printf("\033[1;31m Últimos 4 caracteres têm de ser numéricos\n");
-        return c='-';
-      }
-  
-    
-    printf("\033[1;33mTotal ou por Filial(T/F)?\n"); 
-    scanf(" %c",&c); 
-
-      if (!(c=='T' || c=='F')){
-        puts("\033[1;31m Utilize a letra (T)otal ou (F)ilial");
-        return c='-';
-      }
-  }
-
-return c;
-}  
-
-
 
 
 void printQuery3(Lista lst,char c){
@@ -419,62 +217,7 @@ void printQuery3(Lista lst,char c){
 
 
 //--------------------------------------------------QUERY-4
-int inputQuery4(){
- 
- char c;
- int f;
- int res=-1;
- int flag=0;
- 
-  while(flag==0){
- 
-    system("clear");
-  
-    printf("\033[1;36m");
-    printf("═════════════════════════════════════════════════");
-    printf("\033[1;34m");
-    printf("QUERY 4");
-    printf("\033[1;36m");
-    printf("═════════════════════════════════════════════════\n");
-    printf("\033[1;35m0 -> Voltar \n");
-    printf("\033[1;35m Ver codigos por Filial ou Totais(F/T) ?\033[1;36m\n");
-    printf("══════════════════════════════════════════════════════════════════════════════════════════\n");
-   
-    scanf(" %c",&c);
-    if(c=='0') return -1;
-    else{
 
-    if (!(c=='T' || c=='F')){
-     puts("\033[1;31mLetra inválida");
-     clearAndEnter();
-    }
-     
-  
-    if (c=='T'){
-     res=0;
-     flag=1;
-    }   
-    else if (c=='F'){ 
-
-    printf("\033[1;34mEscolha a filial |1|2|3|?\n");
-    scanf(" %d",&f);
-    if(f==0) return -1;
-    if(f>3){
-      printf("\033[1;31mValor inválido\n");
-      return -2;
-    }
-    else{
-    res=f;
-    flag=1;
-    }
-    }
- 
-  }
-} 
-return res;
-
-
-}
 
 
 //---Output Query 4 e 5
@@ -506,36 +249,6 @@ void printPar(Par p,float time){
 
 //--------------------------------------------------QUERY-7
 
-int inputQuery7(char* code){
- 
-system("clear");
-printf("\033[1;35m0 -> para voltar\n");
-printf("\033[1;34mInsira o código de cliente:\n");
-
-scanf(" %s",code);
-  if (code[0]=='0') return -2;
-  if (strlen(code)!=5){
-    printf("\033[1;31mCódigo de cliente inválido\n");
-    return -1;
-  }
-  if (!isalpha(code[0])) {
-    printf ("\033[1;31mPrimeiro caracter é uma letra\n");
-    return -1;
-  }
-  if (!(code[0] >='A' && code[0]<='Z')){
-    printf("\033[1;31mLetra tem que ser maiúscula\n");
-    return -1;
-  }
-  if (!(atoi(code+1)>=1000) && atoi(code+1)<=5000){
-    printf("\033[1;31mRestantes caracteres têm que ser numéricos\n");
-    return -1;
-  }
- 
-return 0;
-
-}
-
-
 void printQuery7(Tabela tbl,float time){
  
   system("clear");
@@ -564,49 +277,9 @@ void printQuery7(Tabela tbl,float time){
 
 //--------------------------------------------------QUERY-8
 
-int inputQuery8(int* mes1,int* mes2){
-  
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 8");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n");
-  printf("\033[1;34m0 -> Voltar \033[1;36m\n\n");
-  printf("\033[1;35mIndique o intervalo de meses no qual quer ver o numero de vendas e o total faturado nesse periodo.\n");
-  printf("\033[1;36m══════════════════════════════════════════════════════════════════════════════════════════════════════════\n\n");
-  
-  printf("\033[0;34mIndique o mês 1\033[0;32m\n");
-  scanf("%d",mes1);
-    
-    if(*mes1==0)
-      return -2;
-    
-    if (*mes1>12 || *mes1 <0){
-      puts("\033[0;31mMês inválido"); 
-      return -1;
-    }
-  
-  printf("\033[0;34mIndique o mês 2\033[0;32m\n");
-  scanf("%d",mes2);
-    if (*mes2==0)
-      return -2;
-    if (*mes2>12 || *mes2<0 || *mes2<*mes1){
-      puts ("\033[0;31mMês inválido");
-      return -1;
-    }
-
-  *mes1-=1;
-  *mes2-=1;
-
-  return 0;
-}
-
-
 
 void printQuery8(Profit p,int mes1,int mes2,float time){
- 
+  system("clear");
   printf("\033[1;33mO total de vendas entre o intervalo de meses %d e %d foi:\n\n",mes1+1,mes2+1);
  
   printf("\033[1;34mTotal de vendas:\033[1;33m %d\n",getVendas(p));
@@ -617,60 +290,6 @@ void printQuery8(Profit p,int mes1,int mes2,float time){
 }
 
 //--------------------------------------------------QUERY-9
-
-int inputQuery9(char* productID){
-  
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 9");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n"); 
-  
-  int x;
-  printf("\033[1;33mIndique o produto:\n");
-  scanf("%s",productID);
-    
-    if (*productID=='0')
-      return -2;
-    
-    if (strlen(productID)!=6){
-      printf("\033[1;31mCódigo de produto inválido\n");
-      return -1;
-    }
-  
-    if (!isalpha(productID[0]) && isalpha(productID[0])){
-      printf("\033[1;31m Primeiros 2 caracteres não são letras\n");
-      return -1;
-    }
-    
-    if (!(productID[0]>='A' && productID[0]<='Z' && productID[1]>='A' && productID[1]<='Z')){
-      printf("\033[1;31m Primeiros 2 caracteres não são letras maíusculas\n");
-      return -1;
-    }
-    
-    if (!(atoi(productID+2)>=1000) && atoi(productID+2)<=9999){
-      printf("\033[1;31m Últimos 4 caracteres têm de ser numéricos\n");
-      return -1;
-    }
-    
-    printf("Indique a filial:\n");
-    scanf("%d",&x);
-
-    if(x==0)
-      return -2;
-    
-    if(x>3 || x<0){
-      printf ("\033[1;31Filial assume os valores de 1 a 3.");
-      return -1;
-    }
-  
-  x--;
-  return x;
-
-
-}
 
 
 void printQuery9(LstBuyers l,float time){
@@ -703,53 +322,6 @@ clearAndEnter();
 }
 
 
-int inputQuery10(char* clientID){
-  
-  int x;
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 10");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n");
-
-
-  printf("\033[1;33mIndique um cliente:\n");
-  scanf("%s",clientID);
-  
-  if (*clientID=='0') 
-    return -2;
-  
-  if (strlen(clientID)!=5){printf("\033[1;31mCódigo de cliente inválido\n");
-    return -1;}
-
-  
-  if (!isalpha(clientID[0])) {
-    printf ("\033[1;31mPrimeiro caracter é uma letra\n");
-    return -1;}
-  
-  if (!(clientID[0] >='A' && clientID[0]<='Z')){
-    printf("\033[1;31mPrimeira letra tem que ser maiúscula\n");
-    return -1;}
-  
-  if (!(atoi(clientID+1)>=1000) && atoi(clientID+1)<=5000){
-    printf("\033[1;31mRestantes caracteres têm que ser numéricos\n");
-    return -1;}
-  
- 
-  printf("\033[1;33mIndique o mês:\n");
-  scanf("%d",&x);
-    if(x==0) return -2;
-    if (x>12 || x<0){
-     printf("\033[1;31mMês inválido\n");
-     return -1;
-    }
-  
-  return x;
-
-}
-
 void printLst10(Lista lst,float tempo){
  
   system("clear");
@@ -760,28 +332,7 @@ void printLst10(Lista lst,float tempo){
 }
 
 
-int inputQuery11(){
-  
-  int x;
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 11");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n");
 
-
-  printf("\033[1;33mIndique o limite do top:\n");
- 
-  scanf("%d",&x);
-
-  if (x==0) return -1;
- 
-
-  return x;
-
-}
 
 void printQuery11(SelledProd* s,int x,float time){
 
@@ -829,47 +380,6 @@ void printQuery11(SelledProd* s,int x,float time){
 
 
 //---Query 12
-
-int inputQuery12(char* clientID){
-  
-  int x;
-  system("clear");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════");
-  printf("\033[1;34m");
-  printf("QUERY 12");
-  printf("\033[1;36m");
-  printf("═════════════════════════════════════════════════\n");
-
-  printf("\033[1;33mIndique um cliente:\n");
-  scanf("%s",clientID);
-  if (clientID[0]=='0') return -2;
-  if (strlen(clientID)!=5){
-    printf("\033[1;31mCódigo de cliente inválido\n");
-    return -1;
-  }
-  if (!isalpha(clientID[0])) {
-    printf ("\033[1;31mPrimeiro caracter é uma letra\n");
-    return -1;
-  }
-  if (!(clientID[0] >='A' && clientID[0]<='Z')){
-    printf("\033[1;31mLetra tem que ser maiúscula\n");
-    return -1;
-  }
-  if (!(atoi(clientID+1)>=1000) && atoi(clientID+1)<=5000){
-    printf("\033[1;31mRestantes caracteres têm que ser numéricos\n");
-    return -1;
-  }
-
-  printf("\033[1;33mIndique o limite do top:\n");
- 
-  scanf("%d",&x);
-  if (x==0) return -2;
- 
-
-  return x;
-
-}
 
 
 void printQuery12(GList* l,float time){
