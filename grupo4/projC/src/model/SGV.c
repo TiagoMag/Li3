@@ -4,6 +4,7 @@ static char file1[]="ficheiros/Clientes.txt";
 static char file2[]="ficheiros/Produtos.txt";
 static char file3[]="ficheiros/Vendas_1M.txt";
 
+/* Estrutura do SGV */
 struct sgv{
   Cat_Clientes cc;
   Cat_Produtos cp;
@@ -11,8 +12,8 @@ struct sgv{
   Filial fil[3];
 };
 
+/* Inicializa a estrutura do SGV */
 SGV initSGV(){
-
   SGV sgv=(SGV)malloc(sizeof(struct sgv));
   sgv->cc=inicializa_CatClientes();
   sgv->cp=inicializa_CatProds();
@@ -23,6 +24,7 @@ SGV initSGV(){
   return sgv;
 }
 
+/* Libera a memória alocada pela estrutura SGV */
 void destroySGV(SGV sgv){
   removeCatCliente(sgv->cc);
   removeCatProd(sgv->cp);
@@ -30,7 +32,9 @@ void destroySGV(SGV sgv){
   for(int i=0;i<3;i++)
    removeFilial(sgv->fil[i]); 
   free(sgv);
- }
+}
+
+/* Queries */
 
 SGV loadFromFiles(char* filesPath[3],SGV sgv){
  
@@ -115,8 +119,7 @@ GList* getClientTopProfitProducts(SGV sgv,char* clientID,int limit){
 }
 
 FileInfo getCurrentFilesInfo(SGV sgv){
- FileInfo fi=initFileInfo();
- fi=currentFilesInfo(fi,sgv->cp,sgv->cc,sgv->f);
- return fi;
-
+  FileInfo fi=initFileInfo();
+  fi=currentFilesInfo(fi,sgv->cp,sgv->cc,sgv->f);
+  return fi;
 }

@@ -1,7 +1,6 @@
 #ifndef Input_H
 #define Input_H
 
-
 #include <string.h>
 #include <stdio.h>
 #include <glib.h>

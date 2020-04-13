@@ -1,6 +1,7 @@
 #ifndef Queries_h
 #define Queries_h
 
+#include <stdio.h>
 #include "CatProdutos.h"
 #include "CatClientes.h"
 #include "Files.h"

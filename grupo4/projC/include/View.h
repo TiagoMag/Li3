@@ -8,14 +8,11 @@
 #include <string.h>
 #include "interface.h"
 
-#define MAX_COL 5
 #define MAX_LIN 20
 
 void main_menu();
 void voltar();
 void clearAndEnter();
-void erro();
-
 void printQuery2(Lista lst);
 void printQuery3(Lista lst,char c);
 void printLst(Lista lst);
@@ -27,6 +24,5 @@ void printLst10(Lista lst,float tempo);
 void printQuery11(SelledProd* s,int x,float time);
 void printQuery12(GList* l,float time);
 void printQuery13(FileInfo f);
-
 
 #endif

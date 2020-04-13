@@ -1,6 +1,9 @@
 #include "../../include/Controller.h"
 
-void erro(){
+/* Funções privadas ao módulo */
+static void erro();
+
+static void erro(){
 
   int c;
   system("clear");
@@ -15,17 +18,17 @@ int runController(){
 
 	SGV sgv=initSGV();
   
-  	int exit=0;
-  	int check=0;
+  int exit=0;
+  int check=0;
 
-  	char c;
+  char c;
  
-  	clock_t begin, end;
-  	double cpu_time_used;
+  clock_t begin, end;
+  double cpu_time_used;
 
 	while(!exit) {
 
-    	main_menu();
+    	  main_menu();
       	int option;
       	scanf(" %d",&option);
 
@@ -38,8 +41,10 @@ int runController(){
         case 1:
             check=1; 
             char* filenames[3];
+            for(int i=0;i<3;filenames[i++]=NULL);
             inputQuery1(sgv,filenames);
             sgv=loadFromFiles(filenames,sgv);
+            for(int i=0;i<3;free(filenames[i++]));
             clearAndEnter();
             break;
         case 2:
@@ -68,7 +73,7 @@ int runController(){
             	int x;
               	while((x=inputQuery4())!=-1){ 
                	    Lista lst=getProductsNeverBought(sgv,x);
-        	        printLst(lst);
+        	          printLst(lst);
                 }
           	}
          	break;
@@ -96,7 +101,7 @@ int runController(){
             	char* codigo=malloc(sizeof(char*));
             	int a;
             	while((a=inputQuery7(codigo))!=-2){
-        				begin=clock();
+        			    	begin=clock();
               			Tabela tbl=getProductBoughtByClient(sgv,codigo);
               			end=clock();
               			cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
@@ -150,7 +155,7 @@ int runController(){
             	int x;
             	while((x=inputQuery10(codigo))!=-2){
                 	if(x!=-1){
-                		begin=clock();
+                		  begin=clock();
                    		Lista l=getClientFavoriteProducts(sgv,codigo,x-1);
                    		end=clock(); 
                     	cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
@@ -166,7 +171,7 @@ int runController(){
             	SelledProd* s;
             	int x;
             	while((x=inputQuery11())!=-1) {
-					begin=clock();
+					      begin=clock();
            			s=getTopSelledProducts(sgv,x);
             		end=clock();
             		cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;

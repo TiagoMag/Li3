@@ -4,7 +4,6 @@
 #include <glib.h>
 #include "Venda.h"
 
-
 typedef struct faturacao *Faturacao;
 typedef struct fat *Fat;
 typedef struct data *Data;
@@ -12,9 +11,8 @@ typedef struct data *Data;
 #define MES 12
 #define FILIAL 3
 
-Data initData();
+
 Faturacao inicializaFat();
-Fat initFat();
 gboolean existeFat(Faturacao f,Venda v);
 Faturacao insereFat(Faturacao f,Venda v);
 Faturacao updateFat(Faturacao f,Venda v);

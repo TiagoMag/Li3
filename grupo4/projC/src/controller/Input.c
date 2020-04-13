@@ -1,11 +1,11 @@
 #include "../../include/Input.h"
 
-int scanning(char buffer[100],char*filenames[3]){
+static int scanning(char buffer[100],char*filenames[3]){
  
   if (buffer[0]=='S'){
     filenames[0]=strdup("D");
     memset(buffer,0,100);
- 
+    
     return 0;
   }
  
@@ -68,7 +68,7 @@ char buffer[100];
     }
 
   }
-
+  
   return 0;
 }
 

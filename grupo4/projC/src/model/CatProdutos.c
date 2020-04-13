@@ -1,19 +1,20 @@
 #include "../../include/CatProdutos.h"
-//Estrutura de dados Catalogo de produtos
+
+/* Estrutura de dados Catalogo de produtos */
 struct cat_produtos{
-	GTree* produtos[Produtos];
-	int num_linhas_lidas;
+	GTree* produtos[Produtos]; /*Array de 26 Avl's a que cada indice deste array corresponde a uma letra do abecedário.*/
+	int num_linhas_lidas; 
 	char* filename;
 	float tempo_leitura;
 };
 
-//Elimina a chave de um produto
-void freeKeyProduct(gpointer data){
+/* Elimina a chave de um produto */
+static void freeKeyProduct(gpointer data){
 	char* prodID=(char*)data;
 	free(prodID);
 }
 
-//Inicializa a estrutura de dados
+/* Inicializa a estrutura de dados */
 Cat_Produtos inicializa_CatProds(){
 	Cat_Produtos cp=(Cat_Produtos)malloc(sizeof(struct cat_produtos));
  	cp->num_linhas_lidas=0;
@@ -24,7 +25,7 @@ Cat_Produtos inicializa_CatProds(){
  	return cp;
 }
 
-//Insere um Produto no Catalogo
+/* Insere um Produto no Catalogo */
 Cat_Produtos insereProd(Cat_Produtos cp,Produto p){
  	int i=getIndexP(p);
  	char* code=getProduto(p);
@@ -32,11 +33,8 @@ Cat_Produtos insereProd(Cat_Produtos cp,Produto p){
  	return cp;
 }
 
-
-//Retorna a arvore de produtos correspondente a uma determinada letra
-
-
-gboolean cloneTreeProdutos(gpointer key, gpointer value,gpointer data) {
+/* Retorna a arvore de produtos correspondente a uma determinada letra */
+static gboolean cloneTree(gpointer key, gpointer value,gpointer data){
  	GTree* clone=(GTree*) data;
  	g_tree_insert(clone,strdup(key),strdup(value));
 	return FALSE;
@@ -44,11 +42,11 @@ gboolean cloneTreeProdutos(gpointer key, gpointer value,gpointer data) {
 
 GTree* getTree(Cat_Produtos cp,int index){
  	GTree* clone=g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp,NULL,(GDestroyNotify)freeKeyProduct,(GDestroyNotify)freeKeyProduct);
-    g_tree_foreach(cp->produtos[index],(GTraverseFunc)cloneTreeProdutos,clone);
+    g_tree_foreach(cp->produtos[index],(GTraverseFunc)cloneTree,clone);
  	return clone;
 }
 
-//Verifica a existencia de um produto no Catalogo
+/* Verifica a existencia de um produto no Catalogo */
 gboolean existeProd (Cat_Produtos cp,Produto p){
  	int i=getIndexP(p);
  	char* code=getProduto(p);
@@ -56,7 +54,8 @@ gboolean existeProd (Cat_Produtos cp,Produto p){
  	free(code);
  	return FALSE;
 }
-//Determina o total de produtos existente no catalogo
+
+/* Determina o total de produtos existente no catalogo */
 int totalProd (Cat_Produtos cp){ 
  	int total=0;
  	for(int i=0;i<26;i++)
@@ -70,13 +69,14 @@ gboolean funcTravessiaQuerie2(gpointer key, gpointer value,gpointer data) {
 	return FALSE;
 }
 
-//Produtos de uma determinada letra (dispostos em arvore) são convertidos numa Lista
+/* Produtos de uma determinada letra (dispostos em arvore) são convertidos numa Lista */
 Lista produtosLetra(Cat_Produtos cp,Lista lst ,char letter){
 	int i=letter-'A';
  	g_tree_foreach(cp->produtos[i],(GTraverseFunc)funcTravessiaQuerie2,&lst);
 	return lst;
 }
-//Desalocação da estrutura de dados
+
+/* Desalocação da estrutura de dados */
 void removeCatProd (Cat_Produtos cp){
 	free(cp->filename);
 	for(int i=0;i<Produtos;i++)
@@ -84,6 +84,7 @@ void removeCatProd (Cat_Produtos cp){
 	free(cp);
 }
 
+/* Coloca informação sobre o ficheiro lido */
 Cat_Produtos setInfoFileProdutos(Cat_Produtos cp,char* filename,int num_linhas_lidas,float tempo){
     cp->num_linhas_lidas=num_linhas_lidas;
     cp->tempo_leitura=tempo;
@@ -91,6 +92,7 @@ Cat_Produtos setInfoFileProdutos(Cat_Produtos cp,char* filename,int num_linhas_l
     return cp;
 }
 
+/* Get's */
 int getNumLinhasLidasProds(Cat_Produtos cp){
 	return(cp->num_linhas_lidas);
 }

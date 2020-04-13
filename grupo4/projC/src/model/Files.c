@@ -2,12 +2,11 @@
 
 #define BUFFER 64
 
-
 static void resultadosVenda(char *file,int validadas,int total,float tempo);
 static void resultadosCliente(char *file,Cat_Clientes cc,int total,float tempo);
 static void resultadosProd(char *file,Cat_Produtos cp,int total,float tempo);
 
-
+/* Carrega Produtos para o Catálogo de Produtos */
 void loadFilesProduto(char* file,Cat_Produtos cp){
 
   clock_t begin,end;
@@ -50,7 +49,7 @@ void loadFilesProduto(char* file,Cat_Produtos cp){
   cp=setInfoFileProdutos(cp,file,count,cpu_time_used);
 }
 
-
+/* Carrega Clientes para o Catálogo de Clientes */
 void loadFilesCliente(char* file,Cat_Clientes cc){
 
   clock_t begin, end;
@@ -95,6 +94,7 @@ void loadFilesCliente(char* file,Cat_Clientes cc){
  cc=setInfoFileClientes(cc,file,count,cpu_time_used);
 }
 
+/* Divide linha vendas em campos */
 void dividetoken(char* str,char* arr_token[]){
 
   int j=0;
@@ -111,6 +111,7 @@ void dividetoken(char* str,char* arr_token[]){
 
 }
 
+/* Carrega Filial e Faturacao com vendas */
 void leVendas(Filial fil[3],Faturacao f,char* file,Cat_Produtos cp,Cat_Clientes cc){
 
   clock_t begin, end;
@@ -170,7 +171,6 @@ void leVendas(Filial fil[3],Faturacao f,char* file,Cat_Produtos cp,Cat_Clientes 
  cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
  f=setFileInfoVendas(f,validadas,lidas,file,cpu_time_used);
  resultadosVenda(file,validadas,lidas,cpu_time_used);
- 
 }
 
 

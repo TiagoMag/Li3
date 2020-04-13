@@ -2,7 +2,6 @@
 #define Navegador_H
 
 #include <glib.h>
-#include <stdio.h>
 
 #define MaxElem 20
 

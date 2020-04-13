@@ -21,7 +21,6 @@ gboolean existeCliFil(Filial f,char* codigo);
 gboolean existeProdFil(Filial f,char* codigo);
 void removeFilial(Filial f);
 int produtosCompradosCliente(Filial fil,int mes,char* code);
-gboolean temProduto(InfoCli ic,char* productID,char tipo);
 Lista buyers (Filial f,Lista lst,char* productID,char tipo);
 GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes);
 int getQntQP(QntProds qp);

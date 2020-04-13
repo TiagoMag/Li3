@@ -1,7 +1,8 @@
 #include "../../include/Queries.h"
 
-
-// --------------------------------Query2------------------------------------------------------------------------------------------
+/*
+ * Query 2
+ */
 
 Lista produtosComecadoPelaLetra(Cat_Produtos cp,Lista lst,char letter){
  
@@ -10,7 +11,9 @@ Lista produtosComecadoPelaLetra(Cat_Produtos cp,Lista lst,char letter){
   return lst;
 }
 
-// --------------------------------Query3------------------------------------------------------------------------------------------
+/*
+ * Query 3
+ */
 
 //Passar int para string
 
@@ -88,7 +91,10 @@ Lista productSalesAndProfit(Faturacao f,Lista lst,char* productID,int month){
  return lst;
 }
 
-// --------------------------------Query4------------------------------------------------------------------------------------------
+/*
+ * Query 4
+ */
+
 //Estrutura auxiliar Query4
 typedef struct aux{
   Faturacao f;
@@ -160,7 +166,10 @@ Lista productsNeverBought(Filial fil,Lista lst,Faturacao f,Cat_Produtos cp,int b
   return lst;
 }
 
-// --------------------------------Query5------------------------------------------------------------------------------------------
+/*
+ * Query 5
+ */
+
 //Estrutura auxiliar Querie 5
 typedef struct aux2{
   Filial fil[3];
@@ -210,7 +219,11 @@ Lista clientesOfAllBranches(Cat_Clientes cc,Lista lst,Filial fil[3]){
   removeAux2(aux);
   return lst;
 }
-// --------------------------------Query6------------------------------------------------------------------------------------------
+
+/*
+ * Query 6
+ */
+
 struct par{
   int countClients;
   int countProducts;
@@ -305,7 +318,9 @@ Par clientsAndProductsNeverBoughtCount(Par p,Cat_Produtos cp,Cat_Clientes cc,Fat
   return p;
 }
 
-// --------------------------------Query7------------------------------------------------------------------------------------------
+/*
+ * Query 7
+ */
 
  //MES   :   1 2 3 4 5
  //FILIAL 1 
@@ -348,7 +363,10 @@ Tabela productBoughtByClient(Tabela tbl,Filial fil[3],char* clientID){
   return tbl;
 }
 
-// --------------------------------Query8------------------------------------------------------------------------------------------
+/*
+ * Query 8
+ */
+
 struct profit{
   int total_vendas;
   float total_faturado;
@@ -387,7 +405,10 @@ Profit salesAndProfit(Faturacao f,Profit p,int minMonth,int maxMonth){
   return p;
 }
 
-// --------------------------------Query9------------------------------------------------------------------------------------------
+/*
+ * Query 9
+ */
+
 struct lstbuyers{
   Lista listaN;
   Lista listaP;
@@ -433,7 +454,9 @@ return l;
 
 }
 
-// --------------------------------Query10------------------------------------------------------------------------------------------
+/*
+ * Query 10
+ */
 
 int compare_struct(gpointer a,gpointer b){
   QntProds qp1=(QntProds) a;
@@ -485,7 +508,9 @@ Lista clientFavoriteProducts(Filial f[3],Lista lst,char* clientID,int month){
   return lst;
 }
 
-// --------------------------------Query11------------------------------------------------------------------------------------------
+/*
+ * Query 11
+ */
 
 struct selledprod{
   char* prodID;
@@ -570,7 +595,9 @@ SelledProd* topSelledProducts(SelledProd* top,Faturacao fat,Filial f[3],int limi
   return top;
 }
 
-// --------------------------------Query12------------------------------------------------------------------------------------------
+/*
+ * Query 12
+ */
 
 int compareTop(gpointer a,gpointer b){
   TopProds tp1=(TopProds) a;
@@ -618,10 +645,12 @@ GList* topProducts(Filial f[3],char* clientID,int limit){
   g_list_free(l);
   g_hash_table_destroy(ht);
 
-return clone;
+  return clone;
 }
 
-// --------------------------------Query13------------------------------------------------------------------------------------------
+/*
+ * Query 13
+ */
 
 struct fileinfo{
  char* filenames[3];
@@ -663,7 +692,6 @@ FileInfo currentFilesInfo(FileInfo fi,Cat_Produtos cp,Cat_Clientes cc,Faturacao 
   fi->tempo_leitura[2]=getTempoLeituraVendas(f);
 
   return fi;
-
 }
 
 int getNumLinhasLidasFI(FileInfo fi,int index){

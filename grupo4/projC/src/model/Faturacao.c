@@ -1,29 +1,32 @@
 #include "../../include/Faturacao.h"
 
-static int top=0;
+static int top=0; /* inteiro utilizado na função topSelledProductsN */
 
+/* Estrutura da faturação */
 struct faturacao {
-  GHashTable* produtos;
-  Data TotaisMes[MES];
-  int num_linhas_lidas;
-  int num_linhas_validadas;
-  char* filename;
-  float tempo_leitura;
+  GHashTable* produtos; /* HashTable com código de produtos */
+  Data TotaisMes[MES]; /* Informações globais acerca dos meses */
+  int num_linhas_lidas; /* numero de linhas lidas do ficheiro que contém a informação a armazenar na faturação e filial */
+  int num_linhas_validadas; /* numero de linhas validadas do ficheiro que contém a informação a armazenar na faturação e filial */
+  char* filename; /* nome do ficheiro que contém a informação a armazenar na faturação e filial */
+  float tempo_leitura; /* tempo de leitura */
 };     
 
+/* Value da HashTable produtos */
 struct fat{
-  char* code;
-  Data infoN[MES][FILIAL];
-  Data infoP[MES][FILIAL];
-  int vendas;
+  char* code; /* Código do produto */ 
+  Data infoN[MES][FILIAL]; /* Informação mês a mês e filial a filial acerca do produto no modo Normal */
+  Data infoP[MES][FILIAL]; /* Informação mês a mês e filial a filial acerca do produto no modo Promoção */
+  int vendas; /* Número de unidades vendidas global */
 };
 
+/* Estrutura Data */
 struct data{
-  int quant;
-  float precofat;	
+  int quant; /* Número de vendas do produto */
+  float precofat;	 /* Total faturado pelo produto */
 };
 
-
+/* Função que inicializa a estrutura Data */
 Data initData(){
   Data d=(Data)malloc(sizeof(struct data));
   d->quant=0;
@@ -31,12 +34,14 @@ Data initData(){
   return d;
 }
 
-Data setData(Data d,int quant,float precofat){
+/* Função que coloca informação na estrutura Data */
+static Data setData(Data d,int quant,float precofat){
   d->quant=quant;
   d->precofat=precofat;
   return d;
 }
 
+/* Get's */
 float getPrecoFat(Data d){
   return(d->precofat);
 }
@@ -45,16 +50,14 @@ int getQntFat(Data d){
   return(d->quant);
 }
 
-GHashTable* getprodutosFat(Faturacao f){
-  return(f->produtos);
-}
-
-void freeKeyProductFat(gpointer data){
+/* Função que libera da memória a chave da HashTable produtos */
+static void freeKeyProductFat(gpointer data){
   char* prodID=(char*)data;
   free(prodID);
 }
 
-void removeFat(gpointer data){
+/* Função que libera da memória a estrutura Fat */
+static void removeFat(gpointer data){
  Fat f=(Fat)data;
  free(f->code);
  for(int i=0;i<MES;i++){
@@ -66,7 +69,7 @@ void removeFat(gpointer data){
   free(f);
 }
 
-
+/* Função que inicializa a estrutura Faturacao*/
 Faturacao inicializaFat(){
   Faturacao fat = (Faturacao)malloc(sizeof(struct faturacao));
   fat->num_linhas_lidas=0;
@@ -79,7 +82,8 @@ Faturacao inicializaFat(){
   return fat;
 }
 
-Fat initFat(){
+/* Função que inicializa a estrutura Fat */
+static Fat initFat(){
   Fat ft = (Fat)malloc(sizeof(struct fat));
   ft->vendas=0;
   ft->code=NULL;
@@ -92,6 +96,7 @@ Fat initFat(){
   return ft;
 }
 
+/* Função que libera da memória a esturuta Faturacao */
 void removeFaturacao(Faturacao f){
  free(f->filename);
  g_hash_table_destroy(f->produtos);
@@ -100,7 +105,7 @@ void removeFaturacao(Faturacao f){
  free(f);
 }
 
-
+/* Função que coloca informação acerca do ficheiro de onde se carrega a faturação */
 Faturacao setFileInfoVendas(Faturacao f,int num_linhas_validadas,int num_linhas_lidas,char* filename,float tempo_leitura){
  f->num_linhas_lidas=num_linhas_lidas;
  f->num_linhas_validadas=num_linhas_validadas;
@@ -109,6 +114,7 @@ Faturacao setFileInfoVendas(Faturacao f,int num_linhas_validadas,int num_linhas_
  return f;
 }
 
+/* Get's */
 int getNumLinhasLidasVendas(Faturacao f){
   return(f->num_linhas_lidas);
 }
@@ -125,19 +131,17 @@ char* getFileNameVendas(Faturacao f){
   return strdup(f->filename);
 }
 
-
-
-
-
-char* getCodeFat(Fat f){
+static char* getCodeFat(Fat f){
   return(f->code);
 }
 
-Fat setFatCode(Fat f,char* code){
-  f->code=strdup(code);
-  return f;
+/* Função que retorna o numero de unidades vendidas de um determinado produto */
+int getUnidadesVendidas(Faturacao f,char* prodID){
+ Fat fat=g_hash_table_lookup(f->produtos,prodID);
+ return(fat->vendas);
 }
 
+/* Função que verifica se produto já está na Faturação */
 gboolean existeFat(Faturacao f,Venda v){
   gboolean existe;
   char* codigo=getProduto(getProdutoVenda(v));
@@ -146,7 +150,13 @@ gboolean existeFat(Faturacao f,Venda v){
   return existe;
 }
 
-Faturacao setTotais(Faturacao f,int mes,float preco){
+/* Set's */
+static Fat setFatCode(Fat f,char* code){
+  f->code=strdup(code);
+  return f;
+}
+
+static Faturacao setTotais(Faturacao f,int mes,float preco){
 
   f->TotaisMes[mes]->quant++;
   f->TotaisMes[mes]->precofat+=preco;
@@ -154,7 +164,7 @@ Faturacao setTotais(Faturacao f,int mes,float preco){
   return f;
 }
 
-Fat setFatP(Fat f,int mes,int filial,float preco,int quant){
+static Fat setFatP(Fat f,int mes,int filial,float preco,int quant){
 
   f->infoP[mes][filial]->quant++;
   f->infoP[mes][filial]->precofat+=preco;
@@ -163,7 +173,7 @@ Fat setFatP(Fat f,int mes,int filial,float preco,int quant){
   return f;
 }
 
-Fat setFatN(Fat f,int mes,int filial,float preco,int quant){
+static Fat setFatN(Fat f,int mes,int filial,float preco,int quant){
 
   f->infoN[mes][filial]->quant++;
   f->infoN[mes][filial]->precofat+=preco;
@@ -172,6 +182,7 @@ Fat setFatN(Fat f,int mes,int filial,float preco,int quant){
   return f;
 }
 
+/* Função que insere uma venda na Faturação */
 Faturacao insereFat(Faturacao f,Venda v){
    
    char* codigo=getProduto(getProdutoVenda(v));
@@ -204,8 +215,7 @@ Faturacao insereFat(Faturacao f,Venda v){
  return f;
 }
 
-
-
+/* Caso um produto já existe na faturção a função irá atualizar o seu valor */
 Faturacao updateFat(Faturacao f,Venda v){
    
    char* codigo=getProduto(getProdutoVenda(v));
@@ -228,10 +238,11 @@ Faturacao updateFat(Faturacao f,Venda v){
     f=setTotais(f,mes,preco);
    
    }
- free(codigo);
- return f;
+  free(codigo);
+  return f;
 }
 
+/* Get's */
 Data getData(Faturacao f,char* codigo,char tipo,int mes){
   
   Data d=initData();
@@ -261,64 +272,67 @@ Data getDataFilial(Faturacao f,char* codigo,char tipo,int mes,int filial){
   Data d=initData();
   Fat fat=g_hash_table_lookup(f->produtos,codigo);
   if((tipo=='N')){
-  preco=getPrecoFat(fat->infoN[mes][filial]);
-  quant=getQntFat(fat->infoN[mes][filial]);
+    preco=getPrecoFat(fat->infoN[mes][filial]);
+    quant=getQntFat(fat->infoN[mes][filial]);
   }else{ 
- preco=getPrecoFat(fat->infoP[mes][filial]);
-  quant=getQntFat(fat->infoP[mes][filial]); 
+    preco=getPrecoFat(fat->infoP[mes][filial]);
+    quant=getQntFat(fat->infoP[mes][filial]); 
   }
   d=setData(d,quant,preco);
- return d;
+  return d;
 }
 
+/* Verifica se existe um produto na hashtable produtos */
 gboolean existeProdFat(Faturacao f,char* codigo){
  return g_hash_table_contains(f->produtos,codigo);
 }
 
-
+/* Função que retorna o total faturado num intervalo de meses */
 float getProfit(Faturacao f,int minMonth,int maxMonth){
 
  float faturado=0;
  for(int i=minMonth;i<=maxMonth;i++){
   faturado+=f->TotaisMes[i]->precofat;
  }
-
  return faturado;
 }
 
+/* Função que retorna o total de vendas num intervalo de meses */
 int getSales(Faturacao f,int minMonth,int maxMonth){
  int vendas=0;
  for(int i=minMonth;i<=maxMonth;i++){
   vendas+=f->TotaisMes[i]->quant;
  }
  
- return vendas;
-  
+ return vendas;  
 }
 
-int compare(gpointer a,gpointer b){
+/* Funções que ajudam na realização da querie 11 */
+
+/* Compara duas Fat's a que tiver maior numero de unidades vendidas é a maior */
+static int compare(gpointer a,gpointer b){
   Fat f1=(Fat) a;
   Fat f2=(Fat) b;
 
   float x=f1->vendas;
   float y=f2->vendas;
 
-return y-x;
+  return y-x;
 
 }
 
-
-void percorre11(gpointer data,gpointer user_data){
+/* Função que percorre uma lista */
+static void percorre11(gpointer data,gpointer user_data){
   
   if(top>0){
-  Fat fat=(Fat)data;
-
-  insereLista(user_data,getCodeFat(fat));
-  top--;
+    Fat fat=(Fat)data;
+    insereLista(user_data,getCodeFat(fat));
+    top--;
   }
 
 }
 
+/* Função que retorna uma lista com tamanho "limit" com os produtos mais vendidos */
 Lista topSelledProductsN(Lista lst,Faturacao f,int limit){
 
   GList* l=g_hash_table_get_values(f->produtos);
@@ -331,12 +345,3 @@ Lista topSelledProductsN(Lista lst,Faturacao f,int limit){
   
   return lst;
 }
-
-int getUnidadesVendidas(Faturacao f,char* prodID){
-
- Fat fat=g_hash_table_lookup(f->produtos,prodID);
- return(fat->vendas);
-}
-
-
-
