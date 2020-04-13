@@ -39,12 +39,13 @@ int runController(){
           	exit=1;
           	break;
         case 1:
-            check=1; 
+            if (check=1){destroySGV(sgv);sgv=initSGV();}
             char* filenames[3];
             for(int i=0;i<3;filenames[i++]=NULL);
             inputQuery1(sgv,filenames);
             sgv=loadFromFiles(filenames,sgv);
             for(int i=0;i<3;free(filenames[i++]));
+            check=1; 
             clearAndEnter();
             break;
         case 2:
@@ -63,8 +64,8 @@ int runController(){
             	while((c=inputQuery3(codigo,&mes))!='0'){
                 	Lista rsl=getProductSalesAndProfit(sgv,codigo,mes);
                  	printQuery3(rsl,c);
-               	}
-               	free(codigo);
+              }
+              free(codigo);
             }
             break;
         case 4:
@@ -92,7 +93,7 @@ int runController(){
             	end = clock();
             	cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
             	printPar(p,cpu_time_used);
-   			}
+   			    }
             break;
         case 7:
             if(check!=1)
@@ -108,9 +109,9 @@ int runController(){
               			printQuery7(tbl,cpu_time_used);
               			removeTabela(tbl); 
               	}
-              	free(codigo);
+              free(codigo);
             }
-            break;
+            br eak;
         case 8:
   			if(check!=1) erro();
      		else{
@@ -160,9 +161,9 @@ int runController(){
                    		end=clock(); 
                     	cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
                     	printLst10(l,cpu_time_used);
-                    }
-                }
-                free(codigo);
+                  }
+              }
+              free(codigo);
             }
             break;
         case 11:
@@ -170,13 +171,13 @@ int runController(){
             else{
             	SelledProd* s;
             	int x;
-            	while((x=inputQuery11())!=-1) {
+            	while((x=inputQuery11())!=-1){
 					      begin=clock();
            			s=getTopSelledProducts(sgv,x);
             		end=clock();
             		cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
             		printQuery11(s,x,cpu_time_used);
-          	    }
+          	  }
           	}
           	break;
         case 12:
@@ -193,7 +194,7 @@ int runController(){
                   		cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
                   		printQuery12(s,cpu_time_used);
                   		free(codigo);
-                    }
+                  }
                 }
             }
             break;
@@ -206,6 +207,7 @@ int runController(){
             else{
             	destroySGV(sgv);
           	}
+            check=0;
           	break;
 		}
 	}

@@ -38,8 +38,6 @@ void destroySGV(SGV sgv){
 
 SGV loadFromFiles(char* filesPath[3],SGV sgv){
  
-  if(totalClientes(sgv->cc)>0) {destroySGV(sgv);sgv=initSGV();}
-
   if(strcmp(filesPath[0],"D")!=0){
     strcpy(file1,filesPath[0]);
     strcpy(file2,filesPath[1]);
