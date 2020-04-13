@@ -39,7 +39,7 @@ int runController(){
           	exit=1;
           	break;
         case 1:
-            if (check=1){destroySGV(sgv);sgv=initSGV();}
+            if (check==1){destroySGV(sgv);sgv=initSGV();}
             char* filenames[3];
             for(int i=0;i<3;filenames[i++]=NULL);
             inputQuery1(sgv,filenames);
@@ -111,7 +111,7 @@ int runController(){
               	}
               free(codigo);
             }
-            br eak;
+            break;
         case 8:
   			if(check!=1) erro();
      		else{
