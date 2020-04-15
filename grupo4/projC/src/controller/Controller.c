@@ -34,7 +34,7 @@ int runController(){
 
        	switch(option){
         case 0:
-          	destroySGV(sgv);
+          	if(check==1) destroySGV(sgv);
           	system("clear");
           	exit=1;
           	break;
@@ -200,6 +200,7 @@ int runController(){
             }
             break;
         case 13: ;
+            if(check!=1) erro();
             FileInfo fi=getCurrentFilesInfo(sgv);
             printQuery13(fi);
             break;

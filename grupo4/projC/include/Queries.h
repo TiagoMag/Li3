@@ -1,3 +1,11 @@
+/**
+ * @file Queries.h
+ * @author Grupo4
+ * @date Abril 2020
+ * @brief Ficheiro que contém declração de funções e macros que primitem reponder às queries.
+ *  Funções e estruturas que permitem guardar as informações das queries.
+ */
+
 #ifndef Queries_h
 #define Queries_h
 
@@ -9,33 +17,49 @@
 #include "Faturacao.h"
 #include "Venda.h"
 
+/**
+ * @brief Declaração do tipo opaco Par. 
+ */
 typedef struct par *Par;
+/**
+ * @brief Declaração do tipo opaco Tabela. 
+ */
 typedef struct tabela *Tabela;
+/**
+ * @brief Declaração do tipo opaco Profit. 
+ */
 typedef struct profit *Profit;
+/**
+ * @brief Declaração do tipo opaco LstBuyers. 
+ */
 typedef struct lstbuyers *LstBuyers;
+/**
+ * @brief Declaração do tipo opaco SelledProd. 
+ */
 typedef struct selledprod *SelledProd;
+/**
+ * @brief Declaração do tipo opaco FileInfo. 
+ */
 typedef struct fileinfo *FileInfo;
 
 
-
-Lista produtosComecadoPelaLetra(Cat_Produtos cp,Lista lst,char letter);
 /*  @brief Retorna a lista de produtos começados por uma determinada letra.
  *
  *  @param estrutura Catalogo de produtos, Lista, char c/ letra pretendida.
  *
  *  @return Lista.
  */
+Lista produtosComecadoPelaLetra(Cat_Produtos cp,Lista lst,char letter);
 
 
-Lista productSalesAndProfit(Faturacao f,Lista lst,char* productID,int month);
 /*  @brief Retorna a lista do valor e numero de vendas de um produtopor uma determinada letra.
  *
  *  @param Faturacao, uma lista, char* c/ o código de produto, int que identifica o mes.
  *
  *  @return Lista.
  */
+Lista productSalesAndProfit(Faturacao f,Lista lst,char* productID,int month);
 
-Lista productsNeverBought(Filial fil,Lista lst,Faturacao f,Cat_Produtos cp,int branchID);
 
 /*  @brief Retorna a lista de produtos começados por uma determinada letra.
  *
@@ -43,330 +67,331 @@ Lista productsNeverBought(Filial fil,Lista lst,Faturacao f,Cat_Produtos cp,int b
  *
  *  @return Lista.
  */
+Lista productsNeverBought(Filial fil,Lista lst,Faturacao f,Cat_Produtos cp,int branchID);
 
 
-Lista clientesOfAllBranches(Cat_Clientes cc,Lista lst,Filial fil[3]);
 /* @brief Retorna a lista de clientes de todas as filiais.
  *
  *  @param Catalogo de clientes, uma lista e a filial[3] (c/ a informação contida nas 3 filiais).
  *
  *  @return Lista.
  */
+Lista clientesOfAllBranches(Cat_Clientes cc,Lista lst,Filial fil[3]);
 
-Par initPar();
+
 /* @brief Aloca memória para a criação de uma estrutura par.
  *
  *  @param 
  *
  *  @return Par.
  */
+Par initPar();
 
 
-void removePar(Par p);
 /* @brief Remove a estrutura par, libertando a memória.
  *
  *  @param estrutura Par.
  *
  *  @return void.
  */
+void removePar(Par p);
 
 
-int getClientsNeverBoughtCount(Par p);
 /* @brief Retorna o número de clientes que não realizaram quaisquer compras.
  *
  *  @param estrutura Par.
  *
  *  @return int.
  */
+int getClientsNeverBoughtCount(Par p);
 
 
-int getProductsNeverBoughtCount(Par p);
 /* @brief Retorna o número de produtos que nunca foram comprados.
  *
  *  @param estrutura Par.
  *
  *  @return int.
  */
+int getProductsNeverBoughtCount(Par p);
 
 
-Par clientsAndProductsNeverBoughtCount(Par p,Cat_Produtos cp,Cat_Clientes cc,Faturacao f,Filial fil[3]);
 /* @brief Retorna o numero de clientes que nunca realizaram compras e o numero de produtos nunca comprados.
  *
  *  @param estrutura Par, Catalogo de produtos, Catalogo de clientes, Faturacao e filial[3] (c/ a informação contida nas 3 filiais).
  *
  *  @return Par.
  */
+Par clientsAndProductsNeverBoughtCount(Par p,Cat_Produtos cp,Cat_Clientes cc,Faturacao f,Filial fil[3]);
 
 
-Tabela initTabela();
 /* @brief Aloca memória para a criação de uma estrutura Tabela.
  *
  *  @param 
  *
  *  @return Tabela
  */
+Tabela initTabela();
 
 
-void removeTabela(Tabela tbl);
 /* @brief Remove a estrutura tabela, libertando memória.
  *
  *  @param Tabela
  *
  *  @return void
  */
+void removeTabela(Tabela tbl);
 
 
-
-int getComprado(Tabela tbl,int linha,int coluna);
 /* @brief Determina o numero de produtos comprados numa determinada filial (linha) num determinado mês (coluna).
  *
  *  @param Tabela, int com o número da linha, int com o número da coluna
  *
  *  @return int
  */
+int getComprado(Tabela tbl,int linha,int coluna);
 
 
-Tabela productBoughtByClient(Tabela tbl,Filial fil[3],char* clientID);
 /* @brief Retorna a tabela com a informação dos produtos comprados por um determinado cliente
  *
  *  @param estrutura Tabela, Filial com a informação das 3 filiais, char* c/ o código de cliente
  *
  *  @return Tabela
  */
+Tabela productBoughtByClient(Tabela tbl,Filial fil[3],char* clientID);
 
 
-Profit initProfit();
 /* @brief Aloca memória para a criação de uma estrutura Profit.
  *
  *  @param 
  *
  *  @return Profit
  */
+Profit initProfit();
 
-float getFaturado(Profit p);
+
 /* @brief Retorna o parâmetro (float)total_faturado da estrutura profit.
  *
  *  @param estrutura Profit
  *
  *  @return float
  */
+float getFaturado(Profit p);
 
 
-int getVendas(Profit p);
 /* @brief Retorna o parâmetro (int)total_vendas da estrutura profit.
  *
  *  @param estrutura Profit
  *
  *  @return int
  */
+int getVendas(Profit p);
 
 
-void removeProfit(Profit p);
 /* @brief Remove a estrutura profit, libertando memória.
  *
  *  @param Profit
  *
  *  @return void
  */
+void removeProfit(Profit p);
 
 
-Profit salesAndProfit(Faturacao f,Profit p,int minMonth,int maxMonth);
 /* @brief Retorna as vendas e o total faturado num intervalo de meses 
  *
  *  @param estrutura Faturacao, Profit, int com o mês onde o intervalo se inicia, int com o mês onde o intervalo finda
  *
  *  @return Profit
  */
+Profit salesAndProfit(Faturacao f,Profit p,int minMonth,int maxMonth);
 
 
-
-LstBuyers initLstBuyers();
 /* @brief Aloca memória para a criação de uma estrutura LstBuyers.
  *
  *  @param 
  *
  *  @return LstBuyers
  */
+LstBuyers initLstBuyers();
 
 
-Lista getListaN(LstBuyers l);
 /* @brief Retorna a lista de clientes que realizaram compras em modo Normal.
  *
  *  @param  LstBuyers
  *
  *  @return Lista
  */
+Lista getListaN(LstBuyers l);
 
 
-Lista getListaP(LstBuyers l);
 /* @brief Retorna a lista de clientes que realizaram compras em modo Promocional.
  *
  *  @param  LstBuyers
  *
  *  @return Lista
  */
+Lista getListaP(LstBuyers l);
 
 
-void removeLstBuyers(LstBuyers l);
 /* @brief Remove a estrutura LstBuyers, libertando memória.
  *
  *  @param LstBuyers a ser removida
  *
  *  @return void
  */
+void removeLstBuyers(LstBuyers l);
 
 
-LstBuyers productBuyers(LstBuyers l,Filial f,char* productID);
 /* @brief Retorna as listas (N e P) c/ os clientes que compraram um determinado produto num tipo de compra Normal ou Promocional
  *
  *  @param estrutura LstBuyers, Filial f , codigo do produto
  *
  *  @return LstBuyers
  */
+LstBuyers productBuyers(LstBuyers l,Filial f,char* productID);
 
 
-Lista clientFavoriteProducts(Filial f[3],Lista lst,char* clientID,int month);
+
 /* @brief Retorna a lista c/ os produtos  mais comprados por um cliente num determinado mês, em todas as filiais.
  *
  *  @param estrutra Filial, Lista,  o codigo de cliente e um mês
  *
  *  @return Lista
  */
+Lista clientFavoriteProducts(Filial f[3],Lista lst,char* clientID,int month);
 
 
-SelledProd initSelledProd();
 /* @brief Aloca memória para a criação de uma estrutura SelledProd.
  *
  *  @param 
  *
  *  @return SelledProd
  */
+SelledProd initSelledProd();
 
 
-int getUnidadesVendidasProd(SelledProd s);
 /* @brief Retorna o numero de unidades vendidas
  *
  *  @param estrutura SelledProd
  *
  *  @return int
  */
+int getUnidadesVendidasProd(SelledProd s);
 
 
-int* getNumClientes(SelledProd s);
 /* @brief Retorna o numero de clientes
  *
  *  @param estrutura SelledProd
  *
  *  @return int*
  */
+int* getNumClientes(SelledProd s);
 
 
-char* getProdCode(SelledProd s);
 /* @brief Retorna o codigo do produto
  *
  *  @param estrutura SelledProd
  *
  *  @return char*
  */
+char* getProdCode(SelledProd s);
 
 
-int* getUnidadesVendidasFilial(SelledProd s);
 /* @brief Retorna o numero de unidades de um produto vendidas por filial
  *
  *  @param estrutura SelledProd
  *
  *  @return int*
  */
+int* getUnidadesVendidasFilial(SelledProd s);
 
 
-void removeSelledProds(SelledProd s);
 /* @brief Remove a estrutura SelledProd, libertando memória.
  *
  *  @param SelledProd a ser removida
  *
  *  @return void
  */
+void removeSelledProds(SelledProd s);
 
 
-SelledProd* topSelledProducts(SelledProd* top,Faturacao fat,Filial f[3],int limit);
 /* @brief Retorna a lista de produtos mais vendidos na empresa
  *
  *  @param apontador de SelledProd, faturacao, filial f[3] c/ info das 3 filiais, limite do top
  *
  *  @return void
  */
+SelledProd* topSelledProducts(SelledProd* top,Faturacao fat,Filial f[3],int limit);
 
 
-GList* topProducts(Filial f[3],char* clientID,int limit);
 /* @brief Retorna a lista de produtos mais comprados por um cliente, com um determinado limite
  *
  *  @param Filial, codigo cliente, limite do top
  *
  *  @return GList*
  */
+GList* topProducts(Filial f[3],char* clientID,int limit);
 
 
-FileInfo initFileInfo();
 /* @brief Aloca memória para a criação da uma estrutura FileInfo.
  *
  *  @param 
  *
  *  @return FileInfo
  */
+FileInfo initFileInfo();
 
 
-int getNumLinhasLidasFI(FileInfo fi,int index);
 /* @brief Indica o numero de linhas (em cada linha há 1 código) lidos de um ficheiro cujo path é identificado pelo index.
  *
  *  @param FileInfo, (int) index;
  *
  *  @return int
  */
+int getNumLinhasLidasFI(FileInfo fi,int index);
 
 
-int getNumLinhasValidadasFI(FileInfo fi,int index);
 /* @brief Indica o numero de linhas (em cada linha há 1 código) validados num ficheiro cujo path é identificado pelo index. 
  *
  *  @param FileInfo, (int) index;
  *
  *  @return int
  */
+int getNumLinhasValidadasFI(FileInfo fi,int index);
 
 
-float getTempoLeituraFI(FileInfo fi,int index);
 /* @brief Indica o tempo que demorou a ler um ficheiro cujo path é identificado pelo index. 
  *
  *  @param FileInfo, (int) index;
  *
  *  @return int
  */
+float getTempoLeituraFI(FileInfo fi,int index);
 
 
-char* getFileNameFI(FileInfo fi,int index);
 /* @brief Indica o nome do ficheiro cujo path é identificado pelo index
  *
  *  @param FileInfo, (int) index;
  *
  *  @return char*
  */
+char* getFileNameFI(FileInfo fi,int index);
 
 
-void removeFileInfo(FileInfo fi);
 /* @brief Remove a estrutura FileInfo, libertando memória.
  *
  *  @param FileInfo a ser removida
  *
  *  @return void
  */
+void removeFileInfo(FileInfo fi);
 
 
-
-FileInfo currentFilesInfo(FileInfo fi,Cat_Produtos cp,Cat_Clientes cc,Faturacao f);
 /* @brief Define os parâmetros da estrutura FileInfo com informação dos ficheiros, de leitura e de validação sobre as diversas estruturas que constam no argumento
  *
  *  @param estrutura FileInfo, Catalogo de produtos, Catalogo de clientes, Faturação
  *
  *  @return FileInfo
  */
+FileInfo currentFilesInfo(FileInfo fi,Cat_Produtos cp,Cat_Clientes cc,Faturacao f);
 
 #endif
