@@ -3,7 +3,6 @@
  * @author Grupo4
  * @date Abril 2020
  * @brief Ficheiro que contém declaração de funções e macros que permitem manipular um Produto.
- *  
  */
 
 #ifndef Produto_H
@@ -22,7 +21,11 @@ typedef struct produto *Produto;
 
 /* @brief Aloca memória para a criação de uma estrutura Produto.
  *
+<<<<<<< Updated upstream
  * @return Produto.
+=======
+ *  @return Produto.
+>>>>>>> Stashed changes
  */
 Produto inicializa_Prod();
 

@@ -34,10 +34,10 @@ Cat_Clientes insereCliente(Cat_Clientes cc,Cliente c){
 }
 
 /* Verifica a existencia de um cliente no catalogo de clientes */
-gboolean existeCliente(Cat_Clientes cp, Cliente c){
+gboolean existeCliente(Cat_Clientes cc, Cliente c){
 	int i=getIndexC(c);
 	char* code=getCliente(c);
- 	if ((g_tree_lookup (cp->clientes[i],code))) {free(code);return TRUE;}
+ 	if ((g_tree_lookup (cc->clientes[i],code))) {free(code);return TRUE;}
  	free(code);	
  	return FALSE;
 }

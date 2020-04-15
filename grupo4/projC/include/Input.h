@@ -2,7 +2,7 @@
  * @file Input.h
  * @author Grupo4
  * @date Abril 2020
- * @brief Ficheiro que contém declração de funções e macros que primitem validar e receber Input's .
+ * @brief Ficheiro que contém declaração de funções e macros que primitem validar e receber Input's .
  *  
  */
 

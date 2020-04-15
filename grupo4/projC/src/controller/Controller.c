@@ -16,8 +16,8 @@ static void erro(){
 
 int runController(){
 
-	SGV sgv=initSGV();
-  
+	
+  SGV sgv=NULL;
   int exit=0;
   int check=0;
 
@@ -78,7 +78,7 @@ int runController(){
         	          printLst(lst);
                 }
           	}
-         	break;
+          	break;
         case 5:
             if(check!=1) erro();
             else{
@@ -109,7 +109,7 @@ int runController(){
               			cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
               			printQuery7(tbl,cpu_time_used);
               			removeTabela(tbl); 
-              	}
+              }
               free(codigo);
             }
             break;
@@ -194,9 +194,10 @@ int runController(){
                   		end=clock();
                   		cpu_time_used = (float)(end - begin) / CLOCKS_PER_SEC;
                   		printQuery12(s,cpu_time_used);
-                  		free(codigo);
+                  		
                   }
                 }
+                free(codigo);
             }
             break;
         case 13: ;

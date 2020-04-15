@@ -148,6 +148,7 @@ void leVendas(Filial fil[3],Faturacao f,char* file,Cat_Produtos cp,Cat_Clientes 
     int mes= atoi(arr_token[5]);
     int filial= atoi(arr_token[6]);
     char tipo=*(arr_token[3]);
+    
     Venda v= inicializaV(); 
     v=criaVendas(v,arr_token[0],arr_token[4],preco,qnt,tipo,mes,filial);
 
@@ -158,7 +159,7 @@ void leVendas(Filial fil[3],Faturacao f,char* file,Cat_Produtos cp,Cat_Clientes 
       else f=insereFat(f,v);
 
       fil[getFilial(v)-1]=insereFilial(fil[getFilial(v)-1],v);
-      validadas+=1;
+      validadas++;
     }
     for(int i=0;i<CAMPOS;free(arr_token[i++]));
     

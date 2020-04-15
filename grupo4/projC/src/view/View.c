@@ -347,6 +347,7 @@ static void navega(Lista lst){
       printf("\033[1;35m═════════════════════════════════════════════════\n");
 
 
+
       
     }
 
@@ -356,6 +357,8 @@ static void navega(Lista lst){
     free(s);
     printf("Tempo da Query:%f\n",time);
     clearAndEnter();
+
+   
 
     
   }
@@ -377,17 +380,18 @@ static void navega(Lista lst){
 
       
       
-  //  l=g_list_next(l); 
-      
-      
-      char* codigo=getCodeTop(tp);
-      printf("\033[1;34mCódigo:\033[1;33m%s\t\033[1;34mTotal gasto=\033[1;33m%f\n",getCodeTop(tp),getGastoTop(tp));  
-      free (codigo);
-      GList *_link=l;
-      removeTP(tp);
-      l=g_list_delete_link(l,_link);
-      
-      
+
+   
+ 
+    char* codigo=getCodeTop(tp);
+    printf("\033[1;34mCódigo:\033[1;33m%s\t\033[1;34mTotal gasto=\033[1;33m%f\n",codigo,getGastoTop(tp));  
+    free (codigo);
+    GList *_link=l;
+    removeTP(tp);
+    l=g_list_delete_link(l,_link);
+    
+    
+
     }
     printf("═════════════════════════════════════════════════\n");
     printf("Tempo da Query:%f\n",time);
