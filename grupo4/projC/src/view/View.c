@@ -323,26 +323,27 @@ static void navega(Lista lst){
     printf("\033[1;35m═════════════════════════════════════════════════\n");
     
     for(int i=0;i<x;i++){
-      
+      int total_buyers=0;
       printf("%d)\n",i+1);
       printf("\033[1;34mCódigo Produto:\033[1;33m%s\n",getProdCode(s[i]));
       printf("\n");
+     
       
-      int* num_clientes=getNumClientes(s[i]);
-      int* unidades_vendidas_filial=getUnidadesVendidasFilial(s[i]);
-      
-      printf("\033[1;34mNr. de unidades vendidas:\033[1;33m%d\n",getUnidadesVendidasProd(s[i]));
-      printf("\n");
-      
-      for(int i=0;i<3;i++)
-        
-        printf("\033[1;34mNr. compradores na filial \033[1;33m%d\033[0m--->\033[1;36m%d\n",i+1,num_clientes[i] );  
+      printf("\033[1;34mNr. de unidades vendidas Total:\033[1;33m%d\n",getUnidadesVendidasProd(s[i]));
+      for(int j=0;j<3;j++)
+        total_buyers+=getNumClientes(s[i],j);
+
+      printf("\033[1;34mNr. compradores Total:\033[1;33m%d\n",total_buyers);
       
       printf("\n");
       
-      for(int i=0;i<3;i++)
-        
-        printf("\033[1;34mNr. unidades vendidas na filial \033[1;33m%d\033[0m--->\033[1;36m%d\n",i+1,unidades_vendidas_filial[i] );
+      for(int j=0;j<3;j++)
+        printf("\033[1;34mNr. compradores na filial \033[1;33m%d\033[0m--->\033[1;36m%d\n",j+1,getNumClientes(s[i],j));  
+      
+      printf("\n");
+      
+      for(int j=0;j<3;j++)
+        printf("\033[1;34mNr. unidades vendidas na filial \033[1;33m%d\033[0m--->\033[1;36m%d\n",j+1,getUnidadesVendidasFilial(s[i],j));
       
       printf("\033[1;35m═════════════════════════════════════════════════\n");
 

@@ -543,12 +543,12 @@ int getUnidadesVendidasProd(SelledProd s){
   return(s->unidades_vendidas);
 }
 
-int* getNumClientes(SelledProd s){
-  return(s->num_clientes);
+int getNumClientes(SelledProd s,int index){
+  return(s->num_clientes[index]);
 }
 
-int* getUnidadesVendidasFilial(SelledProd s){
-  return(s->unidades_vendidas_filial);
+int getUnidadesVendidasFilial(SelledProd s,int index){
+  return(s->unidades_vendidas_filial[index]);
 }
 
 

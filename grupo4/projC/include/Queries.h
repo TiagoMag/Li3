@@ -298,16 +298,16 @@ int getUnidadesVendidasProd(SelledProd s);
 /** @brief Retorna o número de clientes
  *
  *  @param s Estrutura SelledProd
- *
- *  @return int*
+ *  @param index Numero da filial.
+ *  @return int
  */
-int* getNumClientes(SelledProd s);
+int getNumClientes(SelledProd s,int index);
 
 
 /** @brief Retorna o código do produto
  *
  *  @param s Estrutura de dados 
- *
+ *  
  *  @return char*
  */
 char* getProdCode(SelledProd s);
@@ -316,17 +316,17 @@ char* getProdCode(SelledProd s);
 /** @brief Retorna o número de unidades de um produto vendidas por filial
  *
  *  @param s Estrutura de dados
- *
- *  @return int*
+ *  @param index Numero da filial.
+ *  @return int
  */
-int* getUnidadesVendidasFilial(SelledProd s);
+int getUnidadesVendidasFilial(SelledProd s,int index);
 
 
 /** @brief Remove a estrutura SelledProd, libertando memória.
  *
- *  @param s Estrutura de dados a ser removida
- *
- *  @return void
+ *  @param s Estrutura de dados a ser removida.
+ *  
+ *  @return void.
  */
 void removeSelledProds(SelledProd s);
 
