@@ -23,14 +23,14 @@
 typedef struct sgv *SGV;
 
 
-/* @brief Aloca memória para a inicialização da estrutura SGV.
+/** @brief Aloca memória para a inicialização da estrutura SGV.
  *
  * @return void.
  */
 SGV initSGV();
 
 
-/* @brief Remove a estrutura SGV, libertando memória.
+/** @brief Remove a estrutura SGV, libertando memória.
  *
  * @param sgv Estrutura a ser removida
  *
@@ -39,7 +39,7 @@ SGV initSGV();
 void destroySGV(SGV sgv);
 
 
-/* @brief Faz a leitura dos ficheiros pré-definidos ou personalizados.
+/** @brief Faz a leitura dos ficheiros pré-definidos ou personalizados.
  *
  *  @param filepath[3] Path dos ficheiros a serem lidos
  *  @param sgv Estrutura de dados  
@@ -49,7 +49,7 @@ void destroySGV(SGV sgv);
 SGV loadFromFiles(char* filepath[3],SGV sgv);
 
 
-/* @brief Apresenta a lista de produtos começados por uma determinada letra
+/** @brief Apresenta a lista de produtos começados por uma determinada letra
  *
  *  @param sgv Estrutura de dados
  *  @param letter Contém a letra selecionada pelo utilizador
@@ -59,7 +59,7 @@ SGV loadFromFiles(char* filepath[3],SGV sgv);
 Lista getProductsStartedByLetter(SGV sgv,char letter);
 
 
-/* @brief Apresenta a lista de registos e do total de vendas de um determinado produto, num determinado mês 
+/** @brief Apresenta a lista de registos e do total de vendas de um determinado produto, num determinado mês 
  *
  *  @param sgv Estrutura de dados
  *  @param produtctID Contém o codigo de produto 
@@ -70,7 +70,7 @@ Lista getProductsStartedByLetter(SGV sgv,char letter);
 Lista getProductSalesAndProfit(SGV sgv,char* productID,int month);
 
 
-/* @brief Lista ordenada de códigos de produtos que ninguém comprou (Total ou por filial).
+/** @brief Lista ordenada de códigos de produtos que ninguém comprou (Total ou por filial).
  *
  * @param sgv Estrutura de dados
  * @param branchID Número da filial
@@ -80,7 +80,7 @@ Lista getProductSalesAndProfit(SGV sgv,char* productID,int month);
 Lista getProductsNeverBought(SGV sgv,int branchID);
 
 
-/* @brief Lista de códigos de clientes que realizaram compras em todas as filiais.
+/** @brief Lista de códigos de clientes que realizaram compras em todas as filiais.
  *
  *  @param sgv Estrutura de dados
  *
@@ -89,7 +89,7 @@ Lista getProductsNeverBought(SGV sgv,int branchID);
 Lista getClientesOfAllBranches(SGV sgv);
 
 
-/* @brief Clientes que não realizaram compras e número de produtos nunca comprados.
+/** @brief Clientes que não realizaram compras e número de produtos nunca comprados.
  *
  *  @param sgv Estrutura de dados
  *
@@ -98,7 +98,7 @@ Lista getClientesOfAllBranches(SGV sgv);
 Par getClientsAndProductsNeverBoughtCount(SGV sgv);
 
 
-/* @brief Tabela de produtos comprados por mês e filial.
+/** @brief Tabela de produtos comprados por mês e filial.
  *
  *  @param sgv Estrutura de dados 
  *  @param clientID Codigo de cliente
@@ -108,7 +108,7 @@ Par getClientsAndProductsNeverBoughtCount(SGV sgv);
 Tabela getProductBoughtByClient(SGV sgv,char* clientID);
 
 
-/* @brief Determinar total de vendas num determinado intervalo.
+/** @brief Determinar total de vendas num determinado intervalo.
  *
  *  @param sgv Estrutura de dados 
  *  @param minMonth Mês inicial 
@@ -119,7 +119,7 @@ Tabela getProductBoughtByClient(SGV sgv,char* clientID);
 Profit getSalesAndProfit(SGV sgv,int minMonth,int maxMonth);
 
 
-/* @brief Determinar os códigos e o número total dos clientes que compraram um produto numa filial.
+/** @brief Determinar os códigos e o número total dos clientes que compraram um produto numa filial.
  *
  *  @param sgv Estrutura de dados 
  *  @param productID Código de produto 
@@ -130,7 +130,7 @@ Profit getSalesAndProfit(SGV sgv,int minMonth,int maxMonth);
 LstBuyers getProductBuyers(SGV sgv,char* productID,int branchID);
 
 
-/* @brief Determinar a lista de produtos que um cliente mais comprou por quantidade, num determinado mês.
+/** @brief Determinar a lista de produtos que um cliente mais comprou por quantidade, num determinado mês.
  *
  *  @param sgv Estrutura de dados 
  *  @param clientID Código de cliente 
@@ -141,7 +141,7 @@ LstBuyers getProductBuyers(SGV sgv,char* productID,int branchID);
 Lista getClientFavoriteProducts(SGV sgv,char* clientID,int month);
 
 
-/* @brief Top personalizado de vendas,por número de cliente e quantidade vendida, filial a filial.
+/** @brief Top personalizado de vendas,por número de cliente e quantidade vendida, filial a filial.
  *
  *  @param sgv Estrutura SGV 
  *  @param limit Limite do top
@@ -151,7 +151,7 @@ Lista getClientFavoriteProducts(SGV sgv,char* clientID,int month);
 SelledProd* getTopSelledProducts(SGV sgv,int limit);
 
 
-/* @brief Top personalizado de gasto em compras individualizado por cliente.
+/** @brief Top personalizado de gasto em compras individualizado por cliente.
  *
  *  @param sgv Estrutura de dados 
  *  @param clientID Código de cliente 
@@ -162,7 +162,7 @@ SelledProd* getTopSelledProducts(SGV sgv,int limit);
 GList* getClientTopProfitProducts(SGV sgv,char* clientID,int limit);
 
 
-/* @brief Informação de performance àcerca dos ficheiros lidos.
+/** @brief Informação de performance àcerca dos ficheiros lidos.
  *
  *  @param sgv Estrutura de dados
  *

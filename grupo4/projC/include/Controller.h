@@ -18,7 +18,7 @@
 #include "Navegador.h"
 
 
-/* @brief Interação entre sistema e utilizador.
+/** @brief Interação entre sistema e utilizador.
  * 
  *  @return Int para continuar ou sair.
  */

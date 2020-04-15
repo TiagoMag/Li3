@@ -19,18 +19,14 @@
 typedef struct produto *Produto;
 
 
-/* @brief Aloca memória para a criação de uma estrutura Produto.
+/** @brief Aloca memória para a criação de uma estrutura Produto.
  *
-<<<<<<< Updated upstream
  * @return Produto.
-=======
- *  @return Produto.
->>>>>>> Stashed changes
  */
 Produto inicializa_Prod();
 
 
-/*  @brief Cria um produto c/ a informação em si contida devidamente encapsulada.
+/**  @brief Cria um produto c/ a informação em si contida devidamente encapsulada.
  *
  *  @param Produto 
  *  @param codigo Código a ser introduzido no produto
@@ -40,7 +36,7 @@ Produto inicializa_Prod();
 Produto criaProduto(Produto p,char* codigo);
 
 
-/*  @brief Retorna o código de um produto
+/**  @brief Retorna o código de um produto
  *
  *  @param Produto
  *
@@ -49,7 +45,7 @@ Produto criaProduto(Produto p,char* codigo);
 char* getProduto(Produto p);
 
 
-/* @brief Retorna o index -representativo de uma letra- onde o produto se vai encontrar no array do Catalogo de Produtos
+/** @brief Retorna o index -representativo de uma letra- onde o produto se vai encontrar no array do Catalogo de Produtos
  *
  *  @param Produto
  *
@@ -58,7 +54,7 @@ char* getProduto(Produto p);
 int getIndexP(Produto p);
 
 
-/* @brief Verifica se o código de produto é valido
+/** @brief Verifica se o código de produto é valido
  *
  *  @param Produto
  *
@@ -67,7 +63,7 @@ int getIndexP(Produto p);
 gboolean validaProd(Produto p);
 
 
-/* @brief Remove a estrutura Produto,libertando memória.
+/** @brief Remove a estrutura Produto,libertando memória.
  *
  *  @param Produto
  *

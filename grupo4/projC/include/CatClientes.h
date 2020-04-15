@@ -24,14 +24,14 @@
 typedef struct cat_clientes *Cat_Clientes;
 
 
-/* @brief Inicializa a o tipo Cat_Clientes,alocando memoria da estrutura de dados para sua inicialização.
+/** @brief Inicializa a o tipo Cat_Clientes,alocando memoria da estrutura de dados para sua inicialização.
  *
  *  @return Catalogo de Clientes.
  */
 Cat_Clientes inicializa_CatClientes();
 
 
-/* @brief Insere um cliente no catalogo de clientes.
+/** @brief Insere um cliente no catalogo de clientes.
  *  
  *  @param cc Catalogo de Clientes.
  *  @param c Cliente.
@@ -40,7 +40,7 @@ Cat_Clientes inicializa_CatClientes();
 Cat_Clientes insereCliente(Cat_Clientes cc,Cliente c);
 
 
-/* @brief Verifica a existencia de um cliente no catalogo de clientes.
+/** @brief Verifica a existencia de um cliente no catalogo de clientes.
  *  
  *  @param cc Catalogo de Clientes.
  *  @param c Cliente.
@@ -49,7 +49,7 @@ Cat_Clientes insereCliente(Cat_Clientes cc,Cliente c);
 gboolean existeCliente(Cat_Clientes cc,Cliente c);
 
 
-/* @brief Determina o numero total de clientes existentes no catalogo.
+/** @brief Determina o numero total de clientes existentes no catalogo.
  *  
  *  @param cc Catalogo de Clientes.
  *  @return Total de clientes.
@@ -57,7 +57,7 @@ gboolean existeCliente(Cat_Clientes cc,Cliente c);
 int totalClientes(Cat_Clientes cc);
 
 
-/* @brief Desalocação de memória do Catalogo de Clientes.
+/** @brief Desalocação de memória do Catalogo de Clientes.
  *  
  *  @param cc Catalogo de Clientes.
  *  @return Void.
@@ -65,7 +65,7 @@ int totalClientes(Cat_Clientes cc);
 void removeCatCliente(Cat_Clientes cc);
 
 
-/* @brief Desalocação de memória do Catalogo de Clientes.
+/** @brief Desalocação de memória do Catalogo de Clientes.
  *  
  *  @param cc Catalogo de Clientes.
  *  @param index Indice correspondente á primeira letra dos codigos de cliente.
@@ -74,7 +74,7 @@ void removeCatCliente(Cat_Clientes cc);
 GTree* getTreeC(Cat_Clientes cc,int index);
 
 
-/* @brief Coloca informação sobre o ficheiro lido.
+/** @brief Coloca informação sobre o ficheiro lido.
  *  
  *  @param cc Catalogo de Clientes.
  *  @param filename nome do ficheiro lido.
@@ -85,7 +85,7 @@ GTree* getTreeC(Cat_Clientes cc,int index);
 Cat_Clientes setInfoFileClientes(Cat_Clientes cc,char* filename,int num_linhas_lidas,float tempo);
 
 
-/* @brief Retorna o numero de linhas lidas pelo ficheiro que carregou o Catalogo.
+/** @brief Retorna o numero de linhas lidas pelo ficheiro que carregou o Catalogo.
  *  
  *  @param cc Catalogo de Clientes.
  *  @return Numero de linhas lidas.
@@ -93,7 +93,7 @@ Cat_Clientes setInfoFileClientes(Cat_Clientes cc,char* filename,int num_linhas_l
 int getNumLinhasLidasClientes(Cat_Clientes cc);
 
 
-/* @brief Retorna o tempo de leitura do ficheiro que carregou o Catalogo.
+/** @brief Retorna o tempo de leitura do ficheiro que carregou o Catalogo.
  *  
  *  @param cc Catalogo de Clientes.
  *  @return Tempo de leitura.
@@ -101,7 +101,7 @@ int getNumLinhasLidasClientes(Cat_Clientes cc);
 float getTempoLeituraClientes(Cat_Clientes cc);
 
 
-/* @brief Retorna o nome do ficheiro que carregou o Catalogo.
+/** @brief Retorna o nome do ficheiro que carregou o Catalogo.
  *  
  *  @param cc Catalogo de Clientes.
  *  @return Nome do ficheiro.

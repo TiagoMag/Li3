@@ -31,14 +31,14 @@ typedef struct data *Data;
 #define FILIAL 3
 
 
-/* @brief Inicialização e alocação de memória da estrutura Fatura
+/** @brief Inicialização e alocação de memória da estrutura Fatura
  *
  *
  *  @return  Faturacao
  */
 Faturacao inicializaFat();
 
-/* @brief Verifica a existencia da venda de um produto na faturaçao
+/** @brief Verifica a existencia da venda de um produto na faturaçao
  *
  *  @param f Estrutura de dados 
  *  @param  v Uma venda
@@ -47,7 +47,7 @@ Faturacao inicializaFat();
  */
 gboolean existeFat(Faturacao f,Venda v);
 
-/* @brief Insere uma venda na Faturacao
+/** @brief Insere uma venda na Faturacao
  *
  *  @param f Estrutura de dados
  *  @param v Uma venda
@@ -55,7 +55,7 @@ gboolean existeFat(Faturacao f,Venda v);
  *  @return Faturacao
  */
 Faturacao insereFat(Faturacao f,Venda v);
-/* @brief Atualiza os parametros de uma venda de um produto já existente
+/** @brief Atualiza os parametros de uma venda de um produto já existente
  *
  *  @param f Estrutura de dados
  *  @param v Uma venda
@@ -63,7 +63,7 @@ Faturacao insereFat(Faturacao f,Venda v);
  *  @return Faturacao
  */
 Faturacao updateFat(Faturacao f,Venda v);
-/* @brief Define a informação correlacionada com o carregamento do ficheiro de vendas
+/** @brief Define a informação correlacionada com o carregamento do ficheiro de vendas
  *
  *  @param f Estrutura de dados
  *  @param num_linhas_validadas Numero de linhas validadas
@@ -75,7 +75,7 @@ Faturacao updateFat(Faturacao f,Venda v);
  */
 Faturacao setFileInfoVendas(Faturacao f,int num_linhas_validadas,int num_linhas_lidas,char* filename,float tempo_leitura);
 
-/* @brief Getter do numero de linhas lidas no ficheiro de vendas
+/** @brief Getter do numero de linhas lidas no ficheiro de vendas
  *
  *  @param f Estrutura de dados
  *
@@ -83,7 +83,7 @@ Faturacao setFileInfoVendas(Faturacao f,int num_linhas_validadas,int num_linhas_
  */
 int getNumLinhasLidasVendas(Faturacao f);
 
-/* @brief Getter do numero de linhas validadas no ficheiro de vendas
+/** @brief Getter do numero de linhas validadas no ficheiro de vendas
  *
  *  @param f Estrutura de dados
  *
@@ -92,7 +92,7 @@ int getNumLinhasLidasVendas(Faturacao f);
 int getNumLinhasValidadasVendas(Faturacao f);
 
 
-/* @brief Getter do tempo de leitura do ficheiro de vendas
+/** @brief Getter do tempo de leitura do ficheiro de vendas
  *
  *  @param f Estrutura de dados
  *
@@ -100,7 +100,7 @@ int getNumLinhasValidadasVendas(Faturacao f);
  */
 float getTempoLeituraVendas(Faturacao f);
 
-/* @brief Getter do nome do ficheiro de vendas
+/** @brief Getter do nome do ficheiro de vendas
  *
  *  @param f Estrutura de dados
  *
@@ -109,7 +109,7 @@ float getTempoLeituraVendas(Faturacao f);
 char* getFileNameVendas(Faturacao f);
 
 
-/* @brief Getter do numero total de unidades vendidas
+/** @brief Getter do numero total de unidades vendidas
  *
  *  @param f Estrutura de dados
  *  @param prodID codigo de produto
@@ -119,7 +119,7 @@ char* getFileNameVendas(Faturacao f);
 int getUnidadesVendidas(Faturacao f,char* prodID);
 
 
-/* @brief Getter da informação de vendas de um determinado produto, com um determinado tipo de compra, num determinado mês
+/** @brief Getter da informação de vendas de um determinado produto, com um determinado tipo de compra, num determinado mês
  *
  *  @param f Estrutura de dados
  *  @param codigo Código de produto
@@ -130,7 +130,7 @@ int getUnidadesVendidas(Faturacao f,char* prodID);
  */
 Data getData(Faturacao f,char* codigo,char tipo,int mes);
 
-/* @brief Getter da informação de vendas de um determinado produto num determinado tipo de compra, num determinado mes numa determinada filial
+/** @brief Getter da informação de vendas de um determinado produto num determinado tipo de compra, num determinado mes numa determinada filial
  *
  *  @param f Estrutura de dados
  *  @param codigo Codigo de produto
@@ -143,7 +143,7 @@ Data getData(Faturacao f,char* codigo,char tipo,int mes);
 Data getDataFilial(Faturacao f,char* codigo,char tipo,int mes,int filial);
 
 
-/* @brief getter do total faturado por um determinado produto
+/** @brief getter do total faturado por um determinado produto
  *
  *  @param d Informação de um produto
  *
@@ -152,7 +152,7 @@ Data getDataFilial(Faturacao f,char* codigo,char tipo,int mes,int filial);
 float getPrecoFat(Data d);
 
 
-/* @brief Getter da quantidade de um produto vendida
+/** @brief Getter da quantidade de um produto vendida
  *
  *  @param d Informação de um produto
  *  @param 
@@ -161,7 +161,7 @@ float getPrecoFat(Data d);
  */
 int getQntFat(Data d);
 
-/* @brief Verifica se um produto existe na estrutura da Faturacao 
+/** @brief Verifica se um produto existe na estrutura da Faturacao 
  *
  *  @param f Estrutura de dados
  *  @param codigo Codigo de produto
@@ -170,7 +170,7 @@ int getQntFat(Data d);
  */
 gboolean existeProdFat(Faturacao f,char* codigo);
 
-/* @brief Remove Faturação, libertando memória previamente alocada
+/** @brief Remove Faturação, libertando memória previamente alocada
  *
  *  @param f Estrutura de dados a ser removida
  *
@@ -179,7 +179,7 @@ gboolean existeProdFat(Faturacao f,char* codigo);
 void removeFaturacao(Faturacao f);
 
 
-/* @brief Retorna o total faturado num intevalo de meses
+/** @brief Retorna o total faturado num intevalo de meses
  *
  *  @param f Estrutura de dados
  *  @param minMonth Mes inicial
@@ -189,7 +189,7 @@ void removeFaturacao(Faturacao f);
  */
 float getProfit(Faturacao f,int minMonth,int maxMonth);
 
-/* @brief Retorna o numero total de vendas num intervalo de meses 
+/** @brief Retorna o numero total de vendas num intervalo de meses 
  *
  *  @param f Estrutura de dados
  *  @param minMonth Mes inicial
@@ -200,7 +200,7 @@ float getProfit(Faturacao f,int minMonth,int maxMonth);
 int getSales(Faturacao f,int minMonth,int maxMonth);
 
 
-/* @brief Retorna uma lista dos produtos mais vendidos com tamanho <<limit>>
+/** @brief Retorna uma lista dos produtos mais vendidos com tamanho <<limit>>
  *
  *  @param lst Lista de retorno
  *  @param f Estrutura de dados

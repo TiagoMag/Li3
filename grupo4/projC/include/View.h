@@ -21,28 +21,28 @@
  */
 #define MAX_LIN 20
 
-/* @brief Apresentação do menu principal.
+/** @brief Apresentação do menu principal.
  *
  *  @return Void.
  */
 void main_menu();
 
 
-/* @brief Voltar atrás do menu.
+/** @brief Voltar atrás do menu.
  *
  *  @return Void.
  */
 void voltar();
 
 
-/* @brief Limpa o input e espera que o utilizador presse alguma tecla.
+/** @brief Limpa o input e espera que o utilizador presse alguma tecla.
  *
  *  @return Void.
  */
 void clearAndEnter();
 
 
-/* @brief Apresenta resultado da Query2.
+/** @brief Apresenta resultado da Query2.
  *
  *  @param lst Lista de Strings.
  *  @return Void.
@@ -50,7 +50,7 @@ void clearAndEnter();
 void printQuery2(Lista lst);
 
 
-/* @brief Apresenta resultado da Query3.
+/** @brief Apresenta resultado da Query3.
  *
  *  @param lst Lista de Strings.
  *  @param c Letra pela qual começam os códigos.
@@ -59,7 +59,7 @@ void printQuery2(Lista lst);
 void printQuery3(Lista lst,char c);
 
 
-/* @brief Aprensenta um navegador.
+/** @brief Aprensenta um navegador.
  *
  *  @param lst Lista de Strings.
  *  @return Void.
@@ -67,7 +67,7 @@ void printQuery3(Lista lst,char c);
 void printLst(Lista lst);
 
 
-/* @brief Aprensenta resultado da query 6.
+/** @brief Aprensenta resultado da query 6.
  *
  *  @param p Estrutura que tem os dados necessários à resposta da query.
  *  @param time Tempo de resolução da query.
@@ -76,7 +76,7 @@ void printLst(Lista lst);
 void printPar(Par p,float time);
 
 
-/* @brief Aprensenta resultado da query 7.
+/** @brief Aprensenta resultado da query 7.
  *
  *  @param tbl Estrutura que tem os dados necessários à resposta da query.
  *  @param time Tempo de resolução da query.
@@ -85,7 +85,7 @@ void printPar(Par p,float time);
 void printQuery7(Tabela tbl,float time);
 
 
-/* @brief Aprensenta resultado da query 8.
+/** @brief Aprensenta resultado da query 8.
  *
  *  @param p Estrutura que tem os dados necessários à resposta da query.
  *  @param mes1 Mes inicial.
@@ -96,7 +96,7 @@ void printQuery7(Tabela tbl,float time);
 void printQuery8(Profit p,int mes1,int mes2,float time);
 
 
-/* @brief Aprensenta resultado da query 9.
+/** @brief Aprensenta resultado da query 9.
  *
  *  @param l Estrutura que tem os dados necessários à resposta da query.
  *  @param time Tempo de resolução da query.
@@ -105,7 +105,7 @@ void printQuery8(Profit p,int mes1,int mes2,float time);
 void printQuery9(LstBuyers l,float time);
 
 
-/* @brief Aprensenta resultado da query 10.
+/** @brief Aprensenta resultado da query 10.
  *
  *  @param lst Lista de strings.
  *  @param tempo Tempo de resolução da query.
@@ -114,7 +114,7 @@ void printQuery9(LstBuyers l,float time);
 void printLst10(Lista lst,float tempo);
 
 
-/* @brief Aprensenta resultado da query 9.
+/** @brief Aprensenta resultado da query 9.
  *
  *  @param s Estrutura que tem os dados necessários à resposta da query.
  *  @param x Limite do top.
@@ -124,7 +124,7 @@ void printLst10(Lista lst,float tempo);
 void printQuery11(SelledProd* s,int x,float time);
 
 
-/* @brief Aprensenta resultado da query 12.
+/** @brief Aprensenta resultado da query 12.
  *
  *  @param l Lista.
  *  @param time Tempo de resolução da query.
@@ -133,7 +133,7 @@ void printQuery11(SelledProd* s,int x,float time);
 void printQuery12(GList* l,float time);
 
 
-/* @brief Aprensenta resultado da query 13.
+/** @brief Aprensenta resultado da query 13.
  *
  *  @param f Estrutura que tem os dados necessários à resposta da query.
  *  @return Void.

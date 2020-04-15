@@ -23,14 +23,14 @@
 typedef struct venda *Venda;
 
 
-/* @brief Inicializa o tipo Venda,alocando memoria da estrutura de dados para sua inicialização.
+/** @brief Inicializa o tipo Venda,alocando memoria da estrutura de dados para sua inicialização.
  *
  *  @return Venda.
  */
 Venda inicializaV();
 
 
-/* @brief Verifica se uma venda é válida.
+/** @brief Verifica se uma venda é válida.
  *
  *  @param venda Venda.
  *  @param cp Catalogo de Produtos.
@@ -39,7 +39,7 @@ Venda inicializaV();
  */
 gboolean validaV(Venda venda,Cat_Produtos cp,Cat_Clientes cc);
 
-/* @brief Cria uma venda.
+/** @brief Cria uma venda.
  * Cria uma venda a partir de uma linha de um ficheiro já dividida.
  *
  *  @param v Venda.
@@ -55,7 +55,7 @@ gboolean validaV(Venda venda,Cat_Produtos cp,Cat_Clientes cc);
 Venda criaVendas(Venda v,char* p,char* c,float preco,int q,char tipoCompra ,int m,int f);
 
 
-/* @brief Retorna o produto de uma venda.
+/** @brief Retorna o produto de uma venda.
  * 
  *  @param v Venda.
  *  @return Produto.
@@ -63,7 +63,7 @@ Venda criaVendas(Venda v,char* p,char* c,float preco,int q,char tipoCompra ,int 
 Produto getProdutoVenda(Venda v);
 
 
-/* @brief Retorna o preco de uma venda.
+/** @brief Retorna o preco de uma venda.
  * 
  *  @param v Venda.
  *  @return Preco da venda.
@@ -71,7 +71,7 @@ Produto getProdutoVenda(Venda v);
 float getPrecoVenda(Venda v);
 
 
-/* @brief Retorna a quantidade de uma venda.
+/** @brief Retorna a quantidade de uma venda.
  * 
  *  @param v Venda.
  *  @return Quantidade da venda.
@@ -79,7 +79,7 @@ float getPrecoVenda(Venda v);
 int getQntVenda(Venda v);
 
 
-/* @brief Retorna o modo de compra de uma venda.
+/** @brief Retorna o modo de compra de uma venda.
  * 
  *  @param v Venda.
  *  @return Modo de compra(N/P).
@@ -87,7 +87,7 @@ int getQntVenda(Venda v);
 char getTipo(Venda v);
 
 
-/* @brief Retorna o Cliente de uma venda.
+/** @brief Retorna o Cliente de uma venda.
  * 
  *  @param v Venda.
  *  @return Cliente.
@@ -95,7 +95,7 @@ char getTipo(Venda v);
 Cliente getClienteVenda(Venda v);
 
 
-/* @brief Retorna o mes de uma venda.
+/** @brief Retorna o mes de uma venda.
  * 
  *  @param v Venda.
  *  @return Mes.
@@ -103,7 +103,7 @@ Cliente getClienteVenda(Venda v);
 int getMes(Venda v);
 
 
-/* @brief Retorna a filial de uma venda.
+/** @brief Retorna a filial de uma venda.
  * 
  *  @param v Venda.
  *  @return Filial.
@@ -111,7 +111,7 @@ int getMes(Venda v);
 int getFilial(Venda v);
 
 
-/* @brief Liberta a memória alocada pelo tipo Venda.
+/** @brief Liberta a memória alocada pelo tipo Venda.
  * 
  *  @param v Venda.
  *  @return Void.

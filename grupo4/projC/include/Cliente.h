@@ -20,14 +20,14 @@
 typedef struct cliente *Cliente;
 
 
-/* @brief Aloca memória para a criação de uma estrutura Cliente.
+/** @brief Aloca memória para a criação de uma estrutura Cliente.
  *
  *  @return Cliente.
  */
 Cliente inicializa_Cliente();
 
 
-/* @brief Cria um cliente c/ a informação em si contida devidamente encapsulada.
+/** @brief Cria um cliente c/ a informação em si contida devidamente encapsulada.
  *
  *  @param c Cliente
  *  @param codigo char* com o codigo a ser introduzido no cliente.
@@ -36,7 +36,7 @@ Cliente inicializa_Cliente();
 Cliente criaCliente(Cliente c,char* codigo);
 
 
-/* @brief Retorna o código de um cliente.
+/** @brief Retorna o código de um cliente.
  *
  *  @param c Cliente.
  *
@@ -45,7 +45,7 @@ Cliente criaCliente(Cliente c,char* codigo);
 char* getCliente(Cliente c);
 
 
-/* @brief Retorna o index -representativo de uma letra- onde o cliente se vai encontrar no array do Catalogo de Clientes.
+/** @brief Retorna o index -representativo de uma letra- onde o cliente se vai encontrar no array do Catalogo de Clientes.
  *  Map de uma letra para index.
  *  @param c Cliente.
  *
@@ -54,7 +54,7 @@ char* getCliente(Cliente c);
 int getIndexC(Cliente c);
 
 
-/* @brief Verifica se o código de cliente é valido.
+/** @brief Verifica se o código de cliente é valido.
  *
  *  @param c Cliente.
  *
@@ -63,7 +63,7 @@ int getIndexC(Cliente c);
 gboolean validaCliente(Cliente c);
 
 
-/* @brief Remove a estrutura Cliente,libertando memória alocada por este.
+/** @brief Remove a estrutura Cliente,libertando memória alocada por este.
  *
  *  @param c Cliente.
  *

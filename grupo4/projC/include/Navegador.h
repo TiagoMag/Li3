@@ -31,7 +31,7 @@ typedef struct pagina *Pagina;
 
 
 
-/* @brief Aloca memória para a criação de uma estrutura Lista.
+/** @brief Aloca memória para a criação de uma estrutura Lista.
  *
  *  @param 
  *
@@ -40,7 +40,7 @@ typedef struct pagina *Pagina;
 Lista inicializa_lista();
 
 
-/* @brief Remove a estrutura Lista, libertando memória.
+/** @brief Remove a estrutura Lista, libertando memória.
  *
  *  @param Lista a ser removida
  *
@@ -49,7 +49,7 @@ Lista inicializa_lista();
 void removeLst(Lista lst);
 
 
-/* @brief Inser um elemento (value) na lista.
+/** @brief Inser um elemento (value) na lista.
  *
  *  @param gpointer da lista onde o valor é inserido, gpointer do valor a ser inserido
  *
@@ -58,7 +58,7 @@ void removeLst(Lista lst);
 void insereLista(gpointer lst,gpointer value);
 
 
-/* @brief Aloca memória para a criação de uma estrutura Pagina.
+/** @brief Aloca memória para a criação de uma estrutura Pagina.
  *
  *  @param 
  *
@@ -67,7 +67,7 @@ void insereLista(gpointer lst,gpointer value);
 Pagina initPagina();
 
 
-/* @brief Retorna uma determinada pagina.
+/** @brief Retorna uma determinada pagina.
  *
  *  @param Lista, int com o numero da pagina
  *
@@ -76,7 +76,7 @@ Pagina initPagina();
 Pagina getPageSeguinte(Lista lst,int sp);
 
 
-/* @brief Determina o numero total de paginas .
+/** @brief Determina o numero total de paginas .
  *
  *  @param Lista
  *
@@ -85,7 +85,7 @@ Pagina getPageSeguinte(Lista lst,int sp);
 int paginasTotal(Lista lst);
 
 
-/* @brief Retorna a String de um index de uma pagina.
+/** @brief Retorna a String de um index de uma pagina.
  *
  *  @param Pagina, int com o index da pagina
  *
@@ -94,7 +94,7 @@ int paginasTotal(Lista lst);
 char* getString(Pagina pg,int index);
 
 
-/* @brief Indica o tamanho de uma lista.
+/** @brief Indica o tamanho de uma lista.
  *
  *  @param Lista
  *
@@ -103,7 +103,7 @@ char* getString(Pagina pg,int index);
 int sizeLst(Lista lst);
 
 
-/* @brief Retorna o tamanho de uma pagina.
+/** @brief Retorna o tamanho de uma pagina.
  *
  *  @param Pagina
  *
@@ -113,7 +113,7 @@ int sizeLstPage(Pagina p);
 
 
 
-/* @brief Retorna a String de um indice de uma lista.
+/** @brief Retorna a String de um indice de uma lista.
  *
  *  @param Lista, int com o indice da lista
  *
@@ -122,7 +122,7 @@ int sizeLstPage(Pagina p);
 char* getStringLst(Lista lst,int index);
 
 
-/* @brief Remove a estrutura Pagina, libertando memória.
+/** @brief Remove a estrutura Pagina, libertando memória.
  *
  *  @param Pagina
  *

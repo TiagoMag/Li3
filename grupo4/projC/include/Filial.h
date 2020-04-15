@@ -56,13 +56,13 @@ typedef struct qntProds *QntProds;
 typedef struct topProds *TopProds;
 
 
-/* @brief Inicializa a estrutura Filial
+/** @brief Inicializa a estrutura Filial
  *
  *  @return Filial.
  */
 Filial inicializa_Filial();
 
-/* @brief Insere uma venda na Filial
+/** @brief Insere uma venda na Filial
  *
  *  @param f Estrutura de dados
  *  @param v Uma venda
@@ -71,7 +71,7 @@ Filial inicializa_Filial();
  */
 Filial insereFilial(Filial f,Venda v);
 
-/* @brief Verifica se existe um cliente numa Filial
+/** @brief Verifica se existe um cliente numa Filial
  *
  *  @param f Estrutura de dados
  *  @param codigo Código de um cliente
@@ -80,7 +80,7 @@ Filial insereFilial(Filial f,Venda v);
  */
 gboolean existeCliFil(Filial f,char* codigo);
 
-/* @brief Verifica se existe um produto numa Filial
+/** @brief Verifica se existe um produto numa Filial
  *
  *  @param f Estrutura de dados
  *  @param codigo Código de um produto
@@ -89,7 +89,7 @@ gboolean existeCliFil(Filial f,char* codigo);
  */
 gboolean existeProdFil(Filial f,char* codigo);
 
-/* @brief Remove uma filial, libertando memória no processo.
+/** @brief Remove uma filial, libertando memória no processo.
  *
  *  @param f Estrutura de dados a ser removida
  *
@@ -97,7 +97,7 @@ gboolean existeProdFil(Filial f,char* codigo);
  */
 void removeFilial(Filial f);
 
-/* @brief Retorna o numero de produtos comprados por um cliente, num determinado mês
+/** @brief Retorna o numero de produtos comprados por um cliente, num determinado mês
  *
  *  @param f Estrutura de dados
  *  @param mes Mês escohido
@@ -107,7 +107,7 @@ void removeFilial(Filial f);
  */
 int produtosCompradosCliente(Filial fil,int mes,char* code);
 
-/* @brief Retorna os clientes que compraram um determinado produto com um determinado tipo de compra
+/** @brief Retorna os clientes que compraram um determinado produto com um determinado tipo de compra
  *
  *  @param f Estrutura de dados
  *  @param lst 
@@ -118,7 +118,7 @@ int produtosCompradosCliente(Filial fil,int mes,char* code);
  */
 Lista buyers (Filial f,Lista lst,char* productID,char tipo);
 
-/* @brief Retorna os produtos mais comprados por um dado cliente, num mês específico, na filial
+/** @brief Retorna os produtos mais comprados por um dado cliente, num mês específico, na filial
  *
  *  @param ht Pointer 
  *  @param f Estrutura de dados
@@ -129,7 +129,7 @@ Lista buyers (Filial f,Lista lst,char* productID,char tipo);
  */
 GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes);
 
-/* @brief getter da estrutura QntProds
+/** @brief getter da estrutura QntProds
  *
  *  @param qp Estrutura auxiliar QntProds
  *
@@ -137,7 +137,7 @@ GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes)
  */
 int getQntQP(QntProds qp);
 
-/* @brief getter da estrutura QntProds
+/** @brief getter da estrutura QntProds
  * 
  *  @param qp Estrutura auxiliar QntProds
  *
@@ -145,7 +145,7 @@ int getQntQP(QntProds qp);
  */
 char* getCodeQP(QntProds qp);
 
-/* @brief Remoção e libertação de memória 
+/** @brief Remoção e libertação de memória 
  *
  *  @param data A ser removida
  *
@@ -153,7 +153,7 @@ char* getCodeQP(QntProds qp);
  */
 void removeQntProds(gpointer data);
 
-/* @brief Retorna numero de clientes que adquiriram um determinado produto numa determinada filial
+/** @brief Retorna numero de clientes que adquiriram um determinado produto numa determinada filial
  *
  *  @param f Estrutura de dados
  *  @param codeProduct Código de produto
@@ -162,7 +162,7 @@ void removeQntProds(gpointer data);
  */
 int numberClients(Filial f,char* codeProduct);
 
-/* @brief Número de unidades compradas de um dado produto, numa filial
+/** @brief Número de unidades compradas de um dado produto, numa filial
  *
  *  @param f Estrutura de dados
  *  @param prodID Código de produto
@@ -171,7 +171,7 @@ int numberClients(Filial f,char* codeProduct);
  */
 int getUnidadesFilial (Filial f,char* prodID);
 
-/* @brief Getter da estrutura gastoTop
+/** @brief Getter da estrutura gastoTop
  *
  *  @param tp Estrutura auxiliar de dados
  *
@@ -179,7 +179,7 @@ int getUnidadesFilial (Filial f,char* prodID);
  */
 float getGastoTop(TopProds tp);
 
-/* @brief Getter da estrutura getCodeTop
+/** @brief Getter da estrutura getCodeTop
  *
  *  @param tp Estrutura de dados
  *
@@ -187,14 +187,14 @@ float getGastoTop(TopProds tp);
  */
 char* getCodeTop(TopProds tp);
 
-/* @brief Inicialização da estrutura de dados TopProd
+/** @brief Inicialização da estrutura de dados TopProd
  *
  *
  *  @return TopProds
  */
 TopProds initTopProds();
 
-/* @brief Remoção da estrutura de dados TopProds e libertação de memória
+/** @brief Remoção da estrutura de dados TopProds e libertação de memória
  *
  *  @param data Estrutura a ser removida
  *
@@ -202,7 +202,7 @@ TopProds initTopProds();
  */
 void removeTP(gpointer data);
 
-/* @brief Setter da estrutura TopProds
+/** @brief Setter da estrutura TopProds
  *
  *  @param p Estrutura de dados
  *  @param prod Código de produto
@@ -211,7 +211,7 @@ void removeTP(gpointer data);
  *  @return TopProds
  */
 TopProds setTopProds(TopProds tp,char* prod,float gasto);
-/* @brief 
+/** @brief 
  *
  *  @param  f Estrutura de dados
  *  @param  ht Apontador para estrutura

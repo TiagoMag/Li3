@@ -31,7 +31,7 @@
 #define BUFFER 64
 
 
-/* @brief Carrega os produtos de um ficheiro para o Catalogo de Produtos.
+/** @brief Carrega os produtos de um ficheiro para o Catalogo de Produtos.
  *
  *  @param file Nome do ficheiro.
  *  @param cp Catalogo de Produtos.
@@ -40,7 +40,7 @@
 void loadFilesProduto(char* file,Cat_Produtos cp);
 
 
-/* @brief Carrega os clientes de um ficheiro para o Catalogo de Clientes.
+/** @brief Carrega os clientes de um ficheiro para o Catalogo de Clientes.
  *
  *  @param file Nome do ficheiro.
  *  @param cp Catalogo de Produtos.
@@ -49,7 +49,7 @@ void loadFilesProduto(char* file,Cat_Produtos cp);
 void loadFilesCliente(char* file,Cat_Clientes cc);
 
 
-/* @brief Carrega e valida as vendas de um ficheiro para a Filial e Faturacao.
+/** @brief Carrega e valida as vendas de um ficheiro para a Filial e Faturacao.
  *
  *  @param file Nome do ficheiro.
  *  @param fil Array de Filiais.
