@@ -2,7 +2,7 @@
  * @file Navegador.h
  * @author Grupo4
  * @date Abril 2020
- * @brief Ficheiro que contém declração de funções e macros que primitem manipular Listas com string's e Navegadores.
+ * @brief Ficheiro que contém declração de funções e macros que permitem manipular Listas com string's e Navegadores.
  *  
  */
 

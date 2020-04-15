@@ -2,7 +2,7 @@
  * @file Produto.h
  * @author Grupo4
  * @date Abril 2020
- * @brief Ficheiro que contém declração de funções e macros que primitem manipular um Produto.
+ * @brief Ficheiro que contém declaração de funções e macros que permitem manipular um Produto.
  *  
  */
 
@@ -22,23 +22,22 @@ typedef struct produto *Produto;
 
 /* @brief Aloca memória para a criação de uma estrutura Produto.
  *
- *  @param 
- *
- *  @return Produto.
+ * @return Produto.
  */
 Produto inicializa_Prod();
 
 
-/* @brief Cria um produto c/ a informação em si contida devidamente encapsulada.
+/*  @brief Cria um produto c/ a informação em si contida devidamente encapsulada.
  *
- *  @param Produto, char* com o codigo a ser introduzido no produto
+ *  @param Produto 
+ *  @param codigo Código a ser introduzido no produto
  *
  *  @return Produto
  */
 Produto criaProduto(Produto p,char* codigo);
 
 
-/* @brief Retorna o código de um produto
+/*  @brief Retorna o código de um produto
  *
  *  @param Produto
  *
