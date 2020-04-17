@@ -21,6 +21,7 @@
  */
 #define MAX_LIN 20
 
+
 /** @brief Apresentação do menu principal.
  *
  *  @return Void.
@@ -28,18 +29,18 @@
 void main_menu();
 
 
-/** @brief Voltar atrás do menu.
- *
- *  @return Void.
- */
-void voltar();
-
-
 /** @brief Limpa o input e espera que o utilizador presse alguma tecla.
  *
  *  @return Void.
  */
 void clearAndEnter();
+
+
+/** @brief Função auxiliar para dar print no menu.
+ *  @param string String
+ *  @return Void.
+ */
+void printInicio(char* string);
 
 
 /** @brief Apresenta resultado da Query2.
