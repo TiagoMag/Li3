@@ -85,7 +85,8 @@ char inputQuery2(){
   else {
     if (!(c>='A' && c<='Z')){
       puts("\033[1;31mLetra inválida");
-      return '-';
+      clearAndEnter();
+      return '0';
     }
   }
   return c;
@@ -108,7 +109,7 @@ char inputQuery3(char* code,int* mes){
   if ((atoi(mes_str))==0) return c='0'; 
     
   if ((atoi(mes_str))>12){
-    puts("\033[1;31mMês inválido");
+    puts("\033[1;31mMês inválido");clearAndEnter();
     return c='-';
   }
   
@@ -124,20 +125,25 @@ char inputQuery3(char* code,int* mes){
       
     if (strlen(code)!=6){
       printf("\033[1;31mCódigo de produto inválido\n");
-      return -1;
+      clearAndEnter();
+      return c='-';
     }
 
     if (!isalpha(code[0]) && isalpha(code[0])){
       printf("\033[1;31m Primeiros 2 caracteres não são letras\n");
+      clearAndEnter();
       return c='-';
     }
 
     if (!(code[0]>='A' && code[0]<='Z' && code[1]>='A' && code[1]<='Z')){
-      printf("\033[1;31m Primeiros 2 caracteres não são letras MAÍUSCULAS\n"); return c='-';
+      printf("\033[1;31m Primeiros 2 caracteres não são letras MAÍUSCULAS\n");
+      clearAndEnter();
+      return c='-';
     }
 
     if (!(atoi(code+2)>=1000) && atoi(code+2)<=9999){
       printf("\033[1;31m Últimos 4 caracteres têm de ser numéricos\n");
+      clearAndEnter();
       return c='-';
     }
   

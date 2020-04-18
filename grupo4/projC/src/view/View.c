@@ -177,7 +177,7 @@ void printPar(Par p,float time){
   printf("\033[1;34mNÚMERO DE CLIENTES QUE NÃO REALIZARAM COMPRAS:\033[1;35m  %d\n\033[1;34m",getClientsNeverBoughtCount(p));
   printf("NÚMERO DE PRODUTOS NÃO COMPRADOS:\033[1;35m  %d \033[1;34m \n",getProductsNeverBoughtCount(p) );
   printf("\n");
-  printf("Tempo da Query:%f\n",time);
+  printf("\033[1;34mTempo da Query:\033[1;35m%f\n",time);
   printf("\n");
   clearAndEnter();
   removePar(p);
@@ -207,7 +207,7 @@ void printQuery7(Tabela tbl,float time){
 
   printf("\n");
   printf("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-  printf("Tempo da Query:%f\n",time);
+  printf("\033[1;34mTempo da Query:\033[1;35m%f\n",time);
   clearAndEnter();
 }
 
@@ -222,12 +222,12 @@ void printQuery8(Profit p,int mes1,int mes2,float time){
   printf("\033[1;34mTotal de vendas:\033[1;33m %d\n",getVendas(p));
   printf("\033[1;34mTotal faturado:\033[1;33m %f\n",getFaturado(p));
   printf("\n");
-  printf("Tempo da Query:%f\n",time);
+  printf("\033[1;34mTempo da Query:\033[1;35m%f\n",time);
   clearAndEnter();
 }
 
 /*--------------------------------QUERY-9--------------------------*/
-
+  
 void printQuery9(LstBuyers l,float time){
   
   system("clear");
@@ -253,7 +253,7 @@ void printQuery9(LstBuyers l,float time){
       navega(getListaP(l));
     }
   } 
-  printf("Tempo da Query:%f\n",time);
+  printf("\033[1;34mTempo da Query:\033[1;35m%f\n",time);
   clearAndEnter();
 }
 
@@ -263,7 +263,7 @@ void printLst10(Lista lst,float tempo){
    
   system("clear");
   navega(lst);
-  printf("Tempo da Query:%f\n",tempo);
+  printf("\033[1;34mTempo da Query:\033[1;35m%f\n",tempo);
   clearAndEnter();
   removeLst(lst);
 }
@@ -299,7 +299,7 @@ void printQuery11(SelledProd* s,int x,float time){
     printf("\033[1;35m═════════════════════════════════════════════════\n");
   }
 
-  printf("Tempo da Query:%f\n",time);
+  printf("\033[1;34mTempo da Query:\033[1;35m%f\n",time);
 
   for(int i=0;i<x;i++)
     removeSelledProds(s[i]);
@@ -329,7 +329,7 @@ void printQuery12(GList* l,float time){
     l=g_list_delete_link(l,_link);
   }
   printf("═════════════════════════════════════════════════\n");
-  printf("Tempo da Query:%f\n",time);
+  printf("\033[1;34mTempo da Query:\033[1;35m%f\n",time);
     
   g_list_free(l);
 

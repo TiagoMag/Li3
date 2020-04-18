@@ -54,9 +54,11 @@ int runController(){
         break;
     case 2:
         if(check!=1) erro();
+        else{
         while((c=inputQuery2())!='0'){  	
           Lista rsl=getProductsStartedByLetter(sgv,c);
           printLst(rsl);
+         }
         }
         break;
     case 3:
@@ -206,9 +208,11 @@ int runController(){
         break;
     case 13: ;
         if(check!=1) erro();
-        FileInfo fi=getCurrentFilesInfo(sgv);
-        printQuery13(fi);
-        break;
+          else{
+          FileInfo fi=getCurrentFilesInfo(sgv);
+          printQuery13(fi);
+          }
+                  break;
     case 14:
         if (check!=1) erro();
         else{
