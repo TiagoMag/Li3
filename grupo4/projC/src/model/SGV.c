@@ -9,7 +9,7 @@ struct sgv{
   Cat_Clientes cc;
   Cat_Produtos cp;
   Faturacao f;
-  Filial fil[3];
+  Filial fil[NR_FILIAL];
 };
 
 /* Inicializa a estrutura do SGV */
@@ -18,7 +18,7 @@ SGV initSGV(){
   sgv->cc=inicializa_CatClientes();
   sgv->cp=inicializa_CatProds();
   sgv->f=inicializaFat();
-  for(int i=0;i<3;i++)
+  for(int i=0;i<NR_FILIAL;i++)
     sgv->fil[i]=inicializa_Filial();
  
   return sgv;
@@ -29,7 +29,7 @@ void destroySGV(SGV sgv){
   removeCatCliente(sgv->cc);
   removeCatProd(sgv->cp);
   removeFaturacao(sgv->f);
-  for(int i=0;i<3;i++)
+  for(int i=0;i<NR_FILIAL;i++)
    removeFilial(sgv->fil[i]); 
   free(sgv);
 }

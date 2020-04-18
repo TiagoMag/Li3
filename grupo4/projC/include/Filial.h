@@ -17,12 +17,12 @@
 /**
  * @brief Número de filiais
  */
-#define FILIAL 3
+#define NR_FILIAL 3
 
 /**
  * @brief Número de meses
  */
-#define MES 12
+#define MESES 12
 
 
 /**

@@ -9,7 +9,7 @@ struct filial{
 /* Estrutura que é o value da HashTable Clientes */
 struct infoCli{
   GHashTable* prods; /* HashTable de produtos  que um cliente comprou */
-  GHashTable* produtos[MES]; /* Array de 12 meses com uma hashtable de produtos que o cliente comprou */
+  GHashTable* produtos[MESES]; /* Array de 12 meses com uma hashtable de produtos que o cliente comprou */
 };
 
 /* Estrutura InfoProd value das HashTable's do array produtos */
@@ -54,7 +54,7 @@ static void removeInfoCli(gpointer data){
   InfoCli ic=(InfoCli) data;
   g_hash_table_destroy(ic->prods);
  
-  for(int i=0;i<MES;i++)
+  for(int i=0;i<MESES;i++)
     g_hash_table_destroy(ic->produtos[i]);
 
    free(ic);
@@ -64,7 +64,7 @@ static void removeInfoCli(gpointer data){
 static InfoCli inicializa_InfoCli(){
   InfoCli ic=(InfoCli)malloc(sizeof(struct infoCli));
   ic->prods=g_hash_table_new_full(g_str_hash, g_str_equal,freeKeyString,freeGasto);
-  for(int i=0;i<MES;i++){
+  for(int i=0;i<MESES;i++){
    ic->produtos[i]=g_hash_table_new_full(g_str_hash, g_str_equal,freeKeyString,removeInfoProd);
   }
    
@@ -206,7 +206,7 @@ static gboolean temProduto(InfoCli ic,char* productID,char tipo){
   
   InfoProd ip;
 
-  for(int i=0;i<12;i++){
+  for(int i=0;i<MESES;i++){
     if (g_hash_table_contains(ic->produtos[i],productID)){
       ip=g_hash_table_lookup(ic->produtos[i],productID);
       if(ip->modoCompra[mapToIndex(tipo)]) return TRUE;
