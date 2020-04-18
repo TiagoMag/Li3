@@ -291,7 +291,8 @@ int inputQuery9(char* productID){
   
   system("clear");
   printInicio("QUERY 9"); 
-  
+  printf("\033[1;34m0 -> Voltar \033[1;36m\n\n");
+
   int x;
   printf("\033[1;33mIndique o produto:\n");
   scanf("%s",productID);
@@ -346,6 +347,7 @@ int inputQuery10(char* clientID){
   int x;
   system("clear");
   printInicio("QUERY 10");
+  printf("\033[1;34m0 -> Voltar \033[1;36m\n\n");
 
   printf("\033[1;33mIndique um cliente:\n");
   scanf("%s",clientID);
@@ -395,6 +397,7 @@ int inputQuery11(){
   int x;
   system("clear");
   printInicio("QUERY 11");
+  printf("\033[1;34m0 -> Voltar \033[1;36m\n\n");
 
   printf("\033[1;33mIndique o limite do top:\n");
  
@@ -412,6 +415,7 @@ int inputQuery12(char* clientID){
   int x;
   system("clear");
   printInicio("QUERY 12");
+  printf("\033[1;34m0 -> Voltar \033[1;36m\n\n");
 
   printf("\033[1;33mIndique um cliente:\n");
   scanf("%s",clientID);
