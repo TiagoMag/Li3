@@ -15,7 +15,7 @@ struct infoCli{
 /* Estrutura InfoProd value das HashTable's do array produtos */
 struct infoProd{
   gboolean modoCompra[2];//0->N 1->P /* Indica em que modos o cliente comprou o produto */
-  int qnt; /* Indica o número de unidadas comprados pelo cliente de um produto */
+  int qnt; /* Indica o número de unidades comprados pelo cliente de um produto */
 };
 
 /* Remove as key's das hashtable's que são todas códigos */
@@ -313,20 +313,21 @@ static void travessiaQ10(gpointer key, gpointer value, gpointer data) {
   GHashTable* ht=(GHashTable*) data;
 
   InfoProd ip=(InfoProd) value;
-
-  if(g_hash_table_contains(ht,(char*)key)){
- 
-    qp=updateInfo(ht,value,key);
- 
-    g_hash_table_insert(ht,strdup(key),qp); //produto já existe atualiza quantidade
   
-  }else{ 
-
-    qp=setQntProds(qp,key,ip->qnt);
+  if(ip){
+    if(g_hash_table_contains(ht,(char*)key)){
  
-    g_hash_table_insert(ht,strdup(key),qp); //produtos ñ existe insere
+      qp=updateInfo(ht,value,key);
+ 
+      g_hash_table_insert(ht,strdup(key),qp); //produto já existe atualiza quantidade
   
+    }else{ 
+
+      qp=setQntProds(qp,key,ip->qnt);
+ 
+      g_hash_table_insert(ht,strdup(key),qp); //produtos ñ existe insere
   }
+ }
 }
 
 /* Retorna hashtable com os produtos mais comprados por um cliente num determinado mes */
@@ -335,13 +336,13 @@ GHashTable* produtosQueMaisComprou(gpointer ht,Filial f,char* codigoCli,int mes)
   GHashTable* h=(GHashTable*)ht;
 
   InfoCli ic=g_hash_table_lookup(f->clientes,codigoCli); 
-
+  if(!ic) return h;
   g_hash_table_foreach(ic->produtos[mes],(GHFunc)travessiaQ10,h);
 
   return h;
 }
 
-/* Funções de resolução query 10 */
+/* Funções de resolução query 11 */
 
 /* Estrutura auxiliar */
 typedef struct auxNumClients{
@@ -481,6 +482,7 @@ GHashTable* topProfitProducts(Filial f,gpointer ht,char* clientID){
   GHashTable* h=(GHashTable*)ht;
 
   InfoCli ic=g_hash_table_lookup(f->clientes,clientID); 
+  if(!ic) return h;
 
   g_hash_table_foreach(ic->prods,(GHFunc)travessiaQ12,h);
 
