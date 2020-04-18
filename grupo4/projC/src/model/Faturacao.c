@@ -17,7 +17,7 @@ struct fat{
   char* code; /* Código do produto */ 
   Data infoN[MES][FILIAL]; /* Informação mês a mês e filial a filial acerca do produto no modo Normal */
   Data infoP[MES][FILIAL]; /* Informação mês a mês e filial a filial acerca do produto no modo Promoção */
-  int vendas; /* Número de unidades vendidas global */
+  int vendas; /* Número de unidades vendidas global do produto */
 };
 
 /* Estrutura Data */
@@ -247,22 +247,21 @@ Data getData(Faturacao f,char* codigo,char tipo,int mes){
   
   Data d=initData();
   Fat fat=g_hash_table_lookup(f->produtos,codigo);
-  float preco=0.0;
-  int quant=0;
-  for(int i=0;i<FILIAL;i++){
-   if((tipo=='N')){
+  if(fat){
+    float preco=0.0;
+    int quant=0;
+    for(int i=0;i<FILIAL;i++){
+      if((tipo=='N')){
+        preco+=getPrecoFat(fat->infoN[mes][i]); 
+        quant+=getQntFat(fat->infoN[mes][i]);
+      }else if((tipo=='P')){
+        preco+=getPrecoFat(fat->infoP[mes][i]);
+        quant+=getQntFat(fat->infoP[mes][i]); 
+      }
+    }
+    d=setData(d,quant,preco);
+ }else {d=setData(d,0,0.0);}
 
-    preco+=getPrecoFat(fat->infoN[mes][i]); 
-    quant+=getQntFat(fat->infoN[mes][i]);
-  
-  }else if((tipo=='P')){
-  
-    preco+=getPrecoFat(fat->infoP[mes][i]);
-    quant+=getQntFat(fat->infoP[mes][i]); 
-  }
- 
- }
- d=setData(d,quant,preco);
  return d;
 }
 
@@ -271,14 +270,17 @@ Data getDataFilial(Faturacao f,char* codigo,char tipo,int mes,int filial){
   int quant=0;
   Data d=initData();
   Fat fat=g_hash_table_lookup(f->produtos,codigo);
-  if((tipo=='N')){
-    preco=getPrecoFat(fat->infoN[mes][filial]);
-    quant=getQntFat(fat->infoN[mes][filial]);
-  }else{ 
-    preco=getPrecoFat(fat->infoP[mes][filial]);
-    quant=getQntFat(fat->infoP[mes][filial]); 
-  }
-  d=setData(d,quant,preco);
+  if(fat){
+    if((tipo=='N')){
+      preco=getPrecoFat(fat->infoN[mes][filial]);
+      quant=getQntFat(fat->infoN[mes][filial]);
+    }else{ 
+      preco=getPrecoFat(fat->infoP[mes][filial]);
+      quant=getQntFat(fat->infoP[mes][filial]); 
+    }
+    d=setData(d,quant,preco);
+  }else{d=setData(d,0,0.0);}
+  
   return d;
 }
 

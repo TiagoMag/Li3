@@ -142,7 +142,7 @@ int runController(){
       	if(check!=1) erro();
     		else{
 				  char* codigo=malloc(sizeof(char*));
-          int x=inputQuery9(codigo);
+          int x;
           while((x=inputQuery9(codigo))!=-2){
             if(x!=-1){
               LstBuyers l;

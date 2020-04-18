@@ -63,7 +63,8 @@ static void navega(Lista lst){
 
   if (sizeLst(lst)==0){
     printf("\033[01;33mLista sem Elementos\n");
-    clearAndEnter();
+    printf("PRESS \033[1;34m  ENTER ->  \033[1;36m PARA CONTINUAR\n");
+    getchar();
     return ;
   }
   else{
@@ -201,7 +202,6 @@ void printQuery7(Tabela tbl,float time){
     for(int j = 0; j < 12; j++){
       printf("|\033[0;34m %3d\033[1;32m ",getComprado(tbl,j,i));            
     }
-
     printf("|\n");
   }
 
@@ -241,18 +241,16 @@ void printQuery9(LstBuyers l,float time){
     printf("COMPRADORES MODO(N)════════════════════════════════════════════════\n\n");
     navega(getListaN(l));
     system("clear");
-      
-    if (sizeLst(getListaP(l))==0){
-      printf("Não há registos nesta filial:\n");
-      clearAndEnter();
-    }
-    else{
-      printf("════════════════════════════════════════════════");
-      printf("COMPRADORES MODO(P)════════════════════════════════════════════════\n\n");
-        
-      navega(getListaP(l));
-    }
-  } 
+  }    
+  if (sizeLst(getListaP(l))==0){
+    printf("Não há registos nesta filial:\n");
+    clearAndEnter();
+  }
+  else{
+    printf("════════════════════════════════════════════════");
+    printf("COMPRADORES MODO(P)════════════════════════════════════════════════\n\n");        
+    navega(getListaP(l));  
+  }
   printf("\033[1;34mTempo da Query:\033[1;35m%f\n",time);
   clearAndEnter();
 }
@@ -316,6 +314,8 @@ void printQuery12(GList* l,float time){
   printf("\033[1;36m═════════════════════════\033[1;33mTOP\033[1;36m═════════════════════════\n");
   
   g_list_first(l);
+
+  if(!l) {printf("\033[1;34mCliente não realizou compras.\n");}
   
   while(l){
     TopProds tp=(TopProds)l->data;  

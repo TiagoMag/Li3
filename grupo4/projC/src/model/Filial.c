@@ -186,6 +186,7 @@ int produtosCompradosCliente(Filial fil,int mes,char* code){
   int total=0;
   //procura cliente
   InfoCli ic=g_hash_table_lookup(fil->clientes,code);
+  if(!ic) return 0;
   //percorre hashtable produtos e somas as suas vendas
   g_hash_table_foreach(ic->produtos[mes], (GHFunc)iterator,&total);
 
