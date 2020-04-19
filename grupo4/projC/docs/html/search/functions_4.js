@@ -22,7 +22,7 @@ var searchData=
   ['getlistan',['getListaN',['../_queries_8h.html#a885ed5d32e5eca4156a5a3af444fba9e',1,'Queries.h']]],
   ['getlistap',['getListaP',['../_queries_8h.html#a8be46c88734a82dae8500b07e0a4c870',1,'Queries.h']]],
   ['getmes',['getMes',['../_venda_8h.html#a481531bb9a32d67e65656bfa586f11a8',1,'Venda.h']]],
-  ['getnumclientes',['getNumClientes',['../_queries_8h.html#a79e48f7ca3934e2e1c5d25c9125af7a9',1,'Queries.h']]],
+  ['getnumclientes',['getNumClientes',['../_queries_8h.html#a039522179baeb50dd32e9a3eb1a2bfe7',1,'Queries.h']]],
   ['getnumlinhaslidasclientes',['getNumLinhasLidasClientes',['../_cat_clientes_8h.html#acc1937886e8a3d937568bf42dba6fe98',1,'CatClientes.h']]],
   ['getnumlinhaslidasfi',['getNumLinhasLidasFI',['../_queries_8h.html#aebab74b4ef782f8ba6629a27f842b7fe',1,'Queries.h']]],
   ['getnumlinhaslidasprods',['getNumLinhasLidasProds',['../_cat_produtos_8h.html#a3903b584ea2fdb0c43709455980a6e91',1,'CatProdutos.h']]],
@@ -51,7 +51,7 @@ var searchData=
   ['gettree',['getTree',['../_cat_produtos_8h.html#a43dbde2d76356dbd22a02d0b9faca55e',1,'CatProdutos.h']]],
   ['gettreec',['getTreeC',['../_cat_clientes_8h.html#a3e2e4cc73c37e55edf6b348ca529e842',1,'CatClientes.h']]],
   ['getunidadesfilial',['getUnidadesFilial',['../_filial_8h.html#aa399f452b903943bc0388814df4443af',1,'Filial.h']]],
-  ['getunidadesvendidasfilial',['getUnidadesVendidasFilial',['../_queries_8h.html#a08aef7b6b4ed163f226eafe21eb62f1f',1,'Queries.h']]],
+  ['getunidadesvendidasfilial',['getUnidadesVendidasFilial',['../_queries_8h.html#aa13bfb5ef8a34fedf25d7c36f5340858',1,'Queries.h']]],
   ['getunidadesvendidasprod',['getUnidadesVendidasProd',['../_queries_8h.html#a8aa788b83167b7a27bfb0ea788eab676',1,'Queries.h']]],
   ['getvendas',['getVendas',['../_queries_8h.html#a4789f11c62ce42b1b45b84daaf9c4f3e',1,'Queries.h']]]
 ];

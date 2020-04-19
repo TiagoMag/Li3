@@ -3,6 +3,7 @@ var searchData=
   ['pagina',['Pagina',['../_navegador_8h.html#abe71cb709ccb4e22fbb86f03cbeea96b',1,'Navegador.h']]],
   ['paginastotal',['paginasTotal',['../_navegador_8h.html#ad0afbb12a259e491ff2466288e7e75bb',1,'Navegador.h']]],
   ['par',['Par',['../_queries_8h.html#a74d732257f0132e9901832b209f8869f',1,'Queries.h']]],
+  ['printinicio',['printInicio',['../_view_8h.html#a3ddc558b51f0baf2107bbaa3acccd84b',1,'View.h']]],
   ['printlst',['printLst',['../_view_8h.html#a81a3e5fca7db370bbd2ddc5e95d88b83',1,'View.h']]],
   ['printlst10',['printLst10',['../_view_8h.html#a8de082bc48aeb1f71b619d267798079d',1,'View.h']]],
   ['printpar',['printPar',['../_view_8h.html#a1c0dee69f8a2bb3ce1b9042508a5c776',1,'View.h']]],

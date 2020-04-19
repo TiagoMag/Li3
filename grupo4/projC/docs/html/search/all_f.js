@@ -5,6 +5,5 @@ var searchData=
   ['validav',['validaV',['../_venda_8h.html#afaebb80853b040f09db35c40a31059cc',1,'Venda.h']]],
   ['venda',['Venda',['../_venda_8h.html#ac2b3fd46582fcdf632fb4211eeef252e',1,'Venda.h']]],
   ['venda_2eh',['Venda.h',['../_venda_8h.html',1,'']]],
-  ['view_2eh',['View.h',['../_view_8h.html',1,'']]],
-  ['voltar',['voltar',['../_view_8h.html#a09a656546e492931011a4529ce644a36',1,'View.h']]]
+  ['view_2eh',['View.h',['../_view_8h.html',1,'']]]
 ];
