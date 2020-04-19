@@ -1,7 +1,5 @@
 #include "../../include/View.h"
 
-static void navega(Lista lst);
-
 /* Função auxiliar para apresentar inicio de alguns output's */
 void printInicio(char* string){
    
