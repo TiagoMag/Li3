@@ -349,7 +349,7 @@ void printQuery13(FileInfo f){
     printInicio(fileType[i]);
     printf("Nome do ficheiro lido:");
     printf("\033[1;33m");
-    printf(" %s \n",getFileNameFI(f,0));
+    printf(" %s \n",getFileNameFI(f,i));
     printf("\033[1;36m");
     printf("Número de linhas lidas:");
     printf("\033[1;33m");
