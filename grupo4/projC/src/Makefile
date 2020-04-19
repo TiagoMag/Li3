@@ -56,6 +56,8 @@ Filial:
 Controller:
 	$(CC) $(CFLAGS) -c $(ControllerDir)Controller.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
+memcheck:
+	valgrind --leak-check=yes ./programa
 
 clean:
 	rm program $(_OBJ)
