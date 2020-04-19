@@ -1,7 +1,5 @@
 #include "../../include/Files.h"
 
-#define BUFFER 64
-
 static void resultadosVenda(char *file,int validadas,int total,float tempo);
 static void resultadosCliente(char *file,Cat_Clientes cc,int total,float tempo);
 static void resultadosProd(char *file,Cat_Produtos cp,int total,float tempo);
@@ -65,8 +63,6 @@ void loadFilesCliente(char* file,Cat_Clientes cc){
 
   fp=fopen (file,"r");
 
-
-
   if (fp==NULL) {
     printf("Erro no ficheiro %s \n",file);
     exit (1);
@@ -82,7 +78,8 @@ void loadFilesCliente(char* file,Cat_Clientes cc){
 
     if (validaCliente(c)) 
      cc=insereCliente(cc,c);
-   removeCliente(c);
+    
+    removeCliente(c);
  }
  
  fclose (fp);
@@ -173,8 +170,6 @@ void leVendas(Filial fil[3],Faturacao f,char* file,Cat_Produtos cp,Cat_Clientes 
  f=setFileInfoVendas(f,validadas,lidas,file,cpu_time_used);
  resultadosVenda(file,validadas,lidas,cpu_time_used);
 }
-
-
 
 static void resultadosProd(char *file,Cat_Produtos cp,int total,float tempo){
 

@@ -320,7 +320,6 @@ static int compare(gpointer a,gpointer b){
   float y=f2->vendas;
 
   return y-x;
-
 }
 
 /* Função que percorre uma lista */
@@ -331,7 +330,6 @@ static void percorre11(gpointer data,gpointer user_data){
     insereLista(user_data,getCodeFat(fat));
     top--;
   }
-
 }
 
 /* Função que retorna uma lista com tamanho "limit" com os produtos mais vendidos */

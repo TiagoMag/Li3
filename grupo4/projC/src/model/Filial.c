@@ -66,8 +66,7 @@ static InfoCli inicializa_InfoCli(){
   ic->prods=g_hash_table_new_full(g_str_hash, g_str_equal,freeKeyString,freeGasto);
   for(int i=0;i<MESES;i++){
    ic->produtos[i]=g_hash_table_new_full(g_str_hash, g_str_equal,freeKeyString,removeInfoProd);
-  }
-   
+  }  
   return ic;
 }
 
@@ -111,8 +110,7 @@ Filial insereFilial(Filial f,Venda v){
   InfoCli ic=NULL;
   InfoProd ip=NULL;
 
-   //Vê se produto já existe
-
+  //Vê se produto já existe
   if (!g_hash_table_contains(f->produtos,codigoProd)){ 
      g_hash_table_insert(f->produtos,strdup(codigoProd),GINT_TO_POINTER(quant));
    }
@@ -125,24 +123,18 @@ Filial insereFilial(Filial f,Venda v){
   ic=g_hash_table_lookup(f->clientes,codigoCli); 
   
   if(!ic){
-  
     ic=inicializa_InfoCli();
     g_hash_table_insert(f->clientes,strdup(codigoCli),ic);
-  
   }
   
    if (!g_hash_table_contains(ic->prods,codigoProd)){ 
-    
     gasto=malloc(sizeof(float*));
     *gasto=preco;
     g_hash_table_insert(ic->prods,strdup(codigoProd),gasto);
-   
    }
    else{
-   
-     gasto=(float*)g_hash_table_lookup(ic->prods,codigoProd);
-     
-     *gasto+=preco;
+   gasto=(float*)g_hash_table_lookup(ic->prods,codigoProd);
+    *gasto+=preco;
    }
 
   ip=g_hash_table_lookup(ic->produtos[mes],codigoProd);
@@ -212,7 +204,6 @@ static gboolean temProduto(InfoCli ic,char* productID,char tipo){
       if(ip->modoCompra[mapToIndex(tipo)]) return TRUE;
     }
   }
-
   return FALSE;
 }
 
@@ -239,7 +230,6 @@ static Aux9 setAux9(char* productID,char tipo,Lista lst){
   return aux;
 }
 
-
 static void travessia(gpointer key, gpointer value, gpointer data) {
 
   InfoCli ic=(InfoCli) value;
@@ -248,7 +238,6 @@ static void travessia(gpointer key, gpointer value, gpointer data) {
 
   if(temProduto(ic,(*aux)->productID,(*aux)->tipo))
     insereLista(&(*aux)->lst,key);
-
 }
 
 /* Retorna a lista de clientes que compraram um determinado produtor num dado modo de compra(N/P) */
@@ -327,8 +316,8 @@ static void travessiaQ10(gpointer key, gpointer value, gpointer data) {
       qp=setQntProds(qp,key,ip->qnt);
  
       g_hash_table_insert(ht,strdup(key),qp); //produtos ñ existe insere
+    }
   }
- }
 }
 
 /* Retorna hashtable com os produtos mais comprados por um cliente num determinado mes */
@@ -369,17 +358,13 @@ static void removeAux11(Aux11 aux){
 static gboolean clientHasProduct(Filial fil,char* clientID,char* productID){
 
  InfoCli ic=g_hash_table_lookup(fil->clientes,clientID);
+
  if(!ic) return FALSE;
  
- 
-  if(g_hash_table_contains(ic->prods,productID)){
-      return TRUE;
-      
+ if(g_hash_table_contains(ic->prods,productID)){
+    return TRUE;
   }
- 
- 
-
-return FALSE;
+  return FALSE;
 }
 
 static void travessiaQ11(gpointer key, gpointer value, gpointer data) {
@@ -425,7 +410,6 @@ struct topProds{
  char* prod;
  float gasto;
 };
-
 
 float getGastoTop(TopProds tp){
   return(tp->gasto);
@@ -473,7 +457,6 @@ static void travessiaQ12(gpointer key, gpointer value, gpointer data) {
     tp=setTopProds(tp,key,*gasto);
  
     g_hash_table_insert(ht,strdup(key),tp); //produtos ñ existe insere
-  
   }
 }
 

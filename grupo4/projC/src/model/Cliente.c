@@ -30,7 +30,7 @@ int getIndexC(Cliente c){
 
 /* Verifica se um codigo de cliente é valido tendo em conta os parâmetros */
 gboolean validaCliente(Cliente c){
-  	if (!isalpha(c->codigo[0])) return FALSE;
+	if (!isalpha(c->codigo[0])) return FALSE;
   	if (!(c->codigo[0] >='A' && c->codigo[0]<='Z')) return FALSE;
   	if (!(atoi(c->codigo+1)>=1000) && atoi(c->codigo+1)<=5000) return FALSE;
  	return TRUE;
