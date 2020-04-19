@@ -69,7 +69,7 @@ void removeCatCliente(Cat_Clientes cc);
  *  
  *  @param cc Catalogo de Clientes.
  *  @param index Indice correspondente á primeira letra dos codigos de cliente.
- *  @return Arvóre de clientes começados por uma determinada Letra.
+ *  @return Árvore de clientes começados por uma determinada Letra.
  */
 GTree* getTreeC(Cat_Clientes cc,int index);
 

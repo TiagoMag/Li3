@@ -79,7 +79,7 @@ void removeCatProd(Cat_Produtos cp);
  *  
  *  @param cp Catalogo de Produtos.
  *  @param index Indice correspondente á primeira letra dos codigos de produtos.
- *  @return Arvóre de produtos começados por uma determinada Letra.
+ *  @return Árvore de produtos começados por uma determinada Letra.
  */
 GTree* getTree(Cat_Produtos cp,int index);
 

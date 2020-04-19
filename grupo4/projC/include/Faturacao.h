@@ -25,6 +25,8 @@ typedef struct data *Data;
  * @brief Número meses
  */
 #define MES 12
+
+
 /**
  * @brief Número de filiais
  */
@@ -38,6 +40,7 @@ typedef struct data *Data;
  */
 Faturacao inicializaFat();
 
+
 /** @brief Verifica a existencia da venda de um produto na faturaçao
  *
  *  @param f Estrutura de dados 
@@ -47,6 +50,7 @@ Faturacao inicializaFat();
  */
 gboolean existeFat(Faturacao f,Venda v);
 
+
 /** @brief Insere uma venda na Faturacao
  *
  *  @param f Estrutura de dados
@@ -55,6 +59,8 @@ gboolean existeFat(Faturacao f,Venda v);
  *  @return Faturacao
  */
 Faturacao insereFat(Faturacao f,Venda v);
+
+
 /** @brief Atualiza os parametros de uma venda de um produto já existente
  *
  *  @param f Estrutura de dados
@@ -63,6 +69,8 @@ Faturacao insereFat(Faturacao f,Venda v);
  *  @return Faturacao
  */
 Faturacao updateFat(Faturacao f,Venda v);
+
+
 /** @brief Define a informação correlacionada com o carregamento do ficheiro de vendas
  *
  *  @param f Estrutura de dados
@@ -75,6 +83,7 @@ Faturacao updateFat(Faturacao f,Venda v);
  */
 Faturacao setFileInfoVendas(Faturacao f,int num_linhas_validadas,int num_linhas_lidas,char* filename,float tempo_leitura);
 
+
 /** @brief Getter do numero de linhas lidas no ficheiro de vendas
  *
  *  @param f Estrutura de dados
@@ -82,6 +91,7 @@ Faturacao setFileInfoVendas(Faturacao f,int num_linhas_validadas,int num_linhas_
  *  @return int
  */
 int getNumLinhasLidasVendas(Faturacao f);
+
 
 /** @brief Getter do numero de linhas validadas no ficheiro de vendas
  *
@@ -99,6 +109,7 @@ int getNumLinhasValidadasVendas(Faturacao f);
  *  @return float
  */
 float getTempoLeituraVendas(Faturacao f);
+
 
 /** @brief Getter do nome do ficheiro de vendas
  *
@@ -129,6 +140,7 @@ int getUnidadesVendidas(Faturacao f,char* prodID);
  *  @return Data
  */
 Data getData(Faturacao f,char* codigo,char tipo,int mes);
+
 
 /** @brief Getter da informação de vendas de um determinado produto num determinado tipo de compra, num determinado mes numa determinada filial
  *
@@ -161,6 +173,7 @@ float getPrecoFat(Data d);
  */
 int getQntFat(Data d);
 
+
 /** @brief Verifica se um produto existe na estrutura da Faturacao 
  *
  *  @param f Estrutura de dados
@@ -169,6 +182,7 @@ int getQntFat(Data d);
  *  @return gboolean
  */
 gboolean existeProdFat(Faturacao f,char* codigo);
+
 
 /** @brief Remove Faturação, libertando memória previamente alocada
  *
@@ -188,6 +202,7 @@ void removeFaturacao(Faturacao f);
  *  @return float
  */
 float getProfit(Faturacao f,int minMonth,int maxMonth);
+
 
 /** @brief Retorna o numero total de vendas num intervalo de meses 
  *

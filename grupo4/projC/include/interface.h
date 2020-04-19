@@ -5,6 +5,7 @@
  * @brief Ficheiro que contém declaração de funções e macros necessárias ao funcionamento do programa e à interação com o utilizador.
  *  
  */
+
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
