@@ -1,8 +1,5 @@
 #include "../../include/Controller.h"
 
-/* Funções privadas ao módulo */
-static void erro();
-
 static void erro(){
 
   int c;

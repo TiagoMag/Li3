@@ -9,7 +9,6 @@ static int scanning(char buffer[100],char*filenames[3]){
     
     return 0;
   }
- 
   else if (buffer[0]=='N'){
     printf("\033[1;34mPaths ficheiro cliente: ");
     scanf("%s",buffer);
@@ -27,7 +26,6 @@ static int scanning(char buffer[100],char*filenames[3]){
     
     return 0;
   }
- 
  return 1;
 }
 
