@@ -1,5 +1,6 @@
+package model;
+
 import java.io.Serializable;
-import java.lang.ref.Cleaner;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -46,7 +47,7 @@ public class CatClientes implements Serializable {
 
         @Override
         public String toString() {
-            return "CatClientes{" +
+            return "model.CatClientes{" +
                     "clientes=" + clientes +
                     '}';
         }

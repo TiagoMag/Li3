@@ -9,22 +9,22 @@ ModelDir=model/
 ControllerDir=controller/
 ViewDir=view/
 
-_OBJ =  CatProdutos.o Produto.o Cliente.o CatClientes.o Queries.o Files.o SGV.o Navegador.o Input.o View.o Venda.o Faturacao.o Filial.o Controller.o 
+_OBJ =  CatProdutos.o model.Produto.o model.Cliente.o model.CatClientes.o Queries.o Files.o SGV.o Navegador.o Input.o View.o model.Venda.o Faturacao.o Filial.o Controller.o
 
-program: CatProd Produto Cliente CatCli Queries Files SGV Navegador View Input Venda Faturacao Filial Controller
+program: CatProd model.Produto model.Cliente CatCli Queries Files SGV Navegador View Input model.Venda Faturacao Filial Controller
 	$(CC) $(CFLAGS)  -o program main.c $(GLIBFLAGC) $(_OBJ) $(GLIBFLAGL)
 
 CatProd:
 	$(CC) $(CFLAGS) -c $(ModelDir)CatProdutos.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
-Produto:
-	$(CC) $(CFLAGS) -c $(ModelDir)Produto.c $(GLIBFLAGC) $(GLIBFLAGL)
+model.Produto:
+	$(CC) $(CFLAGS) -c $(ModelDir)model.Produto.c $(GLIBFLAGC) $(GLIBFLAGL)
 
-Cliente:
-	$(CC) $(CFLAGS) -c $(ModelDir)Cliente.c $(GLIBFLAGC)  $(GLIBFLAGL)
+model.Cliente:
+	$(CC) $(CFLAGS) -c $(ModelDir)model.Cliente.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 CatCli:
-	$(CC) $(CFLAGS) -c $(ModelDir)CatClientes.c $(GLIBFLAGC) $(GLIBFLAGL) 
+	$(CC) $(CFLAGS) -c $(ModelDir)model.CatClientes.c $(GLIBFLAGC) $(GLIBFLAGL)
 
 Queries:
 	$(CC) $(CFLAGS) -c $(ModelDir)Queries.c $(GLIBFLAGC)  $(GLIBFLAGL)
@@ -44,8 +44,8 @@ Input:
 View:
 	$(CC) $(CFLAGS) -c $(ViewDir)View.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
-Venda:
-	$(CC) $(CFLAGS) -c $(ModelDir)Venda.c $(GLIBFLAGC)  $(GLIBFLAGL)
+model.Venda:
+	$(CC) $(CFLAGS) -c $(ModelDir)model.Venda.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 Faturacao:
 	$(CC) $(CFLAGS) -c $(ModelDir)Faturacao.c $(GLIBFLAGC)  $(GLIBFLAGL)

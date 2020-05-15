@@ -1,3 +1,9 @@
+package model;
+
+import java.util.Objects;
+
+import static java.lang.Boolean.FALSE;
+
 public class Venda {
     private Produto produto;
     private Cliente cliente;
@@ -109,8 +115,8 @@ public class Venda {
 
     public String toString (){
         StringBuilder sb = new StringBuilder();
-        sb.append("Código de Produto ").append(this.produto)
-        .append("\nCódigo de Cliente:").append(this.cliente)
+        sb.append("Código de model.Produto ").append(this.produto)
+        .append("\nCódigo de model.Cliente:").append(this.cliente)
         .append("\nPreco:").append(this.preco)
         .append("\nQuantidade:").append(this.quantidade)
         .append("\nTipo de Compra:").append(this.tipoCompra)
@@ -122,4 +128,24 @@ public class Venda {
     public Venda clone(){
         return new Venda(this);
     }
+
+    public int hashCode() {
+        return Objects.hash(produto);
+    }
+
+    /* Valida uma venda */
+    public boolean validaV(Venda v,CatProds cp,CatClientes cc){
+        if (!((v.preco)>=0.0 && (v.preco)<=999.99))return false;
+        if (!((v.quantidade)>=1 && (v.quantidade)<=200)) return false;
+        if (!((v.tipoCompra=='N') ||(v.tipoCompra=='P'))) return false;
+        if (!((v.mes)>=1 && (v.mes)<=12)) return false;
+        if (!((v.filial)>=1 && (v.filial)<=3)) return false;
+        if (!v.produto.validaProd()) return false;
+        if (!v.cliente.validaCliente()) return false;
+        if (!cp.existeProduto(v.produto)) return false;
+        if (!cc.existeCliente(v.cliente)) return false;
+        return true;
+    }
+
+
 }
