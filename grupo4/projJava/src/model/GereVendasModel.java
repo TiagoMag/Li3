@@ -109,7 +109,7 @@ public class GereVendasModel {
     }
 
     //3)
-    public int quantasComprasFezPMes(String cod){
+    public ParQuerie3 quantasComprasFezPMes(String cod){
         float faturado = 0;
         List<Venda> vendas = this.vendas.getVendas().values().stream().filter(e->e.getCliente().equals(cod)).collect(Collectors.toList());
         ParQuerie3 p = new ParQuerie3();
@@ -117,8 +117,9 @@ public class GereVendasModel {
             int aux = i;
             p.setVenda(aux,(int)vendas.stream().filter(e->e.getMes()==(aux+1)).count());
             p.setProdutos(aux,(int)vendas.stream().filter(e->e.getMes()==(aux+1)).distinct().count());
-            vendas.stream().filter(e->e.getMes()==(aux+1)).map(c->c.getPreco()); // da a lista com o faturado de todas as vendas de determinado mes
+            faturado += vendas.stream().filter(e->e.getMes()==(aux+1)).mapToDouble(c->c.getPreco()).sum();
         }
-
+        p.setTotalFaturado(faturado);
+        return p;
     }
 }
