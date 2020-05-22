@@ -52,4 +52,8 @@ public class Faturacao {
         return new Faturacao(this);
     }
 
+    public boolean existeProduto(Produto p){
+        return this.vendas.containsKey(p);
+    }
+
 }

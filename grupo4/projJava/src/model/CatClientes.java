@@ -16,7 +16,7 @@ public class CatClientes implements Serializable {
         }
 
         public CatClientes(Set<Cliente> clientes){
-            this.clientes = clientes;
+            setClientes(clientes);
         }
 
         public CatClientes(CatClientes cc){
