@@ -1,5 +1,8 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,71 +10,156 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+
 public class GereVendasModel {
-    private Faturacao vendas;
-    private CatProds produtos;
-    private CatClientes clientes;
+    private CatProds catprodutos;
+    private CatClientes catclientes;
+    private Faturacao faturacao;
+    private List<Filial> filiais;
 
     public GereVendasModel() {
-        this.vendas = new Faturacao();
-        this.produtos = new CatProds();
-        this.clientes = new CatClientes();
+        this.faturacao = new Faturacao();
+        this.catprodutos = new CatProds();
+        this.catclientes = new CatClientes();
+        List<Filial> filiais = new ArrayList <> ();
+        int i;
+        for (i=0;i<Constantes.FILIAIS;i++){
+            filiais.add(new Filial ());
+        }
     }
 
-    public GereVendasModel(Faturacao vendas, CatProds produtos, CatClientes clientes) {
-        this.vendas = new Faturacao(vendas.clone());
-        this.produtos = new CatProds(produtos);
-        this.clientes = new CatClientes(clientes);
+    public GereVendasModel(Faturacao faturacao, CatProds catprodutos, CatClientes catclientes,List<Filial>filiais) {
+        this.catprodutos = catprodutos.clone();
+        this.catclientes = catclientes.clone();
+        this.faturacao = faturacao.clone();
+        this.filiais = filiais.stream().map(Filial::clone).collect(Collectors.toList());
     }
 
-    public GereVendasModel(GereVendasModel g){
-        setVendas(g.getVendas());
-        setProdutos(g.getProdutos());
-        setClientes(g.getClientes());
+    public GereVendasModel(GereVendasModel model){
+        this.catclientes=model.getCatClientes();
+        this.catprodutos=model.getCatProdutos();
+        this.faturacao=model.getFaturacao();
+        this.filiais=model.getFiliais();
     }
 
-    public Faturacao getVendas() {
-        return vendas.clone();
+    /**
+     * Getters
+     */
+    public CatProds getCatProdutos() {
+        return catprodutos.clone();
     }
 
-    public void setVendas(Faturacao vendas) {
-        this.vendas = vendas.clone();
+    public CatClientes getCatClientes() {
+        return catclientes.clone();
     }
 
-    public CatProds getProdutos() {
-        return produtos.clone();
+    public Faturacao getFaturacao() {
+        return faturacao.clone();
     }
 
-    public void setProdutos(CatProds produtos) {
-        this.produtos = produtos.clone();
+    public List<Filial> getFiliais() {
+        return filiais.stream().map(Filial::clone).collect(Collectors.toList());
     }
 
-    public CatClientes getClientes() {
-        return clientes.clone();
+    /**
+     * Setters
+     */
+    public void setCatprodutos(CatProds catprodutos) {
+        this.catprodutos = catprodutos.clone();
     }
 
-    public void setClientes(CatClientes clientes) {
-        this.clientes = clientes.clone();
+    public void setCatclientes(CatClientes catclientes) {
+        this.catclientes = catclientes.clone();
     }
 
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GereVendasModel a = (GereVendasModel) o;
-        return this.vendas.equals(a.getVendas())
-                && this.clientes.equals(a.getClientes())
-                && this.produtos.equals(a.getProdutos());
+    public void setFaturacao(Faturacao faturacao) {
+        this.faturacao = faturacao.clone();
     }
 
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.vendas).append(this.clientes).append(this.produtos);
-        return sb.toString();
+    public void setFiliais(List<Filial> filiais) {
+        this.filiais = filiais.stream().map(Filial::clone).collect(Collectors.toList());
     }
 
+    /**
+     * Clone
+     */
     public GereVendasModel clone(){
         return new GereVendasModel(this);
     }
+
+    public void lerFilesProdutos (String filename){
+        BufferedReader inFile = null;
+        String line=null;
+        try{
+            this.catprodutos= new CatProds ();
+            Crono.start();
+            inFile = new BufferedReader(new FileReader(filename));
+            while ((line=inFile.readLine())!=null){
+                this.catprodutos.insereProduto(new Produto(line));
+            }
+            System.out.println("\n[Leitura do ficheiro de produtos]: " + Crono.stop() + " s");
+        }
+        catch(IOException e) {System.out.println(e);}
+    }
+
+    public void lerFilesClientes (String nomeFich){
+        BufferedReader inFile = null; String linha=null;
+        try{
+            this.catclientes = new CatClientes ();
+            Crono.start();
+            inFile = new BufferedReader (new FileReader (nomeFich));
+            while ((linha=inFile.readLine())!=null){
+                this.catclientes.insereCliente(new Cliente(linha));
+            }
+            System.out.println("\n[Leitura do ficheiro de clientes]: " + Crono.stop() + " s");
+        }
+        catch(IOException e) {System.out.println(e);}
+    }
+
+    public Venda linhaToVenda (String linha){
+        String codProd, codCli;
+        char tipoCompra;
+        int mes = 0; int filial=0; int quant=0; float preco=0;
+        String [] campos = linha.split(" ");
+        codProd = campos [0];
+        codCli = campos [4];
+        tipoCompra = campos[3].charAt(0);
+        try{
+            preco = Float.parseFloat(campos[1]);
+            quant = Integer.parseInt(campos[2]);
+            mes = Integer.parseInt(campos[5]);
+            filial = Integer.parseInt(campos[6]);
+        }
+        catch(NumberFormatException e) {return null;}
+
+        Venda v = new Venda(new Produto (codProd),new Cliente (codCli),preco, quant,tipoCompra,mes,filial);
+
+        if(v.validaV(this.catprodutos,this.catclientes)) { return v; }
+        else return null;
+    }
+
+    private void readVendas(String filename){
+        BufferedReader inStream = null;
+        String linha = null;
+
+        int erradas,num_compras_preco_0 ;
+        erradas = num_compras_preco_0 = 0;
+
+        try{
+            inStream = new BufferedReader(new FileReader(filename));
+            while((linha = inStream.readLine()) != null){
+              Venda v = linhaToVenda(linha);
+                if(v!=null){
+                    this.faturacao.insereVenda(v);
+                    this.filiais.get(v.getFilial()-1).insereVenda(v);
+                    if(v.getPreco() == 0) num_compras_preco_0++;
+                }else{erradas++;}
+            }
+        }
+        catch(IOException e){System.out.println(e);};
+    }
+
+
 
 
     //Consultas estatisticas
@@ -84,7 +172,7 @@ public class GereVendasModel {
     /**
      * 1.2
      */
-
+/*
     public int numeroComprasMes(int mes){
         return (int) this.vendas.getVendas().values().stream().filter(e->e.getMes()==(mes)).count();
     }
@@ -122,4 +210,6 @@ public class GereVendasModel {
         p.setTotalFaturado(faturado);
         return p;
     }
+    */
+
 }

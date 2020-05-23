@@ -1,4 +1,4 @@
-package aula1;
+package model;
 
 import static java.lang.System.nanoTime;
 

@@ -1,16 +1,81 @@
 package model;
 
+import java.io.Serializable;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+/**
+ * Classe que representa a faturacao e as operaçoes que
+ * se podem realizar sobre ela
+ *
+ * @author Grupo4
+ * @version 2020
+ */
 
-public class Faturacao {
-    private Map<Produto,Venda> vendas;
+public class Faturacao implements Serializable{
 
+    /* Variáveis de instância */
+    private List<Map<Produto, InfoFat>> faturacao;   /* Lista Meses -> Map( Key : Produto Value : InfoFat ) */
+
+    /**
+     * Construtor vazio da classe
+     */
     public Faturacao() {
-        this.vendas = new HashMap<>();
+        this.faturacao = new ArrayList<>();
+        for (int i = 0; i < Constantes.MESES ; i++) {
+            this.faturacao.add(new HashMap<>());
+        }
     }
+
+    /**
+     * Construtor por cópia
+     */
+    public Faturacao(Faturacao f){
+        this.faturacao = f.getFaturacao();
+    }
+
+    /**
+     * Construtor parametrizado
+     */
+    public Faturacao(List<Map<Produto, InfoFat>> f){
+        this.setFaturacao(f);
+    }
+
+    /**
+     * Getters
+     */
+    public List<Map<Produto, InfoFat>> getFaturacao(){
+        return this.faturacao.stream().map(p->p.entrySet().stream().collect(Collectors.toMap(e->e.getKey().clone(),e->e.getValue().clone()))).collect(Collectors.toList());
+    }
+
+    /**
+     * Setters
+     */
+    public void setFaturacao(List<Map<Produto, InfoFat>> f){
+        this.faturacao = f.stream().map(p->p.entrySet().stream().collect(Collectors.toMap(e->e.getKey().clone(),e->e.getValue().clone()))).collect(Collectors.toList());
+    }
+
+    /**
+     * Clone
+     */
+    public Faturacao clone(){
+        return new Faturacao(this);
+    }
+
+    /**
+     * Adiciona uma venda à faturacao num determinado mes a um dado produto
+     */
+    public void insereVenda(Venda v){
+        if(this.faturacao.get(v.getMes()-1).containsKey(v.getProduto())){ // vê se produto já existe
+            this.faturacao.get(v.getMes()-1).get(v.getProduto()).insereVenda(v.getFilial(),v.getPreco(),v.getQuantidade());
+        } else {  // se não existe cria
+            this.faturacao.get(v.getMes()-1).put(v.getProduto().clone(),new InfoFat());
+            this.faturacao.get(v.getMes()-1).get(v.getProduto()).insereVenda(v.getFilial(),v.getPreco(),v.getQuantidade());
+        }
+    }
+
+
+    /*
 
     public Faturacao(Map<Produto, Venda> vendas) {
         setVendas(vendas);
@@ -55,5 +120,7 @@ public class Faturacao {
     public boolean existeProduto(Produto p){
         return this.vendas.containsKey(p);
     }
+    */
+
 
 }

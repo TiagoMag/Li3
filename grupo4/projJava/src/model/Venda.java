@@ -134,16 +134,16 @@ public class Venda {
     }
 
     /* Valida uma venda */
-    public boolean validaV(Venda v,CatProds cp,CatClientes cc){
-        if (!((v.preco)>=0.0 && (v.preco)<=999.99))return false;
-        if (!((v.quantidade)>=1 && (v.quantidade)<=200)) return false;
-        if (!((v.tipoCompra=='N') ||(v.tipoCompra=='P'))) return false;
-        if (!((v.mes)>=1 && (v.mes)<=12)) return false;
-        if (!((v.filial)>=1 && (v.filial)<=3)) return false;
-        if (!v.produto.validaProd()) return false;
-        if (!v.cliente.validaCliente()) return false;
-        if (!cp.existeProduto(v.produto)) return false;
-        if (!cc.existeCliente(v.cliente)) return false;
+    public boolean validaV(CatProds cp,CatClientes cc){
+        if (!((this.preco)>=0.0 && (this.preco)<=999.99))return false;
+        if (!((this.quantidade)>=1 && (this.quantidade)<=200)) return false;
+        if (!((this.tipoCompra=='N') ||(this.tipoCompra=='P'))) return false;
+        if (!((this.mes)>=1 && (this.mes)<=12)) return false;
+        if (!((this.filial)>=1 && (this.filial)<=3)) return false;
+        if (!this.produto.validaProd()) return false;
+        if (!this.cliente.validaCliente()) return false;
+        if (!cp.existeProduto(this.produto)) return false;
+        if (!cc.existeCliente(this.cliente)) return false;
         return true;
     }
 
