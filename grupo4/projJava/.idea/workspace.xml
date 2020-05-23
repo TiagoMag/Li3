@@ -20,27 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="228123e1-d4b4-4312-9813-0ce5e2cc51cc" name="Default Changelist" comment="Kill me">
-      <change afterPath="$PROJECT_DIR$/.idea/LI3trabalho.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16__Default_Changelist_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/model/GereVendasModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/model/GereVendasModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/aula1/Crono.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/ficheiros/Clientes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/ficheiros/Produtos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16_[Default_Changelist]1/shelved.patch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/ficheiros/Vendas_1M.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/CatClientes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/CatProds.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Cliente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Faturacao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Produto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Venda.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +36,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1bUPtMjCkZAY4eWidwNfYa1jFCP" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -72,8 +53,8 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -99,6 +80,7 @@
       <workItem from="1590185612056" duration="253000" />
       <workItem from="1590185874074" duration="164000" />
       <workItem from="1590186089679" duration="98000" />
+      <workItem from="1590253144306" duration="128000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionada classe Venda.java">
       <created>1588952371364</created>
@@ -132,19 +114,20 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adicionada classe Venda.java" />
@@ -160,18 +143,24 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1085" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590166042135" />
+    <state x="792" y="391" width="326" height="207" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1590253151960">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="792" y="391" width="326" height="207" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590253151960" />
     <state x="804" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590166769327">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="804" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590166769327" />
-    <state x="939" y="257" key="FileChooserDialogImpl" timestamp="1590185489917">
-      <screen x="0" y="0" width="2560" height="1040" />
+    <state x="703" y="247" width="956" height="571" key="FileChooserDialogImpl" timestamp="1590253184531">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="703" y="247" width="956" height="571" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1590253184531" />
     <state x="939" y="257" key="FileChooserDialogImpl/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590185489917" />
     <state x="939" y="257" key="FileChooserDialogImpl/0.0.2560.1040/-1920.76.1920.1040@0.0.2560.1040" timestamp="1588685038098" />
-    <state x="883" y="91" key="SettingsEditor" timestamp="1590186186301">
-      <screen x="0" y="0" width="2560" height="1040" />
+    <state x="658" y="15" width="1026" height="836" key="SettingsEditor" timestamp="1590253233190">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="658" y="15" width="1026" height="836" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1590253233190" />
     <state x="883" y="91" key="SettingsEditor/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590186186301" />
     <state x="872" y="252" key="Vcs.Push.Dialog.v2" timestamp="1590168244767">
       <screen x="0" y="0" width="2560" height="1040" />
