@@ -1,8 +1,6 @@
-package model;
+package model.Faturacao;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public interface IFaturacao extends Serializable {
 
@@ -22,7 +20,7 @@ public interface IFaturacao extends Serializable {
 
     /**
      * Cria uma cópia da instância de Cliente que invoca o método.
-     * @return Faturacao
+     * @return model.Faturacao.Faturacao
      */
     public Faturacao clone();
 

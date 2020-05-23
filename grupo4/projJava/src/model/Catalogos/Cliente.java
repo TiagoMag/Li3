@@ -1,4 +1,4 @@
-package model;
+package model.Catalogos;
 
 import java.util.Objects;
 
@@ -49,7 +49,7 @@ public class Cliente {
 
     public String toString (){
         StringBuilder sb = new StringBuilder();
-        sb.append("Código de model.Cliente: "); sb.append(this.codigo + "\n");
+        sb.append("Código de model.Catalogos.Cliente: "); sb.append(this.codigo + "\n");
           return this.codigo;
     }
 

@@ -1,4 +1,8 @@
-package model;
+package model.Faturacao;
+
+import Common.Constantes;
+import model.Catalogos.Produto;
+import model.Venda;
 
 import java.io.Serializable;
 import java.util.*;
@@ -77,11 +81,11 @@ public class Faturacao implements Serializable{
 
     /*
 
-    public Faturacao(Map<Produto, Venda> vendas) {
+    public model.Faturacao.Faturacao(Map<Produto, Venda> vendas) {
         setVendas(vendas);
     }
 
-    public Faturacao(Faturacao f) {
+    public model.Faturacao.Faturacao(model.Faturacao.Faturacao f) {
         setVendas(f.getVendas());
     }
 
@@ -103,7 +107,7 @@ public class Faturacao implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Faturacao a = (Faturacao) o;
+        model.Faturacao.Faturacao a = (model.Faturacao.Faturacao) o;
         return this.vendas.equals(a.getVendas());
     }
 
@@ -113,8 +117,8 @@ public class Faturacao implements Serializable{
         return sb.toString();
     }
 
-    public Faturacao clone(){
-        return new Faturacao(this);
+    public model.Faturacao.Faturacao clone(){
+        return new model.Faturacao.Faturacao(this);
     }
 
     public boolean existeProduto(Produto p){

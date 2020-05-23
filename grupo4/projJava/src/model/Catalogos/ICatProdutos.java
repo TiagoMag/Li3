@@ -1,4 +1,4 @@
-package model;
+package model.Catalogos;
 
 
 import java.util.Set;

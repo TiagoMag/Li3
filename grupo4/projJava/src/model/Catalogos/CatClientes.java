@@ -1,4 +1,4 @@
-package model;
+package model.Catalogos;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -47,7 +47,7 @@ public class CatClientes implements Serializable {
 
         @Override
         public String toString() {
-            return "model.CatClientes{" +
+            return "model.Catalogos.CatClientes{" +
                     "clientes=" + clientes +
                     '}';
         }

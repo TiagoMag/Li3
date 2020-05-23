@@ -1,4 +1,7 @@
-package model;
+package model.Filial;
+
+import model.Catalogos.Cliente;
+import model.Venda;
 
 import java.util.*;
 import java.util.stream.Collectors;

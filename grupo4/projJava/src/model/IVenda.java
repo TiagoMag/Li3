@@ -1,6 +1,11 @@
 package model;
 
 
+import model.Catalogos.CatClientes;
+import model.Catalogos.CatProds;
+import model.Catalogos.Cliente;
+import model.Catalogos.Produto;
+
 public interface IVenda {
 
     /**
@@ -130,7 +135,7 @@ public interface IVenda {
      * @return boolean
      *
      */
-    public boolean validaV(Venda v,CatProds cp,CatClientes cc);
+    public boolean validaV(Venda v, CatProds cp, CatClientes cc);
 
 
 }

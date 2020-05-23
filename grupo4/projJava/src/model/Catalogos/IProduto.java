@@ -1,6 +1,4 @@
-package model;
-
-import java.util.Objects;
+package model.Catalogos;
 
 import static java.lang.Integer.parseInt;
 

@@ -1,13 +1,17 @@
-package model;
+import model.Catalogos.Produto;
+import Common.Constantes;
+import model.Catalogos.CatClientes;
+import model.Catalogos.CatProds;
+import model.Catalogos.Cliente;
+import model.Faturacao.Faturacao;
+import model.Filial.Filial;
+import model.Venda;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -23,7 +27,7 @@ public class GereVendasModel {
         this.catclientes = new CatClientes();
         List<Filial> filiais = new ArrayList <> ();
         int i;
-        for (i=0;i<Constantes.FILIAIS;i++){
+        for (i=0; i< Constantes.FILIAIS; i++){
             filiais.add(new Filial ());
         }
     }
@@ -91,7 +95,7 @@ public class GereVendasModel {
         BufferedReader inFile = null;
         String line=null;
         try{
-            this.catprodutos= new CatProds ();
+            this.catprodutos= new CatProds();
             Crono.start();
             inFile = new BufferedReader(new FileReader(filename));
             while ((line=inFile.readLine())!=null){
@@ -132,7 +136,7 @@ public class GereVendasModel {
         }
         catch(NumberFormatException e) {return null;}
 
-        Venda v = new Venda(new Produto (codProd),new Cliente (codCli),preco, quant,tipoCompra,mes,filial);
+        Venda v = new Venda(new Produto(codProd),new Cliente(codCli),preco, quant,tipoCompra,mes,filial);
 
         if(v.validaV(this.catprodutos,this.catclientes)) { return v; }
         else return null;
@@ -159,6 +163,21 @@ public class GereVendasModel {
         catch(IOException e){System.out.println(e);};
     }
 
+    public String [] lerConfigs(){
+        BufferedReader inFile=null;
+        String linha=null;
+        String [] configs = new String [4];
+        int i=0;
+        try{
+            inFile = new BufferedReader (new FileReader (Constantes.CONFIGS_FILE_NAME));
+            while((linha=inFile.readLine())!=null && i<4){
+                configs[i++]=linha;
+            }
+        }
+        catch(IOException e) {System.out.println(e);}
+
+        return configs;
+    }
 
 
 
