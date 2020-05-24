@@ -1,5 +1,3 @@
-package aula1;
-
 import static java.lang.System.nanoTime;
 
 public class Crono {

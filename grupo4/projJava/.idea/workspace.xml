@@ -20,32 +20,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="228123e1-d4b4-4312-9813-0ce5e2cc51cc" name="Default Changelist" comment="Kill me">
-      <change afterPath="$PROJECT_DIR$/.idea/LI3trabalho.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16__Default_Changelist_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/model/GereVendasModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/model/GereVendasModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/aula1/Crono.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/ficheiros/Clientes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/ficheiros/Produtos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16_[Default_Changelist]1/shelved.patch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/ficheiros/Vendas_1M.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2020_23_16_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/CatClientes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/CatProds.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Cliente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Faturacao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Produto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LI3trabalho/model/Venda.class" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GereVendasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ficheiros/Clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ficheiros/Clientes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ficheiros/Produtos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ficheiros/Produtos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ficheiros/Vendas_1M.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ficheiros/Vendas_1M.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/CatClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/CatClientes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/CatProds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/CatProds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Crono.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Crono.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Faturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Faturacao/Faturacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Filial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Filial/Filial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GereVendasController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GereVendasModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GereVendasModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GereVendasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GereVendasView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ICatClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/ICatClientes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ICatProdutos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/ICatProdutos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ICliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/ICliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/IFaturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Faturacao/IFaturacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/IFilial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Filial/IFilial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/IProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/IProduto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/IVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/IVenda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/InfoFat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Faturacao/InfoFat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/InfoFilial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Filial/InfoFilial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ParQuerie2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Queries/ParQuerie2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ParQuerie3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Queries/ParQuerie3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Catalogos/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Venda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Venda.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="projJava" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,10 +65,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1bUPtMjCkZAY4eWidwNfYa1jFCP" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -72,8 +82,14 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -99,6 +115,7 @@
       <workItem from="1590185612056" duration="253000" />
       <workItem from="1590185874074" duration="164000" />
       <workItem from="1590186089679" duration="98000" />
+      <workItem from="1590253144306" duration="20330000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionada classe Venda.java">
       <created>1588952371364</created>
@@ -132,19 +149,20 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adicionada classe Venda.java" />
@@ -156,27 +174,42 @@
     <option name="LAST_COMMIT_MESSAGE" value="Kill me" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1085" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1590166042135">
-      <screen x="0" y="0" width="2560" height="1040" />
+    <state x="810" y="164" width="376" height="591" key="#com.intellij.ide.util.MemberChooser" timestamp="1590268119068">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="810" y="164" width="376" height="591" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1590268119068" />
     <state x="1085" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590166042135" />
+    <state x="792" y="391" width="326" height="207" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1590253151960">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="792" y="391" width="326" height="207" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590253151960" />
     <state x="804" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590166769327">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="804" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590166769327" />
-    <state x="939" y="257" key="FileChooserDialogImpl" timestamp="1590185489917">
-      <screen x="0" y="0" width="2560" height="1040" />
+    <state x="692" y="248" width="526" height="492" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590254274773">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="692" y="248" width="526" height="492" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590254274773" />
+    <state x="703" y="247" width="956" height="571" key="FileChooserDialogImpl" timestamp="1590253184531">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="703" y="247" width="956" height="571" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1590253184531" />
     <state x="939" y="257" key="FileChooserDialogImpl/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590185489917" />
     <state x="939" y="257" key="FileChooserDialogImpl/0.0.2560.1040/-1920.76.1920.1040@0.0.2560.1040" timestamp="1588685038098" />
-    <state x="883" y="91" key="SettingsEditor" timestamp="1590186186301">
-      <screen x="0" y="0" width="2560" height="1040" />
+    <state x="657" y="-5" width="1026" height="836" key="SettingsEditor" timestamp="1590265795107">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="657" y="-5" width="1026" height="836" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1590265795107" />
     <state x="883" y="91" key="SettingsEditor/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590186186301" />
     <state x="872" y="252" key="Vcs.Push.Dialog.v2" timestamp="1590168244767">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="872" y="252" key="Vcs.Push.Dialog.v2/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590168244767" />
+    <state x="623" y="189" width="664" height="611" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590253700692">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="189" width="664" height="611" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1590253700692" />
     <state x="1212" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590185787891">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
