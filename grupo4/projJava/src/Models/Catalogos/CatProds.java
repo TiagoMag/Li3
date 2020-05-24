@@ -1,4 +1,4 @@
-package model.Catalogos;
+package Models.Catalogos;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -39,11 +39,6 @@ public class CatProds implements Serializable {
         return Objects.equals(produtos, catProds.produtos);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(produtos);
-
-    }
 
     @Override
     public String toString() {

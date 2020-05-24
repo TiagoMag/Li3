@@ -1,16 +1,17 @@
-import model.Catalogos.Produto;
+import Models.Catalogos.Produto;
 import Common.Constantes;
-import model.Catalogos.CatClientes;
-import model.Catalogos.CatProds;
-import model.Catalogos.Cliente;
-import model.Faturacao.Faturacao;
-import model.Filial.Filial;
-import model.Venda;
+import Models.Catalogos.CatClientes;
+import Models.Catalogos.CatProds;
+import Models.Catalogos.Cliente;
+import Models.Faturacao.Faturacao;
+import Models.Filial.Filial;
+import Models.Venda;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +26,11 @@ public class GereVendasModel {
         this.faturacao = new Faturacao();
         this.catprodutos = new CatProds();
         this.catclientes = new CatClientes();
-        List<Filial> filiais = new ArrayList <> ();
-        int i;
-        for (i=0; i< Constantes.FILIAIS; i++){
-            filiais.add(new Filial ());
+        List<Filial> fl = new ArrayList <> ();
+        for (int i=0; i< Constantes.FILIAIS; i++){
+            fl.add(new Filial ());
         }
+        this.filiais=fl;
     }
 
     public GereVendasModel(Faturacao faturacao, CatProds catprodutos, CatClientes catclientes,List<Filial>filiais) {
@@ -142,23 +143,30 @@ public class GereVendasModel {
         else return null;
     }
 
-    private void readVendas(String filename){
-        BufferedReader inStream = null;
+    public void lerVendas(String filename){
+        BufferedReader inFile = null;
         String linha = null;
 
         int erradas,num_compras_preco_0 ;
         erradas = num_compras_preco_0 = 0;
 
         try{
-            inStream = new BufferedReader(new FileReader(filename));
-            while((linha = inStream.readLine()) != null){
+            Crono.start();
+            inFile= new BufferedReader(new FileReader(filename));
+            int x=0;
+            while((linha = inFile.readLine()) != null){
               Venda v = linhaToVenda(linha);
                 if(v!=null){
+                    x++;
                     this.faturacao.insereVenda(v);
-                    this.filiais.get(v.getFilial()-1).insereVenda(v);
+                    Filial f=this.filiais.get(v.getFilial()-1);
+                    f.insereVenda(v);
                     if(v.getPreco() == 0) num_compras_preco_0++;
                 }else{erradas++;}
             }
+            System.out.println("\n[Leitura do ficheiro de vendas]: " + Crono.stop() + " s");
+            System.out.println("\n[Linhas lidas]: " + x);
+            System.out.println("\n[Linhas  erradas: " + erradas);
         }
         catch(IOException e){System.out.println(e);};
     }

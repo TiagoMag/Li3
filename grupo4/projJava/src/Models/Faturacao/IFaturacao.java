@@ -1,4 +1,4 @@
-package model.Faturacao;
+package Models.Faturacao;
 
 import java.io.Serializable;
 

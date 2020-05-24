@@ -1,10 +1,10 @@
-package model;
+package Models;
 
 
-import model.Catalogos.CatClientes;
-import model.Catalogos.CatProds;
-import model.Catalogos.Cliente;
-import model.Catalogos.Produto;
+import Models.Catalogos.CatClientes;
+import Models.Catalogos.CatProds;
+import Models.Catalogos.Cliente;
+import Models.Catalogos.Produto;
 
 public interface IVenda {
 

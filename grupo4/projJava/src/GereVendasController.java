@@ -27,14 +27,27 @@ public class GereVendasController {
             x=Input.lerInt();
             switch(x) {
                 case 1:
-                    this.handlerQueriesEstatisticas();
+                    this.readFiles();
                     break;
-                case 2:
-                    this.handlerQueriesInterativas();
-                    break;
-
             }
         }while(x!=0);
     }
+
+    public void readFiles(){
+        int x=0;
+        do{
+           String[] configs = this.model.lerConfigs(); // retira ficheiros do configs.data
+            this.view.showMenuFiles();
+            x=Input.lerInt();  // lê input do cliente
+            switch(x) {
+                case 1:
+                    this.model.lerFilesProdutos(configs[0]); // carrega o catálogo de produtos
+                    this.model.lerFilesClientes(configs[1]); // carrega o catálogo de clientes
+                    this.model.lerVendas(configs[2]); // carrega as filiais e a faturação
+                    break;
+            }
+        }while(x!=0);
+    }
+
 
 }

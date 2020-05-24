@@ -1,4 +1,4 @@
-package model.Filial;
+package Models.Filial;
 
 public interface IFilial {
 }

@@ -1,6 +1,6 @@
-package model.Filial;
+package Models.Filial;
 
-import model.Catalogos.Produto;
+import Models.Catalogos.Produto;
 
 public class InfoFilial {
 

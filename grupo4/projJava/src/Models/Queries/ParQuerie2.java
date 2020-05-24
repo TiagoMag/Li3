@@ -1,4 +1,4 @@
-package model.Queries;
+package Models.Queries;
 
 public class ParQuerie2 {
     private int nrVendas;

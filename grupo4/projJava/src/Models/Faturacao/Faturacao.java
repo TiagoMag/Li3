@@ -1,8 +1,8 @@
-package model.Faturacao;
+package Models.Faturacao;
 
 import Common.Constantes;
-import model.Catalogos.Produto;
-import model.Venda;
+import Models.Catalogos.Produto;
+import Models.Venda;
 
 import java.io.Serializable;
 import java.util.*;

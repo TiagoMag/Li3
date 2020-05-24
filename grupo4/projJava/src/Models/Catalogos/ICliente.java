@@ -1,6 +1,4 @@
-package model.Catalogos;
-
-import model.Catalogos.Cliente;
+package Models.Catalogos;
 
 import java.io.Serializable;
 

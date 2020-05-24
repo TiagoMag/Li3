@@ -1,11 +1,12 @@
-package model.Catalogos;
+package Models.Catalogos;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 import static java.lang.Character.isLetter;
 import static java.lang.Integer.parseInt;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
 
     private String codigo;
 
@@ -47,6 +48,11 @@ public class Cliente {
         return this.codigo.hashCode();
     }
 
+    @Override
+    public int compareTo(Cliente c) {
+        return this.codigo.compareTo(c.getCodigo());
+    }
+
     public String toString (){
         StringBuilder sb = new StringBuilder();
         sb.append("Código de model.Catalogos.Cliente: "); sb.append(this.codigo + "\n");
@@ -63,7 +69,11 @@ public class Cliente {
     public boolean validaCliente(){
         if (!isLetter(this.codigo.charAt(0))) return false;
         if (!(this.codigo.charAt(0) >='A' && this.codigo.charAt(0)<='Z')) return false;
-        if (!(parseInt(this.codigo+1)>=1000) && parseInt(this.codigo+1)<=5000) return false;
+
+        try{
+            if (!((Integer.parseInt(this.codigo.substring(1)))>=1000) && (Integer.parseInt(this.codigo.substring(1)))<=5000) return false;
+        } catch(NumberFormatException e) {return false;}
+
         return true;
     }
 

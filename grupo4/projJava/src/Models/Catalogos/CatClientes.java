@@ -1,4 +1,4 @@
-package model.Catalogos;
+package Models.Catalogos;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,7 +26,6 @@ public class CatClientes implements Serializable {
         public Set <Cliente> getClientes(){
             return this.clientes.stream().map(Cliente::clone).collect(Collectors.toSet());
         }
-
 
         public void setClientes (Set <Cliente> catp){
             this.clientes=catp.stream().map(Cliente::clone).collect(Collectors.toSet());
