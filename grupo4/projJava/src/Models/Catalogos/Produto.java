@@ -1,30 +1,39 @@
-package model.Catalogos;
+package Models.Catalogos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-import static java.lang.Character.isLetter;
-import static java.lang.Integer.parseInt;
 
-public class Produto {
+public class Produto implements Serializable,Comparable<IProduto>,IProduto {
 
     private String codigo;
 
+    /**
+     * Construtor por omissão da classe Produto
+     *
+     * @return um objeto produto vazio
+     */
     public Produto(){
-        this.codigo= new String();
+        this.codigo = "";
     }
-
-
+    /**
+     * Construtor parâmeterizado da classe produto
+     * @param codigo Codigo de Produto
+     * @return novo objeto produto definido com os parametros
+     */
     public Produto(String codigo) {
         this.codigo = codigo;
 
     }
-
-    public Produto(Produto a){
+    /**
+     * Construtor por objetos da classe produto
+     * @param a objeto a copiar
+     * @return novo produto vazio
+     */
+    public Produto(IProduto a){
         this.setCodigo(a.getCodigo());
     }
 
-
-    /*getter e setter*/
     public String getCodigo() {
         return codigo;
     }
@@ -42,10 +51,6 @@ public class Produto {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(codigo);
-    }
-
     public String toString (){
         StringBuilder sb = new StringBuilder();
         sb.append("Código de model.Catalogos.Produto "); sb.append(this.codigo + "\n");
@@ -53,19 +58,33 @@ public class Produto {
     }
 
 
-    public Produto clone(){
+    public IProduto clone(){
         return new Produto(this);
     }
 
 
 
-    public boolean validaProd(){
-        if (!Character.isLetter((this.codigo.charAt(0))) && Character.isLetter(this.codigo.charAt(0))) return false;
-        if (!(this.codigo.charAt(0)>='A' && this.codigo.charAt(0)<='Z' && this.codigo.charAt(1)>='A' && this.codigo.charAt(1)<='Z')) return false;
-        if (!(parseInt(this.codigo+2)>=1000) && parseInt(this.codigo+2)<=9999) return false;
-        return true;
+
+    public int hashCode (){
+        return this.codigo.hashCode();
+    }
+
+    @Override
+    public int compareTo(IProduto p) {
+        return this.codigo.compareTo(p.getCodigo());
     }
 
 
+    public boolean validaProd(){
+        if (!Character.isLetter((this.codigo.charAt(0))) && Character.isLetter(this.codigo.charAt(0))) return false;
+        if (!(this.codigo.charAt(0)>='A' && this.codigo.charAt(0)<='Z' && this.codigo.charAt(1)>='A' && this.codigo.charAt(1)<='Z')) return false;
 
+        try {
+
+            if (!((Integer.parseInt(this.codigo.substring(2))) >= 1000) && (Integer.parseInt(this.codigo.substring(2))) <= 9999) return false;
+        }
+        catch(NumberFormatException e) {return false;}
+
+        return true;
+    }
 }

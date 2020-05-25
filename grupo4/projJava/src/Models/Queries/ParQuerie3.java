@@ -1,4 +1,4 @@
-package model.Queries;
+package Models.Queries;
 
 import java.util.ArrayList;
 import java.util.List;

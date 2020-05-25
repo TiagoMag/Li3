@@ -11,5 +11,5 @@ public class Constantes
 
     public static final int MESES = 12;
     public static int FILIAIS = 3;
-    public static String CONFIGS_FILE_NAME="configs.txt";
+    public static String CONFIGS_FILE_NAME="ficheiros/Configs.data";
 }

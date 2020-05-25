@@ -1,6 +1,12 @@
-package model.Faturacao;
+package Models.Faturacao;
 
+import Models.Catalogos.IProduto;
+import Models.Catalogos.Produto;
+import Models.Venda;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+
 
 public interface IFaturacao extends Serializable {
 
@@ -22,11 +28,24 @@ public interface IFaturacao extends Serializable {
      * Cria uma cópia da instância de Cliente que invoca o método.
      * @return model.Faturacao.Faturacao
      */
-    public Faturacao clone();
+    public List<Map<IProduto, InfoFat>> getFaturacao();
 
+    /**
+     * @param f
+     *
+     */
+    public void setFaturacao(List<Map<Produto, InfoFat>> f);
 
+    /**
+     * Clone
+     */
+    public IFaturacao clone();
 
-
-
+    /**
+     * Adiciona uma venda à faturacao num determinado mes a um dado produto
+     * @param  v
+     *
+     */
+    public void insereVenda(Venda v);
 
 }

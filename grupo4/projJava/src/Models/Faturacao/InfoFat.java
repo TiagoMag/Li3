@@ -1,4 +1,4 @@
-package model.Faturacao;
+package Models.Faturacao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class InfoFat implements Serializable {
      */
     public void insereVenda(int filial,float preco,int quantidade){
         if(this.fat.containsKey(filial)){                                     // Se filial tiver info adiciona
-            this.fat.get(filial-1).add(new SimpleEntry<>(quantidade,preco));
+            this.fat.get(filial).add(new SimpleEntry<>(quantidade,preco));
         }
         else {
             List<SimpleEntry<Integer,Float>> list = new ArrayList<>();  // Se filial ñ tiver info

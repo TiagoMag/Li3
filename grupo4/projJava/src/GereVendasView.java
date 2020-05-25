@@ -1,10 +1,11 @@
-import View.Menu;
+import Views.Menu;
 
 public class GereVendasView {
 
         private Menu menuPrincipal;
         private Menu menuQueriesEstatisticas;
         private Menu menuQueriesInterativas;
+        private Menu menuReadFiles;
         private Menu atual;
 
         /**
@@ -12,6 +13,7 @@ public class GereVendasView {
          */
         public GereVendasView(){
             String[] principal = {
+                    "Ler ficheiros;",
                     "Consultas estatísticas;",
                     "Consultas interativas.",
             };
@@ -32,9 +34,14 @@ public class GereVendasView {
                     "Dados gerais das estruturas."
             };
 
+            String[] readFiles = {
+                    "Ler ficheiros default(configs)"
+            };
+
             this.menuPrincipal = new Menu(principal);
             this.menuQueriesEstatisticas = new Menu(queriesestatisticas);
             this.menuQueriesInterativas = new Menu(queriesinterativas);
+            this.menuReadFiles = new Menu(readFiles);
 
         }
 
@@ -43,19 +50,24 @@ public class GereVendasView {
          */
         public void run(){
             this.atual = this.menuPrincipal;
+            this.atual.showMenu();
         }
         /**
          * Executa menu queries estatísticas.
          */
-        public void runQueriesEstatisticas() {
+        public void showQueriesEstatisticas() {
             this.atual = this.menuQueriesEstatisticas;
         }
 
+        public void showMenuFiles() {
+            this.atual = this.menuReadFiles;
+            this.atual.showMenu();
+        }
 
         /**
          * Executa menu de queries interativas.
          */
-        public void runQueriesInterativas(){
+        public void showQueriesInterativas(){
             this.atual = this.menuQueriesInterativas;
         }
 

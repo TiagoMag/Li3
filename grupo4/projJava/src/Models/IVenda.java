@@ -1,10 +1,7 @@
-package model;
+package Models;
 
 
-import model.Catalogos.CatClientes;
-import model.Catalogos.CatProds;
-import model.Catalogos.Cliente;
-import model.Catalogos.Produto;
+import Models.Catalogos.*;
 
 public interface IVenda {
 
@@ -14,7 +11,7 @@ public interface IVenda {
      *
      */
 
-    public Produto getProduto();
+    IProduto getProduto();
 
     /**
      * Insere Produto numa venda
@@ -23,7 +20,7 @@ public interface IVenda {
      *
      */
 
-    public void setProduto(Produto produto);
+    void setProduto(IProduto produto);
 
     /**
      * Retorna Cliente da venda
@@ -31,7 +28,7 @@ public interface IVenda {
      *
      */
 
-    public Cliente getCliente();
+    ICliente getCliente();
 
     /**
      * Insere cliente na venda
@@ -40,14 +37,14 @@ public interface IVenda {
      *
      */
 
-    public void setCliente(Cliente cliente);
+    void setCliente(ICliente cliente);
 
     /**
      * Retorna valor da venda
      * @return float
      *
      */
-    public float getPreco();
+    float getPreco();
 
     /**
      * Adiciona valor à venda
@@ -55,7 +52,7 @@ public interface IVenda {
      * @return void
      *
      */
-    public void setPreco(float preco);
+    void setPreco(float preco);
 
 
     /**
@@ -63,7 +60,7 @@ public interface IVenda {
      * @return int
      *
      */
-    public int getQuantidade();
+    int getQuantidade();
 
     /**
      * Adiciona quantidade vendida à venda
@@ -72,7 +69,7 @@ public interface IVenda {
      *
      */
 
-    public void setQuantidade(int quantidade);
+    void setQuantidade(int quantidade);
 
 
     /**
@@ -80,7 +77,7 @@ public interface IVenda {
      * @return char
      *
      */
-    public char getTipoCompra();
+    char getTipoCompra();
 
 
     /**
@@ -88,14 +85,14 @@ public interface IVenda {
      * @return void
      *
      */
-    public void setTipoCompra(char tipoCompra);
+    void setTipoCompra(char tipoCompra);
 
     /**
      * Indica mes da venda
      * @return int
      *
      */
-    public int getMes();
+    int getMes();
 
 
     /**
@@ -103,7 +100,7 @@ public interface IVenda {
      * @return void
      *
      */
-    public void setMes(int mes);
+    void setMes(int mes);
 
 
     /**
@@ -111,7 +108,7 @@ public interface IVenda {
      * @return int
      *
      */
-    public int getFilial();
+    int getFilial();
 
 
     /**
@@ -119,14 +116,14 @@ public interface IVenda {
      * @return int
      *
      */
-    public void setFilial(int filial);
+    void setFilial(int filial);
 
 
     /**
      * Cria uma cópia da instância de Venda que invoca o método.
      * @return Cópia da Venda.
      */
-    public Venda clone();
+    IVenda clone();
 
 
     /**
@@ -135,7 +132,7 @@ public interface IVenda {
      * @return boolean
      *
      */
-    public boolean validaV(Venda v, CatProds cp, CatClientes cc);
+    boolean validaV(ICatProdutos cp, ICatClientes cc);
 
 
 }

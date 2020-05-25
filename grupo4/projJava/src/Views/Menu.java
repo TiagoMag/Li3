@@ -1,8 +1,7 @@
-package View;
+package Views;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.Serializable;
 
 public class Menu implements Serializable
