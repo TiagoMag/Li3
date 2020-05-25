@@ -6,32 +6,57 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class CatClientes implements Serializable {
+/**
+ * Classe representativa do cátalogo de clientes
+ *
+ * @author Grupo4
+ * @version 2020
+ */
 
 
-        private Set<Cliente> clientes;
+public class CatClientes implements Serializable, ICatClientes {
+
+
+        private Set<ICliente> clientes;
+
+        /**
+        * Construtor vazio da classe CatClientes
+        * @return novo objeto com todas as variaveis vazias
+        */
 
         public CatClientes(){
-            this.clientes = new TreeSet<Cliente>();
+            this.clientes = new TreeSet<ICliente>();
         }
 
-        public CatClientes(Set<Cliente> clientes){
+        /**
+        * Construtor parâmeterizado da classe CatClientes
+        * @param clientes
+        * @return objeto definido com os parametros
+        */
+
+        public CatClientes(Set<ICliente> clientes){
             setClientes(clientes);
         }
 
+        /**
+        * Construtor parâmeterizado da classe produto
+        * @param cc Catalogo de Clientes
+        * @return novo objeto produto definido com os parametros
+        */
         public CatClientes(CatClientes cc){
             setClientes(cc.getClientes());
         }
 
-        public Set <Cliente> getClientes(){
-            return this.clientes.stream().map(Cliente::clone).collect(Collectors.toSet());
+
+        public Set <ICliente> getClientes(){
+            return this.clientes.stream().map(ICliente::clone).collect(Collectors.toSet());
         }
 
-        public void setClientes (Set <Cliente> catp){
-            this.clientes=catp.stream().map(Cliente::clone).collect(Collectors.toSet());
+        public void setClientes (Set <ICliente> catp){
+            this.clientes=catp.stream().map(ICliente::clone).collect(Collectors.toSet());
         }
 
-        @Override
+
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
@@ -39,34 +64,31 @@ public class CatClientes implements Serializable {
             return Objects.equals(clientes, catCli.clientes);
         }
 
-        @Override
+
         public int hashCode() {
             return Objects.hash(clientes);
         }
 
-        @Override
+
         public String toString() {
             return "model.Catalogos.CatClientes{" +
                     "clientes=" + clientes +
                     '}';
         }
 
-    public CatClientes clone(){
+        public CatClientes clone(){
         return new CatClientes(this);
-    }
+        }
 
-
-    /*metodos*/
-
-        public boolean existeCliente (Cliente p){
+        public boolean existeCliente (ICliente p){
             return this.clientes.contains(p);
         }
 
-        public void insereCliente (Cliente p){
+        public void insereCliente (ICliente p){
             this.clientes.add(p.clone());
         }
 
-        public int numeroProdutos (){
+        public int numeroClientes(){
             return this.clientes.size();
         }
     }

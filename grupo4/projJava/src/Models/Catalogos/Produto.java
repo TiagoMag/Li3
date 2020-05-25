@@ -1,30 +1,39 @@
 package Models.Catalogos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-import static java.lang.Character.isLetter;
-import static java.lang.Integer.parseInt;
 
-public class Produto implements Comparable<Produto>{
+public class Produto implements Serializable,Comparable<IProduto>,IProduto {
 
     private String codigo;
 
+    /**
+     * Construtor por omissão da classe Produto
+     *
+     * @return um objeto produto vazio
+     */
     public Produto(){
-        this.codigo= new String();
+        this.codigo = "";
     }
-
-
+    /**
+     * Construtor parâmeterizado da classe produto
+     * @param codigo Codigo de Produto
+     * @return novo objeto produto definido com os parametros
+     */
     public Produto(String codigo) {
         this.codigo = codigo;
 
     }
-
-    public Produto(Produto a){
+    /**
+     * Construtor por objetos da classe produto
+     * @param a objeto a copiar
+     * @return novo produto vazio
+     */
+    public Produto(IProduto a){
         this.setCodigo(a.getCodigo());
     }
 
-
-    /*getter e setter*/
     public String getCodigo() {
         return codigo;
     }
@@ -41,7 +50,7 @@ public class Produto implements Comparable<Produto>{
         return Objects.equals(codigo, produto.codigo);
     }
 
-
+    @Override
     public String toString (){
         StringBuilder sb = new StringBuilder();
         sb.append("Código de model.Catalogos.Produto "); sb.append(this.codigo + "\n");
@@ -49,8 +58,20 @@ public class Produto implements Comparable<Produto>{
     }
 
 
-    public Produto clone(){
+    public IProduto clone(){
         return new Produto(this);
+    }
+
+
+
+
+    public int hashCode (){
+        return this.codigo.hashCode();
+    }
+
+    @Override
+    public int compareTo(IProduto p) {
+        return this.codigo.compareTo(p.getCodigo());
     }
 
 
@@ -65,14 +86,5 @@ public class Produto implements Comparable<Produto>{
         catch(NumberFormatException e) {return false;}
 
         return true;
-    }
-
-    public int hashCode (){
-        return this.codigo.hashCode();
-    }
-
-    @Override
-    public int compareTo(Produto p) {
-        return this.codigo.compareTo(p.getCodigo());
     }
 }

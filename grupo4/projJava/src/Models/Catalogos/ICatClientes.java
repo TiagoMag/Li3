@@ -5,20 +5,20 @@ import java.util.Set;
 
 
 /**
- * Interface correspondente ao catalogo de clientes.
+ * Interface correspondente ao Catalogo de clientes.
  * Permite operaçoes sobre o catalago
  *
  * @author Grupo4
  * @version 2020
  */
-public interface ICatClientes {
 
+public interface ICatClientes {
      /**
      * Retorna os clientes do catalogo
      * @return Set<ICliente>
      *
      */
-        public Set <ICliente> getClientes();
+      Set <ICliente> getClientes();
 
     /**
      * Define os clientes do catalogo
@@ -26,27 +26,32 @@ public interface ICatClientes {
      *
      */
 
-        public void setClientes (Set <ICliente> clientes);
+      void setClientes (Set <ICliente> clientes);
     /**
      * Método clone
      * @return ICatClientes
      *
      */
-
-        public ICatClientes clone ();
+      ICatClientes clone ();
     /**
-     * Adiciona quantidade vendida à venda
-     * @return int
+     * Verifica se um determinado Cliente existe no catalogo
+     *
+     * @param  c cliente a ser procurado
+     * @return  true ou false consoante a existencia do cliente
+     */
+     boolean existeCliente (ICliente c);
+    /**
+     * Adiciona Cliente ao Catalogo
+     * @param p Cliente a ser adicionado
+     * @return void
      *
      */
-
-        public void insereCliente (ICliente p);
+     void insereCliente (ICliente p);
     /**
-     * Adiciona quantidade vendida à venda
-     * @return int
+     * Indica o numero de clientes existentes no catalogo
+     * @return numero de clientes existentes no catalogo
      *
      */
-
-        public int numeroClientes ();
+     int numeroClientes();
 }
 

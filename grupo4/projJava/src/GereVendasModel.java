@@ -1,10 +1,9 @@
-import Models.Catalogos.Produto;
+import Models.Catalogos.*;
 import Common.Constantes;
-import Models.Catalogos.CatClientes;
-import Models.Catalogos.CatProds;
-import Models.Catalogos.Cliente;
 import Models.Faturacao.Faturacao;
+import Models.Faturacao.IFaturacao;
 import Models.Filial.Filial;
+import Models.Filial.IFilial;
 import Models.Venda;
 
 import java.io.BufferedReader;
@@ -17,23 +16,23 @@ import java.util.stream.Collectors;
 
 
 public class GereVendasModel {
-    private CatProds catprodutos;
-    private CatClientes catclientes;
-    private Faturacao faturacao;
-    private List<Filial> filiais;
+    private ICatProdutos catprodutos;
+    private ICatClientes catclientes;
+    private IFaturacao faturacao;
+    private List<IFilial> filiais;
 
     public GereVendasModel() {
         this.faturacao = new Faturacao();
         this.catprodutos = new CatProds();
         this.catclientes = new CatClientes();
-        List<Filial> fl = new ArrayList <> ();
+        List<IFilial> fl = new ArrayList <> ();
         for (int i=0; i< Constantes.FILIAIS; i++){
             fl.add(new Filial ());
         }
         this.filiais=fl;
     }
 
-    public GereVendasModel(Faturacao faturacao, CatProds catprodutos, CatClientes catclientes,List<Filial>filiais) {
+    public GereVendasModel(IFaturacao faturacao, ICatProdutos catprodutos, ICatClientes catclientes,List<Filial>filiais) {
         this.catprodutos = catprodutos.clone();
         this.catclientes = catclientes.clone();
         this.faturacao = faturacao.clone();
@@ -50,20 +49,20 @@ public class GereVendasModel {
     /**
      * Getters
      */
-    public CatProds getCatProdutos() {
+    public ICatProdutos getCatProdutos() {
         return catprodutos.clone();
     }
 
-    public CatClientes getCatClientes() {
+    public ICatClientes getCatClientes() {
         return catclientes.clone();
     }
 
-    public Faturacao getFaturacao() {
+    public IFaturacao getFaturacao() {
         return faturacao.clone();
     }
 
-    public List<Filial> getFiliais() {
-        return filiais.stream().map(Filial::clone).collect(Collectors.toList());
+    public List<IFilial> getFiliais() {
+        return filiais.stream().map(IFilial::clone).collect(Collectors.toList());
     }
 
     /**
@@ -159,7 +158,7 @@ public class GereVendasModel {
                 if(v!=null){
                     x++;
                     this.faturacao.insereVenda(v);
-                    Filial f=this.filiais.get(v.getFilial()-1);
+                    IFilial f=this.filiais.get(v.getFilial()-1);
                     f.insereVenda(v);
                     if(v.getPreco() == 0) num_compras_preco_0++;
                 }else{erradas++;}

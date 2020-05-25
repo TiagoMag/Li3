@@ -1,31 +1,47 @@
 package Models.Catalogos;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
 import static java.lang.Character.isLetter;
 import static java.lang.Integer.parseInt;
 
-public class Cliente implements Comparable<Cliente> {
+/**
+ * Classe representativa de um Cliente
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
+public class Cliente implements Serializable, ICliente, Comparable<ICliente> {
 
     private String codigo;
 
+    /**
+     * Construtor vazio
+     *
+     */
     public Cliente(){
         this.codigo= new String();
     }
 
-
+    /**
+     * Construtor parâmeterizado
+     * @param codigo codigo de cliente
+     */
     public Cliente(String codigo) {
         this.codigo = codigo;
-
     }
-
+    /**
+     * Construtor por objeto
+     * @param a objeto a
+     */
     public Cliente(Cliente a){
         this.setCodigo(a.getCodigo());
     }
 
 
-    /*getter e setter*/
     public String getCodigo() {
         return codigo;
     }
@@ -34,9 +50,6 @@ public class Cliente implements Comparable<Cliente> {
         this.codigo = codigo;
     }
 
-
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -48,8 +61,7 @@ public class Cliente implements Comparable<Cliente> {
         return this.codigo.hashCode();
     }
 
-    @Override
-    public int compareTo(Cliente c) {
+    public int compareTo(ICliente c) {
         return this.codigo.compareTo(c.getCodigo());
     }
 
@@ -59,13 +71,10 @@ public class Cliente implements Comparable<Cliente> {
           return this.codigo;
     }
 
-
     public Cliente clone(){
         return new Cliente(this);
     }
 
-    /* metodos */
-    /* Verifica se um codigo de cliente é valido tendo em conta os parâmetros */
     public boolean validaCliente(){
         if (!isLetter(this.codigo.charAt(0))) return false;
         if (!(this.codigo.charAt(0) >='A' && this.codigo.charAt(0)<='Z')) return false;

@@ -1,11 +1,12 @@
 package Models.Filial;
 
+import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 
 public class InfoFilial {
 
     /* Varáveis de instância */
-    private Produto produto;
+    private IProduto produto;
     private float preco;
     private int quant;
     private char tipoCompra;
@@ -25,7 +26,7 @@ public class InfoFilial {
     /**
      * Construtor parametrizado da classe
      */
-    public InfoFilial(Produto p,float preco,int quant,char tipoCompra,int mes){
+    public InfoFilial(IProduto p,float preco,int quant,char tipoCompra,int mes){
         this.produto=p.clone();
         this.preco=preco;
         this.quant=quant;
@@ -47,7 +48,7 @@ public class InfoFilial {
     /**
      * Getters
      */
-    public Produto getProduto() {
+    public IProduto getProduto() {
         return produto.clone();
     }
 
@@ -70,7 +71,7 @@ public class InfoFilial {
     /**
      * Setters
      */
-    public void setProduto(Produto produto) {
+    public void setProduto(IProduto produto) {
         this.produto = produto;
     }
 

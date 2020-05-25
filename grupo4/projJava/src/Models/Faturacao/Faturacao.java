@@ -1,6 +1,7 @@
 package Models.Faturacao;
 
 import Common.Constantes;
+import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 import Models.Venda;
 
@@ -16,10 +17,10 @@ import java.util.stream.Collectors;
  * @version 2020
  */
 
-public class Faturacao implements Serializable{
+public class Faturacao implements Serializable,IFaturacao{
 
     /* Variáveis de instância */
-    private List<Map<Produto, InfoFat>> faturacao;   /* Lista Meses -> Map( Key : Produto Value : InfoFat ) */
+    private List<Map<IProduto, InfoFat>> faturacao;   /* Lista Meses -> Map( Key : Produto Value : InfoFat ) */
 
     /**
      * Construtor vazio da classe
@@ -34,7 +35,7 @@ public class Faturacao implements Serializable{
     /**
      * Construtor por cópia
      */
-    public Faturacao(Faturacao f){
+    public Faturacao(IFaturacao f){
         this.faturacao = f.getFaturacao();
     }
 
@@ -48,7 +49,7 @@ public class Faturacao implements Serializable{
     /**
      * Getters
      */
-    public List<Map<Produto, InfoFat>> getFaturacao(){
+    public List<Map<IProduto, InfoFat>> getFaturacao(){
         return this.faturacao.stream().map(p->p.entrySet().stream().collect(Collectors.toMap(e->e.getKey().clone(),e->e.getValue().clone()))).collect(Collectors.toList());
     }
 

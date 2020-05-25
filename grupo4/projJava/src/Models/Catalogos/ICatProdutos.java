@@ -20,59 +20,42 @@ public interface ICatProdutos {
      * @return Set de Produtos
      *
      */
-    public Set<IProduto> getProdutos ();
-
+    Set<IProduto> getProdutos ();
     /**
      * Define Catalogo de Produtos
+     * @param catp Set de Produtos a ser definido no objeto
      * @return void
      *
      */
-
-
-    public void setProdutos (Set <IProduto> catp);
-
-    /**
-     * HashCode
-     * @return int
-     *
-     */
-
-
-    public int hashCode() ;
+   void setProdutos (Set <IProduto> catp);
 
     /**
      * Metodo clone, garante encapsulamento
      * @return CatProds
      *
      */
-
-    public CatProds clone();
-
-
+    ICatProdutos clone ();
     /**
      *
      * Verifica se um produto existe no catalogo
+     * @param p produto a ser verificado
      * @return boolean
      *
      */
-
-    public boolean existeProduto (IProduto p);
-
+    boolean existeProduto (IProduto p);
     /**
      * Insere um produto no catalogo
+     * @param p produto a ser adicionado
      * @return void
      *
      */
-
-    public void insereProduto (IProduto p);
-
+    void insereProduto (IProduto p);
     /**
-     * calcula o numero de pordutos no catalogo
-     * @return void
+     * calcula o numero de produtos no catalogo
+     * @return int
      *
      */
-
-    public int numeroProdutos ();
+    int numeroProdutos ();
 
 
 }

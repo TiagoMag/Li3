@@ -1,16 +1,14 @@
 package Models;
 
-import Models.Catalogos.Produto;
+import Models.Catalogos.*;
 import Common.Constantes;
-import Models.Catalogos.CatClientes;
-import Models.Catalogos.CatProds;
-import Models.Catalogos.Cliente;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Venda {
-    private Produto produto;
-    private Cliente cliente;
+public class Venda implements IVenda, Serializable {
+    private IProduto produto;
+    private ICliente cliente;
     private float preco;
     private int quantidade;
     private char tipoCompra;
@@ -28,9 +26,9 @@ public class Venda {
         this.filial = 0;
     }
 
-    public Venda(Produto produto, Cliente cliente, float preco, int quantidade, char tipoCompra, int mes, int filial) {
-        this.produto = new Produto(produto);
-        this.cliente = new Cliente(cliente);
+    public Venda(IProduto produto, ICliente cliente, float preco, int quantidade, char tipoCompra, int mes, int filial) {
+        this.produto = produto;
+        this.cliente = cliente;
         this.preco = preco;
         this.quantidade = quantidade;
         this.tipoCompra = tipoCompra;
@@ -38,7 +36,7 @@ public class Venda {
         this.filial = filial;
     }
 
-    public Venda(Venda v){
+    public Venda(IVenda v){
         this.produto = v.getProduto();
         this.cliente = v.getCliente();
         this.preco = v.getPreco();
@@ -48,20 +46,20 @@ public class Venda {
         this.filial = v.getFilial();
     }
 
-    public Produto getProduto() {
+    public IProduto getProduto() {
         return produto.clone();
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = new Produto(produto);
+    public void setProduto(IProduto produto) {
+        this.produto = produto.clone();
     }
 
     public Cliente getCliente() {
         return cliente.clone();
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = new Cliente(cliente);
+    public void setCliente(ICliente cliente) {
+        this.cliente = cliente.clone();
     }
 
     public float getPreco() {
@@ -129,8 +127,8 @@ public class Venda {
         return sb.toString();
     }
 
-    public Venda clone(){
-        return new Venda(this);
+    public IVenda clone (){
+        return new Venda (this);
     }
 
     public int hashCode() {
@@ -138,7 +136,7 @@ public class Venda {
     }
 
     /* Valida uma venda */
-    public boolean validaV(CatProds cp, CatClientes cc){
+    public boolean validaV(ICatProdutos cp, ICatClientes cc){
        if (!((this.preco)>=0.0 && (this.preco)<=999.99))return false;
        if (!((this.quantidade)>=1 && (this.quantidade)<=200)) return false;
        if (!((this.tipoCompra=='N') ||(this.tipoCompra=='P'))) return false;
