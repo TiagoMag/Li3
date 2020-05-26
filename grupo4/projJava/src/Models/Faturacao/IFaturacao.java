@@ -56,4 +56,6 @@ public interface IFaturacao extends Serializable {
 
     public int numeroProdsComprados();
 
+    public boolean existeProduto(IProduto p);
+
 }

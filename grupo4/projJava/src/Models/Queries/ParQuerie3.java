@@ -6,24 +6,24 @@ import java.util.List;
 public class ParQuerie3 {
     private List<Integer> nrVendasPorMes;
     private List<Integer> nrProdutos;
-    private float totalFaturado;
+    private List<Float> totalFaturado;
 
     public ParQuerie3() {
         nrVendasPorMes = new ArrayList<>();
         nrProdutos = new ArrayList<>();
-        totalFaturado = 0;
+        totalFaturado = new ArrayList<>();
     }
 
-    public ParQuerie3(List<Integer> nrVendasPorMes, List<Integer> nrProdutos, float totalFaturado) {
+    public ParQuerie3(List<Integer> nrVendasPorMes, List<Integer> nrProdutos, List<Float> totalFaturado) {
         this.nrVendasPorMes = new ArrayList<>(nrVendasPorMes);
         this.nrProdutos = new ArrayList<>(nrProdutos);
-        this.totalFaturado = totalFaturado;
+        this.totalFaturado = new ArrayList<>(totalFaturado);
     }
 
     public ParQuerie3(ParQuerie3 p){
         setNrVendasPorMes(p.getNrVendasPorMes());
         setNrProdutos(p.getNrProdutos());
-        this.totalFaturado = p.getTotalFaturado();
+        setTotalFaturado(p.getTotalFaturado());
     }
 
     public List<Integer> getNrVendasPorMes() {
@@ -42,12 +42,12 @@ public class ParQuerie3 {
         this.nrProdutos = new ArrayList<>(nrProdutos);
     }
 
-    public float getTotalFaturado() {
-        return totalFaturado;
+    public List<Float> getTotalFaturado() {
+        return new ArrayList<>(totalFaturado);
     }
 
-    public void setTotalFaturado(float totalFaturado) {
-        this.totalFaturado = totalFaturado;
+    public void setTotalFaturado(List<Float> totalFaturado) {
+        this.totalFaturado = new ArrayList<>(totalFaturado);
     }
 
     public void setVenda(int mes, int nr ){
@@ -57,4 +57,6 @@ public class ParQuerie3 {
     public void setProdutos(int mes, int nr ){
         nrProdutos.set(mes, nr);
     }
+
+    public void setFaturado(int mes,float nr){ totalFaturado.set(mes,nr);}
 }

@@ -155,11 +155,15 @@ public class Faturacao implements IFaturacao,Serializable{
     public model.Faturacao.Faturacao clone(){
         return new model.Faturacao.Faturacao(this);
     }
-
-    public boolean existeProduto(Produto p){
-        return this.vendas.containsKey(p);
+*/
+    public boolean existeProduto(IProduto p){
+        boolean aux = false;
+        for (int i=0;i<Constantes.MESES;i++){
+            aux = this.faturacao.get(i).containsKey(p);
+        }
+        return aux;
     }
-    */
+
 
 
 }

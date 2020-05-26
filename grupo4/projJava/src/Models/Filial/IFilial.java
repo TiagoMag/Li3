@@ -30,6 +30,11 @@ public interface IFilial {
      */
    void insereVenda(Venda v);
 
+   public List<ICliente> filialbuyersMes(int mes);
 
+    public int nrComprasClientePMes(ICliente c,int mes);
 
+    public List<IProduto> getProdutosClientePMes(ICliente c,int mes);
+
+    public float getFaturadoClienteMes(ICliente c,int mes);
 }

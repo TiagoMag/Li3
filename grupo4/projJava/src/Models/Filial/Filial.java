@@ -2,10 +2,12 @@ package Models.Filial;
 
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
+import Models.Catalogos.IProduto;
 import Models.Venda;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Filial implements IFilial, Serializable {
@@ -76,4 +78,33 @@ public class Filial implements IFilial, Serializable {
      */
     public List<ICliente> filialBuyers(){ return this.filial.keySet().stream().map(ICliente::clone).collect(Collectors.toList());}
 
+    public List<ICliente> filialbuyersMes(int mes){
+        List<ICliente> c = new ArrayList<>();
+        for(Map.Entry<ICliente, List<InfoFilial>> f : filial.entrySet()){
+            if(f.getValue().stream().filter(e->e.getMes()==mes).count() >0) c.add(f.getKey());
+        }
+        return  c;
+        }
+
+    public boolean fezMCompraEmMes (int mes){
+        if( (int)this.filial.values().stream().map(l -> l.stream().filter(e-> e.getMes() == mes)).count() > 0) return true;
+        else return false;
+    }
+
+    public int distintosPMes(int mes){
+        return (int) this.filial.values().stream().filter(e->fezMCompraEmMes(mes)).count();
+    }
+
+
+    public int nrComprasClientePMes(ICliente c,int mes){
+        return (int) this.filial.get(c).stream().filter(e->e.getMes()==mes).count();
+    }
+
+    public List<IProduto> getProdutosClientePMes(ICliente c,int mes){
+        return this.filial.get(c).stream().filter(e->e.getMes()==mes).map(x->x.getProduto()).collect(Collectors.toList());
+    }
+
+    public float getFaturadoClienteMes(ICliente c,int mes){
+        return (float) this.filial.get(c).stream().filter(e->e.getMes()==mes).mapToDouble(x->x.getQuant()*x.getPreco()).sum();
+    }
 }

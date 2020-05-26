@@ -5,11 +5,14 @@ import Models.Faturacao.IFaturacao;
 import Models.Filial.Filial;
 import Models.Filial.IFilial;
 import Models.Queries.InfoVendasFile;
+import Models.Queries.ParQuerie2;
+import Models.Queries.ParQuerie3;
 import Models.Venda;
 
 import java.io.*;
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -269,44 +272,53 @@ public class GereVendasModel implements Serializable {
     /**
      * 1.2
      */
-/*
-    public int numeroComprasMes(int mes){
-        return (int) this.vendas.getVendas().values().stream().filter(e->e.getMes()==(mes)).count();
-    }
+
 
 
 
     //Consultas interativas
 
     //1)
-    public List<Produto> produtosNaoComprados(){
-        return this.produtos.getProdutos().stream().filter(e-> !(vendas.existeProduto(e))).collect(Collectors.toList());
+    public List<IProduto> produtosNaoComprados(){
+        return this.catprodutos.getProdutos().stream().filter(e-> !(faturacao.existeProduto(e))).collect(Collectors.toList());
     }
 
     //2) FALTA FILIAL A FILIAL(o que isso quer dizer eu nao sei :P)
     public ParQuerie2 numeroTotalVendasEClientesMes(int mes){
         ParQuerie2 p = new ParQuerie2();
-        List<Cliente> c = Collections.singletonList((Cliente) this.vendas.getVendas().values().stream().filter(e -> e.getMes() == (mes)).collect(Collectors.toList()));
+        List<ICliente> lst= new ArrayList<>();
+        for( IFilial f : this.filiais){
 
-        p.setNrVendas(numeroComprasMes(mes));
-        p.setNrClientes((int) c.stream().distinct().count());
+            lst.addAll(f.filialbuyersMes(mes));
+        }
+
+
+        p.setNrVendas(this.faturacao.numComprasMes(mes));
+        p.setNrClientes((int) lst.stream().distinct().count());
         return p;
     }
 
     //3)
-    public ParQuerie3 quantasComprasFezPMes(String cod){
+    public ParQuerie3 quantasComprasFezPMes(ICliente c){
         float faturado = 0;
-        List<Venda> vendas = this.vendas.getVendas().values().stream().filter(e->e.getCliente().equals(cod)).collect(Collectors.toList());
+        int vendas=0;
+        List<IProduto> l = new ArrayList<>();
         ParQuerie3 p = new ParQuerie3();
+
         for (int i=0;i<12;i++){
+            for( IFilial f : this.filiais){
+                l.add((IProduto) f.getProdutosClientePMes(c,i+1));
+                vendas += f.nrComprasClientePMes(c,i+1);
+                faturado += f.getFaturadoClienteMes(c,i+1);
+            }
             int aux = i;
-            p.setVenda(aux,(int)vendas.stream().filter(e->e.getMes()==(aux+1)).count());
-            p.setProdutos(aux,(int)vendas.stream().filter(e->e.getMes()==(aux+1)).distinct().count());
-            faturado += vendas.stream().filter(e->e.getMes()==(aux+1)).mapToDouble(c->c.getPreco()).sum();
+            p.setVenda(aux,vendas);
+            p.setProdutos(aux,(int)l.stream().distinct().count());
+            p.setFaturado(aux,faturado);
+
         }
-        p.setTotalFaturado(faturado);
         return p;
     }
-    */
+
 
 }

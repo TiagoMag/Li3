@@ -11,6 +11,7 @@ public class GereVendasAppMVC implements Serializable {
         GereVendasController control = new GereVendasController();
         control.setView(view);
         control.setModel(model);
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         control.startController();
         exit(0);
     }
