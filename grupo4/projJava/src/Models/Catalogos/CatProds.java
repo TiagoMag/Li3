@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class CatProds implements Serializable, ICatProdutos {
+public class CatProds implements ICatProdutos,Serializable {
 
     private Set<IProduto> produtos;
 

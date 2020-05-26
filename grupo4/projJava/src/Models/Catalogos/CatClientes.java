@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 
 
-public class CatClientes implements Serializable, ICatClientes {
+public class CatClientes implements ICatClientes,Serializable  {
 
 
         private Set<ICliente> clientes;

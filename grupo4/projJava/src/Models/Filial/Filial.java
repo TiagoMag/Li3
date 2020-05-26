@@ -4,10 +4,11 @@ import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Venda;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Filial implements IFilial{
+public class Filial implements IFilial, Serializable {
 
     /* Variáveis de instância */
     private Map<ICliente, List<InfoFilial>> filial; // Map de clientes com uma lista das compras do cliente
@@ -68,5 +69,11 @@ public class Filial implements IFilial{
             this.filial.put(v.getCliente(),list);
         }
     }
+
+    /**
+     * get
+     *
+     */
+    public List<ICliente> filialBuyers(){ return this.filial.keySet().stream().map(ICliente::clone).collect(Collectors.toList());}
 
 }

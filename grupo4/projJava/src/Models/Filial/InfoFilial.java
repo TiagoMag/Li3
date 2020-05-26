@@ -3,7 +3,9 @@ package Models.Filial;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 
-public class InfoFilial {
+import java.io.Serializable;
+
+public class InfoFilial implements Serializable {
 
     /* Varáveis de instância */
     private IProduto produto;

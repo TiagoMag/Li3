@@ -1,12 +1,17 @@
+import Common.Constantes;
 import Views.Menu;
 
-public class GereVendasView {
+import java.io.Serializable;
+import java.util.List;
+
+public class GereVendasView implements Serializable {
 
         private Menu menuPrincipal;
         private Menu menuQueriesEstatisticas;
         private Menu menuQueriesInterativas;
         private Menu menuReadFiles;
         private Menu atual;
+        private Menu menuDadosGeraisEstruturas;
 
         /**
          * Construtor vazio da View.
@@ -14,6 +19,8 @@ public class GereVendasView {
         public GereVendasView(){
             String[] principal = {
                     "Ler ficheiros;",
+                    "Guardar Estado",
+                    "Carregar Estado",
                     "Consultas estatísticas;",
                     "Consultas interativas.",
             };
@@ -34,35 +41,58 @@ public class GereVendasView {
                     "Dados gerais das estruturas."
             };
 
+            String[] dadosgeraisestruturas = {
+                    "Totais compras por mês;",
+            };
+
             String[] readFiles = {
-                    "Ler ficheiros default(configs)"
+                    "Ler ficheiros default(configs)",
+                    "Inserir os caminhos"
             };
 
             this.menuPrincipal = new Menu(principal);
             this.menuQueriesEstatisticas = new Menu(queriesestatisticas);
             this.menuQueriesInterativas = new Menu(queriesinterativas);
             this.menuReadFiles = new Menu(readFiles);
+            this.menuDadosGeraisEstruturas = new Menu(dadosgeraisestruturas);
 
         }
+
+        public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
         /**
          * Executa menu principal.
          */
         public void run(){
-            this.atual = this.menuPrincipal;
-            this.atual.showMenu();
+            this.clearScreen();
+             this.menuPrincipal.showMenu("Menu Principal");
         }
         /**
          * Executa menu queries estatísticas.
          */
         public void showQueriesEstatisticas() {
-            this.atual = this.menuQueriesEstatisticas;
+            this.clearScreen();
+          this.menuQueriesEstatisticas.showMenu("Queries Estatisticas");
         }
 
         public void showMenuFiles() {
-            this.atual = this.menuReadFiles;
-            this.atual.showMenu();
+            this.clearScreen();
+        this.menuReadFiles.showMenu("Leitura de Ficheiros de Carregamento");
+
         }
+    public void showDadosGerais() {
+        this.clearScreen();
+        this.menuDadosGeraisEstruturas.showMenu("Dados Gerais Estruturas");
+
+    }
 
         /**
          * Executa menu de queries interativas.
@@ -71,5 +101,61 @@ public class GereVendasView {
             this.atual = this.menuQueriesInterativas;
         }
 
-
+        public void printError(String s) {
+        System.out.println(s);
     }
+
+        public void insertPath(String s){
+        System.out.println("Insira o caminho do ficheiro: "+s);
+    }
+
+        public void clickEnter(){
+            System.out.println("\nClique ENTER para prosseguir.");
+            try{
+                System.in.read();
+            }catch(Exception e){e.printStackTrace();}
+        }
+
+        public  void clearScreen() {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
+
+        public void printTime(double time){
+            System.out.println("\nTempo da querie: " + time + " s");
+        }
+
+
+
+        public void printQuerie11 (List<String> l,double time){
+            this.clearScreen();
+            System.out.println(ANSI_BLUE +"\nNome do Ficheiro: " +ANSI_WHITE+ l.get(0));
+            System.out.println(ANSI_BLUE +"Registos de venda erradas: "+ANSI_WHITE+l.get(1));
+            System.out.println(ANSI_BLUE +"\nNumero total de produtos: "+ANSI_WHITE+l.get(2));
+            System.out.println(ANSI_BLUE +"Produtos diferentes comprados: "+ANSI_WHITE+l.get(3));
+            System.out.println(ANSI_BLUE +"Produtos nao comprados: "+ANSI_WHITE+l.get(4));
+            System.out.println(ANSI_BLUE +"\nNumero total de clientes: "+ANSI_WHITE+l.get(5));
+            System.out.println(ANSI_BLUE +"Clientes diferentes que realizaram compras: "+ANSI_WHITE+l.get(6));
+            System.out.println(ANSI_BLUE +"Clientes que nao compraram: "+ANSI_WHITE+l.get(7));
+            System.out.println(ANSI_BLUE +"\nCompras com valor 0 € : "+ANSI_WHITE+l.get(8));
+            System.out.println(ANSI_BLUE +"Total faturado: "+ANSI_WHITE+l.get(9) + " €");
+            this.printTime(time);
+            this.clickEnter();
+
+            clearScreen();
+        }
+
+        public void printQuerie121 (List <Integer> l,double time){
+           this.clearScreen();
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+
+                for(int j = 0; j < Constantes.MESES; j++){
+                    System.out.println("Mês:"+(j+1)+"\t"+l.get(j));
+                }
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+            this.printTime(time);
+            this.clickEnter();
+        }
+
+
+}

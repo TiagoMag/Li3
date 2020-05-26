@@ -14,7 +14,7 @@ import static java.lang.Integer.parseInt;
  * @version 2020
  */
 
-public class Cliente implements Serializable, ICliente, Comparable<ICliente> {
+public class Cliente implements ICliente, Comparable<ICliente>,Serializable {
 
     private String codigo;
 

@@ -24,9 +24,12 @@ public interface IFilial {
      * */
     IFilial clone ();
 
+    public List<ICliente> filialBuyers();
     /**
      * Adiciona uma compra a um cliente
      */
-    void insereVenda(Venda v);
+   void insereVenda(Venda v);
+
+
 
 }

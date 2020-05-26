@@ -27,6 +27,23 @@ public class InfoFat implements Serializable {
         this.fat = new HashMap<>();
     }
 
+    public double faturadoProdutosMes(){
+        return this.fat.values().stream().mapToDouble(l -> l.stream().mapToDouble(x-> x.getKey() * x.getValue()).sum()).sum();
+    }
+
+    public double faturadoProdutosMesFilial(int filial){
+        List<SimpleEntry<Integer, Float>> lst=this.fat.get(filial);
+        return lst.stream().mapToDouble(x-> x.getKey() * x.getValue()).sum();
+    }
+
+    public int numComprasMes(){
+        return this.fat.values().stream().mapToInt(List::size).sum();
+    }
+
+
+    public float faturado(float preco,int quant){
+        return ((float)quant * preco) ;
+    }
     /**
      * Construtor por cópia
      */
