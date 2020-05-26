@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @version 2020
  */
 
-public class Faturacao implements Serializable,IFaturacao{
+public class Faturacao implements IFaturacao,Serializable{
 
     /* Variáveis de instância */
     private List<Map<IProduto, InfoFat>> faturacao;   /* Lista Meses -> Map( Key : Produto Value : InfoFat ) */
@@ -63,7 +63,7 @@ public class Faturacao implements Serializable,IFaturacao{
     /**
      * Clone
      */
-    public Faturacao clone(){
+    public IFaturacao clone(){
         return new Faturacao(this);
     }
 
@@ -72,12 +72,46 @@ public class Faturacao implements Serializable,IFaturacao{
      */
     public void insereVenda(Venda v){
         if(this.faturacao.get(v.getMes()-1).containsKey(v.getProduto())){ // vê se produto já existe
-            this.faturacao.get(v.getMes()-1).get(v.getProduto()).insereVenda(v.getFilial(),v.getPreco(),v.getQuantidade());
         } else {  // se não existe cria
             this.faturacao.get(v.getMes()-1).put(v.getProduto().clone(),new InfoFat());
-            this.faturacao.get(v.getMes()-1).get(v.getProduto()).insereVenda(v.getFilial(),v.getPreco(),v.getQuantidade());
         }
+        this.faturacao.get(v.getMes()-1).get(v.getProduto()).insereVenda(v.getFilial(),v.getPreco(),v.getQuantidade());
     }
+
+
+    public int numeroProdsComprados(){
+
+        List<IProduto> aux = new ArrayList<>();
+
+        this.faturacao.forEach(a-> a.forEach((key, value) -> aux.add(key)));
+
+        return (int) aux.stream().distinct().count();
+    }
+    public float faturacaoTotal(){
+
+        double total = 0.0d;
+        for(Map<IProduto,InfoFat> x: this.faturacao) {
+            total+= x.values().stream().mapToDouble(InfoFat::faturadoProdutosMes).sum();
+        }
+        return (float)total;
+    }
+
+    public float faturacaoMes(int mes,int filial){
+
+        double total = 0.0d;
+        Map<IProduto,InfoFat> x = this.faturacao.get(mes); // obtem map do mês
+        for(InfoFat f : x.values())
+            total+= f.faturadoProdutosMesFilial(filial);
+
+        return (float)total;
+    }
+
+    public int numComprasMes(int mes){
+        Map<IProduto,InfoFat> res = this.faturacao.get(mes); // obtem map do mês
+        return (int) res.values().stream().mapToInt(InfoFat::numComprasMes).sum();
+    }
+
+
 
 
     /*

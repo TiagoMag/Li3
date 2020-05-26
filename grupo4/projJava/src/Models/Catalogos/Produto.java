@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 
-public class Produto implements Serializable,Comparable<IProduto>,IProduto {
+public class Produto implements IProduto,Comparable<IProduto>,Serializable {
 
     private String codigo;
 

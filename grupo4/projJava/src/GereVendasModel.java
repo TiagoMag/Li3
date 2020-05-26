@@ -4,22 +4,22 @@ import Models.Faturacao.Faturacao;
 import Models.Faturacao.IFaturacao;
 import Models.Filial.Filial;
 import Models.Filial.IFilial;
+import Models.Queries.InfoVendasFile;
 import Models.Venda;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class GereVendasModel {
+public class GereVendasModel implements Serializable {
     private ICatProdutos catprodutos;
     private ICatClientes catclientes;
     private IFaturacao faturacao;
     private List<IFilial> filiais;
+    private InfoVendasFile iv;
 
     public GereVendasModel() {
         this.faturacao = new Faturacao();
@@ -30,13 +30,15 @@ public class GereVendasModel {
             fl.add(new Filial ());
         }
         this.filiais=fl;
+        this.iv=new InfoVendasFile();
     }
 
-    public GereVendasModel(IFaturacao faturacao, ICatProdutos catprodutos, ICatClientes catclientes,List<Filial>filiais) {
+    public GereVendasModel(IFaturacao faturacao, ICatProdutos catprodutos, ICatClientes catclientes,List<Filial>filiais,InfoVendasFile iv) {
         this.catprodutos = catprodutos.clone();
         this.catclientes = catclientes.clone();
         this.faturacao = faturacao.clone();
         this.filiais = filiais.stream().map(Filial::clone).collect(Collectors.toList());
+        this.iv=iv.clone();
     }
 
     public GereVendasModel(GereVendasModel model){
@@ -44,6 +46,7 @@ public class GereVendasModel {
         this.catprodutos=model.getCatProdutos();
         this.faturacao=model.getFaturacao();
         this.filiais=model.getFiliais();
+        this.iv=model.getIv();
     }
 
     /**
@@ -65,6 +68,9 @@ public class GereVendasModel {
         return filiais.stream().map(IFilial::clone).collect(Collectors.toList());
     }
 
+    public InfoVendasFile getIv() { return iv.clone(); }
+
+
     /**
      * Setters
      */
@@ -83,6 +89,9 @@ public class GereVendasModel {
     public void setFiliais(List<Filial> filiais) {
         this.filiais = filiais.stream().map(Filial::clone).collect(Collectors.toList());
     }
+
+
+
 
     /**
      * Clone
@@ -163,6 +172,9 @@ public class GereVendasModel {
                     if(v.getPreco() == 0) num_compras_preco_0++;
                 }else{erradas++;}
             }
+            this.iv.setNum_compras_preco_0(num_compras_preco_0);
+            this.iv.setFile_name(filename);
+            this.iv.setLinhas_erradas(erradas);
             System.out.println("\n[Leitura do ficheiro de vendas]: " + Crono.stop() + " s");
             System.out.println("\n[Linhas lidas]: " + x);
             System.out.println("\n[Linhas  erradas: " + erradas);
@@ -185,6 +197,65 @@ public class GereVendasModel {
 
         return configs;
     }
+
+    public void guardaEstado(String fileName) throws FileNotFoundException,IOException{
+        FileOutputStream fos = new FileOutputStream(fileName);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(this); // guarda o objeto de uma só vez
+        oos.flush();
+        oos.close();
+    }
+
+    public static GereVendasModel carregaEstado(String fileName) throws FileNotFoundException,IOException,ClassNotFoundException{
+        FileInputStream fis = new FileInputStream(fileName);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        GereVendasModel model = (GereVendasModel)ois.readObject();
+        ois.close();
+        return model;
+    }
+
+    /**
+     * Queries Estatistica 1.1
+     */
+    public int totalBuyers(){
+        List<ICliente> lst= new ArrayList<>();
+       // this.filiais.stream().map(IFilial:filialBuyers).collect(Collectors.toList());
+
+        for( IFilial f : this.filiais){
+
+            lst.addAll(f.filialBuyers());
+        }
+
+        return (int) lst.stream().distinct().count();
+    }
+    public List<String> Querie11(){
+
+        List<String> l = new ArrayList <>();
+        l.add(this.iv.getFile_name());
+        l.add(Integer.valueOf(this.iv.getLinhas_erradas()).toString());
+        l.add(Integer.valueOf(this.catprodutos.numeroProdutos()).toString());
+        l.add(Integer.valueOf(this.faturacao.numeroProdsComprados()).toString());
+        int produtosNaoComprados = Integer.parseInt(l.get(2))-Integer.parseInt(l.get(3));
+        l.add(Integer.valueOf(produtosNaoComprados).toString());
+        l.add(Integer.valueOf(this.catclientes.numeroClientes()).toString());
+        l.add(Integer.valueOf(this.totalBuyers()).toString());
+        int clientesNComprados = Integer.parseInt(l.get(5))-Integer.parseInt(l.get(6));
+        l.add(Integer.valueOf(clientesNComprados).toString());
+        l.add(Float.valueOf(this.faturacao.faturacaoTotal()).toString());
+        l.add(Integer.valueOf(this.iv.getNum_compras_preco_0()).toString());
+
+        return l;
+
+    }
+
+    public List<Integer> Querie121(){
+       List<Integer> lst=new ArrayList<>();
+       for(int i=0;i < Constantes.MESES;i++)
+        lst.add(this.faturacao.numComprasMes(i));
+
+        return lst;
+    }
+
 
 
 

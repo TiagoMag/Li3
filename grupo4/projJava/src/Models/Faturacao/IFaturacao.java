@@ -48,4 +48,12 @@ public interface IFaturacao extends Serializable {
      */
     public void insereVenda(Venda v);
 
+    public float faturacaoTotal();
+
+    public float faturacaoMes(int mes,int filial);
+
+    public int numComprasMes(int mes);
+
+    public int numeroProdsComprados();
+
 }
