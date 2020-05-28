@@ -3,6 +3,7 @@ package Models.Filial;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
+import Models.Queries.ParQuery8;
 import Models.Queries.TrioQuery6;
 import Models.Venda;
 
@@ -155,4 +156,15 @@ public class Filial implements IFilial, Serializable {
         }
         return  c;
     }
+
+    public List <IProduto> clientProducts(List<InfoFilial> info){
+        return info.stream().map(InfoFilial::getProduto).map(IProduto::clone).collect(Collectors.toList());
+    }
+
+    public List<ParQuery8> allClientsProducts() {
+       return this.filial.entrySet().stream().map(x -> new ParQuery8(x.getKey(), (int) clientProducts(x.getValue()).stream().distinct().count())).collect(Collectors.toList());
+    }
+
+
+
 }

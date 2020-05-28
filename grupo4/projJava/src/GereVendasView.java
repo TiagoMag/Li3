@@ -259,4 +259,23 @@ public class GereVendasView implements Serializable {
         this.clickEnter();
 
     }
+
+    public void printQuery8 (List<ParQuery8> pares,double time){
+        if(pares.size()==0) {
+            System.out.println("Não há nenhum elemento.");
+            return;
+        }
+        List<String> lista = new ArrayList<>();
+        int i=0;
+        for(ParQuery8 par : pares){
+            lista.add((i+1)+": "+"Cliente:"+ par.getCliente().getCodigo() +" Produtos: "+ par.getQuant());
+            i++;
+        }
+
+        Navegador nav = new Navegador(lista,1,10);
+        nav.run();
+        this.printTime(time);
+        this.clickEnter();
+
+    }
 }
