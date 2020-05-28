@@ -372,9 +372,11 @@ public class GereVendasModel implements Serializable {
         Set<ParQuery5> mostSelledProds=this.faturacao.mostSelledProds(limit);
 
         for( ParQuery5 par : mostSelledProds)
-             trios.add(new TrioQuery6(par.getProduto(),par.getQuantidade(),0));
+             trios.add(new TrioQuery6(par.getProduto(),par.getQuantidade(),buyersProduct(par.getProduto())));
+
         return trios;
     }
+
 
     public List<Set<ParQuery7>> query7 () {
         List<Set<ParQuery7>> l = new ArrayList<>();
@@ -387,4 +389,20 @@ public class GereVendasModel implements Serializable {
     }
 
 
+
+
+    public List<ParQuery8> query8(int limit){
+        List<ParQuery8> pares = new ArrayList<>();
+
+        for(IFilial f : this.filiais){
+            pares.addAll(f.allClientsProducts());
+        }
+
+       return pares.stream().collect(Collectors.groupingBy(ParQuery8::getCliente)).entrySet().stream().
+        map(x -> new ParQuery8 (x.getKey().clone(), x.getValue().stream().mapToInt(ParQuery8::getQuant).sum()))
+       .sorted(new ComparatorQuery8()).limit(limit).collect(Collectors.toList());
+
     }
+
+}
+

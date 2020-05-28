@@ -159,8 +159,8 @@ public class GereVendasController implements Serializable {
         do {
             this.view.showQueriesInterativas();
             double time;
-            String codigoCliente;
-            String codigoProduto;
+            String codigoCliente,codigoProduto;
+            int limite;
             ICliente c;
             IProduto p;
             x = Input.lerInt();  // lê input do cliente
@@ -175,8 +175,10 @@ public class GereVendasController implements Serializable {
                     int mes = 1;
                     while (mes != 0) {
                         this.view.insiraMes();
-                        mes = Input.lerInt();
-                        if (validaMes(mes)) {
+
+                        mes=Input.lerInt();
+                        if (validaMes(mes)){
+
                             Crono.start();
                             ParQuery2[] par = this.model.numeroTotalVendasEClientesMes(mes - 1);
                             time = Crono.stop();
@@ -219,7 +221,8 @@ public class GereVendasController implements Serializable {
                     break;
                 case 6:
                     this.view.insereLimite();
-                    int limite = Input.lerInt();
+
+                    limite=Input.lerInt();
                     Crono.start();
                     Set<TrioQuery6> trios = this.model.query6(limite);
                     time = Crono.stop();
@@ -231,6 +234,14 @@ public class GereVendasController implements Serializable {
                     List<Set<ParQuery7>> duo = this.model.query7();
                     time = Crono.stop();
                     this.view.printQuery7(duo, time);
+                    break;
+                case 8:
+                    this.view.insereLimite();
+                    limite=Input.lerInt();
+                    Crono.start();
+                    List<ParQuery8> pares = this.model.query8(limite);
+                    time=Crono.stop();
+                    this.view.printQuery8(pares,time);
                     break;
             }
 

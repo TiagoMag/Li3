@@ -110,6 +110,7 @@ public class InfoFat implements Serializable {
 
 
 
+
 }
 
 

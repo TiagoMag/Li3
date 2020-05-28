@@ -2,8 +2,12 @@ package Models.Filial;
 
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
-import Models.Catalogos.Produto;
+
+
 import Models.Queries.ParQuery7;
+
+import Models.Queries.ParQuery8;
+
 import Models.Venda;
 
 import java.util.ArrayList;
@@ -49,7 +53,15 @@ public interface IFilial {
 
     List<InfoFilial> allSells();
 
-    List <ICliente> buyersProduct(IProduto p);
+
 
     Set<ParQuery7> top3Compradores();
+
+    List <ICliente> buyersProduct(IProduto p);
+
+
+    List<ParQuery8> allClientsProducts();
+
+    List <IProduto> clientProducts(List<InfoFilial> info);
+
 }
