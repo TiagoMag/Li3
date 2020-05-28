@@ -4,16 +4,14 @@ import Models.Faturacao.Faturacao;
 import Models.Faturacao.IFaturacao;
 import Models.Filial.Filial;
 import Models.Filial.IFilial;
-import Models.Queries.InfoVendasFile;
-import Models.Queries.ParQuerie2;
-import Models.Queries.ParQuerie3;
+import Models.Filial.InfoFilial;
+import Models.Queries.*;
 import Models.Venda;
 
-import java.io.*;
-import java.util.ArrayList;
 
-import java.util.Collections;
-import java.util.List;
+import java.io.*;
+import java.util.*;
+
 import java.util.stream.Collectors;
 
 
@@ -170,8 +168,7 @@ public class GereVendasModel implements Serializable {
                 if(v!=null){
                     x++;
                     this.faturacao.insereVenda(v);
-                    IFilial f=this.filiais.get(v.getFilial()-1);
-                    f.insereVenda(v);
+                    this.filiais.get(v.getFilial()-1).insereVenda(v);
                     if(v.getPreco() == 0) num_compras_preco_0++;
                 }else{erradas++;}
             }
@@ -279,46 +276,104 @@ public class GereVendasModel implements Serializable {
     //Consultas interativas
 
     //1)
-    public List<IProduto> produtosNaoComprados(){
-        return this.catprodutos.getProdutos().stream().filter(e-> !(faturacao.existeProduto(e))).collect(Collectors.toList());
+    public Set<IProduto> produtosNaoComprados(){
+        return this.catprodutos.getProdutos().stream().filter(e-> !this.faturacao.existeProduto(e)).collect(Collectors.toCollection(TreeSet::new));
     }
 
-    //2) FALTA FILIAL A FILIAL(o que isso quer dizer eu nao sei :P)
-    public ParQuerie2 numeroTotalVendasEClientesMes(int mes){
-        ParQuerie2 p = new ParQuerie2();
-        List<ICliente> lst= new ArrayList<>();
+    //2)
+    public ParQuery2[] numeroTotalVendasEClientesMes(int mes){
+        List<ICliente> lstTotal= new ArrayList<>();
+        ParQuery2[] lista = new ParQuery2[Constantes.FILIAIS+1];
+        int vendastotal=0;
+        int i=0;
         for( IFilial f : this.filiais){
-
-            lst.addAll(f.filialbuyersMes(mes));
+            List<ICliente> clientesFilial = f.filialbuyersMes(mes);
+            int vendas=f.numVendas(mes);
+            lista[i++]=new ParQuery2(vendas,clientesFilial.size());
+            lstTotal.addAll(clientesFilial);
+            vendastotal+=vendas;
         }
-
-
-        p.setNrVendas(this.faturacao.numComprasMes(mes));
-        p.setNrClientes((int) lst.stream().distinct().count());
-        return p;
+        ParQuery2 p = new ParQuery2();
+        p.setNrVendas(vendastotal);
+        p.setNrClientes((int) lstTotal.stream().distinct().count());
+        lista[i]= p ;
+        return lista;
     }
 
     //3)
-    public ParQuerie3 quantasComprasFezPMes(ICliente c){
-        float faturado = 0;
-        int vendas=0;
-        List<IProduto> l = new ArrayList<>();
-        ParQuerie3 p = new ParQuerie3();
+    public TrioQuery3 quantasComprasFezPMes(ICliente c){
+        float faturado = 0.0f;
+        int vendas,i;
+        i=vendas=0;
 
-        for (int i=0;i<12;i++){
+        TrioQuery3 p = new TrioQuery3();
+
+        for (i=0;i<Constantes.MESES;i++){
+            List<IProduto> l = new ArrayList<>();
             for( IFilial f : this.filiais){
-                l.add((IProduto) f.getProdutosClientePMes(c,i+1));
-                vendas += f.nrComprasClientePMes(c,i+1);
-                faturado += f.getFaturadoClienteMes(c,i+1);
+                l.addAll(f.getProdutosClientePMes(c,i));
+                vendas += f.nrComprasClientePMes(c,i);
+                faturado += f.getFaturadoClienteMes(c,i);
             }
-            int aux = i;
-            p.setVenda(aux,vendas);
-            p.setProdutos(aux,(int)l.stream().distinct().count());
-            p.setFaturado(aux,faturado);
-
+            p.setVenda(i,vendas);
+            p.setProdutos(i,(int)l.stream().distinct().count());
+            p.setFaturado(i,faturado);
+            vendas =0;
+            faturado=0.0f;
         }
         return p;
     }
 
+    public TrioQuery4[] querie4 (IProduto p){
+        TrioQuery4[] trios = new TrioQuery4[Constantes.MESES];
+        float total_faturado=0.0f;
+        int num_compras=0;
+
+        for(int i=0;i<Constantes.MESES;i++){
+            List <ICliente> list = new ArrayList<>();
+            total_faturado=this.faturacao.totalFaturadoProd(p,i); // calcula total faturado pelo produto na faturacao
+            num_compras=this.faturacao.totalVendasProd(p,i); // calcula quantas vezes foi comprado
+            for(IFilial f : this.filiais)           // percorre filiais
+                list.addAll(f.buyersProduct(p,i));  // junta clientes que compraram o produto
+            trios[i]= new TrioQuery4(total_faturado,num_compras,(int)list.stream().distinct().count()); //adiciona trio correpondente ao mes i
+        }
+
+       return trios;
+    }
+
+    public Set<ParQuery5> query5(ICliente c){
+        List<InfoFilial> compras= new ArrayList<>();
+
+        for(IFilial f: this.filiais)
+            compras.addAll(f.comprasCliente(c)); // compras totais do cliente
+
+        // Organiza compras por produto
+        Map<IProduto,List<InfoFilial>> map = compras.stream().collect(Collectors.groupingBy(InfoFilial::getProduto,
+                                                                                 Collectors.mapping(InfoFilial::clone,Collectors.toList())));
+
+        // Calcula a quantidade de cada produto e insere ordenadmente no set
+
+        return map.entrySet().stream().map(x-> new ParQuery5(x.getKey().clone(),x.getValue().stream()
+                                .mapToInt(InfoFilial::getQuant).sum())).
+                                 collect(Collectors.toCollection(TreeSet::new));
+    }
+
+    public int buyersProduct(IProduto p){
+        List <ICliente> list = new ArrayList<>();
+        for(IFilial f : this.filiais)           // percorre filiais
+            list.addAll(f.buyersProduct(p));
+
+        return (int)list.stream().distinct().count();
+    }
+
+    public Set<TrioQuery6> query6 (int limit){
+        Set<TrioQuery6> trios = new TreeSet<>();
+
+        Set<ParQuery5> mostSelledProds=this.faturacao.mostSelledProds(limit);
+
+        for( ParQuery5 par : mostSelledProds)
+             trios.add(new TrioQuery6(par.getProduto(),par.getQuantidade(),0));
+        return trios;
+    }
 
 }

@@ -3,24 +3,24 @@ package Models.Queries;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParQuerie3 {
+public class TrioQuery3 {
     private List<Integer> nrVendasPorMes;
     private List<Integer> nrProdutos;
     private List<Float> totalFaturado;
 
-    public ParQuerie3() {
+    public TrioQuery3() {
         nrVendasPorMes = new ArrayList<>();
         nrProdutos = new ArrayList<>();
         totalFaturado = new ArrayList<>();
     }
 
-    public ParQuerie3(List<Integer> nrVendasPorMes, List<Integer> nrProdutos, List<Float> totalFaturado) {
+    public TrioQuery3(List<Integer> nrVendasPorMes, List<Integer> nrProdutos, List<Float> totalFaturado) {
         this.nrVendasPorMes = new ArrayList<>(nrVendasPorMes);
         this.nrProdutos = new ArrayList<>(nrProdutos);
         this.totalFaturado = new ArrayList<>(totalFaturado);
     }
 
-    public ParQuerie3(ParQuerie3 p){
+    public TrioQuery3(TrioQuery3 p){
         setNrVendasPorMes(p.getNrVendasPorMes());
         setNrProdutos(p.getNrProdutos());
         setTotalFaturado(p.getTotalFaturado());
@@ -51,12 +51,12 @@ public class ParQuerie3 {
     }
 
     public void setVenda(int mes, int nr ){
-        nrVendasPorMes.set(mes, nr);
+        nrVendasPorMes.add(mes, nr);
     }
 
     public void setProdutos(int mes, int nr ){
-        nrProdutos.set(mes, nr);
+        nrProdutos.add(mes, nr);
     }
 
-    public void setFaturado(int mes,float nr){ totalFaturado.set(mes,nr);}
+    public void setFaturado(int mes,float nr){ totalFaturado.add(mes,nr);}
 }

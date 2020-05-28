@@ -137,15 +137,17 @@ public class Venda implements IVenda, Serializable {
 
     /* Valida uma venda */
     public boolean validaV(ICatProdutos cp, ICatClientes cc){
-       if (!((this.preco)>=0.0 && (this.preco)<=999.99))return false;
-       if (!((this.quantidade)>=1 && (this.quantidade)<=200)) return false;
-       if (!((this.tipoCompra=='N') ||(this.tipoCompra=='P'))) return false;
-       if (!((this.mes)>=1 && (this.mes)<= Constantes.MESES)) return false;
-       if (!((this.filial)>=1 && (this.filial)<=Constantes.FILIAIS)) return false;
-       if (!this.produto.validaProd()) return false;
-       if (!this.cliente.validaCliente()) return false;
-       if (!cp.existeProduto(this.produto)) return false;
-       if (!cc.existeCliente(this.cliente)) return false;
+
+        if (!cp.existeProduto(this.produto)) return false;
+        if (!cc.existeCliente(this.cliente)) return false;
+        if (!this.produto.validaProd()) return false;
+        if (!this.cliente.validaCliente()) return false;
+        if (!((this.preco)>=0.0 && (this.preco)<=999.99))return false;
+        if (!((this.quantidade)>=1 && (this.quantidade)<=200)) return false;
+        if (!((this.tipoCompra=='N') ||(this.tipoCompra=='P'))) return false;
+        if (!((this.mes)>=1 && (this.mes)<= Constantes.MESES)) return false;
+        if (!((this.filial)>=1 && (this.filial)<=Constantes.FILIAIS)) return false;
+
 
         return true;
     }

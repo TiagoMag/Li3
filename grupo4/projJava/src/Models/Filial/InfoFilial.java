@@ -47,6 +47,10 @@ public class InfoFilial implements Serializable {
         this.mes=i.getMes();
     }
 
+    public int correspondeMes(int mes){
+        if(this.mes == mes) return 1;
+        return 0;
+    }
     /**
      * Getters
      */

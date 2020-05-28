@@ -23,7 +23,7 @@ public class Cliente implements ICliente, Comparable<ICliente>,Serializable {
      *
      */
     public Cliente(){
-        this.codigo= new String();
+        this.codigo= "";
     }
 
     /**

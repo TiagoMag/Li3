@@ -1,20 +1,20 @@
 package Models.Queries;
 
-public class ParQuerie2 {
+public class ParQuery2 {
     private int nrVendas;
     private int nrClientes;
 
-    public ParQuerie2() {
+    public ParQuery2() {
         this.nrVendas = 0;
         this.nrClientes = 0;
     }
 
-    public ParQuerie2(int nrVendas, int nrClientes) {
+    public ParQuery2(int nrVendas, int nrClientes) {
         this.nrVendas = nrVendas;
         this.nrClientes = nrClientes;
     }
 
-    public ParQuerie2(ParQuerie2 p){
+    public ParQuery2(ParQuery2 p){
         this.nrClientes=p.getNrClientes();
         this.nrVendas=p.getNrVendas();
     }
@@ -37,7 +37,7 @@ public class ParQuerie2 {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ParQuerie2 a = (ParQuerie2) o;
+        ParQuery2 a = (ParQuery2) o;
         return this.nrVendas==(a.getNrVendas())
                 && this.nrClientes==(a.getNrClientes());
     }
@@ -48,7 +48,7 @@ public class ParQuerie2 {
         return sb.toString();
     }
 
-    public ParQuerie2 clone(){
-        return new ParQuerie2(this);
+    public ParQuery2 clone(){
+        return new ParQuery2(this);
     }
 }

@@ -2,10 +2,12 @@ package Models.Faturacao;
 
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
+import Models.Queries.ParQuery5;
 import Models.Venda;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public interface IFaturacao extends Serializable {
@@ -28,13 +30,13 @@ public interface IFaturacao extends Serializable {
      * Cria uma cópia da instância de Cliente que invoca o método.
      * @return model.Faturacao.Faturacao
      */
-    public List<Map<IProduto, InfoFat>> getFaturacao();
+    public List<Map<IProduto, InfoFat>>getFaturacao();
 
     /**
      * @param f
      *
      */
-    public void setFaturacao(List<Map<Produto, InfoFat>> f);
+    public void setFaturacao(List<Map<IProduto, InfoFat>> f);
 
     /**
      * Clone
@@ -57,5 +59,11 @@ public interface IFaturacao extends Serializable {
     public int numeroProdsComprados();
 
     public boolean existeProduto(IProduto p);
+
+    public float totalFaturadoProd(IProduto p,int mes);
+
+    public int totalVendasProd(IProduto p,int mes);
+
+    public Set<ParQuery5> mostSelledProds(int limit);
 
 }

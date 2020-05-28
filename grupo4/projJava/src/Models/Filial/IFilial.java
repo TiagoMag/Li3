@@ -37,4 +37,15 @@ public interface IFilial {
     public List<IProduto> getProdutosClientePMes(ICliente c,int mes);
 
     public float getFaturadoClienteMes(ICliente c,int mes);
+
+    public int numVendas(int mes);
+
+    public List<ICliente> buyersProduct (IProduto p,int mes);
+
+    public List<InfoFilial> comprasCliente(ICliente c);
+
+
+    public List<InfoFilial> allSells();
+
+    public List <ICliente> buyersProduct(IProduto p);
 }

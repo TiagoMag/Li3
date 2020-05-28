@@ -1,5 +1,7 @@
 package Models.Faturacao;
 
+import Models.Queries.ParQuery5;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +38,7 @@ public class InfoFat implements Serializable {
         return lst.stream().mapToDouble(x-> x.getKey() * x.getValue()).sum();
     }
 
-    public int numComprasMes(){
+    public int numCompras(){
         return this.fat.values().stream().mapToInt(List::size).sum();
     }
 
@@ -89,11 +91,32 @@ public class InfoFat implements Serializable {
         }
     }
 
+    public float totalFaturadoProd(){
+        float total=0.0f;
+        for(List<SimpleEntry<Integer, Float>> par : this.fat.values() ){
+            total+= par.stream().mapToDouble(e->e.getKey()*e.getValue()).sum();
+        }
+        return (float)total;
+    }
 
+    public int totalVendasProd(){
+        int total=0;
+        for(List<SimpleEntry<Integer, Float>> par : this.fat.values() )
+            total += par.size();
+
+        return total;
+    }
 
 
 
 
 }
+
+
+
+
+
+
+
 
 
