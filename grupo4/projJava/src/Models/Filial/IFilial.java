@@ -2,6 +2,8 @@ package Models.Filial;
 
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
+import Models.Catalogos.Produto;
+import Models.Queries.ParQuerie9;
 
 
 import Models.Queries.ParQuery7;
@@ -62,6 +64,9 @@ public interface IFilial {
 
     List<ParQuery8> allClientsProducts();
 
-    List <IProduto> clientProducts(List<InfoFilial> info);
+    public List <IProduto> clientProducts(List<InfoFilial> info);
+
+    public List<ParQuerie9> nrComprasClienteProduto(IProduto p);
+
 
 }

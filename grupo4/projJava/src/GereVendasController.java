@@ -243,6 +243,19 @@ public class GereVendasController implements Serializable {
                     time=Crono.stop();
                     this.view.printQuery8(pares,time);
                     break;
+                case 9:
+                    this.view.insereProduto();
+                    codigoProduto = Input.lerString();
+                    p = new Produto(codigoProduto);
+                    if(validaProduto(p)){
+                        this.view.insereLimite();
+                        limite = Input.lerInt();
+                        Crono.start();
+                        List<ParQuerie9> pares9 = this.model.query9(p,limite);
+                        time= Crono.stop();
+                        this.view.printQuery9(pares9,time);
+                    }
+                    break;
             }
 
         }while(x!=0);

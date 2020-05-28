@@ -7,10 +7,13 @@ import Models.Catalogos.IProduto;
 import Models.Faturacao.InfoFat;
 import Models.Queries.ParQuery7;
 
+import Models.Queries.ComparatorQuery8;
+import Models.Queries.ParQuerie9;
 import Models.Queries.ParQuery8;
 
 import Models.Queries.TrioQuery6;
 import Models.Venda;
+import com.sun.source.tree.Tree;
 
 
 
@@ -184,6 +187,28 @@ public class Filial implements IFilial, Serializable {
     }
 
 
+    private int nrTimesBought(ICliente c, IProduto p){
+
+         return  (int) this.filial.get(c).stream().filter(e -> e.getProduto().equals(p)).mapToInt(e->e.getQuant()).sum();
+    }
+
+    private float totalFaturadoProdutoCliente(ICliente c, IProduto p){
+        return (float) this.filial.get(c).stream().filter(e->e.getProduto().equals(p)).mapToDouble(x->x.getQuant()*x.getPreco()).sum();
+
+    }
+
+    public List<ParQuerie9> nrComprasClienteProduto(IProduto p){
+        List<ParQuerie9> pares = new ArrayList<>();
+
+        List<ICliente> lc = buyersProduct(p);
+
+        for(ICliente l : lc){
+            pares.add(new ParQuerie9(l, totalFaturadoProdutoCliente(l,p), nrTimesBought(l,p)));
+            System.out.println(nrTimesBought(l,p) + l.getCodigo() + p.getCodigo());
+        }
+
+        return pares;
+    }
 
 }
 

@@ -19,23 +19,29 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab205c0b-0130-4129-9aba-9df4b056b57f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_1.xml" afterDir="false" />
+    <list default="true" id="ab205c0b-0130-4129-9aba-9df4b056b57f" name="Default Changelist" comment="Yay voltei a fazer as mesmas queries">
+      <change afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Queries/ComparatorQuery9.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Queries/ParQuerie9.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Common/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Common/Constantes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasAppMVC.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasAppMVC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/Faturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/Faturacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/IFaturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/IFaturacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Filial/Filial.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Filial/Filial.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Filial/IFilial.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Filial/IFilial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Queries/ParQuerie3.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Queries/ParQuerie3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Filial/InfoFilial.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Filial/InfoFilial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -81,8 +87,19 @@
       <updated>1590244047716</updated>
       <workItem from="1590244051058" duration="33000" />
       <workItem from="1590324005866" duration="88000" />
-      <workItem from="1590525323346" duration="5878000" />
+      <workItem from="1590525323346" duration="6139000" />
+      <workItem from="1590602545480" duration="179000" />
+      <workItem from="1590677156913" duration="7909000" />
+      <workItem from="1590685087553" duration="2224000" />
     </task>
+    <task id="LOCAL-00001" summary="Yay voltei a fazer as mesmas queries">
+      <created>1590531420556</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590531420556</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,38 +117,54 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Yay voltei a fazer as mesmas queries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Yay voltei a fazer as mesmas queries" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="734" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590525233460">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="734" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590525233460" />
+    <state x="1085" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1590685745792">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1085" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590685745792" />
     <state x="1183" y="271" key="FileChooserDialogImpl" timestamp="1590324079803">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1183" y="271" key="FileChooserDialogImpl/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590324079803" />
-    <state width="2517" height="282" key="GridCell.Tab.0.bottom" timestamp="1590526887236">
+    <state width="1835" height="265" key="GridCell.Tab.0.bottom" timestamp="1590687312451">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="282" key="GridCell.Tab.0.bottom/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590526887236" />
-    <state width="2517" height="282" key="GridCell.Tab.0.center" timestamp="1590526887236">
+    <state width="1835" height="265" key="GridCell.Tab.0.bottom/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590687312451" />
+    <state width="1835" height="265" key="GridCell.Tab.0.center" timestamp="1590687312451">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="282" key="GridCell.Tab.0.center/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590526887236" />
-    <state width="2517" height="282" key="GridCell.Tab.0.left" timestamp="1590526887236">
+    <state width="1835" height="265" key="GridCell.Tab.0.center/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590687312451" />
+    <state width="1835" height="265" key="GridCell.Tab.0.left" timestamp="1590687312451">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="282" key="GridCell.Tab.0.left/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590526887236" />
-    <state width="2517" height="282" key="GridCell.Tab.0.right" timestamp="1590526887236">
+    <state width="1835" height="265" key="GridCell.Tab.0.left/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590687312451" />
+    <state width="1835" height="265" key="GridCell.Tab.0.right" timestamp="1590687312451">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="282" key="GridCell.Tab.0.right/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590526887236" />
+    <state width="1835" height="265" key="GridCell.Tab.0.right/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590687312451" />
+    <state x="102" y="96" key="MergeDialog" timestamp="1590687197702">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="102" y="96" key="MergeDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590687197702" />
     <state x="720" y="103" key="SettingsEditor" timestamp="1590526003697">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="720" y="103" key="SettingsEditor/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590526003697" />
-    <state x="1049" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590525414850">
+    <state x="872" y="252" key="Vcs.Push.Dialog.v2" timestamp="1590531435887">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="1049" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590525414850" />
+    <state x="872" y="252" key="Vcs.Push.Dialog.v2/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590531435887" />
+    <state x="1049" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590687088444">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1049" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590687088444" />
   </component>
 </project>
