@@ -156,29 +156,29 @@ public class GereVendasController implements Serializable {
 
     public void handlerQueriesInterativas(){
         int x=0;
-        do{
+        do {
             this.view.showQueriesInterativas();
             double time;
             String codigoCliente;
             String codigoProduto;
             ICliente c;
             IProduto p;
-            x=Input.lerInt();  // lê input do cliente
-            switch(x) {
+            x = Input.lerInt();  // lê input do cliente
+            switch (x) {
                 case 1:
                     Crono.start();
-                    Set<IProduto> lst =this.model.produtosNaoComprados();
-                    time=Crono.stop();
-                    this.view.printQuery1(lst,time);
+                    Set<IProduto> lst = this.model.produtosNaoComprados();
+                    time = Crono.stop();
+                    this.view.printQuery1(lst, time);
                     break;
                 case 2:
-                    int mes=1;
-                    while(mes!=0) {
+                    int mes = 1;
+                    while (mes != 0) {
                         this.view.insiraMes();
-                        mes=Input.lerInt();
+                        mes = Input.lerInt();
                         if (validaMes(mes)) {
                             Crono.start();
-                            ParQuery2[] par = this.model.numeroTotalVendasEClientesMes(mes-1);
+                            ParQuery2[] par = this.model.numeroTotalVendasEClientesMes(mes - 1);
                             time = Crono.stop();
                             this.view.printQuerie2(par, time);
                         }
@@ -186,46 +186,54 @@ public class GereVendasController implements Serializable {
                     break;
                 case 3:
                     this.view.insereCliente();
-                    codigoCliente=Input.lerString();
+                    codigoCliente = Input.lerString();
                     c = new Cliente(codigoCliente);
-                    if (validaCliente (c)){
+                    if (validaCliente(c)) {
                         Crono.start();
-                        TrioQuery3 triplo=this.model.quantasComprasFezPMes(c);
-                        time=Crono.stop();
-                        this.view.printQuerie3(triplo,time);
+                        TrioQuery3 triplo = this.model.quantasComprasFezPMes(c);
+                        time = Crono.stop();
+                        this.view.printQuerie3(triplo, time);
                     }
                     break;
                 case 4:
                     this.view.insereProduto();
-                    codigoProduto=Input.lerString();
-                    p=new Produto(codigoProduto);
-                    if(validaProduto(p)){
+                    codigoProduto = Input.lerString();
+                    p = new Produto(codigoProduto);
+                    if (validaProduto(p)) {
                         Crono.start();
                         TrioQuery4[] trios = this.model.querie4(p);
-                        time=Crono.stop();
-                        this.view.printQuerie4(trios,time);
+                        time = Crono.stop();
+                        this.view.printQuerie4(trios, time);
                     }
                     break;
                 case 5:
                     this.view.insereCliente();
-                    codigoCliente=Input.lerString();
-                    c=new Cliente(codigoCliente);
-                    if(validaCliente(c)){
+                    codigoCliente = Input.lerString();
+                    c = new Cliente(codigoCliente);
+                    if (validaCliente(c)) {
                         Crono.start();
                         Set<ParQuery5> set = this.model.query5(c);
-                        time=Crono.stop();
-                        this.view.printQuery5(set,time);
+                        time = Crono.stop();
+                        this.view.printQuery5(set, time);
                     }
                     break;
                 case 6:
                     this.view.insereLimite();
-                    int limite=Input.lerInt();
+                    int limite = Input.lerInt();
                     Crono.start();
-                    Set<TrioQuery6> trios= this.model.query6(limite);
-                    time=Crono.stop();
-                    this.view.printQuery6(trios,time);
+                    Set<TrioQuery6> trios = this.model.query6(limite);
+                    time = Crono.stop();
+                    this.view.printQuery6(trios, time);
+                    break;
+
+                case 7:
+                    Crono.start();
+                    List<Set<ParQuery7>> duo = this.model.query7();
+                    time = Crono.stop();
+                    this.view.printQuery7(duo, time);
                     break;
             }
+
         }while(x!=0);
 
 

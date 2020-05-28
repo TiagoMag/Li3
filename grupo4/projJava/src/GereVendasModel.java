@@ -376,4 +376,15 @@ public class GereVendasModel implements Serializable {
         return trios;
     }
 
-}
+    public List<Set<ParQuery7>> query7 () {
+        List<Set<ParQuery7>> l = new ArrayList<>();
+
+        for (IFilial f : this.filiais) {
+            l.add(f.top3Compradores());
+
+        }
+        return l;
+    }
+
+
+    }

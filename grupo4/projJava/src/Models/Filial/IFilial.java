@@ -3,11 +3,13 @@ package Models.Filial;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
+import Models.Queries.ParQuery7;
 import Models.Venda;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public interface IFilial {
@@ -24,28 +26,30 @@ public interface IFilial {
      * */
     IFilial clone ();
 
-    public List<ICliente> filialBuyers();
+    List<ICliente> filialBuyers();
     /**
      * Adiciona uma compra a um cliente
      */
    void insereVenda(Venda v);
 
-   public List<ICliente> filialbuyersMes(int mes);
+   List<ICliente> filialbuyersMes(int mes);
 
-    public int nrComprasClientePMes(ICliente c,int mes);
+    int nrComprasClientePMes(ICliente c,int mes);
 
-    public List<IProduto> getProdutosClientePMes(ICliente c,int mes);
+    List<IProduto> getProdutosClientePMes(ICliente c,int mes);
 
-    public float getFaturadoClienteMes(ICliente c,int mes);
+    float getFaturadoClienteMes(ICliente c,int mes);
 
-    public int numVendas(int mes);
+    int numVendas(int mes);
 
-    public List<ICliente> buyersProduct (IProduto p,int mes);
+    List<ICliente> buyersProduct (IProduto p,int mes);
 
-    public List<InfoFilial> comprasCliente(ICliente c);
+    List<InfoFilial> comprasCliente(ICliente c);
 
 
-    public List<InfoFilial> allSells();
+    List<InfoFilial> allSells();
 
-    public List <ICliente> buyersProduct(IProduto p);
+    List <ICliente> buyersProduct(IProduto p);
+
+    Set<ParQuery7> top3Compradores();
 }

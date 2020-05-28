@@ -259,4 +259,29 @@ public class GereVendasView implements Serializable {
         this.clickEnter();
 
     }
+
+
+    public void printQuery7(List<Set<ParQuery7>> duo,double time){
+        if(duo.size()==0) {
+            System.out.println("Não há nenhum elemento.");
+            return;
+        }
+
+        int i=0;
+        int y=0;
+
+        for(Set<ParQuery7> duos : duo){
+            System.out.println("Filial " + (y+1));
+            for(ParQuery7 p : duos){
+            System.out.println((i+1)+": "+ p.getCliente().getCodigo()+ ": " + p.getGasto()+ "\t");
+            i++;
+            }
+            i=0;
+            y++;
+        }
+
+        this.printTime(time);
+        this.clickEnter();
+
+    }
 }

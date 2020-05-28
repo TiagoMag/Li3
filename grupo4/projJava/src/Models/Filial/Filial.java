@@ -3,13 +3,16 @@ package Models.Filial;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
+import Models.Faturacao.InfoFat;
+import Models.Queries.ParQuery7;
 import Models.Queries.TrioQuery6;
 import Models.Venda;
 
-import javax.sound.sampled.Line;
+
+
 import java.io.Serializable;
 import java.util.*;
-import java.util.stream.Collector;
+
 import java.util.stream.Collectors;
 
 public class Filial implements IFilial, Serializable {
@@ -155,4 +158,15 @@ public class Filial implements IFilial, Serializable {
         }
         return  c;
     }
+
+    public Set<ParQuery7> top3Compradores(){
+        return this.filial.entrySet().stream().map(x->new ParQuery7(x.getKey(),getFaturadoCliente(x.getValue()))).collect(Collectors.toCollection(TreeSet::new)).stream().limit(3). collect(Collectors.toCollection(TreeSet::new));
+
+    }
+
+
+    private float getFaturadoCliente(List<InfoFilial> f){
+        return (float) f.stream().mapToDouble(x->x.getQuant()*x.getPreco()).sum();
+    }
+
 }
