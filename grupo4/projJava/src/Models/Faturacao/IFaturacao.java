@@ -50,19 +50,68 @@ public interface IFaturacao extends Serializable {
      */
     public void insereVenda(Venda v);
 
+    /**
+     * Indica o total faturado
+     * @return
+     */
+
     public float faturacaoTotal();
+
+    /**
+     * Indica a faturação por mês
+     * @param mes
+     * @param filial
+     * @return total faturado num determinado mês
+     */
 
     public float faturacaoMes(int mes,int filial);
 
+    /**
+     * Indica o numero de compras feitas por mês
+     * @param mes
+     * @return total de compras feitas num determinado mês
+     */
+
     public int numComprasMes(int mes);
+
+    /**
+     * Indica o numero de produtos comprados
+     * @return
+     */
 
     public int numeroProdsComprados();
 
+    /**
+     * Indica se um produto existe nos registos
+     * @param p
+     * @return True se sim, False se não
+     */
+
     public boolean existeProduto(IProduto p);
+
+    /**
+     * Indica o total faturado por um produto num determinado mês
+     * @param p
+     * @param mes
+     * @return faturacao total de produto num mes
+     */
 
     public float totalFaturadoProd(IProduto p,int mes);
 
+    /**
+     * Indica o numero de vendas de um produto num determinado mês
+     * @param p
+     * @param mes
+     * @return numero de vendas de um produto num mes
+     */
+
     public int totalVendasProd(IProduto p,int mes);
+
+    /**
+     * Funcao essencial à realizacão da query 5
+     * @param limit
+     * @return Top delimitado por limit dos produtos mais vendidos
+     */
 
     public Set<ParQuery5> mostSelledProds(int limit);
 

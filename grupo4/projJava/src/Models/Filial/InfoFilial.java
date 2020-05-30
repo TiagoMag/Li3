@@ -4,6 +4,7 @@ import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class InfoFilial implements Serializable {
 

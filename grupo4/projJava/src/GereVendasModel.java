@@ -324,6 +324,8 @@ public class GereVendasModel implements Serializable {
         return p;
     }
 
+
+    //4)
     public TrioQuery4[] querie4 (IProduto p){
         TrioQuery4[] trios = new TrioQuery4[Constantes.MESES];
         float total_faturado=0.0f;
@@ -341,6 +343,8 @@ public class GereVendasModel implements Serializable {
        return trios;
     }
 
+
+    //5)
     public Set<ParQuery5> query5(ICliente c){
         List<InfoFilial> compras= new ArrayList<>();
 
@@ -377,6 +381,20 @@ public class GereVendasModel implements Serializable {
         return trios;
     }
 
+
+    public List<Set<ParQuery7>> query7 () {
+        List<Set<ParQuery7>> l = new ArrayList<>();
+
+        for (IFilial f : this.filiais) {
+            l.add(f.top3Compradores());
+
+        }
+        return l;
+    }
+
+
+
+
     public List<ParQuery8> query8(int limit){
         List<ParQuery8> pares = new ArrayList<>();
 
@@ -390,4 +408,23 @@ public class GereVendasModel implements Serializable {
 
     }
 
+
+
+
+    //9)
+    public List<ParQuerie9> query9(IProduto p,int limit){
+        List<ParQuerie9> pares = new ArrayList<>();
+
+        for(IFilial f : this.filiais){
+            pares.addAll( f.nrComprasClienteProduto(p));
+        }
+        return  pares.stream().collect(Collectors.groupingBy(ParQuerie9::getCliente)).entrySet().stream().
+                map(x-> new ParQuerie9 (x.getKey().clone(),(float)x.getValue().stream().mapToDouble(ParQuerie9::getFaturado).sum(),x.getValue().stream().mapToInt(ParQuerie9::getTotal).sum())).
+                sorted(new ComparatorQuery9()).limit(limit).collect((Collectors.toList()));
+
+    }
+
+
+
 }
+

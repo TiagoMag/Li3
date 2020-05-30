@@ -260,6 +260,32 @@ public class GereVendasView implements Serializable {
 
     }
 
+
+
+    public void printQuery7(List<Set<ParQuery7>> duo,double time) {
+        if (duo.size() == 0) {
+            System.out.println("Não há nenhum elemento.");
+            return;
+        }
+
+        int i = 0;
+        int y = 0;
+
+        for (Set<ParQuery7> duos : duo) {
+            System.out.println("Filial " + (y + 1));
+            for (ParQuery7 p : duos) {
+                System.out.println((i + 1) + ": " + p.getCliente().getCodigo() + ": " + p.getGasto() + "\t");
+                i++;
+            }
+            i = 0;
+            y++;
+        }
+
+        this.printTime(time);
+        this.clickEnter();
+
+    }
+
     public void printQuery8 (List<ParQuery8> pares,double time){
         if(pares.size()==0) {
             System.out.println("Não há nenhum elemento.");
@@ -269,6 +295,27 @@ public class GereVendasView implements Serializable {
         int i=0;
         for(ParQuery8 par : pares){
             lista.add((i+1)+": "+"Cliente:"+ par.getCliente().getCodigo() +" Produtos: "+ par.getQuant());
+            i++;
+        }
+
+        Navegador nav = new Navegador(lista,1,10);
+        nav.run();
+
+        this.printTime(time);
+        this.clickEnter();
+
+    }
+
+
+    public void printQuery9 (List<ParQuerie9> pares,double time){
+        if(pares.size()==0) {
+            System.out.println("Não há nenhum elemento.");
+            return;
+        }
+        List<String> lista = new ArrayList<>();
+        int i=0;
+        for(ParQuerie9 par : pares){
+            lista.add((i+1)+": "+"Cliente:"+ par.getCliente().getCodigo() +" Total Faturado: "+ par.getFaturado()+" Compras totais: "+par.getTotal());
             i++;
         }
 
