@@ -142,7 +142,8 @@ public class Filial implements IFilial, Serializable {
     }
 
     public List<InfoFilial> comprasCliente(ICliente c){
-        return this.filial.get(c).stream().map(InfoFilial::clone).collect(Collectors.toList());
+        if(!this.filial.containsKey(c)) return new ArrayList<>();
+        else return this.filial.get(c).stream().map(InfoFilial::clone).collect(Collectors.toList());
 
 
     }

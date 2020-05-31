@@ -5,7 +5,7 @@ import static java.lang.System.exit;
 public class GereVendasAppMVC implements Serializable {
 
     public static void main (String[] args){
-
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         GereVendasModel model = new GereVendasModel();
         model.loadModel();
         if (model==null){

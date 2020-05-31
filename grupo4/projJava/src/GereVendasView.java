@@ -205,10 +205,11 @@ public class GereVendasView implements IGereVendasView, Serializable {
             public void printQuerie123 (List<Integer> l,double time){
                this.clearScreen();
                System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+               int h=0;
                for(int i=0;i<Constantes.FILIAIS;i++) {
                       System.out.println("Filial:"+(i+1));
                        for (int j = 0; j < Constantes.MESES; j++) {
-                              System.out.printf("Mês:%d %d",(j + 1) ,l.get(j));
+                              System.out.printf("Mês:%d %d",(j + 1) ,l.get(h++));
                           }
                         System.out.println();
                    }
@@ -283,7 +284,7 @@ public class GereVendasView implements IGereVendasView, Serializable {
         for(ParQuery5 par : set){
             lista.add(par.getProduto().getCodigo() + ": " + par.getQuantidade() + "\t");
         }
-        Navegador nav = new Navegador(lista,10,10);
+        Navegador nav = new Navegador(lista,1,10);
         nav.run();
         this.printTime(time);
         this.clickEnter();

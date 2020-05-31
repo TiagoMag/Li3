@@ -41,6 +41,7 @@ public class Navegador implements Serializable {
           pages++;
         }
         this.paginas = listP;
+
         this.total= this.paginasTotal(lst);
     }
 
