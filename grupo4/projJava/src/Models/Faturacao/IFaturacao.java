@@ -2,6 +2,7 @@ package Models.Faturacao;
 
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
+import Models.Queries.ParQuery10;
 import Models.Queries.ParQuery5;
 import Models.Venda;
 import java.io.Serializable;
@@ -114,5 +115,5 @@ public interface IFaturacao extends Serializable {
      */
 
     public Set<ParQuery5> mostSelledProds(int limit);
-
+    public ParQuery10 totalFaturadoProduto(IProduto prod);
 }

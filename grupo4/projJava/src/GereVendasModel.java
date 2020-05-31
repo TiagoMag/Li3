@@ -424,6 +424,17 @@ public class GereVendasModel implements Serializable {
 
     }
 
+    public List<ParQuery10> query10(){
+
+       List<ParQuery10> faturado = new ArrayList<>();   // list onde estrão todos os produtos com as suas faturacoes por mes
+
+        for(IProduto prod : this.getCatProdutos().getProdutos())  // calcula as faturacoes por mes e filial para cada produto
+            faturado.add(this.faturacao.totalFaturadoProduto(prod));
+
+        return faturado;
+    }
+
+
 
 
 }

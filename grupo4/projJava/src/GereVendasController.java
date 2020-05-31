@@ -4,7 +4,6 @@ import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 import Models.Queries.*;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -255,6 +254,12 @@ public class GereVendasController implements Serializable {
                         time= Crono.stop();
                         this.view.printQuery9(pares9,time);
                     }
+                    break;
+                case 10:
+                    Crono.start();
+                    List<ParQuery10> pares10 = this.model.query10();
+                    time = Crono.stop();
+                    this.view.printQuery10(pares10,time);
                     break;
             }
 

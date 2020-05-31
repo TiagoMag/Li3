@@ -3,10 +3,7 @@ package Models.Faturacao;
 import Models.Queries.ParQuery5;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.AbstractMap.*;
 import java.util.stream.Collectors;
 
@@ -34,8 +31,8 @@ public class InfoFat implements Serializable {
     }
 
     public double faturadoProdutosMesFilial(int filial){
-        List<SimpleEntry<Integer, Float>> lst=this.fat.get(filial);
-        return lst.stream().mapToDouble(x-> x.getKey() * x.getValue()).sum();
+        if(!this.fat.containsKey(filial)) return 0.0;
+        return this.fat.get(filial).stream().mapToDouble(x-> x.getKey() * x.getValue()).sum();
     }
 
     public int numCompras(){

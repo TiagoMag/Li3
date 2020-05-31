@@ -15,7 +15,7 @@ public class Pagina implements Serializable {
         this.lista = lista;
     }
 
-    public void showPage(int pag) {
+    public void showPage() {
         int i = 0;
 
         while (i >= 0 && i < this.lista.size()) {

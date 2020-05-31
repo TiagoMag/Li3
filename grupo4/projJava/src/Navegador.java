@@ -3,6 +3,7 @@ import Views.Pagina;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Navegador implements Serializable {
 
@@ -20,10 +21,11 @@ public class Navegador implements Serializable {
         this.colunas=col;
         this.totalelems=lst.size();
         int i= 0;
+        int pages=01;
         List<Pagina> listP = new ArrayList<>();
         List<String> pageElems  = new ArrayList<>();
         Pagina p;
-        while(i<paginasTotal(lst)) {
+        while(pages<paginasTotal(lst)) {
             for(int j = 0; j < lin; j++) {
                 for(int h = 0; h < col; h++) {
                     if(i < lst.size()) {
@@ -33,12 +35,14 @@ public class Navegador implements Serializable {
                 }
             }
             p = new Pagina(lin,col,pageElems);
-            pageElems = new ArrayList<>();
             listP.add(p);
+            pageElems = new ArrayList<>();
+          pages++;
         }
-
+        System.out.println("Iiiii"+i);
         this.paginas = listP;
         this.total= this.paginasTotal(lst);
+        System.out.println("asasas"+listP.size());
     }
 
     int paginasTotal(List<String> lst){
@@ -49,31 +53,41 @@ public class Navegador implements Serializable {
     public void run(){
         int i=0;
 
-         while(i>=0 && i<this.total) {
-             System.out.println("\nPagina: " + current_page + 1 + " de " + this.total + "\n");
-             System.out.println("Elementos totais:"+this.totalelems);
-             this.paginas.get(this.current_page).showPage(this.current_page);
-             System.out.println("\n[P] Proxima Pagina");
-             System.out.println("[A] Pagina Anterior");
-             System.out.println("[S] Atras");
-             String op = Input.lerString();
+        while(i>=0 && i<this.total) {
+            System.out.println("\nPagina: " + (current_page+1) + " de " + this.total + "\n");
+            System.out.println("Elementos totais:"+this.totalelems);
+            this.paginas.get(this.current_page).showPage();
+            System.out.println("\n[p] Proxima Pagina");
+            System.out.println("[a] Pagina Anterior");
+            System.out.println("[pag] Insere número página");
+            System.out.println("[s] Atras");
+            String op = Input.lerString();
 
-             switch (op) {
-                 case "p":
-                     if (this.current_page < paginas.size()) {current_page++;i=current_page;}
-                     break;
-                 case "a":
-                     if (current_page > 1) {
-                         current_page--;
-                         i=current_page;
-                     }
-                     break;
-                 case "s":
-                     return;
-                 default:
-                     break;
-             }
-         }
+            switch (op) {
+                case "p":
+                    if (this.current_page < this.total) {current_page++;i=current_page;}
+                    break;
+                case "a":
+                    if (current_page > 1) {
+                        current_page--;
+                        i=current_page;
+                    }
+                    break;
+                case "s":
+                    return;
+                case "pag":
+                    System.out.println("Insira número da página");
+
+                   int pagina= Input.lerInt();
+                    if (pagina > 1 && pagina < this.total ) {
+                        current_page=pagina-1;
+                        i = current_page;
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
-

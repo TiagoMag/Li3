@@ -179,6 +179,7 @@ public class GereVendasView implements Serializable {
             return;
         }
         List<String> lista = lst.stream().map(IProduto::getCodigo).collect(Collectors.toList());
+        System.out.println("tam listta"+lista.size());
         Navegador nav = new Navegador(lista,Constantes.LINHAS,Constantes.COLUNAS);
         nav.run();
         this.printTime(time);
@@ -323,6 +324,23 @@ public class GereVendasView implements Serializable {
         nav.run();
         this.printTime(time);
         this.clickEnter();
+
+    }
+
+    public void printQuery10(List<ParQuery10> pares,double time){
+        if(pares.size()==0) {
+            System.out.println("Não há nenhum elemento.");
+            return;
+        }
+        List<String> lista = new ArrayList<>();
+        for(ParQuery10 par : pares){
+            lista.add(par.toString());
+        }
+        Navegador nav = new Navegador(lista,5,1);
+        nav.run();
+        this.printTime(time);
+        this.clickEnter();
+
 
     }
 }

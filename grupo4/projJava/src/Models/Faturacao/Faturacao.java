@@ -3,12 +3,14 @@ package Models.Faturacao;
 import Common.Constantes;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
+import Models.Queries.ParQuery10;
 import Models.Queries.ParQuery5;
 import Models.Queries.TrioQuery6;
 import Models.Venda;
 import java.util.AbstractMap.*;
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
 /**
@@ -184,27 +186,39 @@ public class Faturacao implements IFaturacao,Serializable {
     }
 
     public Set<ParQuery5> mostSelledProds(int limit){
-        int i;
-        List<ParQuery5> l = new ArrayList <> ();
-        for (i=0;i<Constantes.MESES;i++){
-            List<ParQuery5> mes=this.faturacao.get(i).entrySet().parallelStream().map( e -> {
-                return new ParQuery5(e.getKey().clone(), e.getValue()
-                        .getFat().values().stream()
-                        .flatMap(List::stream)
-                        .mapToInt(SimpleEntry::getKey).sum());
-            }).collect(Collectors.toList());
-            l.addAll(mes);
-        }
-        return l.stream().collect(Collectors.groupingBy(ParQuery5::getProduto)).entrySet().stream()
-                .map(p -> new ParQuery5 (p.getKey(),p.getValue().stream().mapToInt(ParQuery5::getQuantidade).sum()))
-                .sorted().limit(limit).collect(Collectors.toCollection(TreeSet::new));
+         ConcurrentLinkedQueue<ParQuery5> l = new ConcurrentLinkedQueue<>();
+            //Set<ParQuery5> l = new TreeSet<>();
+              //       List<ParQuery5> l = Collections.synchronizedList(new ArrayList<>());
+               Crono.start();
+
+               this.faturacao.parallelStream().forEach(x-> x.entrySet().parallelStream()
+                       .forEach(e -> l.add(new ParQuery5(e.getKey(),e.getValue()
+                           .getFat().values().stream()
+                       .flatMap(List::stream)
+                               .mapToInt(SimpleEntry::getKey).sum())))); //.forEachOrdered(l::add));
+
+
+               System.out.println("terminou: "+Crono.stop());
+               Crono.start();
+               Set<ParQuery5> s= l.stream().collect(Collectors.groupingBy(ParQuery5::getProduto)).entrySet().stream()
+                             .map(p -> new ParQuery5 (p.getKey(),p.getValue().stream().mapToInt(ParQuery5::getQuantidade).sum()))
+                               .collect(Collectors.toCollection(TreeSet::new)).stream().limit(limit).collect(Collectors.toSet());
+               System.out.println("terminou: "+Crono.stop());
+               return s;
+
     }
 
 
-
-
-
-
+    public ParQuery10 totalFaturadoProduto(IProduto prod){
+        double[][] tabela = new double[Constantes.MESES][Constantes.FILIAIS];
+        for (int i = 0; i < Constantes.MESES; i++) {
+              for (int j = 0; j < Constantes.FILIAIS; j++) {
+                  if (!this.faturacao.get(i).containsKey(prod)) tabela[i][j] = 0.0;
+                  else tabela[i][j] = this.faturacao.get(i).get(prod).faturadoProdutosMesFilial(j);
+              }
+          }
+        return new ParQuery10(prod.clone(),tabela);
+    }
 
 
 }
