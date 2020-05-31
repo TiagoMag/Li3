@@ -24,42 +24,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab205c0b-0130-4129-9aba-9df4b056b57f" name="Default Changelist" comment="tirado os testes da query10">
-      <change afterPath="$PROJECT_DIR$/grupo4/projJava/GereVendas.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2020_13_40__Default_Changelist_1.xml" afterDir="false" />
+    <list default="true" id="ab205c0b-0130-4129-9aba-9df4b056b57f" name="Default Changelist" comment=".jar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_cat_produtos_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_cat_produtos_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_cat_produtos_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_cat_produtos_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_controller_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_controller_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_controller_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_controller_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_faturacao_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_faturacao_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_filial_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_filial_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_filial_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_filial_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_input_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_input_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_input_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_input_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_navegador_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_navegador_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_navegador_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_navegador_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_queries_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_queries_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_queries_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_queries_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/_view_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/_view_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/dir_e06a76c72465e54cd194771b9944f062.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/dir_e06a76c72465e54cd194771b9944f062.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/files.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/files.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/globals.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/globals.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/globals_defs.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/globals_defs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/globals_func.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/globals_func.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/globals_type.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/globals_type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/docs/html/interface_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/docs/html/interface_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projC/src/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projC/src/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Common/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Common/Constantes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/GereVendasView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Common/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/Faturacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/Faturacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/InfoFat.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Models/Faturacao/InfoFat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Navegador.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Views/Navegador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grupo4/projJava/src/Testes.java" beforeDir="false" afterPath="$PROJECT_DIR$/grupo4/projJava/src/Testes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,9 +63,9 @@
       <recent name="C:\Users\Manel\Downloads\LI3trabalho\grupo4\projJava" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.GereVendas.jar">
-    <configuration name="GereVendasAppMVC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GereVendasAppMVC" />
+  <component name="RunManager" selected="Application.Testes">
+    <configuration name="Testes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Testes" />
       <module name="LI3trabalho" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -114,15 +80,15 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.GereVendasAppMVC" />
+      <item itemvalue="Application.Testes" />
       <item itemvalue="JAR Application.LI3trabalho.jar" />
       <item itemvalue="JAR Application.GereVendas.jar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Testes" />
         <item itemvalue="JAR Application.GereVendas.jar" />
         <item itemvalue="JAR Application.LI3trabalho.jar" />
-        <item itemvalue="Application.GereVendasAppMVC" />
       </list>
     </recent_temporary>
   </component>
@@ -147,7 +113,7 @@
       <workItem from="1590764453233" duration="4648000" />
       <workItem from="1590884670112" duration="4036000" />
       <workItem from="1590935607091" duration="142000" />
-      <workItem from="1590935758979" duration="3348000" />
+      <workItem from="1590935758979" duration="3895000" />
     </task>
     <task id="LOCAL-00001" summary="Yay voltei a fazer as mesmas queries">
       <created>1590531420556</created>
@@ -177,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590886736783</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=".jar">
+      <created>1590941695312</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1590941695312</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,21 +172,22 @@
     <MESSAGE value="Yay voltei a fazer as mesmas queries" />
     <MESSAGE value="Query 9" />
     <MESSAGE value="tirado os testes da query10" />
-    <option name="LAST_COMMIT_MESSAGE" value="tirado os testes da query10" />
+    <MESSAGE value=".jar" />
+    <option name="LAST_COMMIT_MESSAGE" value=".jar" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="734" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590941221846">
+    <state x="734" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590941820971">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="734" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941221846" />
+    <state x="734" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941820971" />
     <state x="1085" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1590764803983">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1085" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590764803983" />
-    <state x="970" y="319" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1590941128244">
+    <state x="970" y="319" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1590941818583">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="970" y="319" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941128244" />
+    <state x="970" y="319" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941818583" />
     <state x="1063" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1590941018617">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -230,22 +204,22 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1183" y="271" key="FileChooserDialogImpl/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590885629951" />
-    <state width="2517" height="497" key="GridCell.Tab.0.bottom" timestamp="1590941614098">
+    <state width="2125" height="708" key="GridCell.Tab.0.bottom" timestamp="1590942094243">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="497" key="GridCell.Tab.0.bottom/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941614098" />
-    <state width="2517" height="497" key="GridCell.Tab.0.center" timestamp="1590941614097">
+    <state width="2125" height="708" key="GridCell.Tab.0.bottom/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590942094243" />
+    <state width="2125" height="708" key="GridCell.Tab.0.center" timestamp="1590942094243">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="497" key="GridCell.Tab.0.center/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941614097" />
-    <state width="2517" height="497" key="GridCell.Tab.0.left" timestamp="1590941614097">
+    <state width="2125" height="708" key="GridCell.Tab.0.center/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590942094243" />
+    <state width="2125" height="708" key="GridCell.Tab.0.left" timestamp="1590942094243">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="497" key="GridCell.Tab.0.left/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941614097" />
-    <state width="2517" height="497" key="GridCell.Tab.0.right" timestamp="1590941614097">
+    <state width="2125" height="708" key="GridCell.Tab.0.left/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590942094243" />
+    <state width="2125" height="708" key="GridCell.Tab.0.right" timestamp="1590942094243">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2517" height="497" key="GridCell.Tab.0.right/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941614097" />
+    <state width="2125" height="708" key="GridCell.Tab.0.right/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590942094243" />
     <state x="102" y="96" key="MergeDialog" timestamp="1590935682252">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -254,10 +228,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="720" y="103" key="SettingsEditor/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941475811" />
-    <state x="872" y="252" key="Vcs.Push.Dialog.v2" timestamp="1590886762811">
+    <state x="872" y="252" key="Vcs.Push.Dialog.v2" timestamp="1590941720900">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="872" y="252" key="Vcs.Push.Dialog.v2/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590886762811" />
+    <state x="872" y="252" key="Vcs.Push.Dialog.v2/0.0.2560.1040/-1920.65.1920.1040@0.0.2560.1040" timestamp="1590941720900" />
     <state x="1049" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590940519480">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

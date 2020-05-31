@@ -51,19 +51,46 @@ public class Testes {
         Crono.start();
         leituraFilesComParsingValidacao("ficheiros/Vendas_1M.txt",prods,clis);
         System.out.print("          "+ Crono.stop() + " s\n");
-         //----------------------------------- 3MILHOES ----------------------
+
+        //-----------------------------------------3Milhoes-----------------------------
+        Crono.start();
+        leituraBufferSemParsing("ficheiros/Vendas_3M.txt");
+        System.out.print("\n[Vendas_3M.txt|Sem parsing]:                        "+Crono.stop()+" s");
+        Crono.start();
+        Crono.start();
+        leituraFilesSemParsing("ficheiros/Vendas_3M.txt");
+        System.out.print("          "+ Crono.stop() + " s");
+        leituraBufferComParsing("ficheiros/Vendas_3M.txt");
+        System.out.print("\n[Vendas_3M.txt|Parsing sem validacao]:              "+ Crono.stop()+" s");
+        Crono.start();
+        leituraFilesComParsing("ficheiros/Vendas_3M.txt");
+        System.out.print("          "+ Crono.stop() + " s");
         Crono.start();
         leituraBufferComParsingValidacao("ficheiros/Vendas_3M.txt",prods,clis);
-        System.out.print("\n[Vendas_3M.txt]:         " + Crono.stop()+" s");
+        System.out.print("\n[Vendas_3M.txt|Parsing e validacao]:               "+ Crono.stop()+" s");
         Crono.start();
         leituraFilesComParsingValidacao("ficheiros/Vendas_3M.txt",prods,clis);
-        System.out.println("                 " + Crono.stop() + " s");
+        System.out.print("          "+ Crono.stop() + " s\n");
+
+        //-----------------------------------------5Milhoes-----------------------------
+        Crono.start();
+        leituraBufferSemParsing("ficheiros/Vendas_5M.txt");
+        System.out.print("\n[Vendas_5M.txt|Sem parsing]:                        "+Crono.stop()+" s");
+        Crono.start();
+        Crono.start();
+        leituraFilesSemParsing("ficheiros/Vendas_5M.txt");
+        System.out.print("          "+ Crono.stop() + " s");
+        leituraBufferComParsing("ficheiros/Vendas_5M.txt");
+        System.out.print("\n[Vendas_5M.txt|Parsing sem validacao]:              "+ Crono.stop()+" s");
+        Crono.start();
+        leituraFilesComParsing("ficheiros/Vendas_5M.txt");
+        System.out.print("          "+ Crono.stop() + " s");
         Crono.start();
         leituraBufferComParsingValidacao("ficheiros/Vendas_5M.txt",prods,clis);
-        System.out.print("\n[Vendas_5M.txt]:         " + Crono.stop()+" s");
+        System.out.print("\n[Vendas_5M.txt|Parsing e validacao]:               "+ Crono.stop()+" s");
         Crono.start();
         leituraFilesComParsingValidacao("ficheiros/Vendas_5M.txt",prods,clis);
-        System.out.println("                 " + Crono.stop() + " s");
+        System.out.print("          "+ Crono.stop() + " s\n");
 
     }
 
