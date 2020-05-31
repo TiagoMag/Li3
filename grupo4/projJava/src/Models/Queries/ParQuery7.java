@@ -3,6 +3,13 @@ package Models.Queries;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 
+/**
+ * Classe auxiliar usada para resolver a Query 7
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 import java.io.Serializable;
 
     public class ParQuery7 implements Comparable <ParQuery7>, Serializable

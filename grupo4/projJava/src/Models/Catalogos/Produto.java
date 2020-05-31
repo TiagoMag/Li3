@@ -3,6 +3,13 @@ package Models.Catalogos;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Classe Produto
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
+
 
 public class Produto implements IProduto,Comparable<IProduto>,Serializable {
 

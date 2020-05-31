@@ -1,5 +1,13 @@
 package Models.Queries;
 
+/**
+ * Classe InfoVendasFile
+ * Representa informações àcerca do ficheiro de vendas
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class InfoVendasFile {
 
     int num_compras_preco_0;

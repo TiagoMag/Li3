@@ -50,30 +50,22 @@ public class Faturacao implements IFaturacao,Serializable {
         this.setFaturacao(f);
     }
 
-    /**
-     * Getters
-     */
+
     public List<Map<IProduto, InfoFat>> getFaturacao() {
         return this.faturacao.stream().map(p -> p.entrySet().stream().collect(Collectors.toMap(e -> e.getKey().clone(), e -> e.getValue().clone()))).collect(Collectors.toList());
     }
 
-    /**
-     * Setters
-     */
+
     public void setFaturacao(List<Map<IProduto, InfoFat>> f) {
         this.faturacao = f.stream().map(p -> p.entrySet().stream().collect(Collectors.toMap(e -> e.getKey().clone(), e -> e.getValue().clone()))).collect(Collectors.toList());
     }
 
-    /**
-     * Clone
-     */
+
     public IFaturacao clone() {
         return new Faturacao(this);
     }
 
-    /**
-     * Adiciona uma venda à faturacao num determinado mes a um dado produto
-     */
+
     public void insereVenda(Venda v) {
         if (this.faturacao.get(v.getMes() - 1).containsKey(v.getProduto())) { // vê se produto já existe
         } else {  // se não existe cria
@@ -116,49 +108,6 @@ public class Faturacao implements IFaturacao,Serializable {
         return (int) res.values().stream().mapToInt(InfoFat::numCompras).sum();
     }
 
-
-    /*
-
-    public model.Faturacao.Faturacao(Map<Produto, Venda> vendas) {
-        setVendas(vendas);
-    }
-
-    public model.Faturacao.Faturacao(model.Faturacao.Faturacao f) {
-        setVendas(f.getVendas());
-    }
-
-    public Map<Produto, Venda> getVendas() {
-        Map<Produto,Venda> ret = new HashMap<Produto,Venda>();
-        vendas.forEach((a,b)->ret.put(a.clone(),b.clone()));
-        return ret;
-    }
-
-    public void setVendas(Map<Produto, Venda> vendas) {
-        this.vendas = new HashMap<>();
-        vendas.entrySet().forEach(e->this.vendas.put(e.getKey(),e.getValue().clone()));
-    }
-
-    public void insereVenda(Venda v){
-        this.vendas.put(v.getProduto(),v.clone());
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        model.Faturacao.Faturacao a = (model.Faturacao.Faturacao) o;
-        return this.vendas.equals(a.getVendas());
-    }
-
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.vendas);
-        return sb.toString();
-    }
-
-    public model.Faturacao.Faturacao clone(){
-        return new model.Faturacao.Faturacao(this);
-    }
-*/
     public boolean existeProduto(IProduto p) {
 
         for (int i = 0; i < Constantes.MESES; i++) {

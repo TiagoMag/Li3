@@ -4,7 +4,6 @@ import Models.Queries.*;
 import Views.Menu;
 import Views.Navegador;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

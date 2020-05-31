@@ -10,8 +10,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface correspondente a Faturação.
+ * Permite operaçoes sobre a Faturação
+ *
+ * @author Grupo4
+ * @version 2020
+ */
 
-public interface IFaturacao extends Serializable {
+ public interface IFaturacao extends Serializable {
 
 
     /**
@@ -19,44 +26,46 @@ public interface IFaturacao extends Serializable {
      * @param o Objeto a comparar
      * @return false, se não forem iguais, true se forem iguais.
      */
-    public boolean equals(Object o);
+     boolean equals(Object o);
 
     /**
-     * Retorna   em formato de String.
+     * Retorna em formato de String.
      * @return Cliente em formato de String.
      */
-    public String toString();
+     String toString();
 
     /**
      * Cria uma cópia da instância de Cliente que invoca o método.
      * @return model.Faturacao.Faturacao
      */
-    public List<Map<IProduto, InfoFat>>getFaturacao();
+     List<Map<IProduto, InfoFat>>getFaturacao();
 
     /**
+     * Setter
      * @param f
      *
      */
-    public void setFaturacao(List<Map<IProduto, InfoFat>> f);
+     void setFaturacao(List<Map<IProduto, InfoFat>> f);
 
     /**
-     * Clone
+     *
+     * @return
      */
-    public IFaturacao clone();
+     IFaturacao clone();
 
     /**
      * Adiciona uma venda à faturacao num determinado mes a um dado produto
      * @param  v
      *
      */
-    public void insereVenda(Venda v);
+     void insereVenda(Venda v);
 
     /**
      * Indica o total faturado
      * @return
      */
 
-    public float faturacaoTotal();
+     float faturacaoTotal();
 
     /**
      * Indica a faturação por mês
@@ -65,7 +74,7 @@ public interface IFaturacao extends Serializable {
      * @return total faturado num determinado mês
      */
 
-    public float faturacaoMes(int mes,int filial);
+     float faturacaoMes(int mes,int filial);
 
     /**
      * Indica o numero de compras feitas por mês
@@ -73,14 +82,14 @@ public interface IFaturacao extends Serializable {
      * @return total de compras feitas num determinado mês
      */
 
-    public int numComprasMes(int mes);
+     int numComprasMes(int mes);
 
     /**
      * Indica o numero de produtos comprados
      * @return
      */
 
-    public int numeroProdsComprados();
+     int numeroProdsComprados();
 
     /**
      * Indica se um produto existe nos registos
@@ -88,7 +97,7 @@ public interface IFaturacao extends Serializable {
      * @return True se sim, False se não
      */
 
-    public boolean existeProduto(IProduto p);
+     boolean existeProduto(IProduto p);
 
     /**
      * Indica o total faturado por um produto num determinado mês
@@ -97,7 +106,7 @@ public interface IFaturacao extends Serializable {
      * @return faturacao total de produto num mes
      */
 
-    public float totalFaturadoProd(IProduto p,int mes);
+     float totalFaturadoProd(IProduto p,int mes);
 
     /**
      * Indica o numero de vendas de um produto num determinado mês
@@ -106,7 +115,7 @@ public interface IFaturacao extends Serializable {
      * @return numero de vendas de um produto num mes
      */
 
-    public int totalVendasProd(IProduto p,int mes);
+     int totalVendasProd(IProduto p,int mes);
 
     /**
      * Funcao essencial à realizacão da query 5
@@ -114,7 +123,18 @@ public interface IFaturacao extends Serializable {
      * @return Top delimitado por limit dos produtos mais vendidos
      */
 
-    public Set<ParQuery5> mostSelledProds(int limit);
-    public ParQuery10 totalFaturadoProduto(IProduto prod);
-    public List<Float> faturadoMesFililial();
+     Set<ParQuery5> mostSelledProds(int limit);
+
+    /**
+     * TotalFaturado num produto
+     * @param prod
+     * @return
+     */
+     ParQuery10 totalFaturadoProduto(IProduto prod);
+
+    /**
+     * Faturação filial por mês
+     * @return
+     */
+    List<Float> faturadoMesFililial();
 }

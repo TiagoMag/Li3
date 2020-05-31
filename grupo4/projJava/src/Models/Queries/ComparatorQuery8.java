@@ -2,6 +2,12 @@ package Models.Queries;
 import java.io.Serializable;
 import java.util.Comparator;
 
+/**
+ * Comparator destinado à realização do método da Query 8
+ *
+ * @author Grupo4
+ * @version 2020
+ */
 
 public class ComparatorQuery8 implements Comparator<ParQuery8>, Serializable {
 

@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Common.Input;
-
+/**
+ * Classe Navegador
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
 public class Navegador implements Serializable {
 
     int current_page;

@@ -4,6 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Classe Menu
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
+
 public class Menu implements Serializable
 {
     private List<String>opcoes;

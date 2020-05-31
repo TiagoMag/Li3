@@ -17,6 +17,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+/**
+ * Interface correspondente a Filial.
+ * Permite operaçoes sobre uma Filial
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 
 public interface IFilial {
 
@@ -149,6 +157,11 @@ public interface IFilial {
 
     List<ParQuerie9> nrComprasClienteProduto(IProduto p);
 
+
+    /**
+     * Lista de clientes diferentes num determinado mes
+     * @return
+     */
     public List<Integer> clientesDistintosMes();
 
 

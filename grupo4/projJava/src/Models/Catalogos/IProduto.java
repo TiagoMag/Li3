@@ -1,6 +1,15 @@
 package Models.Catalogos;
 
 
+/**
+ * Interface correspondente ao Produto
+ * Permite operaçoes sobre o Produto
+ *
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
+
  public interface IProduto {
 
     /**

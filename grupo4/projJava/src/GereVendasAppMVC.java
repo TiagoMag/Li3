@@ -2,6 +2,13 @@ import java.io.Serializable;
 
 import static java.lang.System.exit;
 
+/**
+ * Classe GereVendasAppMVC
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
+
 public class GereVendasAppMVC implements Serializable {
 
     public static void main (String[] args){

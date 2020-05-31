@@ -4,6 +4,13 @@ import Models.Catalogos.ICliente;
 
 import java.util.Map;
 
+/**
+ * Classe auxiliar usada para resolver a Query 9
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class ParQuerie9 {
     private ICliente cliente;
     private float faturado;

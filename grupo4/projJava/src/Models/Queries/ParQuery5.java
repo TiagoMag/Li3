@@ -3,6 +3,14 @@ package Models.Queries;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 
+
+/**
+ * Classe auxiliar usada para resolver a Query 5
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class ParQuery5 implements Comparable<ParQuery5>{
     private IProduto produto;
     private int quantidade;

@@ -2,6 +2,12 @@ package Views;
 
 import java.io.Serializable;
 import java.util.List;
+/**
+ * Classe Pagina
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
 
 public class Pagina implements Serializable {
 

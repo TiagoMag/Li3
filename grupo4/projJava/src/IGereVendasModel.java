@@ -234,5 +234,8 @@ public interface IGereVendasModel {
      */
     List<ParQuery10> query10();
 
+    /**
+     * Faz load
+     */
     public void loadModel();
 }

@@ -6,6 +6,13 @@ import Common.Constantes;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Classe representativa de uma Venda
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
+
 public class Venda implements IVenda, Serializable {
     private IProduto produto;
     private ICliente cliente;
@@ -15,6 +22,9 @@ public class Venda implements IVenda, Serializable {
     private int mes;
     private int filial;
 
+    /**
+     * Construtor por omissão
+     */
 
     public Venda() {
         this.produto = new Produto();
@@ -26,6 +36,16 @@ public class Venda implements IVenda, Serializable {
         this.filial = 0;
     }
 
+    /**
+     * Construtor parameterizado
+     * @param produto
+     * @param cliente
+     * @param preco
+     * @param quantidade
+     * @param tipoCompra
+     * @param mes
+     * @param filial
+     */
     public Venda(IProduto produto, ICliente cliente, float preco, int quantidade, char tipoCompra, int mes, int filial) {
         this.produto = produto;
         this.cliente = cliente;
@@ -36,6 +56,10 @@ public class Venda implements IVenda, Serializable {
         this.filial = filial;
     }
 
+    /**
+     * Construtor por copia
+     * @param v
+     */
     public Venda(IVenda v){
         this.produto = v.getProduto();
         this.cliente = v.getCliente();

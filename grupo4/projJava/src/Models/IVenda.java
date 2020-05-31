@@ -1,7 +1,18 @@
 package Models;
 
 
-import Models.Catalogos.*;
+import Models.Catalogos.ICatClientes;
+import Models.Catalogos.ICatProdutos;
+import Models.Catalogos.ICliente;
+import Models.Catalogos.IProduto;
+
+/**
+ * Interface correspondente a Venda.
+ * Permite operaçoes sobre uma Venda.
+ *
+ * @author Grupo4
+ * @version 2020
+ */
 
 public interface IVenda {
 

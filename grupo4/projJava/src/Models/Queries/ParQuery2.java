@@ -1,5 +1,13 @@
 package Models.Queries;
 
+
+/**
+ * Classe auxiliar usada para resolver a Query 2
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class ParQuery2 {
     private int nrVendas;
     private int nrClientes;

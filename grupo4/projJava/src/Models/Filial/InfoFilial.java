@@ -4,7 +4,15 @@ import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 
 import java.io.Serializable;
-import java.util.List;
+
+
+/**
+ * Classe que representa a venda de um produto numa Filial
+ *
+ *
+ * @author Grupo4
+ * @version 2020
+ */
 
 public class InfoFilial implements Serializable {
 
@@ -48,10 +56,16 @@ public class InfoFilial implements Serializable {
         this.mes=i.getMes();
     }
 
+    /**
+     * Metodo que compara o mes fornecido
+     * @param mes
+     * @return
+     */
     public int correspondeMes(int mes){
         if(this.mes == mes) return 1;
         return 0;
     }
+
     /**
      * Getters
      */

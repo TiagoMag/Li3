@@ -1,5 +1,12 @@
 package Models.Queries;
 
+/**
+ * Classe auxiliar usada para resolver a Query 4
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class TrioQuery4 {
 
     float total_faturado;

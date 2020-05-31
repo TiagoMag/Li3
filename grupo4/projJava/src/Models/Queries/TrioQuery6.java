@@ -2,6 +2,14 @@ package Models.Queries;
 
 import Models.Catalogos.IProduto;
 
+
+/**
+ * Classe auxiliar usada para resolver a Query 6
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class TrioQuery6 implements Comparable<TrioQuery6>{
     private IProduto produto;
     private int compras;

@@ -3,6 +3,13 @@ package Models.Queries;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe auxiliar usada para resolver a Query 3
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class TrioQuery3 {
     private List<Integer> nrVendasPorMes;
     private List<Integer> nrProdutos;

@@ -2,6 +2,14 @@ package Models.Queries;
 
 import Models.Catalogos.IProduto;
 
+
+/**
+ * Classe auxiliar usada para resolver a Query 10
+ *
+ * @author Grupo4
+ * @version 2020
+ */
+
 public class ParQuery10 {
 
 
