@@ -66,7 +66,7 @@ public class Navegador implements Serializable {
     public void run(double time){
         int i=0;
 
-        while(i>=0 && i<this.total) {
+        while(i>=0 && i<=this.total) {
             clearScreen();
             System.out.println("Tempo da query: "+time);
             System.out.println("\nPagina: " + (current_page+1) + " de " + this.total + "\n");
