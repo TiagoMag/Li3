@@ -132,7 +132,7 @@ public interface IGereVendasModel {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    //GereVendasModel carregaEstado(String fileName) throws FileNotFoundException,IOException,ClassNotFoundException;
+
 
 
 
@@ -233,4 +233,6 @@ public interface IGereVendasModel {
      * @return
      */
     List<ParQuery10> query10();
+
+    public void loadModel();
 }

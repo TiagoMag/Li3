@@ -155,7 +155,6 @@ public class GereVendasController implements IGereVendasController, Serializable
             switch (x) {
                 case 1:
                     Crono.start();
-                    List<Integer> lst = this.model.Querie121();
                     lst = this.model.Querie121();
                     time = Crono.stop();
                     this.view.printQuerie121(lst, time);

@@ -208,7 +208,13 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
         ois.close();
         return model;
     }
-
+    public void loadModel()
+    {
+        String[] configs = this.lerConfigs(); // retira ficheiros do configs.data
+        this.lerFilesProdutos(configs[0]); // carrega o catálogo de produtos
+        this.lerFilesClientes(configs[1]); // carrega o catálogo de clientes
+        this.lerVendas(configs[2]); // carrega as filiais e a faturação
+    }
 
     public int totalBuyers(){
         List<ICliente> lst= new ArrayList<>();
