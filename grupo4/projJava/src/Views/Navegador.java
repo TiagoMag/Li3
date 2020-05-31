@@ -48,6 +48,14 @@ public class Navegador implements Serializable {
         this.paginas = listP;
 
         this.total= this.paginasTotal(lst);
+
+
+    }
+
+
+    public void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     int paginasTotal(List<String> lst){
@@ -59,6 +67,7 @@ public class Navegador implements Serializable {
         int i=0;
 
         while(i>=0 && i<this.total) {
+            clearScreen();
             System.out.println("\nPagina: " + (current_page+1) + " de " + this.total + "\n");
             System.out.println("Elementos totais:"+this.totalelems);
             this.paginas.get(this.current_page).showPage();
