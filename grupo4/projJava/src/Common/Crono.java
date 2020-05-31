@@ -1,6 +1,7 @@
-package Models.Faturacao;
+package Common;
 
 import static java.lang.System.nanoTime;
+
 
 public class Crono {
 

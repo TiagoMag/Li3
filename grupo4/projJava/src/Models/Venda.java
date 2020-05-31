@@ -2,6 +2,7 @@ package Models;
 
 import Models.Catalogos.*;
 import Common.Constantes;
+import Models.Vendas.IVenda;
 
 import java.io.Serializable;
 import java.util.Objects;

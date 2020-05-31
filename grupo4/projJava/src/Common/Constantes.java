@@ -9,9 +9,9 @@ public class Constantes
 {
     private Constantes (){};
 
-    public static final int MESES = 12;
-    public static int FILIAIS = 3;
-    public static String CONFIGS_FILE_NAME="ficheiros/Configs.data";
-    public static int LINHAS = 10;
-    public static int COLUNAS = 10;
+    public static final int MESES = 12;  /* Meses */
+    public static int FILIAIS = 3;       /* Número de filiais */
+    public static String CONFIGS_FILE_NAME="ficheiros/Configs.data"; /* Caminho do ficheiro de configurações */
+    public static int LINHAS = 10;  /* Número de linhas do navegador */
+    public static int COLUNAS = 10; /* Número de colunas do navegador */
 }

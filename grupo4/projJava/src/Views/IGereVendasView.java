@@ -1,3 +1,5 @@
+package Views;
+
 import Models.Catalogos.IProduto;
 import Models.Queries.*;
 
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Interface correspondente á classe GereVendasView
+ * Interface correspondente á classe Views.GereVendasView
  *
  *
  * @author Grupo4
@@ -107,6 +109,11 @@ import java.util.Set;
       * @param lst
       * @param time
       */
+
+     void printQuerie122 (List<Float> lst,double time);
+
+    void printQuerie123 (List<Integer> l,double time);
+
      void printQuery1(Set<IProduto> lst, double time);
 
 

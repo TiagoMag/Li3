@@ -1,4 +1,6 @@
-package Models.Queries;
+package Comparator;
+import Models.Queries.ParQuery8;
+
 import java.io.Serializable;
 import java.util.Comparator;
 

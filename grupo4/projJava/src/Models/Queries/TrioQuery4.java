@@ -1,5 +1,7 @@
 package Models.Queries;
 
+import java.io.Serializable;
+
 /**
  * Classe auxiliar usada para resolver a Query 4
  *
@@ -7,7 +9,7 @@ package Models.Queries;
  * @version 2020
  */
 
-public class TrioQuery4 {
+public class TrioQuery4 implements Serializable {
 
     float total_faturado;
     int num_compras;

@@ -2,6 +2,7 @@ package Models.Queries;
 
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
+import java.io.Serializable;
 
 /**
  * Classe auxiliar usada para resolver a Query 7
@@ -10,10 +11,8 @@ import Models.Catalogos.ICliente;
  * @version 2020
  */
 
-import java.io.Serializable;
 
-    public class ParQuery7 implements Comparable <ParQuery7>, Serializable
-    {
+    public class ParQuery7 implements Comparable <ParQuery7>, Serializable {
         private ICliente cliente;
         private float gasto;
 

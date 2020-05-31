@@ -1,8 +1,8 @@
+package Views;
+
 import Common.Constantes;
 import Models.Catalogos.IProduto;
 import Models.Queries.*;
-import Views.Menu;
-import Views.Navegador;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Classe GereVendasView
+ * Classe Views.GereVendasView
  *
  * @author Grupo 4
  * @version 2020
@@ -23,7 +23,6 @@ public class GereVendasView implements IGereVendasView, Serializable {
     private Menu menuQueriesEstatisticas;
     private Menu menuQueriesInterativas;
     private Menu menuReadFiles;
-    private Menu atual;
     private Menu menuDadosGeraisEstruturas;
 
     /**
@@ -184,39 +183,38 @@ public class GereVendasView implements IGereVendasView, Serializable {
         this.clickEnter();
     }
 
-       public void printQuerie122 (List<Float> lst,double time){
-              this.clearScreen();
-               System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-               int h=0;
-               for(int i=0;i<Constantes.FILIAIS;i++) {
-                       System.out.println("Filial:"+(i+1));
-                       for (int j = 0; j < Constantes.MESES; j++) {
-                               System.out.printf("Mês:%d %08f \n",(j+1) ,lst.get(h++));
-                            }
-                        System.out.println();
-                    }
-                System.out.println("Total faturado:"+lst.get(h));
-                System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-                this.printTime(time);
-                this.clickEnter();
+    public void printQuerie122 (List<Float> lst,double time){
+        this.clearScreen();
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+        int h=0;
+        for(int i=0;i<Constantes.FILIAIS;i++) {
+           System.out.println("Filial:"+(i+1));
+           for (int j = 0; j < Constantes.MESES; j++) {
+               System.out.printf("Mês:%d %08f \n",(j+1) ,lst.get(h++));
             }
+            System.out.println();
+        }
+        System.out.println("Total faturado:"+lst.get(h));
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+        this.printTime(time);
+        this.clickEnter();
+    }
 
-            public void printQuerie123 (List<Integer> l,double time){
-               this.clearScreen();
-               System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-               int h=0;
-               for(int i=0;i<Constantes.FILIAIS;i++) {
-                      System.out.println("Filial:"+(i+1));
-                       for (int j = 0; j < Constantes.MESES; j++) {
-                              System.out.printf("Mês:%d %d",(j + 1) ,l.get(h++));
-                          }
-                        System.out.println();
-                   }
-                System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-                this.printTime(time);
-                this.clickEnter();
-
-                   }
+    public void printQuerie123 (List<Integer> l,double time){
+       this.clearScreen();
+       System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+       int h=0;
+       for(int i=0;i<Constantes.FILIAIS;i++) {
+          System.out.println("Filial:"+(i+1));
+           for (int j = 0; j < Constantes.MESES; j++) {
+                System.out.printf("Mês:%d %d",(j + 1) ,l.get(h++));
+            }
+            System.out.println();
+       }
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+        this.printTime(time);
+        this.clickEnter();
+    }
 
     public void printQuery1(Set<IProduto> lst, double time){
         if(lst.size()==0) {
@@ -300,12 +298,9 @@ public class GereVendasView implements IGereVendasView, Serializable {
             System.out.println((i+1)+": "+trio.getProduto().getCodigo() + ": " + trio.getCompras() + ": "+trio.getNmr_clientes() + "\t");
             i++;
         }
-
         this.printTime(time);
         this.clickEnter();
-
     }
-
 
 
     public void printQuery7(List<Set<ParQuery7>> duo,double time) {
@@ -313,7 +308,6 @@ public class GereVendasView implements IGereVendasView, Serializable {
             System.out.println("Não há nenhum elemento.");
             return;
         }
-
         int i = 0;
         int y = 0;
 
@@ -326,10 +320,8 @@ public class GereVendasView implements IGereVendasView, Serializable {
             i = 0;
             y++;
         }
-
         this.printTime(time);
         this.clickEnter();
-
     }
 
     public void printQuery8 (List<ParQuery8> pares,double time){
@@ -343,13 +335,10 @@ public class GereVendasView implements IGereVendasView, Serializable {
             lista.add((i+1)+": "+"Cliente:"+ par.getCliente().getCodigo() +" Produtos: "+ par.getQuant());
             i++;
         }
-
         Navegador nav = new Navegador(lista,1,10);
         nav.run();
-
         this.printTime(time);
         this.clickEnter();
-
     }
 
 
@@ -364,12 +353,10 @@ public class GereVendasView implements IGereVendasView, Serializable {
             lista.add((i+1)+": "+"Cliente:"+ par.getCliente().getCodigo() +" Total Faturado: "+ par.getFaturado()+" Compras totais: "+par.getTotal());
             i++;
         }
-
         Navegador nav = new Navegador(lista,1,10);
         nav.run();
         this.printTime(time);
         this.clickEnter();
-
     }
 
     public void printQuery10(List<ParQuery10> pares,double time){
@@ -385,8 +372,5 @@ public class GereVendasView implements IGereVendasView, Serializable {
         nav.run();
         this.printTime(time);
         this.clickEnter();
-
-
     }
-
 }

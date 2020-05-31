@@ -2,10 +2,8 @@ package Models.Faturacao;
 
 import Common.Constantes;
 import Models.Catalogos.IProduto;
-import Models.Catalogos.Produto;
 import Models.Queries.ParQuery10;
 import Models.Queries.ParQuery5;
-import Models.Queries.TrioQuery6;
 import Models.Venda;
 import java.util.AbstractMap.*;
 import java.io.Serializable;
@@ -136,24 +134,15 @@ public class Faturacao implements IFaturacao,Serializable {
 
     public Set<ParQuery5> mostSelledProds(int limit){
          ConcurrentLinkedQueue<ParQuery5> l = new ConcurrentLinkedQueue<>();
-            //Set<ParQuery5> l = new TreeSet<>();
-              //       List<ParQuery5> l = Collections.synchronizedList(new ArrayList<>());
-               Crono.start();
 
-               this.faturacao.parallelStream().forEach(x-> x.entrySet().parallelStream()
+         this.faturacao.parallelStream().forEach(x-> x.entrySet().parallelStream()
                        .forEach(e -> l.add(new ParQuery5(e.getKey(),e.getValue()
-                           .getFat().values().stream()
-                       .flatMap(List::stream)
-                               .mapToInt(SimpleEntry::getKey).sum())))); //.forEachOrdered(l::add));
+                       .getFat().values().stream()
+                       .flatMap(List::stream).mapToInt(SimpleEntry::getKey).sum()))));
 
-
-               System.out.println("terminou: "+Crono.stop());
-               Crono.start();
-               Set<ParQuery5> s= l.stream().collect(Collectors.groupingBy(ParQuery5::getProduto)).entrySet().stream()
-                             .map(p -> new ParQuery5 (p.getKey(),p.getValue().stream().mapToInt(ParQuery5::getQuantidade).sum()))
-                               .collect(Collectors.toCollection(TreeSet::new)).stream().limit(limit).collect(Collectors.toSet());
-               System.out.println("terminou: "+Crono.stop());
-               return s;
+        return l.stream().collect(Collectors.groupingBy(ParQuery5::getProduto)).entrySet().stream()
+                .map(p -> new ParQuery5 (p.getKey(),p.getValue().stream().mapToInt(ParQuery5::getQuantidade).sum()))
+                .collect(Collectors.toCollection(TreeSet::new)).stream().limit(limit).collect(Collectors.toSet());
 
     }
 
@@ -170,19 +159,17 @@ public class Faturacao implements IFaturacao,Serializable {
     }
 
         public List<Float> faturadoMesFililial(){
-               float total=0.0f;
+        float total=0.0f;
         List<Float> faturados = new ArrayList<>();
-              for(int i=0;i<Constantes.FILIAIS;i++){
+        for(int i=0;i<Constantes.FILIAIS;i++){
             int j=i;
-                               for( Map<IProduto, InfoFat> f :this.faturacao){
+            for( Map<IProduto, InfoFat> f :this.faturacao){
                 float fat=(float) f.values().stream().mapToDouble(e->e.faturadoProdutosMesFilial(j)).sum();
                 faturados.add(fat);
                 total+= fat;
             }
-                  }
-               faturados.add(total);
-               return faturados;
-    }
-
-
+        }
+        faturados.add(total);
+        return faturados;
+        }
 }

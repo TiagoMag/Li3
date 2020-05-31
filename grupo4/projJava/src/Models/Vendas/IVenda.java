@@ -1,4 +1,4 @@
-package Models;
+package Models.Vendas;
 
 
 import Models.Catalogos.ICatClientes;

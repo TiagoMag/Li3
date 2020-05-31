@@ -2,6 +2,8 @@ package Models.Queries;
 
 import Models.Catalogos.IProduto;
 
+import java.io.Serializable;
+
 
 /**
  * Classe auxiliar usada para resolver a Query 10
@@ -10,7 +12,7 @@ import Models.Catalogos.IProduto;
  * @version 2020
  */
 
-public class ParQuery10 {
+public class ParQuery10 implements Serializable {
 
 
         private IProduto produto;

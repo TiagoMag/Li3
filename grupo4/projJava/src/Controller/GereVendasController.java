@@ -1,10 +1,17 @@
+package Controller;
+
 import Common.Constantes;
+import Common.Crono;
 import Common.Input;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
+import Models.GereVendasModel;
+import Models.IGereVendasModel;
 import Models.Queries.*;
+import Views.GereVendasView;
+import Views.IGereVendasView;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Classe GereVendasController
+ * Classe Controller.GereVendasController
  *
  * @author Grupo 4
  * @version 2020
@@ -21,8 +28,8 @@ import java.util.Set;
 
 public class GereVendasController implements IGereVendasController, Serializable {
 
-    private GereVendasModel model;
-    private GereVendasView view;
+    private IGereVendasModel model;
+    private IGereVendasView view;
 
     /**
      * Construtor por omissão
@@ -30,16 +37,16 @@ public class GereVendasController implements IGereVendasController, Serializable
 
     public GereVendasController()
     {
-        this.model= new GereVendasModel ();
-        this.view= new GereVendasView ();
+        this.model= new GereVendasModel();
+        this.view= new GereVendasView();
     }
 
-    public void setModel (GereVendasModel model)
+    public void setModel (IGereVendasModel model)
     {
         this.model=model;
     }
 
-    public void setView (GereVendasView view)
+    public void setView (IGereVendasView view)
     {
         this.view=view;
     }
@@ -135,7 +142,7 @@ public class GereVendasController implements IGereVendasController, Serializable
                 case 1:
                     Crono.start();
                     List<String> lst =this.model.Querie11();
-                    time=Crono.stop();
+                    time= Crono.stop();
                     this.view.printQuerie11(lst,time);
                     break;
                 case 2:
@@ -143,7 +150,6 @@ public class GereVendasController implements IGereVendasController, Serializable
                     break;
             }
         }while(x!=0);
-
     }
 
     public void handlerdadosGerais() {
@@ -151,7 +157,7 @@ public class GereVendasController implements IGereVendasController, Serializable
         do {
             this.view.showDadosGerais();
             double time;
-            List<Integer> lst = new ArrayList<>();
+            List<Integer> lst;
             x = Input.lerInt();  // lê input do cliente
             switch (x) {
                 case 1:
@@ -262,7 +268,7 @@ public class GereVendasController implements IGereVendasController, Serializable
                     limite=Input.lerInt();
                     Crono.start();
                     List<ParQuery8> pares = this.model.query8(limite);
-                    time=Crono.stop();
+                    time= Crono.stop();
                     this.view.printQuery8(pares,time);
                     break;
                 case 9:
@@ -284,15 +290,8 @@ public class GereVendasController implements IGereVendasController, Serializable
                     time = Crono.stop();
                     this.view.printQuery10(pares10,time);
                     break;
-
             }
-
         }while(x!=0);
-
-
-
-
-
     }
 
     public boolean validaMes(int x){

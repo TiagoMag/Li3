@@ -1,4 +1,8 @@
+package Models;
+
+import Common.Crono;
 import Models.Catalogos.*;
+import Comparator.*;
 import Common.Constantes;
 import Models.Faturacao.Faturacao;
 import Models.Faturacao.IFaturacao;
@@ -6,7 +10,6 @@ import Models.Filial.Filial;
 import Models.Filial.IFilial;
 import Models.Filial.InfoFilial;
 import Models.Queries.*;
-import Models.Venda;
 
 
 import java.io.*;
@@ -16,7 +19,7 @@ import java.util.stream.Collectors;
 
 
 /**
- * Classe GereVendasModel
+ * Classe Models.GereVendasModel
  *
  * @author Grupo 4
  * @version 2020
@@ -262,14 +265,14 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
                return this.faturacao.faturadoMesFililial();
            }
 
-
-
-           public List<Integer> Querie123(){
-               List<Integer> distintFilial = new ArrayList<>();
-               for(IFilial f: this.filiais)
+    public List<Integer> Querie123(){
+        List<Integer> distintFilial = new ArrayList<>();
+        for(IFilial f: this.filiais)
             distintFilial.addAll(f.clientesDistintosMes());
+
         return distintFilial;
-           }
+    }
+
     public Set<IProduto> produtosNaoComprados(){
         return this.catprodutos.getProdutos().stream().filter(e-> !this.faturacao.existeProduto(e)).collect(Collectors.toCollection(TreeSet::new));
     }
@@ -318,7 +321,6 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
         return p;
     }
 
-
     /* QUERIE 4 */
     public TrioQuery4[] querie4 (IProduto p){
         TrioQuery4[] trios = new TrioQuery4[Constantes.MESES];
@@ -336,7 +338,6 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
 
        return trios;
     }
-
 
     /* QUERIE 5 */
     public Set<ParQuery5> query5(ICliente c){
@@ -388,8 +389,6 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
         return l;
     }
 
-
-
     /* QUERIE 8 */
     public List<ParQuery8> query8(int limit){
         List<ParQuery8> pares = new ArrayList<>();
@@ -401,11 +400,7 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
        return pares.stream().collect(Collectors.groupingBy(ParQuery8::getCliente)).entrySet().stream().
         map(x -> new ParQuery8 (x.getKey().clone(), x.getValue().stream().mapToInt(ParQuery8::getQuant).sum()))
        .sorted(new ComparatorQuery8()).limit(limit).collect(Collectors.toList());
-
     }
-
-
-
 
     /* QUERIE 9 */
     public List<ParQuerie9> query9(IProduto p,int limit){
@@ -417,21 +412,15 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
         return  pares.stream().collect(Collectors.groupingBy(ParQuerie9::getCliente)).entrySet().stream().
                 map(x-> new ParQuerie9 (x.getKey().clone(),(float)x.getValue().stream().mapToDouble(ParQuerie9::getFaturado).sum(),x.getValue().stream().mapToInt(ParQuerie9::getTotal).sum())).
                 sorted(new ComparatorQuery9()).limit(limit).collect((Collectors.toList()));
-
     }
 
     /* QUERIE 10 */
     public List<ParQuery10> query10(){
-
-       List<ParQuery10> faturado = new ArrayList<>();   // list onde estrão todos os produtos com as suas faturacoes por mes
-
+        List<ParQuery10> faturado = new ArrayList<>();   // list onde estrão todos os produtos com as suas faturacoes por mes
         for(IProduto prod : this.getCatProdutos().getProdutos())  // calcula as faturacoes por mes e filial para cada produto
             faturado.add(this.faturacao.totalFaturadoProduto(prod));
-
         return faturado;
     }
-
-
 
 
 }

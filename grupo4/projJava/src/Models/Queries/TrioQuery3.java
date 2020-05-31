@@ -1,5 +1,6 @@
 package Models.Queries;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @version 2020
  */
 
-public class TrioQuery3 {
+public class TrioQuery3 implements Serializable {
     private List<Integer> nrVendasPorMes;
     private List<Integer> nrProdutos;
     private List<Float> totalFaturado;

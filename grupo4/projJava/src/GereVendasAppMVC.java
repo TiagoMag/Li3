@@ -1,3 +1,10 @@
+import Controller.GereVendasController;
+import Controller.IGereVendasController;
+import Models.GereVendasModel;
+import Models.IGereVendasModel;
+import Views.GereVendasView;
+import Views.IGereVendasView;
+
 import java.io.Serializable;
 
 import static java.lang.System.exit;
@@ -12,15 +19,14 @@ import static java.lang.System.exit;
 public class GereVendasAppMVC implements Serializable {
 
     public static void main (String[] args){
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        GereVendasModel model = new GereVendasModel();
+        IGereVendasView view = new GereVendasView();
+        IGereVendasModel model = new GereVendasModel();
         model.loadModel();
         if (model==null){
-            System.out.println("ERRO");
+            view.printError("ERRO");
             System.exit(-1);
         }
-        GereVendasView view = new GereVendasView();
-        GereVendasController control = new GereVendasController();
+        IGereVendasController control = new GereVendasController();
         control.setView(view);
         control.setModel(model);
         control.startController();

@@ -3,6 +3,8 @@ package Models.Queries;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 
+import java.io.Serializable;
+
 
 /**
  * Classe auxiliar usada para resolver a Query 5
@@ -11,7 +13,7 @@ import Models.Catalogos.Produto;
  * @version 2020
  */
 
-public class ParQuery5 implements Comparable<ParQuery5>{
+public class ParQuery5 implements Comparable<ParQuery5>, Serializable {
     private IProduto produto;
     private int quantidade;
 

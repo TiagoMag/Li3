@@ -1,8 +1,8 @@
 package Models.Queries;
 
 import Models.Catalogos.ICliente;
+import java.io.Serializable;
 
-import java.util.Map;
 
 /**
  * Classe auxiliar usada para resolver a Query 9
@@ -11,7 +11,7 @@ import java.util.Map;
  * @version 2020
  */
 
-public class ParQuerie9 {
+public class ParQuerie9 implements Serializable {
     private ICliente cliente;
     private float faturado;
     private int total;

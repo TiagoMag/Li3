@@ -1,8 +1,14 @@
+package Controller;
+
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
+import Models.GereVendasModel;
+import Models.IGereVendasModel;
+import Views.GereVendasView;
+import Views.IGereVendasView;
 
 /**
- * Interface correspondente á classe GereVendasController
+ * Interface correspondente á classe Controller.GereVendasController
  *
  *
  * @author Grupo4
@@ -13,13 +19,13 @@ import Models.Catalogos.IProduto;
      * Setter
      * @param model
      */
-     void setModel (GereVendasModel model);
+     void setModel (IGereVendasModel model);
 
     /**
      * Setter
      * @param view
      */
-     void setView (GereVendasView view);
+     void setView (IGereVendasView view);
 
     /**
      * Inicializa controller

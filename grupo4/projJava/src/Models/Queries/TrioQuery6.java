@@ -2,6 +2,8 @@ package Models.Queries;
 
 import Models.Catalogos.IProduto;
 
+import java.io.Serializable;
+
 
 /**
  * Classe auxiliar usada para resolver a Query 6
@@ -10,7 +12,7 @@ import Models.Catalogos.IProduto;
  * @version 2020
  */
 
-public class TrioQuery6 implements Comparable<TrioQuery6>{
+public class TrioQuery6 implements Comparable<TrioQuery6>, Serializable {
     private IProduto produto;
     private int compras;
     private int nmr_clientes;

@@ -96,8 +96,6 @@ public class InfoFat implements Serializable {
         return (float)total;
     }
 
-
-
     public int totalVendasProd(){
         int total=0;
         for(List<SimpleEntry<Integer, Float>> par : this.fat.values() )
@@ -105,11 +103,6 @@ public class InfoFat implements Serializable {
 
         return total;
     }
-
-
-
-
-
 }
 
 

@@ -1,5 +1,7 @@
 package Models.Queries;
 
+import java.io.Serializable;
+
 /**
  * Classe InfoVendasFile
  * Representa informações àcerca do ficheiro de vendas
@@ -8,7 +10,7 @@ package Models.Queries;
  * @version 2020
  */
 
-public class InfoVendasFile {
+public class InfoVendasFile implements Serializable {
 
     int num_compras_preco_0;
     String file_name;

@@ -1,3 +1,4 @@
+package Models;
 
 import Models.Catalogos.*;
 import Models.Faturacao.Faturacao;
@@ -5,6 +6,7 @@ import Models.Faturacao.IFaturacao;
 import Models.Filial.Filial;
 import Models.Filial.IFilial;
 
+import Models.GereVendasModel;
 import Models.Queries.*;
 import Models.Venda;
 
@@ -12,7 +14,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Interface correspondente á classe GereVendasModel
+ * Interface correspondente á classe Models.GereVendasModel
  *
  *
  * @author Grupo4
@@ -155,7 +157,9 @@ public interface IGereVendasModel {
     List<Integer> Querie121();
 
 
+    public List<Float> Querie122();
 
+    public List<Integer> Querie123();
 
     /**
      * Método que procede à realizacao da query 1
