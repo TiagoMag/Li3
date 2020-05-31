@@ -63,11 +63,12 @@ public class Navegador implements Serializable {
         if(totalPages*(this.linhas*this.colunas)< lst.size()) totalPages++;
         return totalPages;
     }
-    public void run(){
+    public void run(double time){
         int i=0;
 
         while(i>=0 && i<this.total) {
             clearScreen();
+            System.out.println("Tempo da query: "+time);
             System.out.println("\nPagina: " + (current_page+1) + " de " + this.total + "\n");
             System.out.println("Elementos totais:"+this.totalelems);
             this.paginas.get(this.current_page).showPage();

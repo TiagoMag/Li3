@@ -220,12 +220,14 @@ public class GereVendasView implements IGereVendasView, Serializable {
     public void printQuery1(Set<IProduto> lst, double time){
         if(lst.size()==0) {
             System.out.println("Não há nenhum produto.");
+            this.printTime(time);
+            clickEnter();
             return;
         }
         List<String> lista = lst.stream().map(IProduto::getCodigo).collect(Collectors.toList());
-        this.printTime(time);
+
         Navegador nav = new Navegador(lista,Constantes.LINHAS,Constantes.COLUNAS);
-        nav.run();
+        nav.run(time);
         this.clickEnter();
     }
 
@@ -274,9 +276,11 @@ public class GereVendasView implements IGereVendasView, Serializable {
 
     public void printQuery5(Set<ParQuery5> set, double time) {
         this.clearScreen();
-        this.printTime(time);
+
         if(set.size()==0) {
             System.out.println("Não há nenhum elemento.");
+            this.printTime(time);
+            clickEnter();
             return;
         }
         List<String> lista = new ArrayList<>();
@@ -284,7 +288,7 @@ public class GereVendasView implements IGereVendasView, Serializable {
             lista.add(par.getProduto().getCodigo() + ": " + par.getQuantidade() + "\t");
         }
         Navegador nav = new Navegador(lista,1,10);
-        nav.run();
+        nav.run(time);
         this.clickEnter();
     }
 
@@ -293,6 +297,7 @@ public class GereVendasView implements IGereVendasView, Serializable {
         this.printTime(time);
         if(trios.size()==0) {
             System.out.println("Não há nenhum elemento.");
+            clickEnter();
             return;
         }
         int i=0;
@@ -309,6 +314,7 @@ public class GereVendasView implements IGereVendasView, Serializable {
         this.printTime(time);
         if (duo.size() == 0) {
             System.out.println("Não há nenhum elemento.");
+            clickEnter();
             return;
         }
         int i = 0;
@@ -327,9 +333,10 @@ public class GereVendasView implements IGereVendasView, Serializable {
 
     public void printQuery8 (List<ParQuery8> pares,double time){
         this.clearScreen();
-        this.printTime(time);
         if(pares.size()==0) {
             System.out.println("Não há nenhum elemento.");
+            this.printTime(time);
+            clickEnter();
             return;
         }
         List<String> lista = new ArrayList<>();
@@ -339,15 +346,16 @@ public class GereVendasView implements IGereVendasView, Serializable {
             i++;
         }
         Navegador nav = new Navegador(lista,1,10);
-        nav.run();
+        nav.run(time);
         this.clickEnter();
     }
 
     public void printQuery9 (List<ParQuerie9> pares,double time){
         this.clearScreen();
-        this.printTime(time);
         if(pares.size()==0) {
             System.out.println("Não há nenhum elemento.");
+            this.printTime(time);
+            clickEnter();
             return;
         }
         List<String> lista = new ArrayList<>();
@@ -357,15 +365,16 @@ public class GereVendasView implements IGereVendasView, Serializable {
             i++;
         }
         Navegador nav = new Navegador(lista,1,10);
-        nav.run();
+        nav.run(time);
         this.clickEnter();
     }
 
     public void printQuery10(List<ParQuery10> pares,double time){
         this.clearScreen();
-        this.printTime(time);
         if(pares.size()==0) {
             System.out.println("Não há nenhum elemento.");
+            this.printTime(time);
+            clickEnter();
             return;
         }
         List<String> lista = new ArrayList<>();
@@ -373,7 +382,7 @@ public class GereVendasView implements IGereVendasView, Serializable {
             lista.add(par.toString());
         }
         Navegador nav = new Navegador(lista,5,1);
-        nav.run();
+        nav.run(time);
         this.clickEnter();
     }
 }
