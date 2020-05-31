@@ -6,7 +6,7 @@ import Models.Catalogos.IProduto;
 import Models.Queries.ParQuery7;
 import Models.Queries.ParQuerie9;
 import Models.Queries.ParQuery8;
-import Models.Venda;
+import Models.Vendas.Venda;
 
 import java.io.Serializable;
 import java.util.*;

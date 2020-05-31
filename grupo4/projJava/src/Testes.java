@@ -6,7 +6,7 @@ import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 import Models.Vendas.IVenda;
-import Models.Venda;
+import Models.Vendas.Venda;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

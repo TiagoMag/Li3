@@ -3,6 +3,9 @@ package Controller;
 import Common.Constantes;
 import Common.Crono;
 import Common.Input;
+import Exceptions.ClienteInvalidoException;
+import Exceptions.MesInvalidoException;
+import Exceptions.ProdutoInvalidoException;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
@@ -15,7 +18,6 @@ import Views.IGereVendasView;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -51,6 +53,9 @@ public class GereVendasController implements IGereVendasController, Serializable
         this.view=view;
     }
 
+
+    // -------------------------------- Inicio do controller
+
     public void startController(){
         int x;
         do{
@@ -75,6 +80,8 @@ public class GereVendasController implements IGereVendasController, Serializable
             }
         }while(x!=0);
     }
+
+    //-------------------------- Lidar com leitura de ficheiros ---------------------
 
     public void readFiles(){
         int x=0;
@@ -132,6 +139,8 @@ public class GereVendasController implements IGereVendasController, Serializable
         }
     }
 
+    //----------------------- Lidar com queries estatisticas --------------
+
     public void handlerQueriesEstatisticas(){
         int x=0;
         do{
@@ -151,6 +160,7 @@ public class GereVendasController implements IGereVendasController, Serializable
             }
         }while(x!=0);
     }
+    // ------------------------------------ Lidar com queries estatisticas dados gerais -----------------------
 
     public void handlerdadosGerais() {
         int x = 0;
@@ -182,12 +192,15 @@ public class GereVendasController implements IGereVendasController, Serializable
         }while(x!=0);
     }
 
-    public void handlerQueriesInterativas(){
+    //------------------------------------- Lidar com queries interativas ---------------------------------
+
+    public void handlerQueriesInterativas() {
         int x=0;
         do {
             this.view.showQueriesInterativas();
             double time;
-            String codigoCliente,codigoProduto;
+            String codigoCliente="";
+            String codigoProduto="";
             int limite;
             ICliente c;
             IProduto p;
@@ -203,60 +216,78 @@ public class GereVendasController implements IGereVendasController, Serializable
                     int mes = 1;
                     while (mes != 0) {
                         this.view.insiraMes();
-
                         mes=Input.lerInt();
-                        if (validaMes(mes)){
-
-                            Crono.start();
-                            ParQuery2[] par = this.model.numeroTotalVendasEClientesMes(mes - 1);
-                            time = Crono.stop();
-                            this.view.printQuerie2(par, time);
+                        try {
+                            if (validaMes(mes)){
+                                Crono.start();
+                                ParQuery2[] par = this.model.numeroTotalVendasEClientesMes(mes - 1);
+                                time = Crono.stop();
+                                this.view.printQuerie2(par, time);
+                            }
+                        } catch (MesInvalidoException e) {
+                            this.view.printError(e.getMessage());
                         }
                     }
                     break;
                 case 3:
-                    this.view.insereCliente();
-                    codigoCliente = Input.lerString();
-                    c = new Cliente(codigoCliente);
-                    if (validaCliente(c)) {
-                        Crono.start();
-                        TrioQuery3 triplo = this.model.quantasComprasFezPMes(c);
-                        time = Crono.stop();
-                        this.view.printQuerie3(triplo, time);
+                    while(!codigoCliente.equals("0")) {
+                        this.view.insereCliente();
+                        codigoCliente = Input.lerString();
+                        c = new Cliente(codigoCliente);
+                        try {
+                            if (validaCliente(c)) {
+                                Crono.start();
+                                TrioQuery3 triplo = this.model.quantasComprasFezPMes(c);
+                                time = Crono.stop();
+                                this.view.printQuerie3(triplo, time);
+                            }
+                        } catch (ClienteInvalidoException e) {
+                            this.view.printError(e.getMessage());
+                        }
                     }
                     break;
                 case 4:
-                    this.view.insereProduto();
-                    codigoProduto = Input.lerString();
-                    p = new Produto(codigoProduto);
-                    if (validaProduto(p)) {
-                        Crono.start();
-                        TrioQuery4[] trios = this.model.querie4(p);
-                        time = Crono.stop();
-                        this.view.printQuerie4(trios, time);
+                    while(!codigoProduto.equals("0")) {
+                        this.view.insereProduto();
+                        codigoProduto = Input.lerString();
+                        p = new Produto(codigoProduto);
+                        try {
+                            if (validaProduto(p)) {
+                                Crono.start();
+                                TrioQuery4[] trios = this.model.querie4(p);
+                                time = Crono.stop();
+                                this.view.printQuerie4(trios, time);
+                            }
+                        } catch (ProdutoInvalidoException e) {
+                            this.view.printError(e.getMessage());
+                        }
                     }
                     break;
                 case 5:
-                    this.view.insereCliente();
-                    codigoCliente = Input.lerString();
-                    c = new Cliente(codigoCliente);
-                    if (validaCliente(c)) {
-                        Crono.start();
-                        Set<ParQuery5> set = this.model.query5(c);
-                        time = Crono.stop();
-                        this.view.printQuery5(set, time);
+                    while(!codigoCliente.equals("0")) {
+                        this.view.insereCliente();
+                        codigoCliente = Input.lerString();
+                        c = new Cliente(codigoCliente);
+                        try {
+                            if (validaCliente(c)) {
+                                Crono.start();
+                                Set<ParQuery5> set = this.model.query5(c);
+                                time = Crono.stop();
+                                this.view.printQuery5(set, time);
+                            }
+                        } catch (ClienteInvalidoException e) {
+                            this.view.printError(e.getMessage());
+                        }
                     }
                     break;
                 case 6:
                     this.view.insereLimite();
-
                     limite=Input.lerInt();
                     Crono.start();
                     Set<TrioQuery6> trios = this.model.query6(limite);
                     time = Crono.stop();
                     this.view.printQuery6(trios, time);
                     break;
-
                 case 7:
                     Crono.start();
                     List<Set<ParQuery7>> duo = this.model.query7();
@@ -272,16 +303,22 @@ public class GereVendasController implements IGereVendasController, Serializable
                     this.view.printQuery8(pares,time);
                     break;
                 case 9:
-                    this.view.insereProduto();
-                    codigoProduto = Input.lerString();
-                    p = new Produto(codigoProduto);
-                    if(validaProduto(p)){
-                        this.view.insereLimite();
-                        limite = Input.lerInt();
-                        Crono.start();
-                        List<ParQuerie9> pares9 = this.model.query9(p,limite);
-                        time= Crono.stop();
-                        this.view.printQuery9(pares9,time);
+                    while(!codigoProduto.equals("0")) {
+                        this.view.insereProduto();
+                        codigoProduto = Input.lerString();
+                        p = new Produto(codigoProduto);
+                        try {
+                            if (validaProduto(p)) {
+                                this.view.insereLimite();
+                                limite = Input.lerInt();
+                                Crono.start();
+                                List<ParQuerie9> pares9 = this.model.query9(p, limite);
+                                time = Crono.stop();
+                                this.view.printQuery9(pares9, time);
+                            }
+                        } catch (ProdutoInvalidoException e) {
+                            this.view.printError(e.getMessage());
+                        }
                     }
                     break;
                 case 10:
@@ -294,19 +331,20 @@ public class GereVendasController implements IGereVendasController, Serializable
         }while(x!=0);
     }
 
-    public boolean validaMes(int x){
-        return (x>=1 && x<Constantes.MESES);
+    //-------------------------------- Verificação de input ---------------------------------------
+
+    public boolean validaMes(int x) throws MesInvalidoException {
+       if (!(x>=1 && x<Constantes.MESES)) throw new MesInvalidoException("Mês inválido");
+       else return true;
     }
 
-    public boolean validaCliente(ICliente c){
-        return (c.validaCliente() && this.model.getCatClientes().existeCliente(c));
+    public boolean validaCliente(ICliente c) throws ClienteInvalidoException{
+        if (!(c.validaCliente() && this.model.getCatClientes().existeCliente(c))) throw new ClienteInvalidoException("Cliente inválido");
+        else return true;
     }
 
-    public boolean validaProduto(IProduto p){
-        return (p.validaProd() && this.model.getCatProdutos().existeProduto(p));
+    public boolean validaProduto(IProduto p) throws ProdutoInvalidoException {
+        if (!(p.validaProd() && this.model.getCatProdutos().existeProduto(p))) throw new ProdutoInvalidoException("Produto inválido");
+        else return true;
     }
-
-
-
-
 }

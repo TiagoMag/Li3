@@ -6,9 +6,8 @@ import Models.Faturacao.IFaturacao;
 import Models.Filial.Filial;
 import Models.Filial.IFilial;
 
-import Models.GereVendasModel;
 import Models.Queries.*;
-import Models.Venda;
+import Models.Vendas.Venda;
 
 import java.io.*;
 import java.util.*;

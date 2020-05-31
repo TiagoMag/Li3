@@ -1,5 +1,8 @@
 package Controller;
 
+import Exceptions.ClienteInvalidoException;
+import Exceptions.MesInvalidoException;
+import Exceptions.ProdutoInvalidoException;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
 import Models.GereVendasModel;
@@ -68,20 +71,20 @@ import Views.IGereVendasView;
      * @param x
      * @return
      */
-     boolean validaMes(int x);
+     boolean validaMes(int x) throws MesInvalidoException;
 
     /**
      * Verifica a validade de um Cliente
      * @param c
      * @return
      */
-     boolean validaCliente(ICliente c);
+     boolean validaCliente(ICliente c) throws ClienteInvalidoException;
 
     /**
      * Verifica a validade de um Produto
      * @param p
      * @return
      */
-     boolean validaProduto(IProduto p);
+     boolean validaProduto(IProduto p) throws ProdutoInvalidoException;
 
 }

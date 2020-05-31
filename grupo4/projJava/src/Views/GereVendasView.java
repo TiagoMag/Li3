@@ -7,6 +7,7 @@ import Models.Queries.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -123,9 +124,8 @@ public class GereVendasView implements IGereVendasView, Serializable {
 
     public void clickEnter(){
         System.out.println("\nClique ENTER para prosseguir.");
-        try{
-            System.in.read();
-        }catch(Exception e){e.printStackTrace();}
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 
     public  void clearScreen() {
@@ -156,6 +156,7 @@ public class GereVendasView implements IGereVendasView, Serializable {
     //-------------------------------------- Print Queries ----------------------------------------
     public void printQuerie11 (List<String> l,double time){
         this.clearScreen();
+        this.printTime(time);
         System.out.println(ANSI_BLUE +"\nNome do Ficheiro: " +ANSI_WHITE+ l.get(0));
         System.out.println(ANSI_BLUE +"Registos de venda erradas: "+ANSI_WHITE+l.get(1));
         System.out.println(ANSI_BLUE +"\nNumero total de produtos: "+ANSI_WHITE+l.get(2));
@@ -166,25 +167,25 @@ public class GereVendasView implements IGereVendasView, Serializable {
         System.out.println(ANSI_BLUE +"Clientes que nao compraram: "+ANSI_WHITE+l.get(7));
         System.out.println(ANSI_BLUE +"\nCompras com valor 0 € : "+ANSI_WHITE+l.get(8));
         System.out.println(ANSI_BLUE +"Total faturado: "+ANSI_WHITE+l.get(9) + " €");
-        this.printTime(time);
-        this.clickEnter();
 
+        this.clickEnter();
         clearScreen();
     }
-
+    // -------------------------------------- Queries estatisticas  -------------------
     public void printQuerie121 (List <Integer> l,double time){
        this.clearScreen();
+        this.printTime(time);
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
             for(int j = 0; j < Constantes.MESES; j++){
                 System.out.println("Mês:"+(j+1)+"\t"+l.get(j));
             }
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuerie122 (List<Float> lst,double time){
         this.clearScreen();
+        this.printTime(time);
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
         int h=0;
         for(int i=0;i<Constantes.FILIAIS;i++) {
@@ -196,12 +197,12 @@ public class GereVendasView implements IGereVendasView, Serializable {
         }
         System.out.println("Total faturado:"+lst.get(h));
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuerie123 (List<Integer> l,double time){
        this.clearScreen();
+       this.printTime(time);
        System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
        int h=0;
        for(int i=0;i<Constantes.FILIAIS;i++) {
@@ -212,9 +213,9 @@ public class GereVendasView implements IGereVendasView, Serializable {
             System.out.println();
        }
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-        this.printTime(time);
         this.clickEnter();
     }
+    // -------------------------------------- Queries interativas -------------------
 
     public void printQuery1(Set<IProduto> lst, double time){
         if(lst.size()==0) {
@@ -222,16 +223,16 @@ public class GereVendasView implements IGereVendasView, Serializable {
             return;
         }
         List<String> lista = lst.stream().map(IProduto::getCodigo).collect(Collectors.toList());
-        System.out.println("tam listta"+lista.size());
+        this.printTime(time);
         Navegador nav = new Navegador(lista,Constantes.LINHAS,Constantes.COLUNAS);
         nav.run();
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuerie2(ParQuery2[] lista, double time){
         this.clearScreen();
         int i=0;
+        this.printTime(time);
         for (i=0;i<lista.length-1;i++){
             System.out.println("\nFilial " + (i+1) + ":");
             System.out.println("Numero total de vendas: " + lista[i].getNrVendas());
@@ -240,12 +241,12 @@ public class GereVendasView implements IGereVendasView, Serializable {
         System.out.println("\nGlobal:");
         System.out.println("Numero total de vendas: " + lista[i].getNrVendas());
         System.out.println("Numero total de clientes: " + lista[i].getNrClientes());
-        this.printTime(time);
         clickEnter();
     }
 
     public void printQuerie3(TrioQuery3 triplo, double time){
         this.clearScreen();
+        this.printTime(time);
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
         for(int j = 0; j < Constantes.MESES; j++){
             System.out.printf("Mês:%d ",(j+1));
@@ -254,12 +255,12 @@ public class GereVendasView implements IGereVendasView, Serializable {
             System.out.printf("Total gasto:%f \n",triplo.getTotalFaturado().get(j));
         }
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuerie4(TrioQuery4[] trios, double time){
         this.clearScreen();
+        this.printTime(time);
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
         for(int i = 0; i < trios.length; i++){
             System.out.printf("Mês:%d ",(i+1));
@@ -268,11 +269,12 @@ public class GereVendasView implements IGereVendasView, Serializable {
             System.out.printf("Total gasto:%f \n",trios[i].getTotal_faturado());
         }
         System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuery5(Set<ParQuery5> set, double time) {
+        this.clearScreen();
+        this.printTime(time);
         if(set.size()==0) {
             System.out.println("Não há nenhum elemento.");
             return;
@@ -283,34 +285,34 @@ public class GereVendasView implements IGereVendasView, Serializable {
         }
         Navegador nav = new Navegador(lista,1,10);
         nav.run();
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuery6(Set<TrioQuery6> trios,double time){
+        this.clearScreen();
+        this.printTime(time);
         if(trios.size()==0) {
             System.out.println("Não há nenhum elemento.");
             return;
         }
-        List<String> lista = new ArrayList<>();
         int i=0;
         for(TrioQuery6 trio : trios){
             System.out.println((i+1)+": "+trio.getProduto().getCodigo() + ": " + trio.getCompras() + ": "+trio.getNmr_clientes() + "\t");
             i++;
         }
-        this.printTime(time);
         this.clickEnter();
     }
 
 
     public void printQuery7(List<Set<ParQuery7>> duo,double time) {
+        this.clearScreen();
+        this.printTime(time);
         if (duo.size() == 0) {
             System.out.println("Não há nenhum elemento.");
             return;
         }
         int i = 0;
         int y = 0;
-
         for (Set<ParQuery7> duos : duo) {
             System.out.println("Filial " + (y + 1));
             for (ParQuery7 p : duos) {
@@ -320,11 +322,12 @@ public class GereVendasView implements IGereVendasView, Serializable {
             i = 0;
             y++;
         }
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuery8 (List<ParQuery8> pares,double time){
+        this.clearScreen();
+        this.printTime(time);
         if(pares.size()==0) {
             System.out.println("Não há nenhum elemento.");
             return;
@@ -337,12 +340,12 @@ public class GereVendasView implements IGereVendasView, Serializable {
         }
         Navegador nav = new Navegador(lista,1,10);
         nav.run();
-        this.printTime(time);
         this.clickEnter();
     }
 
-
     public void printQuery9 (List<ParQuerie9> pares,double time){
+        this.clearScreen();
+        this.printTime(time);
         if(pares.size()==0) {
             System.out.println("Não há nenhum elemento.");
             return;
@@ -355,11 +358,12 @@ public class GereVendasView implements IGereVendasView, Serializable {
         }
         Navegador nav = new Navegador(lista,1,10);
         nav.run();
-        this.printTime(time);
         this.clickEnter();
     }
 
     public void printQuery10(List<ParQuery10> pares,double time){
+        this.clearScreen();
+        this.printTime(time);
         if(pares.size()==0) {
             System.out.println("Não há nenhum elemento.");
             return;
@@ -370,7 +374,6 @@ public class GereVendasView implements IGereVendasView, Serializable {
         }
         Navegador nav = new Navegador(lista,5,1);
         nav.run();
-        this.printTime(time);
         this.clickEnter();
     }
 }

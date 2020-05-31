@@ -2,7 +2,6 @@ package Models.Filial;
 
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
-import Models.Catalogos.Produto;
 import Models.Queries.ParQuerie9;
 
 
@@ -10,13 +9,12 @@ import Models.Queries.ParQuery7;
 
 import Models.Queries.ParQuery8;
 
-import Models.Venda;
+import Models.Vendas.Venda;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 /**
  * Interface correspondente a Filial.
  * Permite operaçoes sobre uma Filial

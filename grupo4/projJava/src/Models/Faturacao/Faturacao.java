@@ -4,7 +4,7 @@ import Common.Constantes;
 import Models.Catalogos.IProduto;
 import Models.Queries.ParQuery10;
 import Models.Queries.ParQuery5;
-import Models.Venda;
+import Models.Vendas.Venda;
 import java.util.AbstractMap.*;
 import java.io.Serializable;
 import java.util.*;

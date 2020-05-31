@@ -1,10 +1,9 @@
 package Models.Faturacao;
 
 import Models.Catalogos.IProduto;
-import Models.Catalogos.Produto;
 import Models.Queries.ParQuery10;
 import Models.Queries.ParQuery5;
-import Models.Venda;
+import Models.Vendas.Venda;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;

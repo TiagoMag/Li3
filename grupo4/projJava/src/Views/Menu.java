@@ -38,5 +38,4 @@ public class Menu implements Serializable
         System.out.println(ANSI_CYAN+"══════════════════════════════════════════════════════════════════\n");
         System.out.print(ANSI_WHITE+" "+"Opcao:");
     }
-
 }
