@@ -220,5 +220,20 @@ public class Faturacao implements IFaturacao,Serializable {
         return new ParQuery10(prod.clone(),tabela);
     }
 
+        public List<Float> faturadoMesFililial(){
+               float total=0.0f;
+        List<Float> faturados = new ArrayList<>();
+              for(int i=0;i<Constantes.FILIAIS;i++){
+            int j=i;
+                               for( Map<IProduto, InfoFat> f :this.faturacao){
+                float fat=(float) f.values().stream().mapToDouble(e->e.faturadoProdutosMesFilial(j)).sum();
+                faturados.add(fat);
+                total+= fat;
+            }
+                  }
+               faturados.add(total);
+               return faturados;
+    }
+
 
 }

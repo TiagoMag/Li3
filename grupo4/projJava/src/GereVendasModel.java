@@ -251,6 +251,18 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
         return lst;
     }
 
+    public List<Float> Querie122(){
+               return this.faturacao.faturadoMesFililial();
+           }
+
+
+
+           public List<Integer> Querie123(){
+               List<Integer> distintFilial = new ArrayList<>();
+               for(IFilial f: this.filiais)
+            distintFilial.addAll(f.clientesDistintosMes());
+        return distintFilial;
+           }
     public Set<IProduto> produtosNaoComprados(){
         return this.catprodutos.getProdutos().stream().filter(e-> !this.faturacao.existeProduto(e)).collect(Collectors.toCollection(TreeSet::new));
     }

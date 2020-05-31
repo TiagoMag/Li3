@@ -7,6 +7,7 @@ import Models.Queries.*;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -144,24 +145,35 @@ public class GereVendasController implements IGereVendasController, Serializable
 
     }
 
-    public void handlerdadosGerais(){
-        int x=0;
-        do{
+    public void handlerdadosGerais() {
+        int x = 0;
+        do {
             this.view.showDadosGerais();
             double time;
-            x=Input.lerInt();  // lê input do cliente
-            switch(x) {
+            List<Integer> lst = new ArrayList<>();
+            x = Input.lerInt();  // lê input do cliente
+            switch (x) {
                 case 1:
                     Crono.start();
-                    List<Integer> lst =this.model.Querie121();
-                    time=Crono.stop();
-                    this.view.printQuerie121(lst,time);
+                    List<Integer> lst = this.model.Querie121();
+                    lst = this.model.Querie121();
+                    time = Crono.stop();
+                    this.view.printQuerie121(lst, time);
                     break;
                 case 2:
+                    Crono.start();
+                    List<Float> l = this.model.Querie122();
+                    time = Crono.stop();
+                    this.view.printQuerie122(l, time);
+                    break;
+                case 3:
+                    Crono.start();
+                    lst = this.model.Querie123();
+                    time = Crono.stop();
+                    this.view.printQuerie123(lst, time);
                     break;
             }
         }while(x!=0);
-
     }
 
     public void handlerQueriesInterativas(){

@@ -53,10 +53,13 @@ public class GereVendasView implements IGereVendasView, Serializable {
                 "Dados gerais do ficheiro de vendas;",
                 "Dados gerais das estruturas."
         };
-
         String[] dadosgeraisestruturas = {
                 "Totais compras por mês;",
+                        "Total faturado por mês e filial",
+                "Numero de distintos clientes que compraram em cada mês e filial"
         };
+
+
 
         String[] readFiles = {
                 "Ler ficheiros default(configs)",
@@ -180,6 +183,39 @@ public class GereVendasView implements IGereVendasView, Serializable {
         this.printTime(time);
         this.clickEnter();
     }
+
+       public void printQuerie122 (List<Float> lst,double time){
+              this.clearScreen();
+               System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+               int h=0;
+               for(int i=0;i<Constantes.FILIAIS;i++) {
+                       System.out.println("Filial:"+(i+1));
+                       for (int j = 0; j < Constantes.MESES; j++) {
+                               System.out.printf("Mês:%d %08f \n",(j+1) ,lst.get(h++));
+                            }
+                        System.out.println();
+                    }
+                System.out.println("Total faturado:"+lst.get(h));
+                System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                this.printTime(time);
+                this.clickEnter();
+            }
+
+            public void printQuerie123 (List<Integer> l,double time){
+               this.clearScreen();
+               System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+               for(int i=0;i<Constantes.FILIAIS;i++) {
+                      System.out.println("Filial:"+(i+1));
+                       for (int j = 0; j < Constantes.MESES; j++) {
+                              System.out.printf("Mês:%d %d",(j + 1) ,l.get(j));
+                          }
+                        System.out.println();
+                   }
+                System.out.println("══════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                this.printTime(time);
+                this.clickEnter();
+
+                   }
 
     public void printQuery1(Set<IProduto> lst, double time){
         if(lst.size()==0) {

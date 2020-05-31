@@ -116,4 +116,5 @@ public interface IFaturacao extends Serializable {
 
     public Set<ParQuery5> mostSelledProds(int limit);
     public ParQuery10 totalFaturadoProduto(IProduto prod);
+    public List<Float> faturadoMesFililial();
 }

@@ -149,5 +149,7 @@ public interface IFilial {
 
     List<ParQuerie9> nrComprasClienteProduto(IProduto p);
 
+    public List<Integer> clientesDistintosMes();
+
 
 }

@@ -1,5 +1,6 @@
 package Models.Filial;
 
+import Common.Constantes;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
@@ -208,6 +209,19 @@ public class Filial implements IFilial, Serializable {
         }
 
         return pares;
+    }
+
+    public List<Integer> clientesDistintosMes(){
+               List<Integer> distMes = new ArrayList<>();  // lista com o valor por mes dos clientes distintos
+               for(int i = 0; i< Constantes.MESES; i++) {
+                        List<ICliente> clientes = new ArrayList<>();    // lista com todos clientes do mês
+                      int j=i;
+                   for(Map.Entry<ICliente, List<InfoFilial>> e : this.filial.entrySet()){
+                                if(this.filial.get(e.getKey()).stream().anyMatch(x -> x.getMes() == j)) clientes.add(e.getKey());
+                         }
+                       distMes.add((int)clientes.stream().distinct().count());
+        }
+               return distMes;
     }
 
 }
