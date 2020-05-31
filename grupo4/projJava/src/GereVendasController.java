@@ -4,16 +4,27 @@ import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
 import Models.Catalogos.Produto;
 import Models.Queries.*;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-public class GereVendasController implements Serializable {
+/**
+ * Classe GereVendasController
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
 
-    /* Variáveis de instânvia */
+public class GereVendasController implements IGereVendasController, Serializable {
+
     private GereVendasModel model;
     private GereVendasView view;
+
+    /**
+     * Construtor por omissão
+     */
 
     public GereVendasController()
     {

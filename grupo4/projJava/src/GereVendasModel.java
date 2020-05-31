@@ -15,7 +15,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class GereVendasModel implements Serializable {
+/**
+ * Classe GereVendasModel
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
+
+public class GereVendasModel implements IGereVendasModel,Serializable {
     private ICatProdutos catprodutos;
     private ICatClientes catclientes;
     private IFaturacao faturacao;
@@ -50,9 +57,7 @@ public class GereVendasModel implements Serializable {
         this.iv=model.getIv();
     }
 
-    /**
-     * Getters
-     */
+
     public ICatProdutos getCatProdutos() {
         return catprodutos.clone();
     }
@@ -71,11 +76,7 @@ public class GereVendasModel implements Serializable {
 
     public InfoVendasFile getIv() { return iv.clone(); }
 
-
-    /**
-     * Setters
-     */
-    public void setCatprodutos(CatProds catprodutos) {
+ public void setCatprodutos(CatProds catprodutos) {
         this.catprodutos = catprodutos.clone();
     }
 
@@ -91,12 +92,6 @@ public class GereVendasModel implements Serializable {
         this.filiais = filiais.stream().map(Filial::clone).collect(Collectors.toList());
     }
 
-
-
-
-    /**
-     * Clone
-     */
     public GereVendasModel clone(){
         return new GereVendasModel(this);
     }
@@ -214,12 +209,9 @@ public class GereVendasModel implements Serializable {
         return model;
     }
 
-    /**
-     * Queries Estatistica 1.1
-     */
+
     public int totalBuyers(){
         List<ICliente> lst= new ArrayList<>();
-       // this.filiais.stream().map(IFilial:filialBuyers).collect(Collectors.toList());
 
         for( IFilial f : this.filiais){
 
@@ -228,6 +220,8 @@ public class GereVendasModel implements Serializable {
 
         return (int) lst.stream().distinct().count();
     }
+
+    /* QUERIE ESTATISTICA 1.1 */
     public List<String> Querie11(){
 
         List<String> l = new ArrayList <>();
@@ -248,6 +242,7 @@ public class GereVendasModel implements Serializable {
 
     }
 
+    /* QUERIE ESTATISTICA 1.2.1 */
     public List<Integer> Querie121(){
        List<Integer> lst=new ArrayList<>();
        for(int i=0;i < Constantes.MESES;i++)
@@ -256,31 +251,11 @@ public class GereVendasModel implements Serializable {
         return lst;
     }
 
-
-
-
-    //Consultas estatisticas
-    /**
-     * 1.1
-     */
-
-
-
-    /**
-     * 1.2
-     */
-
-
-
-
-    //Consultas interativas
-
-    //1)
     public Set<IProduto> produtosNaoComprados(){
         return this.catprodutos.getProdutos().stream().filter(e-> !this.faturacao.existeProduto(e)).collect(Collectors.toCollection(TreeSet::new));
     }
 
-    //2)
+    /* QUERIE 2 */
     public ParQuery2[] numeroTotalVendasEClientesMes(int mes){
         List<ICliente> lstTotal= new ArrayList<>();
         ParQuery2[] lista = new ParQuery2[Constantes.FILIAIS+1];
@@ -300,7 +275,7 @@ public class GereVendasModel implements Serializable {
         return lista;
     }
 
-    //3)
+    /* QUERIE 3 */
     public TrioQuery3 quantasComprasFezPMes(ICliente c){
         float faturado = 0.0f;
         int vendas,i;
@@ -325,7 +300,7 @@ public class GereVendasModel implements Serializable {
     }
 
 
-    //4)
+    /* QUERIE 4 */
     public TrioQuery4[] querie4 (IProduto p){
         TrioQuery4[] trios = new TrioQuery4[Constantes.MESES];
         float total_faturado=0.0f;
@@ -344,7 +319,7 @@ public class GereVendasModel implements Serializable {
     }
 
 
-    //5)
+    /* QUERIE 5 */
     public Set<ParQuery5> query5(ICliente c){
         List<InfoFilial> compras= new ArrayList<>();
 
@@ -362,6 +337,7 @@ public class GereVendasModel implements Serializable {
                                  collect(Collectors.toCollection(TreeSet::new));
     }
 
+
     public int buyersProduct(IProduto p){
         List <ICliente> list = new ArrayList<>();
         for(IFilial f : this.filiais)           // percorre filiais
@@ -370,6 +346,7 @@ public class GereVendasModel implements Serializable {
         return (int)list.stream().distinct().count();
     }
 
+    /* QUERIE 6 */
     public Set<TrioQuery6> query6 (int limit){
         Set<TrioQuery6> trios = new TreeSet<>();
 
@@ -381,7 +358,7 @@ public class GereVendasModel implements Serializable {
         return trios;
     }
 
-
+    /* QUERIE 7 */
     public List<Set<ParQuery7>> query7 () {
         List<Set<ParQuery7>> l = new ArrayList<>();
 
@@ -394,7 +371,7 @@ public class GereVendasModel implements Serializable {
 
 
 
-
+    /* QUERIE 8 */
     public List<ParQuery8> query8(int limit){
         List<ParQuery8> pares = new ArrayList<>();
 
@@ -411,7 +388,7 @@ public class GereVendasModel implements Serializable {
 
 
 
-    //9)
+    /* QUERIE 9 */
     public List<ParQuerie9> query9(IProduto p,int limit){
         List<ParQuerie9> pares = new ArrayList<>();
 
@@ -424,6 +401,7 @@ public class GereVendasModel implements Serializable {
 
     }
 
+    /* QUERIE 10 */
     public List<ParQuery10> query10(){
 
        List<ParQuery10> faturado = new ArrayList<>();   // list onde estrão todos os produtos com as suas faturacoes por mes

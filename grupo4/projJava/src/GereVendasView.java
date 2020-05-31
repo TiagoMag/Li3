@@ -9,7 +9,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class GereVendasView implements Serializable {
+/**
+ * Classe GereVendasView
+ *
+ * @author Grupo 4
+ * @version 2020
+ */
+
+public class GereVendasView implements IGereVendasView, Serializable {
 
     private Menu menuPrincipal;
     private Menu menuQueriesEstatisticas;
