@@ -1,6 +1,5 @@
 package Models.Catalogos;
 
-import static java.lang.Integer.parseInt;
 
  public interface IProduto {
 
