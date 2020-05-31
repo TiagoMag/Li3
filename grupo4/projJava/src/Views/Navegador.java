@@ -1,10 +1,10 @@
-
-import Views.Pagina;
+package Views;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
+import Common.Input;
 
 public class Navegador implements Serializable {
 

@@ -218,6 +218,7 @@ public class GereVendasModel implements IGereVendasModel,Serializable {
 
     public int totalBuyers(){
         List<ICliente> lst= new ArrayList<>();
+       // this.filiais.stream().map(IFilial:filialBuyers).collect(Collectors.toList());
 
         for( IFilial f : this.filiais){
 

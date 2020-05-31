@@ -79,7 +79,7 @@ public class Faturacao implements IFaturacao,Serializable {
         } else {  // se não existe cria
             this.faturacao.get(v.getMes() - 1).put(v.getProduto().clone(), new InfoFat());
         }
-        this.faturacao.get(v.getMes() - 1).get(v.getProduto()).insereVenda(v.getFilial(), v.getPreco(), v.getQuantidade());
+        this.faturacao.get(v.getMes() - 1).get(v.getProduto()).insereVenda((v.getFilial()-1), v.getPreco(), v.getQuantidade());
     }
 
 

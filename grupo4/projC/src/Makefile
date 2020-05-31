@@ -9,9 +9,9 @@ ModelDir=model/
 ControllerDir=controller/
 ViewDir=view/
 
-_OBJ =  CatProdutos.o model.Produto.o model.Cliente.o model.CatClientes.o Queries.o Files.o SGV.o Navegador.o Input.o View.o model.Venda.o Faturacao.o Filial.o Controller.o
+_OBJ =  CatProdutos.o model.Produto.o model.Cliente.o model.CatClientes.o Queries.o Files.o SGV.o Views.Navegador.o Common.Input.o View.o model.Venda.o Faturacao.o Filial.o Controller.o
 
-program: CatProd model.Produto model.Cliente CatCli Queries Files SGV Navegador View Input model.Venda Faturacao Filial Controller
+program: CatProd model.Produto model.Cliente CatCli Queries Files SGV Views.Navegador View Common.Input model.Venda Faturacao Filial Controller
 	$(CC) $(CFLAGS)  -o program main.c $(GLIBFLAGC) $(_OBJ) $(GLIBFLAGL)
 
 CatProd:
@@ -35,11 +35,11 @@ Files:
 SGV:
 	$(CC) $(CFLAGS) -c $(ModelDir)SGV.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
-Navegador:
-	$(CC) $(CFLAGS) -c $(ModelDir)Navegador.c $(GLIBFLAGC)  $(GLIBFLAGL)
+Views.Navegador:
+	$(CC) $(CFLAGS) -c $(ModelDir)Views.Navegador.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
-Input:
-	$(CC) $(CFLAGS) -c $(ControllerDir)Input.c $(GLIBFLAGC)  $(GLIBFLAGL)
+Common.Input:
+	$(CC) $(CFLAGS) -c $(ControllerDir)Common.Input.c $(GLIBFLAGC)  $(GLIBFLAGL)
 
 View:
 	$(CC) $(CFLAGS) -c $(ViewDir)View.c $(GLIBFLAGC)  $(GLIBFLAGL)

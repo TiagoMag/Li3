@@ -1,4 +1,5 @@
 import Common.Constantes;
+import Common.Input;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
@@ -18,7 +19,7 @@ public class Testes {
 
     public static void main (String [] args){
        System.out.println("Começar testes(S/N)");
-       String op=Input.lerString();
+       String op= Input.lerString();
        if(op.equals("S")) runtestes();
        else System.exit(0);
     }

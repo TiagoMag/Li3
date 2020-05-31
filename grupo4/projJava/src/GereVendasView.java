@@ -2,6 +2,7 @@ import Common.Constantes;
 import Models.Catalogos.IProduto;
 import Models.Queries.*;
 import Views.Menu;
+import Views.Navegador;
 
 
 import java.io.Serializable;
@@ -387,4 +388,5 @@ public class GereVendasView implements IGereVendasView, Serializable {
 
 
     }
+
 }

@@ -1,4 +1,5 @@
 import Common.Constantes;
+import Common.Input;
 import Models.Catalogos.Cliente;
 import Models.Catalogos.ICliente;
 import Models.Catalogos.IProduto;
@@ -283,6 +284,7 @@ public class GereVendasController implements IGereVendasController, Serializable
                     time = Crono.stop();
                     this.view.printQuery10(pares10,time);
                     break;
+
             }
 
         }while(x!=0);
