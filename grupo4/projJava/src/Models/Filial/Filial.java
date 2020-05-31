@@ -206,7 +206,6 @@ public class Filial implements IFilial, Serializable {
 
         for(ICliente l : lc){
             pares.add(new ParQuerie9(l, totalFaturadoProdutoCliente(l,p), nrTimesBought(l,p)));
-            System.out.println(nrTimesBought(l,p) + l.getCodigo() + p.getCodigo());
         }
 
         return pares;

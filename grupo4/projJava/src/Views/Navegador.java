@@ -26,7 +26,7 @@ public class Navegador implements Serializable {
         List<Pagina> listP = new ArrayList<>();
         List<String> pageElems  = new ArrayList<>();
         Pagina p;
-        while(pages<paginasTotal(lst)) {
+        while(pages<=paginasTotal(lst)) {
             for(int j = 0; j < lin; j++) {
                 for(int h = 0; h < col; h++) {
                     if(i < lst.size()) {
