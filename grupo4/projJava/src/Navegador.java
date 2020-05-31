@@ -41,10 +41,8 @@ public class Navegador implements Serializable {
             pageElems = new ArrayList<>();
           pages++;
         }
-        System.out.println("Iiiii"+i);
         this.paginas = listP;
         this.total= this.paginasTotal(lst);
-        System.out.println("asasas"+listP.size());
     }
 
     int paginasTotal(List<String> lst){
